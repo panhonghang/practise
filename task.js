@@ -262,69 +262,45 @@
 
 // 利用settimeout实现setinterval函数
 
-// let flag = true;
-
-// let setinterval1 = function(fn,time){
-//     fn();
-//     if(flag){
-//         setTimeout(setinterval1(fn,time),time);
+// const setinterval2 = (func, interval) => {
+//     const config = { shouldStop: false }
+//     const loop = () => {
+//         if (!config.shouldStop) {
+//             func();
+//             setTimeout(loop, interval);
+//         }
 //     }
+//     setTimeout(loop, interval);
+//     return config;
 // }
+
+// let flag = true;
+    
+// let setinterval1 = function(fn,time){
+//     let a = function(){
+//         if(flag){
+//             fn();
+//             setTimeout(setinterval1(fn,time),time);
+//         }
+//     }
+//     setTimeout(a,time);
+// }
+
 
 // let log = ()=> console.log("a");
 
 // setinterval1(log,1000);
 
+// //clearInterval函数
 // let clearInterval = ()=>{
 //     flag = false;
 // }
 
-// 使用requstAnimationFrame实现setInterval函数
 
-// const setInterval3 = (func, interval) => {
-//     let startTime = Date.now();
 
-//     const flag = true;
 
-//     const fn = () => {
-//         if (flag) {
-//             // 判断时间间隔
-//             if (Date.now() - startTime > interval) {
-//                 func();
-//                 startTime = Date.now();
-//             }
 
-//             // 判断环境，假如是浏览器环境就用requestAnimationFrame，node环境使用setImmediate
-//             if(typeof window === 'undefined') {
-//                 setImmediate(fn);
-//             } else {
-//                 window.requestAnimationFrame(fn)
-//             }
-//         }
-//     }
-//     fn();
-//     return flag;
-// }
 
-// 设置判断条件
-let flag = true;
 
-let setInterval1 = function(fn,time){
-    // 设置开始时间
-    let start = new Date();
-    let timeFn = function(fn,time){
-        if(flag){
-            if(new Date() - start > time){
-                fn();
-                // start = new Date();
-            }
-            setTimeout(timeFn(fn,time),0);
-        }
-    }
 
-    timeFn(fn,time);
-}
 
-let log = ()=> console.log("a");
-
-setInterval1(log,1000);

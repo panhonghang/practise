@@ -226,17 +226,25 @@
  */
 
 // Array.prototype.reduce1 = function(fn){
-//     let result = 0;
-//     for(let i=0; i<this.length; i++){
-//         result = result + fn(this[i]);
+//     let arr = this[0];
+//     if(this.length == 0){
+//         throw new TypeError("Reduce of empty array with no initial value");
+//     }
+//     let result = this[0];
+//     for(let i=1; i<this.length; i++){
+//         result = fn(result,this[i],i,this);
 //     }
 //     return result;
 // }
 
-// let a = [1,23,4];
-// let n = (m)=> m+m;
+// let task = [1,23];
+// let n = (a,b,c,d)=> {
+//     console.log(a,b,c,d)
+//     return a*b;
+// };
 
-// console.log(a.reduce1(n))
+// console.log('my',task.reduce1(n));
+// console.log('true',task.reduce(n));
 
 // 数组rest方法实现 
 

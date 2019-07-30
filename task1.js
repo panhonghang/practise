@@ -603,3 +603,369 @@
 // // g.showGraph()
 // // g.DFS(0);
 // g.BFS(0);
+
+// var threeSum = function(nums) {
+//     let arr = [];
+//     let re = [];
+    
+//     if(nums.length < 3) return re;
+
+//     nums.sort((a,b)=>a-b);
+//     for(let i = 0; i < nums.length; i++){
+//         for(let j = i+1; j < nums.length; j++){
+//             for(let k = j+1; k < nums.length; k++){
+//                 if(nums[i] + nums[j] + nums[k] == 0){
+//                    arr.push([nums[i],nums[k],nums[j]].sort((a,b)=>a-b))
+//                 }
+//             }            
+//         }
+//     }
+//     let bb = []
+//     // 去重函数
+//     if(arr.length>2){
+//         arr1 = arr.map((i)=>i.toLocaleString());
+//         arr1 = Array.from(new Set(arr1));
+//         re = arr1.map((j)=> j.split(','));
+
+//         for(let i = 0; i < re.length; i++){
+//             for(let j = 0; i < re.length; j++){
+//                 Number(re[i][j])
+//             }
+//         }
+
+//     } else {
+//         re.push(arr)
+//     }
+
+// };
+
+// threeSum([0,0,0])
+
+
+// var threeSum = function (nums) {
+//     let res = []
+//     let length = nums.length;
+//     nums.sort((a, b) => a - b) // 先排个队，最左边是最弱（小）的，最右边是最强(大)的
+//     if (nums[0] <= 0 && nums[length - 1] >= 0) { // 优化1: 整个数组同符号，则无解
+//       for (let i = 0; i < length - 2;) {
+//         if (nums[i] > 0) break; // 优化2: 最左值为正数则一定无解
+//         let first = i + 1
+//         let last = length - 1
+//         do {
+//           if (first >= last || nums[i] * nums[last] > 0) break // 两人选相遇，或者三人同符号，则退出
+//           let result = nums[i] + nums[first] + nums[last]
+//           if (result === 0) { // 如果可以组队
+//             res.push([nums[i], nums[first], nums[last]])
+//           }
+//           if (result <= 0 ) { // 实力太弱，把菜鸟那边右移一位
+//             while (first < last && nums[first] === nums[++first]){} // 如果相等就跳过
+//           } else { // 实力太强，把大神那边右移一位
+//             while (first < last && nums[last] === nums[--last]) {}
+//           }
+//         } while (first < last)
+//         while (nums[i] === nums[++i]) {}
+//       }
+//     }
+//     return res
+//   }
+
+
+
+// var maxDistToClosest = function(seats) {
+//     let arr = [];
+//     let first = 0;
+//     let end = 0;
+//     let start = 0;
+
+//     for(let i = 0; i < seats.length; i++){
+//         if(seats[i] == 0) {
+//             first++;
+//             if(seats[i+1] == 1){
+//                 arr.push(first);
+//                 first = 0;
+//             }
+//             if(i == seats.length - 1){
+//                 arr.push(first);
+//             }
+//         }
+//     }
+
+//     if(seats[seats.length-1] == 0){
+//         end = arr.pop();
+//         arr.push(end);
+//     } 
+    
+//     if(seats[0] == 0){
+//         start = arr.shift();
+//         arr.unshift(start);
+//     }
+
+//     arr.sort((a,b)=> a-b);
+
+//     let max = arr.pop()||1;
+
+//     if(max%2 == 0){
+//         max = max/2;
+//     } else {
+//         max = (max+1)/2
+//     }
+
+//     max = [start,end,max].sort((a,b)=> a-b).pop()
+
+//     return max
+// };
+
+// let a = maxDistToClosest([0,0,0,1,0,0,0,1,0,0,0,0,1,1,0,0,0,1])
+
+// console.log(a)
+
+
+/**
+ * @description: 
+ * @param {type} 矩形叠加去重
+ * @return: 
+ */
+
+    // for(let i = 0; i < arr.length; i++){
+    //     let width;
+    //     let height;
+    //     let w = 0;
+    //     let h = 0;
+    //     // 到达最高的一个
+
+    //     if( i === arr.length-1){
+    //         width = arr[i].right-arr[i].left;
+    //         height = arr[i].high-arr[i].low;
+    //     } else {
+    //         // 不相交
+    //         if(arr[i].high <= arr[i+1].low) {
+    //             width = arr[i].right-arr[i].left;
+    //             height = arr[i].high-arr[i].low;
+    //         } else {
+    //             // 不相交
+    //             if(arr[i].right <= arr[i+1].left||arr[i+1].right <= arr[i].left){
+    //                 width = arr[i].right-arr[i].left;
+    //                 height = arr[i].high-arr[i].low;
+    //                 // 相交就用自己的面积减去相交的面积
+    //             } else {
+    //                 width = arr[i].right-arr[i].left;
+    //                 height = arr[i].high-arr[i].low;
+    //                 // 找到相交部分的高度
+    //                 h = [arr[i].low,arr[i].high,arr[i+1].low,arr[i+1].high].sort((a,b)=>a-b);
+    //                 h = h[2] - h[1];
+    //                 // 找到相交部分的宽度
+    //                 w = [arr[i].left,arr[i].right,arr[i+1].left,arr[i+1].right].sort((a,b)=>a-b);
+    //                 w = w[2] - w[1];
+    //             }
+    //         }
+    //     }
+
+    //     console.log(width*height - w*h)
+    //     // 累加面积
+    //     s = width*height - w*h + s;
+    // }
+
+/**
+ * @param {number[][]} rectangles
+ * @return {number}
+ */
+// var rectangleArea = function(rectangles) {
+//     let arr = [];
+//     let line = [];
+//     let s = 0;
+
+//     rectangles.forEach((i)=>{
+//         let node = {
+//             left: i[0],
+//             right: i[2],
+//             high: i[3],
+//             low: i[1]
+//         }
+//         line.push(i[1],i[3]);
+//         arr.push(node);
+//     });
+
+//     arr.sort((a,b)=>a.left-b.left);
+
+//     line = Array.from(new Set(line)).sort((a,b)=> a-b);
+    
+//     for(let i = 0; i < line.length - 1; i++){
+//         let width = [];
+//         let h = line[i+1] - line[i];
+//         // 当前这一行的总宽度
+//         let w = 0;
+
+//         // 取得当前这一行的所有元素
+//         for(let j = 0; j < arr.length; j++){
+//             if(arr[j].low <= line[i]&&line[i] < arr[j].high){
+//                 width.push(arr[j]);
+//             }
+//         }   
+
+//         if(width.length < 2){
+//             // 直接返回宽度
+//             if(width.length==0){
+//                 w = 0;
+//             } else {
+//                 w = width[0].right - width[0].left + w;
+//             }
+//         } else {
+//              // 从左往右排序
+//             width.sort((a,b)=> a.left-b.left);
+
+//             let length = width.length;
+
+//             let fn = function(wlist){
+
+//                 let list = [];
+
+//                 if(wlist.length < 2) return wlist; 
+
+                
+                
+//                 for(let a = 0; a < wlist.length - 1; a++){
+                    
+//                     let start1 = wlist[a];
+//                     let start2 = wlist[a+1]; 
+//                     // 不相交就都取出来
+//                     if(start1.right < start2.left||start2.right < start1.left){
+//                         list.push(start1);
+//                     } else {
+//                         // 相交就添加新的进去
+//                         let newNode = [start1.right,start1.left,start2.right,start2.left].sort((a,b)=>a-b);     
+//                         let node = {
+//                             left: newNode[0],
+//                             right: newNode[3]
+//                         }  
+
+//                         list.push(node);
+//                     }
+
+//                     if(a == wlist.length - 2) list.push(start2);
+//                 }
+                
+//                 if(list.length == length){
+//                     return list;
+//                 } else {
+//                     length = list.length;
+//                     list.sort((a,b)=> a.left-b.left);
+//                     return fn(list)
+//                 }
+//             }
+
+//             width = fn(width);
+            
+//             if(width.length>1){
+//                 for(let i = 0; i < width.length; i++){
+//                     w = width[i].right - width[i].left + w;                
+//                 }
+//             } else{
+//                 w = width[0].right - width[0].left;
+//             }
+//         }
+//         console.log(w*h)
+//         s = w*h + s; 
+//     }
+
+//     if(s > 10**9) return s % (10**9 -7)
+
+//     return s;
+// };
+
+
+// let s = rectangleArea([[72,10,92,86],[25,12,64,28],[10,27,43,54],[65,12,100,91]]);
+
+
+// console.log(s)
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+
+// let Node = function(e){
+//     this.e = e;
+//     this.next = null;
+// }
+
+// let add = function(ele){
+//     this.length ++;
+//     let node = new Node(ele);
+//     let current = this.head;
+//     while(current.next!==null){
+//         current = current.next;
+//     }
+//     current.next = node;
+// }
+
+// let ListNode = function() {
+//     this.head = new Node('head');
+//     this.add = add;
+//     this.length = 1;
+// }
+
+// var addTwoNumbers = function(l1, l2) {
+//     let list1 = new ListNode();
+//     let list2 = new ListNode();
+//     let list3 = new ListNode();
+
+//     for(let i = 0; i < l1.length; i++){
+//         list1.add(l1[i])
+//     }
+
+//     for(let i = 0; i < l2.length; i++){
+//         list2.add(l2[i])
+//     }
+
+//     let current1 = list1.head;
+//     let current2 = list2.head;
+//     let current3 = list3.head;
+
+//     let flag = false;
+
+//     while(!(list1.length==1 || list2.length==1)){
+//         list1.length--;
+//         list2.length--;
+
+//         current1 = current1.next;
+//         current2 = current2.next;
+
+//         if(flag){
+//             result = current1.e + current2.e+1;
+//         } else {
+//             result = current1.e + current2.e;
+//         }
+
+//         if(result < 10){
+//             list3.add(result);
+//             flag = false;
+//         } else {
+//             result = result % 10;
+//             list3.add(result);
+//             flag = true;
+//         }
+
+//         if(list1.length==1 || list2.length==1){
+//             list3.add(1);
+//         }
+//     }
+
+//     let l3 = [];
+    
+//     while(current3.next!==null){
+//         current3 = current3.next;
+//         l3.push(current3.e)
+//     }
+    
+//     return l3;
+// }
+
+// console.log(addTwoNumbers([2,4,3,2],[5,6,4,8]))

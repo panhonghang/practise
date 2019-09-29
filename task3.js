@@ -124,40 +124,124 @@
 // console.log(tribonacci(6))
 
 /**
- * @description: 求数组所有元素的组合
+ * @description: 求全排列
  * @param {type} {array} nums
  * @return: array
  */
 
- var all = function(nums){
-     let resArr = [];
-     let midllArr = [];
-     /**
-      * @description: 
-      * @param {type} {array} arr
-      * @return: 
-      */
-    let fn = function(arr){
-        if(arr.length===0) return midllArr;
+//  var permute = function(nums) {
+//     nums.sort((pre,next)=> pre - next);
+//     let result = [];
+//     /**
+//      * @description: change element's index
+//      * @param {type} {number[]} nextArr {number} pre next
+//      * @return: null
+//      */
+//     let swep = function(nextArr,pre,next){
+//         let temp = nextArr[pre];
+//         nextArr[pre] = nextArr[next];
+//         nextArr[next] = temp;
+//     }
+//     /**
+//      * @description: add element to result
+//      * @param {type} {number[]} arr {number} start
+//      * @return: 
+//      */
+//     let fn = function(arr,start){
+//         if(start === arr.length - 1) return result.push(arr);
+//         let len = arr.length;
+//         for(let i = start; i < len; i++){
+//             swep(arr,start,i);
+//             let newA = [...arr];
+//             fn(newA,start+1);
+//         }
+//     }
+//     fn(nums,0)
+
+//     return result;
+// };
+
+//  console.log(permute([1,3,2]))
+
+/**
+ * @description: 求全排列||
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+
+//这样写效率太低了
+// var permuteUnique = function(nums) {
+//     nums.sort((pre,next)=> pre - next);
+//     let result = [];
+//     /**
+//      * @description: change element's index
+//      * @param {type} {number[]} nextArr {number} pre next
+//      * @return: null
+//      */
+//     let swep = function(nextArr,pre,next){
+//         let temp = nextArr[pre];
+//         nextArr[pre] = nextArr[next];
+//         nextArr[next] = temp;
+//     }
+//     /**
+//      * @description: add element to result
+//      * @param {type} {number[]} arr {number} start
+//      * @return: 
+//      */
+//     let fn = function(arr,start){
+//         if(start === arr.length - 1) return result.push(arr);
+//         let len = arr.length;
+//         for(let i = start; i < len; i++){
+//             swep(arr,start,i);
+//             let newA = [...arr];
+//             fn(newA,start+1);
+//         }
+//     }
+//     fn(nums,0);
+//     //实现多维数组去重，装逼可以效率不行
+//     result = [...new Set(result.map(key => key = key.join(',')))].map(key => key.split(',').map(key=> +key));
+
+//     return result;
+// };
+
+var permuteUnique = function(nums) {
+    nums.sort((pre,next)=> pre - next);
+    let result = [];
+    /**
+     * @description: change element's index
+     * @param {type} {number[]} nextArr {number} pre next
+     * @return: null
+     */
+    let swep = function(nextArr,pre,next){
+        let temp = nextArr[pre];
+        nextArr[pre] = nextArr[next];
+        nextArr[next] = temp;
+    }
+    /**
+     * @description: add element to result
+     * @param {type} {number[]} arr {number} start
+     * @return: 
+     */
+    let fn = function(arr,start){
+        if(start === arr.length - 1) return result.push(arr);
+
         let len = arr.length;
-        for(let i = 0; i < len; i++){
-            midllArr.push(arr[i]);
-            let narr = [...arr.slice(0,i)];
-            narr.concat(arr.slice(i))
-            fn(narr);
+        let map = new Map();
+
+        for(let i = start; i < len; i++){
+            // 解决重复问题
+            if(!map.get(arr[i])){
+                swep(arr,start,i);
+                map.set(arr[i],true);
+                // let newA = [...arr];
+                fn(arr,start+1);
+                swep(arr,start,i);
+            }
         }
     }
-    fn(nums);
-    resArr.push(fn(nums));
-    console.log(fn(nums))
-    //  nums.forEach((key)=>{
-    //      if(!arr.includes(key)){
-    //          arr.push(num)
-    //      } else {
+    fn(nums,0);
 
-    //      }
-    //  })
-     return resArr
- }
+    return result;
+};
 
- console.log(all([1,2,3]))
+console.log(permuteUnique([2,1,1,2]))

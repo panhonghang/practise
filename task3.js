@@ -231,11 +231,10 @@ var permuteUnique = function(nums) {
         for(let i = start; i < len; i++){
             // 解决重复问题
             if(!map.get(arr[i])){
-                swep(arr,start,i);
                 map.set(arr[i],true);
-                // let newA = [...arr];
-                fn(arr,start+1);
                 swep(arr,start,i);
+                let newA = [...arr];
+                fn(newA,start+1);
             }
         }
     }
@@ -244,4 +243,4 @@ var permuteUnique = function(nums) {
     return result;
 };
 
-console.log(permuteUnique([2,1,1,2]))
+console.log(permuteUnique([1,1,2,2]))

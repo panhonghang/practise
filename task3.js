@@ -204,43 +204,76 @@
 //     return result;
 // };
 
-var permuteUnique = function(nums) {
-    nums.sort((pre,next)=> pre - next);
-    let result = [];
-    /**
-     * @description: change element's index
-     * @param {type} {number[]} nextArr {number} pre next
-     * @return: null
-     */
-    let swep = function(nextArr,pre,next){
-        let temp = nextArr[pre];
-        nextArr[pre] = nextArr[next];
-        nextArr[next] = temp;
+// var permuteUnique = function(nums) {
+//     nums.sort((pre,next)=> pre - next);
+//     let result = [];
+//     /**
+//      * @description: change element's index
+//      * @param {type} {number[]} nextArr {number} pre next
+//      * @return: null
+//      */
+//     let swep = function(nextArr,pre,next){
+//         let temp = nextArr[pre];
+//         nextArr[pre] = nextArr[next];
+//         nextArr[next] = temp;
+//     }
+//     /**
+//      * @description: add element to result
+//      * @param {type} {number[]} arr {number} start
+//      * @return: 
+//      */
+//     let fn = function(arr,start){
+//         if(start === arr.length - 1) return result.push(arr);
+
+//         let len = arr.length;
+//         let map = new Map();
+
+//         for(let i = start; i < len; i++){
+//             // 解决重复问题
+//             if(!map.get(arr[i])){
+//                 map.set(arr[i],true);
+//                 swep(arr,start,i);
+//                 let newA = [...arr];
+//                 fn(newA,start+1);
+//             }
+//         }
+//     }
+//     fn(nums,0);
+
+//     return result;
+// };
+
+// console.log(permuteUnique([1,1,2,2]))
+
+/**
+ * @description 784. 字母大小写全排列
+ * @param {string} S
+ * @return {string[]}
+ */
+var letterCasePermutation = function(S) {
+    let res = [];
+    let Arr = S.split('');
+    let order = [];
+    
+    Arr.forEach((key,index)=>{
+        if(+key < 10) return;
+        order.push(index);
+    });
+
+    let leng = order.length;
+
+    let fn = function(start,arr){
+        if(start >= leng) return res.push(arr.join(''));
+
+        arr[order[start]]=arr[order[start]].toLocaleLowerCase();
+        fn(start+1,[...arr]);
+        arr[order[start]]=arr[order[start]].toLocaleUpperCase();
+        fn(start+1,[...arr]);
     }
-    /**
-     * @description: add element to result
-     * @param {type} {number[]} arr {number} start
-     * @return: 
-     */
-    let fn = function(arr,start){
-        if(start === arr.length - 1) return result.push(arr);
 
-        let len = arr.length;
-        let map = new Map();
+    fn(0,Arr);
 
-        for(let i = start; i < len; i++){
-            // 解决重复问题
-            if(!map.get(arr[i])){
-                map.set(arr[i],true);
-                swep(arr,start,i);
-                let newA = [...arr];
-                fn(newA,start+1);
-            }
-        }
-    }
-    fn(nums,0);
-
-    return result;
+    return res;
 };
 
-console.log(permuteUnique([1,1,2,2]))
+console.log(letterCasePermutation('12sA'))

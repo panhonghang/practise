@@ -250,30 +250,66 @@
  * @param {string} S
  * @return {string[]}
  */
-var letterCasePermutation = function(S) {
-    let res = [];
-    let Arr = S.split('');
-    let order = [];
+// var letterCasePermutation = function(S) {
+//     let res = [];
+//     let Arr = S.split('');
+//     let order = [];
     
-    Arr.forEach((key,index)=>{
-        if(+key < 10) return;
-        order.push(index);
-    });
+//     Arr.forEach((key,index)=>{
+//         if(+key < 10) return;
+//         order.push(index);
+//     });
 
-    let leng = order.length;
+//     let leng = order.length;
 
-    let fn = function(start,arr){
-        if(start >= leng) return res.push(arr.join(''));
+//     let fn = function(start,arr){
+//         if(start >= leng) return res.push(arr.join(''));
 
-        arr[order[start]]=arr[order[start]].toLocaleLowerCase();
-        fn(start+1,[...arr]);
-        arr[order[start]]=arr[order[start]].toLocaleUpperCase();
-        fn(start+1,[...arr]);
+//         arr[order[start]]=arr[order[start]].toLocaleLowerCase();
+//         fn(start+1,[...arr]);
+//         arr[order[start]]=arr[order[start]].toLocaleUpperCase();
+//         fn(start+1,[...arr]);
+//     }
+
+//     fn(0,Arr);
+
+//     return res;
+// };
+
+// console.log(letterCasePermutation('12sA'))
+
+/**
+ * Definition for singly-linked list.
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+function ListNode(val) {
+    this.val = val;
+    this.next = null;
+}
+let head = new ListNode(1);
+head.next = new ListNode(2);
+
+var reverseList = function(head) {
+    let node = head;
+    let resNode = head;
+    let arr = [];
+
+    while(1){
+        if(!node) break;
+        arr.push(node.val);
+        node = node.next;
     }
 
-    fn(0,Arr);
-
-    return res;
+    arr.reverse();
+    
+    arr.forEach((key,index)=>{
+        resNode.val = arr[index]
+        resNode = resNode.next;
+    })
+    return head;
 };
 
-console.log(letterCasePermutation('12sA'))
+reverseList(head)

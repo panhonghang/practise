@@ -378,10 +378,116 @@
  * @param {number[]} A
  * @return {number}
  */
-var sumSubarrayMins = function(A) {
-    let res = 0;
+// var sumSubarrayMins = function(A) {
+//     let res = 0;
     
-    return res;
-};
+//     return res;
+// };
 
-sumSubarrayMins([1,2,3,4])
+// sumSubarrayMins([1,2,3,4])
+
+/**
+ * @description: 扑克牌问题 1.0
+ * 在纸上面写出了结果以后强行倒推的
+ * @param {type} {number[]} A
+ * @return: {number[]} res
+ */
+
+// var sortPoke = function(A){
+//     let res = [];
+
+//     let temp1 = A.splice(0,Math.floor(A.length/2)+1);
+//     let temp2 = A.splice(0,Math.floor(A.length/2));
+//     let temp3 = A.splice(0,Math.floor(A.length/2));
+    
+//     let fn = function(Arr1,Arr2){
+//         let resA = [];
+//         Arr1.forEach(key=>{
+//             resA.push(key);
+//             if(Arr2.length > 0) resA.push(Arr2.shift());
+//         })
+//         return resA;
+//     }
+    
+//     res = fn(temp1,fn(fn(A,temp3),temp2))
+
+//     console.log(res)
+//     return res;
+// }
+
+// sortPoke([1,2,3,4,5,6,7,8,9,10,11,12,13])
+
+
+
+// 后面发现先写出正序方法，之后将队列方法改为栈方法，可以快速解决
+
+// /**
+//  * @description: 扑克牌问题正序
+//  * @param {type} {number[]} A
+//  * @return: {number[]} res
+//  */
+
+// var sortPokeOrder = function(A){
+//     let res = [];
+//     let length = A.length;
+
+//     while(length > 0){
+//         res.push(A.shift());
+//         A.push(A.shift());
+//         length--;
+//     }
+
+//     console.log('这是正序',res);
+    
+//     return res;
+// }
+
+// sortPokeOrder([1, 12, 2, 8, 3, 11, 4, 9, 5, 13, 6, 10, 7])
+
+// /**
+//  * @description: 扑克牌问题倒序
+//  * @param {type} {number[]} A
+//  * @return: {number[]} res
+//  */
+
+// var sortPoke = function(A){
+//     A.reverse();
+//     let res = [];
+//     let length = A.length;
+
+//     while(length > 0){
+//         res.unshift(A.pop());
+//         A.unshift(A.pop());
+//         length--;
+//     }
+//     res.reverse();
+
+//     console.log('这是倒叙',res)
+//     return res;
+// }
+
+// sortPoke([1, 12, 2, 8, 3, 11, 4, 9, 5, 13, 6, 10, 7])
+
+
+/**
+ * @description: 网上找的大神解法,洗牌问题
+ * @param {type} 
+ * @return: 
+ */
+
+// let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+
+// function sort(arr) {
+//     let pre = []
+    
+//     while (arr.length > 1) {
+//         pre.push(arr.pop())
+//         pre.push(pre.shift())
+//     }
+
+//     pre.push(arr.pop())
+//     console.log(pre.reverse())
+// }
+// sort(arr)
+
+

@@ -285,31 +285,103 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-function ListNode(val) {
-    this.val = val;
-    this.next = null;
-}
-let head = new ListNode(1);
-head.next = new ListNode(2);
+// function ListNode(val) {
+//     this.val = val;
+//     this.next = null;
+// }
+// let head = new ListNode(1);
+// head.next = new ListNode(2);
 
-var reverseList = function(head) {
-    let node = head;
-    let resNode = head;
-    let arr = [];
+// var reverseList = function(head) {
+//     let node = head;
+//     let resNode = head;
+//     let arr = [];
 
-    while(1){
-        if(!node) break;
-        arr.push(node.val);
-        node = node.next;
-    }
+//     while(1){
+//         if(!node) break;
+//         arr.push(node.val);
+//         node = node.next;
+//     }
 
-    arr.reverse();
+//     arr.reverse();
     
-    arr.forEach((key,index)=>{
-        resNode.val = arr[index]
-        resNode = resNode.next;
-    })
-    return head;
+//     arr.forEach((key,index)=>{
+//         resNode.val = arr[index]
+//         resNode = resNode.next;
+//     })
+//     return head;
+// };
+
+// reverseList(head)
+
+
+/**
+ * @description 两个数组求交集
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+// var intersection = function(nums1, nums2) {
+//     let res = nums1.filter(elm => nums2.includes(elm));
+//     res = [...new Set(res)]
+//     return res
+// };
+
+// console.log(intersection([1,2,2,1],[2,2]))
+
+/**
+ * 求两个数组交集||
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+// var intersect = function(nums1, nums2) {
+//     let res = nums1.filter(elm => {
+//         let index = nums2.indexOf(elm);
+//         if(index !== -1){
+//             nums2.splice(index,1);
+//             return true
+//         }
+//     });
+
+//     return res
+// };
+
+// console.log(intersect([1,2,2,1],[2]))
+
+/**
+ * 按奇偶排序数组 II
+ * @param {number[]} A
+ * @return {number[]}
+ */
+// var sortArrayByParityII = function(A) {
+//     let even = 0;
+//     let odd = 1;
+//     let res = [];
+
+//     A.forEach(key=>{
+//         if(key%2===0){
+//             res[even] = key;
+//             even = even + 2;
+//         } else {
+//             res[odd] = key;
+//             odd = odd + 2;
+//         }
+//     })
+
+//     return res
+// };
+
+// console.log(sortArrayByParityII([4,2,5,7]))
+
+/**
+ * @param {number[]} A
+ * @return {number}
+ */
+var sumSubarrayMins = function(A) {
+    let res = 0;
+    
+    return res;
 };
 
-reverseList(head)
+sumSubarrayMins([1,2,3,4])

@@ -489,5 +489,60 @@
 //     console.log(pre.reverse())
 // }
 // sort(arr)
+/**
+ * @description: 修改代码
+ * @param {type} 
+ * @return: 
+ */
+// let fn = (...arg)=>{
+//   console.log(...arg)
+// }
+// // function
+// // function 是你想要在到期时间(delay毫秒)之后执行的函数。
+// // code
+// // 这是一个可选语法，你可以使用字符串而不是function ，在delay毫秒之后编译和执行字符串 (使用该语法是不推荐的, 原因和使用 eval()一样，有安全风险)。
+// // delay 可选
+// // 延迟的毫秒数 (一秒等于1000毫秒)，函数的调用会在该延迟之后发生。如果省略该参数，delay取默认值0，意味着“马上”执行，或者尽快执行。不管是哪种情况，实际的延迟时间可能会比期待的(delay毫秒数) 值长，原因请查看Reasons for delays longer than specified。
+// // param1, ..., paramN 可选
+// // 附加参数，一旦定时器到期，它们会作为参数传递给function 
+
+// setTimeout(fn,1,1,1,2,3)
+
+// 给定一个二叉树，找出其最大深度。
+ // Definition for a binary tree node.
+ function TreeNode(val) {
+     this.val = val;
+     this.left = this.right = null;
+ }
+
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+
+// var maxDepth = function(root) {
+//     let resArr = [];
+//     let current = root;
+
+//     let fn = function(node,num){
+//         if(node==null) return resArr.push(num);
+//         num++;
+//         node.left&fn(node.left);
+//         node.right&fn(node.right);
+//     }
+
+//     fn(current,1);
+
+//     resArr.sort((a,b)=>a-b);
+
+//     return resArr[0];
+// };
 
 
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var canWinNim = function(n) {
+    return  n%4!=0;
+};

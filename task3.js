@@ -562,11 +562,38 @@
 // console.log(isPalindrome(121));
 
 /**
+ * 反转字符串
  * @param {string} s
  * @return {string}
  */
-var reverseWords = function(s) {
-    return s.split(' ').map(key=>key.split('').reverse().join('')).join(' ');
+// var reverseWords = function(s) {
+//     return s.split(' ').map(key=>key.split('').reverse().join('')).join(' ');
+// };
+
+// console.log(reverseWords('let.w'));
+
+/**
+ * @param {character[]} s
+ * @return {void} Do not return anything, modify s in-place instead.
+ */
+//reverse
+// var reverseString = function(s) {
+//     return s.reverse()
+// };
+//for循环
+var reverseString = function(s) {
+    let start = 0,
+        end = s.length - 1,
+        temp;
+    while(start <= end){
+        temp = s[start];
+        s[start] = s[end];
+        s[end] = temp;
+        start++;
+        end--;
+    }
+
+    return s;
 };
 
-console.log(reverseWords('let.w'));
+console.log(reverseString(["h","e","l","l","o"]));

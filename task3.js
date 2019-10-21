@@ -304,7 +304,6 @@
 //     }
 
 //     arr.reverse();
-<<<<<<< HEAD
     
 //     arr.forEach((key,index)=>{
 //         resNode.val = arr[index]
@@ -382,85 +381,6 @@
 // var sumSubarrayMins = function(A) {
 //     let res = 0;
     
-=======
-    
-//     arr.forEach((key,index)=>{
-//         resNode.val = arr[index]
-//         resNode = resNode.next;
-//     })
-//     return head;
-// };
-
-// reverseList(head)
-
-
-/**
- * @description 两个数组求交集
- * @param {number[]} nums1
- * @param {number[]} nums2
- * @return {number[]}
- */
-// var intersection = function(nums1, nums2) {
-//     let res = nums1.filter(elm => nums2.includes(elm));
-//     res = [...new Set(res)]
-//     return res
-// };
-
-// console.log(intersection([1,2,2,1],[2,2]))
-
-/**
- * 求两个数组交集||
- * @param {number[]} nums1
- * @param {number[]} nums2
- * @return {number[]}
- */
-// var intersect = function(nums1, nums2) {
-//     let res = nums1.filter(elm => {
-//         let index = nums2.indexOf(elm);
-//         if(index !== -1){
-//             nums2.splice(index,1);
-//             return true
-//         }
-//     });
-
-//     return res
-// };
-
-// console.log(intersect([1,2,2,1],[2]))
-
-/**
- * 按奇偶排序数组 II
- * @param {number[]} A
- * @return {number[]}
- */
-// var sortArrayByParityII = function(A) {
-//     let even = 0;
-//     let odd = 1;
-//     let res = [];
-
-//     A.forEach(key=>{
-//         if(key%2===0){
-//             res[even] = key;
-//             even = even + 2;
-//         } else {
-//             res[odd] = key;
-//             odd = odd + 2;
-//         }
-//     })
-
-//     return res
-// };
-
-// console.log(sortArrayByParityII([4,2,5,7]))
-
-/**
- * @param {number[]} A
- * @return {number}
- */
-// var sumSubarrayMins = function(A) {
-//     let res = 0;
-    
->>>>>>> 70cae2d9b64fdf772814b820cc5c1a257fa2dd84
 //     return res;
 // };
 
@@ -569,15 +489,11 @@
 //     console.log(pre.reverse())
 // }
 // sort(arr)
-<<<<<<< HEAD
 /**
  * @description: 修改代码
  * @param {type} 
  * @return: 
  */
-=======
-
->>>>>>> 70cae2d9b64fdf772814b820cc5c1a257fa2dd84
 // let fn = (...arg)=>{
 //   console.log(...arg)
 // }
@@ -627,6 +543,30 @@
  * @param {number} n
  * @return {boolean}
  */
-var canWinNim = function(n) {
-    return  n%4!=0;
+// var canWinNim = function(n) {
+//     return  n%4!=0;
+// };
+
+/**
+ * 回文数
+ * @param {number} x
+ * @return {boolean}
+ */
+// var isPalindrome = function(x) {
+//     console.log(typeof x.toString())
+//     let l = x.toString();
+//     let s = l.split('').reverse().join('');
+//     return (s===l);
+// };
+
+// console.log(isPalindrome(121));
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var reverseWords = function(s) {
+    return s.split(' ').map(key=>key.split('').reverse().join('')).join(' ');
 };
+
+console.log(reverseWords('let.w'));

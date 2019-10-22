@@ -628,14 +628,31 @@
  * @param {number} n
  * @return {number[]}
  */
-var grayCode = function(n) {
-    let size = 1<<n;
-    //【笔记】自己与自己左移一位进行异或，得到的就是它的格雷码。
-    let arr = [];
-    for (let i = 0; i < size; ++i) {
-        arr[i] = i^(i >> 1);
-    }
-    return arr;
-};
+// var grayCode = function(n) {
+//     let size = 1<<n;
+//     //【笔记】自己与自己左移一位进行异或，得到的就是它的格雷码。
+//     let arr = [];
+//     for (let i = 0; i < size; ++i) {
+//         arr[i] = i^(i >> 1);
+//     }
+//     return arr;
+// };
 
-console.log(grayCode(4));
+// console.log(grayCode(4));
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+// var singleNumber = function(nums) {
+//     let res = 0;
+    
+//     for(let i = 0;i < nums.length; i ++){
+//         res ^= nums[i]
+//     }
+
+//     return res;
+// };
+
+// console.log(singleNumber([1,2,2,1,3]));
+

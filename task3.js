@@ -576,24 +576,66 @@
  * @param {character[]} s
  * @return {void} Do not return anything, modify s in-place instead.
  */
-//reverse
+//reverse实现
 // var reverseString = function(s) {
 //     return s.reverse()
 // };
-//for循环
-var reverseString = function(s) {
-    let start = 0,
-        end = s.length - 1,
-        temp;
-    while(start <= end){
-        temp = s[start];
-        s[start] = s[end];
-        s[end] = temp;
-        start++;
-        end--;
-    }
+//循环 实现
+// var reverseString = function(s) {
+//     let start = 0,
+//         end = s.length - 1,
+//         temp;
+//     while(start <= end){
+//         temp = s[start];
+//         s[start] = s[end];
+//         s[end] = temp;
+//         start++;
+//         end--;
+//     }
 
-    return s;
+//     return s;
+// };
+
+// console.log(reverseString(["h","e","l","l","o"]));
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ * 查找其中第 k 个最小的元素。
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} k
+ * @return {number}
+ */
+// var kthSmallest = function(root, k) {
+//     let r = [];
+//      let fn = function(node){
+//         if(node == null) return;
+//         fn(node.left);
+//         r.push(node.val);
+//         fn(node.right);
+//      }
+//     fn(root)
+//     r = r.sort((a,b)=>a-b);
+//     return r[k-1];
+// };
+
+/**
+ * @param {number} n
+ * @return {number[]}
+ */
+var grayCode = function(n) {
+    let size = 1<<n;
+    //【笔记】自己与自己左移一位进行异或，得到的就是它的格雷码。
+    let arr = [];
+    for (let i = 0; i < size; ++i) {
+        arr[i] = i^(i >> 1);
+    }
+    return arr;
 };
 
-console.log(reverseString(["h","e","l","l","o"]));
+console.log(grayCode(4));

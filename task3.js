@@ -656,3 +656,66 @@
 
 // console.log(singleNumber([1,2,2,1,3]));
 
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * 两数相加
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var addTwoNumbers = function(l1, l2) {
+    let s = new ListNode(0);
+    let crruent = s;
+
+    while(l1 !== null||l2 !== null){
+        if(l1 !== null&&l2 !== null){
+            s.val = s.val + l1.val + l2.val;
+            if(s.val > 9){
+                s.val = s.val % 10;
+                s.next = new  ListNode(1);
+                l1 = l1.next;
+                l2 = l2.next;
+            } else {
+                s.next = new  ListNode(0);
+                l1 = l1.next;
+                l2 = l2.next;
+                if(l1 == null&&l2 == null) s.next = null;
+            }
+        } else if(l1 !== null&&l2 == null){
+            s.val = s.val + l1.val;
+            if((s.val > 9){
+                s.val = s.val % 10;
+                s.next = new  ListNode(1);
+                l1 = l1.next;
+            } else {
+                s.next = new  ListNode(0);
+                l1 = l1.next;
+                if(l1 == null&&l2 == null) s.next = null;
+            }
+        } else if(l1 == null&&l2 !== null){
+            s.val = s.val + l2.val;
+            if(s.valb > 9){
+                s.val = s.val % 10;
+                s.next = new  ListNode(1);
+                l2 = l2.next;
+            } else {
+                s.next = new  ListNode(0);
+                l2 = l2.next;
+                if(l1 == null&&l2 == null) s.next = null;
+            }
+        }
+
+        s = s.next
+    }
+
+    console.log(crruent)
+    return crruent;
+};
+
+console.log(addTwoNumbers([2,4,3],[5,6,4]))

@@ -674,47 +674,25 @@ var addTwoNumbers = function(l1, l2) {
     let crruent = s;
 
     while(l1 !== null||l2 !== null){
-        if(l1 !== null&&l2 !== null){
-            s.val = s.val + l1.val + l2.val;
-            if(s.val > 9){
-                s.val = s.val % 10;
-                s.next = new  ListNode(1);
-                l1 = l1.next;
-                l2 = l2.next;
-            } else {
-                s.next = new  ListNode(0);
-                l1 = l1.next;
-                l2 = l2.next;
-                if(l1 == null&&l2 == null) s.next = null;
-            }
-        } else if(l1 !== null&&l2 == null){
-            s.val = s.val + l1.val;
-            if((s.val > 9){
-                s.val = s.val % 10;
-                s.next = new  ListNode(1);
-                l1 = l1.next;
-            } else {
-                s.next = new  ListNode(0);
-                l1 = l1.next;
-                if(l1 == null&&l2 == null) s.next = null;
-            }
-        } else if(l1 == null&&l2 !== null){
-            s.val = s.val + l2.val;
-            if(s.valb > 9){
-                s.val = s.val % 10;
-                s.next = new  ListNode(1);
-                l2 = l2.next;
-            } else {
-                s.next = new  ListNode(0);
-                l2 = l2.next;
-                if(l1 == null&&l2 == null) s.next = null;
-            }
-        }
+        // if(l1 !== null&&l2 !== null) s.val = s.val + l1.val + l2.val;
+        // if(l1 !== null&&l2 == null) s.val = s.val + l1.val;
+        // if(l1 == null&&l2 !== null) s.val = s.val + l2.val;
 
+        // 简化
+        s.val = s.val + (l1!==null?l1.val:0) + (l2!==null?l2.val:0);
+        if(s.val > 9){
+            s.val = s.val % 10;
+            s.next = new  ListNode(1);
+            if(l1 !== null) l1 = l1.next;
+            if(l2 !== null) l2 = l2.next;
+        } else {
+            s.next = new  ListNode(0);
+            if(l1 !== null) l1 = l1.next;
+            if(l2 !== null) l2 = l2.next;
+            if(l1 == null&&l2 == null) s.next = null;
+        }
         s = s.next
     }
-
-    console.log(crruent)
     return crruent;
 };
 

@@ -669,31 +669,109 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
-var addTwoNumbers = function(l1, l2) {
-    let s = new ListNode(0);
-    let crruent = s;
+// var addTwoNumbers = function(l1, l2) {
+//     let s = new ListNode(0);
+//     let crruent = s;
 
-    while(l1 !== null||l2 !== null){
-        // if(l1 !== null&&l2 !== null) s.val = s.val + l1.val + l2.val;
-        // if(l1 !== null&&l2 == null) s.val = s.val + l1.val;
-        // if(l1 == null&&l2 !== null) s.val = s.val + l2.val;
+//     while(l1 !== null||l2 !== null){
+//         // if(l1 !== null&&l2 !== null) s.val = s.val + l1.val + l2.val;
+//         // if(l1 !== null&&l2 == null) s.val = s.val + l1.val;
+//         // if(l1 == null&&l2 !== null) s.val = s.val + l2.val;
 
-        // 简化
-        s.val = s.val + (l1!==null?l1.val:0) + (l2!==null?l2.val:0);
-        if(s.val > 9){
-            s.val = s.val % 10;
-            s.next = new  ListNode(1);
-            if(l1 !== null) l1 = l1.next;
-            if(l2 !== null) l2 = l2.next;
-        } else {
-            s.next = new  ListNode(0);
-            if(l1 !== null) l1 = l1.next;
-            if(l2 !== null) l2 = l2.next;
-            if(l1 == null&&l2 == null) s.next = null;
-        }
-        s = s.next
-    }
-    return crruent;
-};
+//         // 简化
+//         s.val = s.val + (l1!==null?l1.val:0) + (l2!==null?l2.val:0);
+//         if(s.val > 9){
+//             s.val = s.val % 10;
+//             s.next = new  ListNode(1);
+//             if(l1 !== null) l1 = l1.next;
+//             if(l2 !== null) l2 = l2.next;
+//         } else {
+//             s.next = new  ListNode(0);
+//             if(l1 !== null) l1 = l1.next;
+//             if(l2 !== null) l2 = l2.next;
+//             if(l1 == null&&l2 == null) s.next = null;
+//         }
+//         s = s.next
+//     }
+//     return crruent;
+// };
 
-console.log(addTwoNumbers([2,4,3],[5,6,4]))
+
+/**
+ * @param {string} str
+ * @return {number}
+ */
+// var myAtoi = function(str) {
+//     // 为空就返回0
+//     if(str.length == 0) return 0;
+//     let arr = str.split('');
+//     let res = '';
+        
+//     let reg = /^[0-9]+.?[0-9]*/;
+
+//     for(let i = 0; i < arr.length; i++){
+//         // 判断第一个非空字符是不是数字或者 + —
+//         if(res.length == 0 && arr[i] !==' '&&!(arr[i]=="-"||arr[i]=='+'||reg.test(arr[i]))) return 0;
+//         // 判断是否结束遍历
+//         if(res.length > 0 && !reg.test(arr[i])) break;
+//         // 判断 为正负或者 数字    
+//         if(arr[i]=="-"||arr[i]=='+'||reg.test(arr[i])){
+//             res += arr[i];
+//          }
+//     }
+
+//     res = +res;
+//     if(isNaN(res)) return 0;
+//     // 判断是否超出范围
+//     if(res > Math.pow(2,31) - 1) res =  Math.pow(2,31) - 1;
+//     if(res < -Math.pow(2,31)) res = -Math.pow(2,31);
+
+//     return res;
+// };
+
+// console.log(myAtoi("+"))
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+
+//  状态机解法 感觉太复杂了
+// var isNumber = function(s) {
+//     let state = 0, 
+//         finals = [0,0,0,1,0,1,1,0,1],
+//         transfer = [[ 0, 1, 6, 2,-1,-1],
+//                     [-1,-1, 6, 2,-1,-1],
+//                     [-1,-1, 3,-1,-1,-1],
+//                     [ 8,-1, 3,-1, 4,-1],
+//                     [-1, 7, 5,-1,-1,-1],
+//                     [ 8,-1, 5,-1,-1,-1],
+//                     [ 8,-1, 6, 3, 4,-1],
+//                     [-1,-1, 5,-1,-1,-1],
+//                     [ 8,-1,-1,-1,-1,-1]], 
+//         make = (c) => {
+//             switch(c) {
+//                 case " ": return 0;
+//                 case "+":
+//                 case "-": return 1;
+//                 case ".": return 3;
+//                 case "e": return 4;
+//                 default:
+//                     let code = c.charCodeAt();
+//                     if(code >= 48 && code <= 57) {
+//                         return 2;
+//                     } else {
+//                         return 5;
+//                     }
+//             }
+//         };
+//     for(let i=0; i < s.length; ++i) {
+//         state = transfer[state][make(s[i])];
+//         if (state < 0) return false;
+//     }
+//     return finals[state];
+// };
+// // 内置函数解法
+// var isNumber = function(s) {
+//     return parseFloat(s, 10) == s ? true : false
+//  };

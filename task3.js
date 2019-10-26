@@ -867,11 +867,11 @@
  * @return {TreeNode}
  */
 // 二叉搜索树的最近公共祖先
-var lowestCommonAncestor = function(root, p, q) {
-    if (p.val > root.val && q.val > root.val) return lowestCommonAncestor(root.right, p, q);
-    if (p.val < root.val && q.val < root.val) return lowestCommonAncestor(root.left, p, q);
-    return root;
-};
+// var lowestCommonAncestor = function(root, p, q) {
+//     if (p.val > root.val && q.val > root.val) return lowestCommonAncestor(root.right, p, q);
+//     if (p.val < root.val && q.val < root.val) return lowestCommonAncestor(root.left, p, q);
+//     return root;
+// };
 
 /**
  * @param {number[]} nums
@@ -903,3 +903,16 @@ var lowestCommonAncestor = function(root, p, q) {
     
 //       return name;
 // };
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+//  数组中的第K个最大元素
+var findKthLargest = function(nums, k) {
+    nums.sort((a,b)=>b-a);
+    
+    if(k > nums.length) return nums.pop();
+    return nums[k-1];
+};

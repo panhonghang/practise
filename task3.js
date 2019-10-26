@@ -930,20 +930,71 @@
  * @return {ListNode}
  */
 // 旋转链表
-var rotateRight = function(head, k) {
+// var rotateRight = function(head, k) {
+//     let current = head;
+//     let arr = [];
+//     let temp = [];
+//     while(current !== null){
+//         arr.push(current.val);
+//         current = current.next;
+//     }
+//     k = k % arr.length;
+//     temp = arr.splice(k-1);
+//     arr = [...temp,...arr];
+//     arr.forEach(key=>{
+//         current.val = key;
+//         current = current.next;
+//     })
+//     return head;
+// };
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+// 效率太低了
+// var mergeTwoLists = function(l1, l2) {
+//     let head = new listNode(0);
+//     let temp = head;
+//     let arr = [];
+//     let fn = function(current){
+//         while(current !== null){
+//             arr.push(current.val);
+//             current = current.next;
+//         }
+//     }
+//     fn(l1);
+//     fn(l2);
+//     arr.sort((a,b)=> a-b);
+//     arr.forEach(key=>{
+//        temp = temp.next = new listNode(key);
+//     });
+//     return head;
+// };
+
+var mergeTwoLists = function(l1, l2) {
+    let head = new ListNode(0);
     let current = head;
-    let arr = [];
-    let temp = [];
-    while(current !== null){
-        arr.push(current.val);
-        current = current.next;
+    while(l1 !== null || l2 !== null){
+        if(l1!==null&&l2!==null){
+            current = current.next = new ListNode(Math.min(l1.val,l2.val));
+            if(l1.val > l2.val){
+                l2 = l2.next;
+            } else {
+                l1 = l1.next;
+            }
+        } else {
+            current = current.next = new ListNode(l1?l1.val:l2.val);
+        }
     }
-    k = k % arr.length;
-    temp = arr.splice(k-1);
-    arr = [...temp,...arr];
-    arr.forEach(key=>{
-        current.val = key;
-        current = current.next;
-    })
+    head = head.next;
     return head;
 };

@@ -867,39 +867,39 @@
  * @return {TreeNode}
  */
 // 二叉搜索树的最近公共祖先
-// var lowestCommonAncestor = function(root, p, q) {
-//     if (p.val > root.val && q.val > root.val) return lowestCommonAncestor(root.right, p, q);
-//     if (p.val < root.val && q.val < root.val) return lowestCommonAncestor(root.left, p, q);
-//     return root;
-// };
+var lowestCommonAncestor = function(root, p, q) {
+    if (p.val > root.val && q.val > root.val) return lowestCommonAncestor(root.right, p, q);
+    if (p.val < root.val && q.val < root.val) return lowestCommonAncestor(root.left, p, q);
+    return root;
+};
 
 /**
  * @param {number[]} nums
  * @return {number}
  */
 // 求众数
-var majorityElement = function(nums) {
-    if(nums.length < 2) return nums[0];
+// var majorityElement = function(nums) {
+//     if(nums.length < 2) return nums[0];
     
-    let obj = new Map();
-    let max = 1;
-    let name = '';
-    let temp = 0;
+//     let obj = new Map();
+//     let max = 1;
+//     let name = '';
+//     let temp = 0;
     
-      nums.forEach(value => {
-        if (obj.has(value)) {
-          // 已经有值了 就把值+1
-          temp = obj.get(value);
-          obj.set(value,++temp);
-          if (obj.get(value) > max) { // 判断重复次数有没有超过当前最高的
-            max = obj.get(value); // 重复次数
-            name = value; // 当前元素
-          }
-        } else {
-          // 没有值 就初始化一个值
-          obj.set(value,1);
-        }
-      });
+//       nums.forEach(value => {
+//         if (obj.has(value)) {
+//           // 已经有值了 就把值+1
+//           temp = obj.get(value);
+//           obj.set(value,++temp);
+//           if (obj.get(value) > max) { // 判断重复次数有没有超过当前最高的
+//             max = obj.get(value); // 重复次数
+//             name = value; // 当前元素
+//           }
+//         } else {
+//           // 没有值 就初始化一个值
+//           obj.set(value,1);
+//         }
+//       });
     
-      return name;
-};
+//       return name;
+// };

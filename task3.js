@@ -910,9 +910,40 @@
  * @return {number}
  */
 //  数组中的第K个最大元素
-var findKthLargest = function(nums, k) {
-    nums.sort((a,b)=>b-a);
+// var findKthLargest = function(nums, k) {
+//     nums.sort((a,b)=>b-a);
     
-    if(k > nums.length) return nums.pop();
-    return nums[k-1];
+//     if(k > nums.length) return nums.pop();
+//     return nums[k-1];
+// };
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} k
+ * @return {ListNode}
+ */
+// 旋转链表
+var rotateRight = function(head, k) {
+    let current = head;
+    let arr = [];
+    let temp = [];
+    while(current !== null){
+        arr.push(current.val);
+        current = current.next;
+    }
+    k = k % arr.length;
+    temp = arr.splice(k-1);
+    arr = [...temp,...arr];
+    arr.forEach(key=>{
+        current.val = key;
+        current = current.next;
+    })
+    return head;
 };

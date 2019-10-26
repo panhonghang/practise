@@ -780,6 +780,7 @@
  * @param {number} n
  * @return {boolean}
  */
+// 判断是不是2的幂
 // var isPowerOfTwo = function(n) {
 //     let res = false;
 //         flag = false;
@@ -802,20 +803,53 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-var productExceptSelf = function(nums) {
-    let current = 1;
-    let len = nums.length;
-    let res = [];
-    // 左遍历记录左值
-    for(let i=0;i<len;i++){
-        res[i] = current;
-        current *= nums[i];
-    }
-    // 右遍历记录右值
-    for(let j=len-1;j>=0;j--){
-        res[j] *= current;
-        current *= nums[j];
-    }
+// 除自身以外数组的乘积
+// var productExceptSelf = function(nums) {
+//     let current = 1;
+//     let len = nums.length;
+//     let res = [];
+//     // 左遍历记录左值
+//     for(let i=0;i<len;i++){
+//         res[i] = current;
+//         current *= nums[i];
+//     }
+//     // 右遍历记录右值
+//     for(let j=len-1;j>=0;j--){
+//         res[j] *= current;
+//         current *= nums[j];
+//     }
 
-    return res;
-}
+//     return res;
+// }
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+// 在 O(n log n) 时间复杂度和常数级空间复杂度下，对链表进行排序。
+// var sortList = function(head) {
+//     let current = head;
+//     let arr = [];
+    
+//     while(current!==null){
+//         arr.push(current.val);    
+//         current = current.next;
+//     }
+    
+//     arr.sort((a,b)=>a-b);
+//     current = head;
+    
+//      for(let i = 0; i < arr.length; i++){
+//         current.val = arr[i];    
+//         current = current.next;
+//     }
+    
+//     return head;
+// };

@@ -775,3 +775,25 @@
 // var isNumber = function(s) {
 //     return parseFloat(s, 10) == s ? true : false
 //  };
+
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+// var isPowerOfTwo = function(n) {
+//     let res = false;
+//         flag = false;
+
+//     n.toString(2).split('').forEach(key=>{
+//         if(key==1){
+//             res=flag?false:true;
+//             flag = true;
+//         }
+//     });
+
+//     return res;
+// };
+// 位运算解法
+var isPowerOfTwo = function(n){
+    return (n > 0)&n&(n-1)
+}

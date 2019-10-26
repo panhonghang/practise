@@ -794,6 +794,28 @@
 //     return res;
 // };
 // 位运算解法
-var isPowerOfTwo = function(n){
-    return (n > 0)&n&(n-1)
+// var isPowerOfTwo = function(n){
+//     return (n > 0)&n&(n-1)
+// }
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var productExceptSelf = function(nums) {
+    let current = 1;
+    let len = nums.length;
+    let res = [];
+    // 左遍历记录左值
+    for(let i=0;i<len;i++){
+        res[i] = current;
+        current *= nums[i];
+    }
+    // 右遍历记录右值
+    for(let j=len-1;j>=0;j--){
+        res[j] *= current;
+        current *= nums[j];
+    }
+
+    return res;
 }

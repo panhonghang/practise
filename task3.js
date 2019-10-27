@@ -1052,54 +1052,76 @@
  * @param {ListNode[]} lists
  * @return {ListNode}
  */
-var mergeKLists = function(lists) {
-    let fn = function(l1,l2){
-        if (l1 == null) return l2;
-        if (l2 == null) return l1;
 
-        if (l1.val < l2.val) {
-            l1.next = fn(l1.next, l2);
-            return l1;
-        } else {
-            l2.next = fn(l1, l2.next);
-            return l2;
-        }  
-    }
+ //合并k个有序链表
 
-    let len = lists.length;
-    let temp = fn(lists[0],lists[1]);
+// var mergeKLists = function(lists) {
+//     let fn = function(l1,l2){
+//         if (l1 == null) return l2;
+//         if (l2 == null) return l1;
 
-    for(let i = 2; i < len; i++){
-        temp = fn(temp,lists[i]);    
-    }
-    return temp;
-};
+//         if (l1.val < l2.val) {
+//             l1.next = fn(l1.next, l2);
+//             return l1;
+//         } else {
+//             l2.next = fn(l1, l2.next);
+//             return l2;
+//         }  
+//     }
 
-//效率高一点
-var mergeKLists = function(lists) {
-    let len  = lists.length;
-    if(len == 0) return null;
-    if(len == 1) return lists[0];
-    let arr = [];
+//     let len = lists.length;
+//     let temp = fn(lists[0],lists[1]);
+
+//     for(let i = 2; i < len; i++){
+//         temp = fn(temp,lists[i]);    
+//     }
+//     return temp;
+// };
+
+// //效率高一点
+// var mergeKLists = function(lists) {
+//     let len  = lists.length;
+//     if(len == 0) return null;
+//     if(len == 1) return lists[0];
+//     let arr = [];
     
-    for(let i = 0;i<len;i++){
-        let temp = lists[i];
-        while(temp){
-            arr.push(temp.val);
-            temp = temp.next;
-        }
-    }
+//     for(let i = 0;i<len;i++){
+//         let temp = lists[i];
+//         while(temp){
+//             arr.push(temp.val);
+//             temp = temp.next;
+//         }
+//     }
     
+//     arr.sort((a,b)=>a-b);
+    
+//     let head = new ListNode(0);
+//     let current = head;
+//     len = arr.length;
+    
+//     for(let i = 0;i<len;i++){
+//         let node = new ListNode(arr[i]);
+//         current.next = node;
+//         current = current.next;
+//     }
+//     return head.next;
+// };
+
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number}
+ */
+var findMedianSortedArrays = function(nums1, nums2) {
+    let arr = [...nums1,...nums2];
+    let len = arr.length;
     arr.sort((a,b)=>a-b);
-    
-    let head = new ListNode(0);
-    let current = head;
-    len = arr.length;
-    
-    for(let i = 0;i<len;i++){
-        let node = new ListNode(arr[i]);
-        current.next = node;
-        current = current.next;
+    if(len%2==0){
+        len = Math.floor(len/2);
+        return (arr[len]+arr[len-1])/2;
     }
-    return head.next;
+
+    return arr[Math.floor(len/2)];
 };
+
+console.log(findMedianSortedArrays([1,2],[3]))

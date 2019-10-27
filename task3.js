@@ -1074,3 +1074,32 @@ var mergeKLists = function(lists) {
     }
     return temp;
 };
+
+//效率高一点
+var mergeKLists = function(lists) {
+    let len  = lists.length;
+    if(len == 0) return null;
+    if(len == 1) return lists[0];
+    let arr = [];
+    
+    for(let i = 0;i<len;i++){
+        let temp = lists[i];
+        while(temp){
+            arr.push(temp.val);
+            temp = temp.next;
+        }
+    }
+    
+    arr.sort((a,b)=>a-b);
+    
+    let head = new ListNode(0);
+    let current = head;
+    len = arr.length;
+    
+    for(let i = 0;i<len;i++){
+        let node = new ListNode(arr[i]);
+        current.next = node;
+        current = current.next;
+    }
+    return head.next;
+};

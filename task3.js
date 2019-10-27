@@ -998,31 +998,45 @@
  * @return {number[]}
  */
 var spiralOrder = function(matrix) {
+    if(matrix.length == 0) return [];
     let arr = [];
     let n = matrix.length;
-    let w = matrix[0].length;
+    let w =matrix[0].length;
     let m = 0;
 
     while(n>m){
         // left => right
-        for(let i = m; i < w-m-1; i++ ){
-            arr.push(matrix[m][i]);
+        for(let i = m; i < w-m; i++ ){
+            if(matrix[m][i]!==undefined){
+                arr.push(matrix[m][i]);    
+                matrix[m][i]=undefined           
+            }
         }
         // top => bottom
-        for(let i = m; i < w -m -1; i++ ){
-            arr.push(matrix[i][w-m-1]);
+        for(let i = m; i < n - m; i++ ){
+            if(matrix[i][w-m-1]!==undefined){
+                arr.push(matrix[i][w-m-1]);
+                matrix[i][w-m-1]=undefined;
+            }
         }
         // right => left
-        for(let i = n - m -1; i > 0; i-- ){
-            arr.push(matrix[n-m-1][i]);
+        for(let i = w - m - 1; i > 0; i-- ){
+            if(matrix[n-m-1][i]!==undefined){
+                arr.push(matrix[n-m-1][i]);
+                matrix[n-m-1][i]=undefined;
+            }
         }
         // bottom => top
         for(let i = n - m -1; i > 0; i-- ){
-            arr.push(matrix[i][m]);
+            if(matrix[i][m]!==undefined){
+                arr.push(matrix[i][m]);
+                matrix[i][m]=undefined;
+            }
         }
         ++m;
     }
+
     return arr;
 };
 
-console.log(spiralOrder([[1, 2, 3, 4],[5, 6, 7, 8],[9,10,11,12]]))
+console.log(spiralOrder([[]]));

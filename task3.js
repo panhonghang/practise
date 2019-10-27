@@ -980,15 +980,49 @@
 //     return head;
 // };
 // 最优解法
-var mergeTwoLists = function(l1, l2) {
-    if (l1 == null) return l2;
-    if (l2 == null) return l1;
+// var mergeTwoLists = function(l1, l2) {
+//     if (l1 == null) return l2;
+//     if (l2 == null) return l1;
 
-    if (l1.val < l2.val) {
-        l1.next = mergeTwoLists(l1.next, l2);
-        return l1;
-    } else {
-        l2.next = mergeTwoLists(l1, l2.next);
-        return l2;
+//     if (l1.val < l2.val) {
+//         l1.next = mergeTwoLists(l1.next, l2);
+//         return l1;
+//     } else {
+//         l2.next = mergeTwoLists(l1, l2.next);
+//         return l2;
+//     }
+// };
+
+/**
+ * @param {number[][]} matrix
+ * @return {number[]}
+ */
+var spiralOrder = function(matrix) {
+    let arr = [];
+    let n = matrix.length;
+    let w = matrix[0].length;
+    let m = 0;
+
+    while(n>m){
+        // left => right
+        for(let i = m; i < w-m-1; i++ ){
+            arr.push(matrix[m][i]);
+        }
+        // top => bottom
+        for(let i = m; i < w -m -1; i++ ){
+            arr.push(matrix[i][w-m-1]);
+        }
+        // right => left
+        for(let i = n - m -1; i > 0; i-- ){
+            arr.push(matrix[n-m-1][i]);
+        }
+        // bottom => top
+        for(let i = n - m -1; i > 0; i-- ){
+            arr.push(matrix[i][m]);
+        }
+        ++m;
     }
+    return arr;
 };
+
+console.log(spiralOrder([[1, 2, 3, 4],[5, 6, 7, 8],[9,10,11,12]]))

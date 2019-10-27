@@ -997,46 +997,80 @@
  * @param {number[][]} matrix
  * @return {number[]}
  */
-var spiralOrder = function(matrix) {
-    if(matrix.length == 0) return [];
-    let arr = [];
-    let n = matrix.length;
-    let w =matrix[0].length;
-    let m = 0;
+// var spiralOrder = function(matrix) {
+//     if(matrix.length == 0) return [];
+//     let arr = [];
+//     let n = matrix.length;
+//     let w =matrix[0].length;
+//     let m = 0;
 
-    while(n>m){
-        // left => right
-        for(let i = m; i < w-m; i++ ){
-            if(matrix[m][i]!==undefined){
-                arr.push(matrix[m][i]);    
-                matrix[m][i]=undefined           
-            }
-        }
-        // top => bottom
-        for(let i = m; i < n - m; i++ ){
-            if(matrix[i][w-m-1]!==undefined){
-                arr.push(matrix[i][w-m-1]);
-                matrix[i][w-m-1]=undefined;
-            }
-        }
-        // right => left
-        for(let i = w - m - 1; i > 0; i-- ){
-            if(matrix[n-m-1][i]!==undefined){
-                arr.push(matrix[n-m-1][i]);
-                matrix[n-m-1][i]=undefined;
-            }
-        }
-        // bottom => top
-        for(let i = n - m -1; i > 0; i-- ){
-            if(matrix[i][m]!==undefined){
-                arr.push(matrix[i][m]);
-                matrix[i][m]=undefined;
-            }
-        }
-        ++m;
+//     while(n>m){
+//         // left => right
+//         for(let i = m; i < w-m; i++ ){
+//             if(matrix[m][i]!==undefined){
+//                 arr.push(matrix[m][i]);    
+//                 matrix[m][i]=undefined           
+//             }
+//         }
+//         // top => bottom
+//         for(let i = m; i < n - m; i++ ){
+//             if(matrix[i][w-m-1]!==undefined){
+//                 arr.push(matrix[i][w-m-1]);
+//                 matrix[i][w-m-1]=undefined;
+//             }
+//         }
+//         // right => left
+//         for(let i = w - m - 1; i > 0; i-- ){
+//             if(matrix[n-m-1][i]!==undefined){
+//                 arr.push(matrix[n-m-1][i]);
+//                 matrix[n-m-1][i]=undefined;
+//             }
+//         }
+//         // bottom => top
+//         for(let i = n - m -1; i > 0; i-- ){
+//             if(matrix[i][m]!==undefined){
+//                 arr.push(matrix[i][m]);
+//                 matrix[i][m]=undefined;
+//             }
+//         }
+//         ++m;
+//     }
+
+//     return arr;
+// };
+
+// console.log(spiralOrder([[]]));
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode[]} lists
+ * @return {ListNode}
+ */
+var mergeKLists = function(lists) {
+    let fn = function(l1,l2){
+        if (l1 == null) return l2;
+        if (l2 == null) return l1;
+
+        if (l1.val < l2.val) {
+            l1.next = fn(l1.next, l2);
+            return l1;
+        } else {
+            l2.next = fn(l1, l2.next);
+            return l2;
+        }  
     }
 
-    return arr;
-};
+    let len = lists.length;
+    let temp = fn(lists[0],lists[1]);
 
-console.log(spiralOrder([[]]));
+    for(let i = 2; i < len; i++){
+        temp = fn(temp,lists[i]);    
+    }
+    return temp;
+};

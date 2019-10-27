@@ -979,22 +979,16 @@
 //     });
 //     return head;
 // };
-
+// 最优解法
 var mergeTwoLists = function(l1, l2) {
-    let head = new ListNode(0);
-    let current = head;
-    while(l1 !== null || l2 !== null){
-        if(l1!==null&&l2!==null){
-            current = current.next = new ListNode(Math.min(l1.val,l2.val));
-            if(l1.val > l2.val){
-                l2 = l2.next;
-            } else {
-                l1 = l1.next;
-            }
-        } else {
-            current = current.next = new ListNode(l1?l1.val:l2.val);
-        }
+    if (l1 == null) return l2;
+    if (l2 == null) return l1;
+
+    if (l1.val < l2.val) {
+        l1.next = mergeTwoLists(l1.next, l2);
+        return l1;
+    } else {
+        l2.next = mergeTwoLists(l1, l2.next);
+        return l2;
     }
-    head = head.next;
-    return head;
 };

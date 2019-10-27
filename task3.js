@@ -1107,21 +1107,56 @@
 //     return head.next;
 // };
 
+// /**
+//  * @param {number[]} nums1
+//  * @param {number[]} nums2
+//  中位数
+//  * @return {number}
+//  */
+// var findMedianSortedArrays = function(nums1, nums2) {
+//     let arr = [...nums1,...nums2];
+//     let len = arr.length;
+//     arr.sort((a,b)=>a-b);
+//     if(len%2==0){
+//         len = Math.floor(len/2);
+//         return (arr[len]+arr[len-1])/2;
+//     }
+
+//     return arr[Math.floor(len/2)];
+// };
+
+// console.log(findMedianSortedArrays([1,2],[3]))
+
 /**
- * @param {number[]} nums1
- * @param {number[]} nums2
+ * @param {number[]} guess
+ * @param {number[]} answer
  * @return {number}
  */
-var findMedianSortedArrays = function(nums1, nums2) {
-    let arr = [...nums1,...nums2];
-    let len = arr.length;
-    arr.sort((a,b)=>a-b);
-    if(len%2==0){
-        len = Math.floor(len/2);
-        return (arr[len]+arr[len-1])/2;
-    }
+// 猜数字
+// var game = function(guess, answer) {
+//     let res = 0;
+//     if(guess[0]===answer[0]) res++;
+//     if(guess[1]===answer[1]) res++;
+//     if(guess[2]===answer[2]) res++;
 
-    return arr[Math.floor(len/2)];
+//     return res;
+// };
+
+/**
+ * @param {number[]} cont
+ * @return {number[]}
+ * 分式化简
+ */
+// 没看懂
+
+var fraction = function(cont) {
+    
+    const head = cont[0];
+
+    if (cont.length === 1) return [head, 1]; 
+    const [a, b] = fraction(cont.slice(1))
+  
+    return [head * a  + b, a];
 };
 
-console.log(findMedianSortedArrays([1,2],[3]))
+console.log(fraction([1, 2, 3, 4]))

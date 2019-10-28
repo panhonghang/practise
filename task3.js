@@ -1149,14 +1149,26 @@
  */
 // 没看懂
 
-var fraction = function(cont) {
+// var fraction = function(cont) {
     
-    const head = cont[0];
+//     const head = cont[0];
 
-    if (cont.length === 1) return [head, 1]; 
-    const [a, b] = fraction(cont.slice(1))
+//     if (cont.length === 1) return [head, 1]; 
+//     const [a, b] = fraction(cont.slice(1))
   
-    return [head * a  + b, a];
-};
+//     return [head * a  + b, a];
+// };
 
+// console.log(fraction([1, 2, 3, 4]))
+
+var fraction = function(cont) {
+    // 当只有一个元素时候直接返回 元素和1
+    if (cont.length === 1) return [cont[0], 1]; 
+    // 取出第一个元素
+    let head = cont[0];
+    let [a,b] = fraction(cont.slice(1));
+    // 理解原理：每多一个元素时候，分子是前一个数字乘以后一个的值再加一
+    return [head * a + b, a]
+};
+    
 console.log(fraction([1, 2, 3, 4]))

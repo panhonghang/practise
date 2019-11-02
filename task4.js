@@ -46,24 +46,42 @@
  * @return {string}
  * 最长公共前缀
  */
-var longestCommonPrefix = function(strs) {
-    if(strs.length < 1) return '';
+// var longestCommonPrefix = function(strs) {
+//     if(strs.length < 1) return '';
 
-    let res = [];
-    let len = strs[0].length;
+//     let res = [];
+//     let len = strs[0].length;
 
-    for(let i = 0; i < len; i++){
-        let fn = (key)=>{
-            return key[i] == strs[0][i];
-        }
-        if(strs.every(fn)){
-            res.push(strs[0][i]);
-        } else {
-            break;
-        }
-    }
+//     for(let i = 0; i < len; i++){
+//         let fn = (key)=>{
+//             return key[i] == strs[0][i];
+//         }
+//         if(strs.every(fn)){
+//             res.push(strs[0][i]);
+//         } else {
+//             break;
+//         }
+//     }
     
-    return res.join('');
-};
+//     return res.join('');
+// };
 
 console.log(longestCommonPrefix(["ower","ow","light"]))
+
+/**
+ * @param {number[]} nums1
+ * @param {number} m
+ * @param {number[]} nums2
+ * @param {number} n
+ * @return {void} Do not return anything, modify nums1 in-place instead.
+ */
+var merge = function(nums1, m, nums2, n) {
+    let p = m-- + n-- - 1;
+       while (m >= 0 && n >= 0) {
+           nums1[p--] = nums1[m] > nums2[n] ? nums1[m--] : nums2[n--];
+       }
+       
+       while (n >= 0) {
+           nums1[p--] = nums2[n--];
+       }
+};

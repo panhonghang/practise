@@ -139,3 +139,24 @@
 //     return nums.join('') === arr.join('');
 // };
 
+/**
+ * @param {number} x
+ * @return {number}
+ * 反转数字
+ * 坑点：反转后的数字范围也是在 [-2147483648,2147483647]
+ */
+
+var reverse = function(x) {
+    if(x < -2147483648 || x > 2147483647) return 0;
+
+    let res = 0;
+    if(x > 0){
+        res = `${x}`.split('').reverse().join('');
+        return res > 2147483647 ? 0:res;
+    } else if( x < 0){
+        res = -`${-x}`.split('').reverse().join('')
+        return res < -2147483648? 0:res;
+    } else {
+        return 0
+    }
+};

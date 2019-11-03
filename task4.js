@@ -146,17 +146,38 @@
  * 坑点：反转后的数字范围也是在 [-2147483648,2147483647]
  */
 
-var reverse = function(x) {
-    if(x < -2147483648 || x > 2147483647) return 0;
+// var reverse = function(x) {
+//     if(x < -2147483648 || x > 2147483647) return 0;
 
-    let res = 0;
-    if(x > 0){
-        res = `${x}`.split('').reverse().join('');
-        return res > 2147483647 ? 0:res;
-    } else if( x < 0){
-        res = -`${-x}`.split('').reverse().join('')
-        return res < -2147483648? 0:res;
-    } else {
-        return 0
+//     let res = 0;
+//     if(x > 0){
+//         res = `${x}`.split('').reverse().join('');
+//         return res > 2147483647 ? 0:res;
+//     } else if( x < 0){
+//         res = -`${-x}`.split('').reverse().join('')
+//         return res < -2147483648? 0:res;
+//     } else {
+//         return 0
+//     }
+// };
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function(s) {
+    let arr = [];
+    let temp = '';
+    for(let i = 0; i < s.length; i++){
+        if((temp=='{'&&s[i]=='}')||(temp=='['&&s[i]==']')||(temp=='('&&s[i]==')')){
+            arr.pop();
+            temp = arr[arr.length-1];
+        } else {
+            arr.push(s[i]);
+            temp = s[i];
+        }
     }
+    return arr.length == 0;
 };
+
+isValid("()")

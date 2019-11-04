@@ -189,33 +189,57 @@
  * @return {number}
  * O(log n) 级别。33. 搜索旋转排序数组
  */
-var search = function(nums, target) {
-    let low = 0;
-    let high = nums.length - 1;
-    let mid;
+// var search = function(nums, target) {
+//     let low = 0;
+//     let high = nums.length - 1;
+//     let mid;
 
-    // while(low < high){
-    //     mid = Math.floor((low + high)/2);    
-    //     // 异或写得优雅
-    //     if((nums[0] > target) ^ (nums[0] > nums[mid]) ^ (target > nums[mid])){
-    //         low = mid + 1;
-    //     } else {
-    //         high = mid;
-    //     }
-    // }
+//     // while(low < high){
+//     //     mid = Math.floor((low + high)/2);    
+//     //     // 异或写得优雅
+//     //     if((nums[0] > target) ^ (nums[0] > nums[mid]) ^ (target > nums[mid])){
+//     //         low = mid + 1;
+//     //     } else {
+//     //         high = mid;
+//     //     }
+//     // }
     
-    // return low == high && nums[low] == target ? low : -1;
-    
-    while(low<high){
-        mid = Math.floor((low+high)/2);
-        if(nums[mid]<nums[low]||(nums[low]<=target&&target<=nums[mid])){
-            high = mid;
-        } else {
-            low = mid + 1;
+//     // return low == high && nums[low] == target ? low : -1;
+
+//     while(low<high){
+//         mid = Math.floor((low+high)/2);
+//         if(nums[mid]<nums[low]||(nums[low]<=target&&target<=nums[mid])){
+//             high = mid;
+//         } else {
+//             low = mid + 1;
+//         }
+//     }
+
+//     return low == high && nums[low] == target ? low : -1;
+// };
+
+// console.log(search([4,5,6,7,0,1,2],9))
+
+/**
+ * @param {number} m
+ * @param {number} n
+ * @return {number}
+ * 62. 不同路径
+ */
+var uniquePaths = function(m, n) {
+    let res = 0;
+
+    let fn = function(x,y){
+        if(x==m||y==n) res++;
+
+        if(x<m&&y<n) {
+            fn(++x,y);
+            fn(x,++y);
         }
     }
-
-    return low == high && nums[low] == target ? low : -1;
+    fn(1,1);
+    console.log(res)
+    return res;
 };
 
-console.log(search([4,5,6,7,0,1,2],9))
+uniquePaths(7,3);

@@ -165,19 +165,57 @@
  * @param {string} s
  * @return {boolean}
  */
-var isValid = function(s) {
-    let arr = [];
-    let temp = '';
-    for(let i = 0; i < s.length; i++){
-        if((temp=='{'&&s[i]=='}')||(temp=='['&&s[i]==']')||(temp=='('&&s[i]==')')){
-            arr.pop();
-            temp = arr[arr.length-1];
+// var isValid = function(s) {
+//     let arr = [];
+//     let temp = '';
+//     for(let i = 0; i < s.length; i++){
+//         if((temp=='{'&&s[i]=='}')||(temp=='['&&s[i]==']')||(temp=='('&&s[i]==')')){
+//             arr.pop();
+//             temp = arr[arr.length-1];
+//         } else {
+//             arr.push(s[i]);
+//             temp = s[i];
+//         }
+//     }
+//     return arr.length == 0;
+// };
+
+// isValid("()")
+
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ * O(log n) 级别。33. 搜索旋转排序数组
+ */
+var search = function(nums, target) {
+    let low = 0;
+    let high = nums.length - 1;
+    let mid;
+
+    // while(low < high){
+    //     mid = Math.floor((low + high)/2);    
+    //     // 异或写得优雅
+    //     if((nums[0] > target) ^ (nums[0] > nums[mid]) ^ (target > nums[mid])){
+    //         low = mid + 1;
+    //     } else {
+    //         high = mid;
+    //     }
+    // }
+    
+    // return low == high && nums[low] == target ? low : -1;
+    
+    while(low<high){
+        mid = Math.floor((low+high)/2);
+        if(nums[mid]<nums[low]||(nums[low]<=target&&target<=nums[mid])){
+            high = mid;
         } else {
-            arr.push(s[i]);
-            temp = s[i];
+            low = mid + 1;
         }
     }
-    return arr.length == 0;
+
+    return low == high && nums[low] == target ? low : -1;
 };
 
-isValid("()")
+console.log(search([4,5,6,7,0,1,2],9))

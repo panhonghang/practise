@@ -227,19 +227,31 @@
  * 62. 不同路径
  */
 var uniquePaths = function(m, n) {
-    let res = 0;
+    // let res = 0;
 
-    let fn = function(x,y){
-        if(x==m||y==n) res++;
+    // let fn = function(x,y){
+    //     if(x==m||y==n) res++;
 
-        if(x<m&&y<n) {
-            fn(++x,y);
-            fn(x,++y);
+    //     if(x<m&&y<n) {
+    //         fn(++x,y);
+    //         fn(x,++y);
+    //     }
+    // }
+    // fn(1,1);
+    // console.log(res)
+    // return res;
+
+    let memo = [];
+    memo.length = n;
+    memo.fill(1);
+
+    for (let i = 1; i < m; i++) {
+        for (let j = 1; j < n; j++) {
+            memo[j] += memo[j - 1];
         }
     }
-    fn(1,1);
-    console.log(res)
-    return res;
+
+    console.log(memo[n-1]);
 };
 
-uniquePaths(7,3);
+uniquePaths(3,7);

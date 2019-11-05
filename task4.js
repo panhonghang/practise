@@ -226,32 +226,82 @@
  * @return {number}
  * 62. 不同路径
  */
-var uniquePaths = function(m, n) {
-    // let res = 0;
+// var uniquePaths = function(m, n) {
+//     // let res = 0;
 
-    // let fn = function(x,y){
-    //     if(x==m||y==n) res++;
+//     // let fn = function(x,y){
+//     //     if(x==m||y==n) res++;
 
-    //     if(x<m&&y<n) {
-    //         fn(++x,y);
-    //         fn(x,++y);
-    //     }
-    // }
-    // fn(1,1);
-    // console.log(res)
-    // return res;
+//     //     if(x<m&&y<n) {
+//     //         fn(++x,y);
+//     //         fn(x,++y);
+//     //     }
+//     // }
+//     // fn(1,1);
+//     // console.log(res)
+//     // return res;
 
-    let memo = [];
-    memo.length = n;
-    memo.fill(1);
+//     let memo = [];
+//     memo.length = m;
+//     memo.fill(1);
 
-    for (let i = 1; i < m; i++) {
-        for (let j = 1; j < n; j++) {
-            memo[j] += memo[j - 1];
-        }
-    }
+//     for (let i = 1; i < m; i++) {
+//         for (let j = 1; j < n; j++) {
+//             memo[j] += memo[j - 1];
+//         }
+//     }
 
-    console.log(memo[n-1]);
+//     console.log(memo[n-1]);
+// };
+
+// uniquePaths(7,3);
+
+/**
+ * initialize your data structure here.
+ */
+var MinStack = function() {
+    this.arr = [];
+    this.arr2 = [];
 };
 
-uniquePaths(3,7);
+/** 
+ * @param {number} x
+ * @return {void}
+ */
+MinStack.prototype.push = function(x) {
+    this.arr.push(x);
+    arr2 = [...this.arr].sort((a,b)=>a-b);
+};
+
+/**
+ * @return {void}
+ */
+MinStack.prototype.pop = function() {
+    let temp = this.arr.pop();
+    if(temp == this.arr2[0]){
+        this.arr2.shift();
+    }
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.top = function() {
+    return this.arr[Array.length-1];
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.getMin = function() {
+    return this.arr2[0];
+};
+
+/** 
+ * Your MinStack object will be instantiated and called as such:
+ * var obj = new MinStack()
+ * obj.push(x)
+ * obj.pop()
+ * var param_3 = obj.top()
+ * var param_4 = obj.getMin()
+ */

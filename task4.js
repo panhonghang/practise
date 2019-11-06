@@ -259,49 +259,105 @@
 /**
  * initialize your data structure here.
  */
-var MinStack = function() {
-    this.arr = [];
-    this.arr2 = [];
-};
+// var MinStack = function() {
+//     this.arr = [];
+//     this.arr2 = [];
+// };
 
-/** 
- * @param {number} x
- * @return {void}
- */
-MinStack.prototype.push = function(x) {
-    this.arr.push(x);
-    arr2 = [...this.arr].sort((a,b)=>a-b);
-};
+// /** 
+//  * @param {number} x
+//  * @return {void}
+//  */
+// MinStack.prototype.push = function(x) {
+//     this.arr.push(x);
+//     arr2 = [...this.arr].sort((a,b)=>a-b);
+// };
+
+// /**
+//  * @return {void}
+//  */
+// MinStack.prototype.pop = function() {
+//     let temp = this.arr.pop();
+//     if(temp == this.arr2[0]){
+//         this.arr2.shift();
+//     }
+// };
+
+// /**
+//  * @return {number}
+//  */
+// MinStack.prototype.top = function() {
+//     return this.arr[Array.length-1];
+// };
+
+// /**
+//  * @return {number}
+//  */
+// MinStack.prototype.getMin = function() {
+//     return this.arr2[0];
+// };
+
+// /** 
+//  * Your MinStack object will be instantiated and called as such:
+//  * var obj = new MinStack()
+//  * obj.push(x)
+//  * obj.pop()
+//  * var param_3 = obj.top()
+//  * var param_4 = obj.getMin()
+//  */
 
 /**
- * @return {void}
+ * @param( {number[]} nums
+ * @param {number} target
+ * @return {number}
  */
-MinStack.prototype.pop = function() {
-    let temp = this.arr.pop();
-    if(temp == this.arr2[0]){
-        this.arr2.shift();
+// var threeSumClosest = function(nums, target) {
+
+//     if(nums.length < 3) return 0;
+//     nums.sort((a,b)=>a-b);
+//     if(nums[0] >= target) return nums[0]+nums[1]+nums[2];
+//     if(nums[nums.length-1] <= target) return nums[nums.length-1] + nums[nums.length-2] + nums[nums.length-3];
+    
+//     let res = 0,
+//         temp = 0;
+
+//     for(let i = 1; i < nums.length - 1; i++){
+//         let start = 0,
+//             end = nums.length -1,
+//         while(start<i&&end>i){
+//             temp = nums[start] + nums[i] + nums[end];
+//             if(temp==target) return temp;
+//             if(temp<target) start+=1;
+//             if(temp>target) end-=1;
+//             if(Math.abs(target-temp) < Math.abs(target-res)) res = temp;
+//         }
+//     }
+
+//     return res;
+// };
+
+var threeSumClosest = function(nums, target) {
+    if(nums.length<3)
+        return ;
+    nums.sort((a,b)=>a-b);
+    var res=nums[0]+nums[1]+nums[nums.length-1];
+    for(var middle=1;middle<nums.length-1;middle++){
+        var start=0,
+            end=nums.length-1;
+        while(start<middle&&end>middle){
+            var result=nums[start]+nums[end]+nums[middle];
+            if(Math.abs(target-result)<Math.abs(target-res))
+                res=result;
+            if(result===target){
+                return result;
+            }
+            if(result<target){
+                start+=1;
+            }
+            if(result>target){
+                end-=1;
+            }
+        }
     }
+    return res;
 };
-
-/**
- * @return {number}
- */
-MinStack.prototype.top = function() {
-    return this.arr[Array.length-1];
-};
-
-/**
- * @return {number}
- */
-MinStack.prototype.getMin = function() {
-    return this.arr2[0];
-};
-
-/** 
- * Your MinStack object will be instantiated and called as such:
- * var obj = new MinStack()
- * obj.push(x)
- * obj.pop()
- * var param_3 = obj.top()
- * var param_4 = obj.getMin()
- */

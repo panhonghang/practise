@@ -336,28 +336,57 @@
 //     return res;
 // };
 
-var threeSumClosest = function(nums, target) {
-    if(nums.length<3)
-        return ;
-    nums.sort((a,b)=>a-b);
-    var res=nums[0]+nums[1]+nums[nums.length-1];
-    for(var middle=1;middle<nums.length-1;middle++){
-        var start=0,
-            end=nums.length-1;
-        while(start<middle&&end>middle){
-            var result=nums[start]+nums[end]+nums[middle];
-            if(Math.abs(target-result)<Math.abs(target-res))
-                res=result;
-            if(result===target){
-                return result;
-            }
-            if(result<target){
-                start+=1;
-            }
-            if(result>target){
-                end-=1;
-            }
-        }
+// var threeSumClosest = function(nums, target) {
+//     if(nums.length<3)
+//         return ;
+//     nums.sort((a,b)=>a-b);
+//     var res=nums[0]+nums[1]+nums[nums.length-1];
+//     for(var middle=1;middle<nums.length-1;middle++){
+//         var start=0,
+//             end=nums.length-1;
+//         while(start<middle&&end>middle){
+//             var result=nums[start]+nums[end]+nums[middle];
+//             if(Math.abs(target-result)<Math.abs(target-res))
+//                 res=result;
+//             if(result===target){
+//                 return result;
+//             }
+//             if(result<target){
+//                 start+=1;
+//             }
+//             if(result>target){
+//                 end-=1;
+//             }
+//         }
+//     }
+//     return res;
+// };
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} headA
+ * @param {ListNode} headB
+ * @return {ListNode}
+ * 160. 相交链表
+ */
+
+//  双指针法，最好
+var getIntersectionNode = function(headA, headB) {
+    if(headA == null|| headB == null) return null;
+    let A = headA;
+    let B = headB;
+
+    while(headA!=headB){
+        headB = headB==null?A:headB.next;
+        headA = headA==null?B:headA.next;
     }
-    return res;
+
+    return headA;
 };

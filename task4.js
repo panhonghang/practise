@@ -411,19 +411,35 @@
 // };
 
 // 双指针法 效率高
-var maxArea = function(height){
-    let max = 0,
-        start = 0,
-        end = height.length - 1,
+// var maxArea = function(height){
+//     let max = 0,
+//         start = 0,
+//         end = height.length - 1,
+//         temp = 0;
+//     while(start<end){
+//         temp = Math.min(height[start],height[end])*(end-start);
+//         if(max<temp) max = temp;
+//         if(height[start]<height[end]){
+//             ++start;
+//         } else {
+//             --end;
+//         }
+//     }
+//     return max;
+// }
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ * 122. 买卖股票的最佳时机 II
+ */
+var maxProfit = function(prices) {
+    let res = 0,
         temp = 0;
-    while(start<end){
-        temp = Math.min(height[start],height[end])*(end-start);
-        if(max<temp) max = temp;
-        if(height[start]<height[end]){
-            ++start;
-        } else {
-            --end;
-        }
+    for(let i = 0; i < prices.length - 1; i++){
+        if(prices[i] < prices[i+1]) temp = prices[i+1] - prices[i];
+        res += temp;
+        temp = 0;
     }
-    return max;
-}
+    return res;
+};

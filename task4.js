@@ -378,15 +378,34 @@
  */
 
 //  双指针法，最好
-var getIntersectionNode = function(headA, headB) {
-    if(headA == null|| headB == null) return null;
-    let A = headA;
-    let B = headB;
+// var getIntersectionNode = function(headA, headB) {
+//     if(headA == null|| headB == null) return null;
+//     let A = headA;
+//     let B = headB;
 
-    while(headA!=headB){
-        headB = headB==null?A:headB.next;
-        headA = headA==null?B:headA.next;
-    }
+//     while(headA!=headB){
+//         headB = headB==null?A:headB.next;
+//         headA = headA==null?B:headA.next;
+//     }
 
-    return headA;
-};
+//     return headA;
+// };
+
+/**
+ * @param {number[]} height
+ * @return {number}
+ * 11. 盛最多水的容器
+ */
+// var maxArea = function(height) {
+//     let length = height.length;
+//     let max = 0;
+//     let temp;
+//     for(let i = 0; i < length; i++){
+//         for(let j = i + 1; j < length; j++){
+//             temp = Math.min(height[i],height[j])*(j-i);
+//             if(max < temp) max = temp;
+//         }
+//     }
+//     return max;
+// };
+

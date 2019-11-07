@@ -433,13 +433,30 @@
  * @return {number}
  * 122. 买卖股票的最佳时机 II
  */
+// var maxProfit = function(prices) {
+//     let res = 0,
+//         temp = 0;
+//     for(let i = 0; i < prices.length - 1; i++){
+//         if(prices[i] < prices[i+1]) temp = prices[i+1] - prices[i];
+//         res += temp;
+//         temp = 0;
+//     }
+//     return res;
+// };
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ * 121. 买卖股票的最佳时机
+ */
 var maxProfit = function(prices) {
     let res = 0,
         temp = 0;
-    for(let i = 0; i < prices.length - 1; i++){
-        if(prices[i] < prices[i+1]) temp = prices[i+1] - prices[i];
-        res += temp;
-        temp = 0;
+    for(let i = 0; i < prices.length; i++){
+        for(let j = i; j < prices.length; j++){
+            if(prices[i]<prices[j]) temp = prices[j] - prices[i];
+            res = Math.max(res,temp);
+        }
     }
     return res;
 };

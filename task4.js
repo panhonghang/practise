@@ -396,6 +396,7 @@
  * @return {number}
  * 11. 盛最多水的容器
  */
+// 一般方法
 // var maxArea = function(height) {
 //     let length = height.length;
 //     let max = 0;
@@ -409,3 +410,20 @@
 //     return max;
 // };
 
+// 双指针法 效率高
+var maxArea = function(height){
+    let max = 0,
+        start = 0,
+        end = height.length - 1,
+        temp = 0;
+    while(start<end){
+        temp = Math.min(height[start],height[end])*(end-start);
+        if(max<temp) max = temp;
+        if(height[start]<height[end]){
+            ++start;
+        } else {
+            --end;
+        }
+    }
+    return max;
+}

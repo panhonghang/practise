@@ -449,14 +449,49 @@
  * @return {number}
  * 121. 买卖股票的最佳时机
  */
-var maxProfit = function(prices) {
-    let res = 0,
-        temp = 0;
-    for(let i = 0; i < prices.length; i++){
-        for(let j = i; j < prices.length; j++){
-            if(prices[i]<prices[j]) temp = prices[j] - prices[i];
-            res = Math.max(res,temp);
-        }
-    }
-    return res;
-};
+// var maxProfit = function(prices) {
+//     let res = 0,
+//         temp = 0;
+//     for(let i = 0; i < prices.length; i++){
+//         for(let j = i; j < prices.length; j++){
+//             if(prices[i]<prices[j]) temp = prices[j] - prices[i];
+//             res = Math.max(res,temp);
+//         }
+//     }
+//     return res;
+// };
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ * 53. 最大子序和
+ */
+// var maxSubArray = function(nums) {
+//     let res = [];
+//     let temp;
+//     if(nums.length==1) nums[0];
+//     for(let i = 0; i < nums.length; i++){
+//         temp = nums[i];
+//         res.push(temp);
+//         for(let j = i + 1; j < nums.length; j++){
+//             temp += nums[j];
+//             res.push(temp);
+//         }
+//     }
+//     res.sort((a,b)=>b-a);
+//     return res[0];
+// };
+
+// var maxSubArray = function(nums) {
+//     let ans = nums[0];
+//     let sum = 0;
+//     for(const num of nums) {
+//         if(sum > 0) {
+//             sum += num;
+//         } else {
+//             sum = num;
+//         }
+//         ans = Math.max(ans, sum);
+//     }
+//     return ans;
+// };

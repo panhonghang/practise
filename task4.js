@@ -509,20 +509,53 @@
  * @param {TreeNode} q
  * @return {TreeNode}
  */
-var lowestCommonAncestor = function(root, p, q) {
-    if (root == null || root == p || root == q) {
-        return root;
-    }
+// var lowestCommonAncestor = function(root, p, q) {
+//     if (root == null || root == p || root == q) {
+//         return root;
+//     }
     
-    let left = lowestCommonAncestor(root.left, p, q);
-    let right = lowestCommonAncestor(root.right, p, q);
+//     let left = lowestCommonAncestor(root.left, p, q);
+//     let right = lowestCommonAncestor(root.right, p, q);
 
-    if (left != null && right != null) {
-        return root;
-    } else if (left != null) {
-        return left;
-    } else if (right != null) {
-        return right;
+//     if (left != null && right != null) {
+//         return root;
+//     } else if (left != null) {
+//         return left;
+//     } else if (right != null) {
+//         return right;
+//     }
+//     return null;
+// };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ * 124. 二叉树中的最大路径和
+ * 没看懂
+ */
+var maxPathSum = function(root) {
+    if(root==null)return 0;
+
+    var result=root.val;
+
+    function sum(node){
+        if(node==null) return 0;
+
+        var left=sum(node.left),
+            right=sum(node.right);
+
+        result=Math.max(result,node.val+(left>0?left:0)+(right>0?right:0));
+
+        return node.val+Math.max((left>0?left:0),(right>0?right:0));
     }
-    return null;
+
+    sum(root);
+    return result;
 };

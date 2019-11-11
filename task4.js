@@ -540,22 +540,72 @@
  * 124. 二叉树中的最大路径和
  * 没看懂
  */
-var maxPathSum = function(root) {
-    if(root==null)return 0;
+// var maxPathSum = function(root) {
+//     if(root==null)return 0;
 
-    var result=root.val;
+//     var result=root.val;
 
-    function sum(node){
-        if(node==null) return 0;
+//     function sum(node){
+//         if(node==null) return 0;
 
-        var left=sum(node.left),
-            right=sum(node.right);
+//         var left=sum(node.left),
+//             right=sum(node.right);
 
-        result=Math.max(result,node.val+(left>0?left:0)+(right>0?right:0));
+//         result=Math.max(result,node.val+(left>0?left:0)+(right>0?right:0));
 
-        return node.val+Math.max((left>0?left:0),(right>0?right:0));
+//         return node.val+Math.max((left>0?left:0),(right>0?right:0));
+//     }
+
+//     sum(root);
+//     return result;
+// };
+
+/**
+ * @param {string} num1
+ * @param {string} num2
+ * @return {string}
+ * 43. 字符串相乘
+ */
+var multiply = function(num1, num2) {
+    let arr  = [];
+        arr.length = num1.length*num2.length + 1;
+        arr.fill(0);
+    let index = arr.length - 1;
+
+    if(num1==''||num1=='0'||num2==''||num2=='0') return '0';
+
+    for(let i = num1.length -1; i >= 0; i--){
+        for(let j = num2.length -1; j >= 0;j--){
+            multiplyFn(num1[i],num2[j],arr,index);
+            index--;
+        }
+        index = arr.length - num1.length + i - 1;
     }
-
-    sum(root);
-    return result;
+    if(arr[0] == 0) {
+        while(arr[0] == 0){
+            arr.shift()
+        }
+    };
+    return arr.join('');
 };
+
+/**
+ * @description: 处理乘法
+ * @param {string} s1 
+ * @param {string} s2 
+ * @param {number[]} TheArr
+ * @return: 
+ */
+var multiplyFn = function(s1,s2,TheArr,TheIndex){
+    let geIndex = parseInt(s1)*parseInt(s2)%10;
+    let siIndex = parseInt(parseInt(s1)*parseInt(s2)/10);
+    let num = TheArr[TheIndex];
+
+    console.log(num);
+
+    TheArr[TheIndex] = (num+geIndex) % 10;
+    if((num+geIndex) > 9) TheArr[TheIndex - 1] = TheArr[TheIndex - 1] + siIndex + parseInt((num+geIndex)/10);
+    TheArr[TheIndex - 1] = TheArr[TheIndex - 1] + siIndex;
+}
+
+console.log(multiply("89","999"));

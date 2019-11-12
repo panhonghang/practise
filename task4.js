@@ -568,7 +568,7 @@
  */
 var multiply = function(num1, num2) {
     let arr  = [];
-        arr.length = num1.length*num2.length + 1;
+        arr.length = num1.length+num2.length;
         arr.fill(0);
     let index = arr.length - 1;
 
@@ -600,12 +600,11 @@ var multiplyFn = function(s1,s2,TheArr,TheIndex){
     let geIndex = parseInt(s1)*parseInt(s2)%10;
     let siIndex = parseInt(parseInt(s1)*parseInt(s2)/10);
     let num = TheArr[TheIndex];
-
-    console.log(num);
-
     TheArr[TheIndex] = (num+geIndex) % 10;
-    if((num+geIndex) > 9) TheArr[TheIndex - 1] = TheArr[TheIndex - 1] + siIndex + parseInt((num+geIndex)/10);
-    TheArr[TheIndex - 1] = TheArr[TheIndex - 1] + siIndex;
+    if((num+geIndex) > 9){
+        TheArr[TheIndex - 1] = TheArr[TheIndex - 1] + siIndex + parseInt((num+geIndex)/10);
+    } else {
+        TheArr[TheIndex - 1] = TheArr[TheIndex - 1] + siIndex;
+    }
 }
-
 console.log(multiply("89","999"));

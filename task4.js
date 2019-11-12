@@ -565,46 +565,138 @@
  * @param {string} num2
  * @return {string}
  * 43. 字符串相乘
+ * 思路从后面开始添加
  */
-var multiply = function(num1, num2) {
-    let arr  = [];
-        arr.length = num1.length+num2.length;
-        arr.fill(0);
-    let index = arr.length - 1;
+// var multiply = function(num1, num2) {
+//     let arr  = [];
+//         arr.length = num1.length+num2.length;
+//         arr.fill(0);
+//     let index = arr.length - 1;
 
-    if(num1==''||num1=='0'||num2==''||num2=='0') return '0';
+//     if(num1==''||num1=='0'||num2==''||num2=='0') return '0';
 
-    for(let i = num1.length -1; i >= 0; i--){
-        for(let j = num2.length -1; j >= 0;j--){
-            multiplyFn(num1[i],num2[j],arr,index);
-            index--;
-        }
-        index = arr.length - num1.length + i - 1;
-    }
-    if(arr[0] == 0) {
-        while(arr[0] == 0){
-            arr.shift()
-        }
-    };
-    return arr.join('');
-};
+//     for(let i = num1.length -1; i >= 0; i--){
+//         for(let j = num2.length -1; j >= 0;j--){
+//             multiplyFn(num1[i],num2[j],arr,index);
+//             index--;
+//         }
+//         index = arr.length - num1.length + i - 1;
+//     }
+//     if(arr[0] == 0) {
+//         while(arr[0] == 0){
+//             arr.shift()
+//         }
+//     };
+//     return arr.join('');
+// };
+
+// /**
+//  * @description: 处理乘法
+//  * @param {string} s1 
+//  * @param {string} s2 
+//  * @param {number[]} TheArr
+//  * @return: 
+//  */
+// var multiplyFn = function(s1,s2,TheArr,TheIndex){
+//     let geIndex = parseInt(s1)*parseInt(s2)%10;
+//     let siIndex = parseInt(parseInt(s1)*parseInt(s2)/10);
+//     let num = TheArr[TheIndex];
+//     TheArr[TheIndex] = (num+geIndex) % 10;
+//     if((num+geIndex) > 9){
+//         TheArr[TheIndex - 1] = TheArr[TheIndex - 1] + siIndex + parseInt((num+geIndex)/10);
+//     } else {
+//         TheArr[TheIndex - 1] = TheArr[TheIndex - 1] + siIndex;
+//     }
+// }
+// console.log(multiply("89","999"));
 
 /**
- * @description: 处理乘法
- * @param {string} s1 
- * @param {string} s2 
- * @param {number[]} TheArr
- * @return: 
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
  */
-var multiplyFn = function(s1,s2,TheArr,TheIndex){
-    let geIndex = parseInt(s1)*parseInt(s2)%10;
-    let siIndex = parseInt(parseInt(s1)*parseInt(s2)/10);
-    let num = TheArr[TheIndex];
-    TheArr[TheIndex] = (num+geIndex) % 10;
-    if((num+geIndex) > 9){
-        TheArr[TheIndex - 1] = TheArr[TheIndex - 1] + siIndex + parseInt((num+geIndex)/10);
-    } else {
-        TheArr[TheIndex - 1] = TheArr[TheIndex - 1] + siIndex;
-    }
-}
-console.log(multiply("89","999"));
+
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+// var detectCycle = function(head) {
+//     if(head==null) return null;
+//     if(!head.next) return null;
+//     if(!head.next.next) return null;
+
+//     let CircleLength = 1;
+//         preNode = head, 
+//         nextNode = head.next.next;
+        
+//     while(preNode!=nextNode){
+//         preNode = preNode.next;
+//         if(nextNode.next == null) return null;
+//         if(nextNode.next.next == null) return null;
+//         nextNode = nextNode.next.next;
+//         if(nextNode == null) return null;
+//     }   
+
+//     preNode = preNode.next;
+
+//     while(preNode!=nextNode){
+//         CircleLength++;
+//         preNode = preNode.next;
+//     }  
+    
+//     preNode = nextNode = head;
+    
+//     while(CircleLength){
+//         nextNode = nextNode.next;
+//         CircleLength--;
+//     }
+    
+//     while(preNode!=nextNode){
+//         preNode = preNode.next;
+//         nextNode = nextNode.next;
+//     }  
+//     return preNode;
+// };
+
+// var detectCycle = function(head) {
+//     if(head==null||!head.next||!head.next.next) return null;
+
+//     let CircleLength = 1;
+//         preNode = head, 
+//         nextNode = head.next.next;
+        
+//     while(preNode!=nextNode){
+//         if(nextNode == null||nextNode.next == null) return null;
+//         preNode = preNode.next;
+//         nextNode = nextNode.next.next;
+//     }   
+//     preNode = head;
+
+//     while(preNode!=nextNode){
+//         preNode = preNode.next;
+//         nextNode = nextNode.next;
+//     }
+//     return preNode;
+// };
+var detectCycle = function(head) {
+    if(head==null||!head.next||!head.next.next) return null;
+
+    let preNode = head, 
+        nextNode = head.next.next;
+        
+    while(1){
+        if(nextNode == null||nextNode.next == null) return null;
+        preNode = preNode.next;
+        nextNode = nextNode.next.next;
+        if(preNode==nextNode){
+             preNode = head;
+             while(1){
+                preNode = preNode.next;
+                nextNode = nextNode.next;
+                if(preNode==nextNode) return preNode;
+            }
+        }
+    }   
+};

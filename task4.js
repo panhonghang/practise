@@ -680,62 +680,144 @@
 //     }
 //     return preNode;
 // };
-var detectCycle = function(head) {
-    if(head==null||!head.next||!head.next.next) return null;
+// var detectCycle = function(head) {
+//     if(head==null||!head.next||!head.next.next) return null;
 
-    let preNode = head, 
-        nextNode = head.next.next;
+//     let preNode = head, 
+//         nextNode = head.next.next;
         
-    while(1){
-        if(nextNode == null||nextNode.next == null) return null;
-        preNode = preNode.next;
-        nextNode = nextNode.next.next;
-        if(preNode==nextNode){
-             preNode = head;
-             while(1){
-                preNode = preNode.next;
-                nextNode = nextNode.next;
-                if(preNode==nextNode) return preNode;
-            }
-        }
-    }   
-};
+//     while(1){
+//         if(nextNode == null||nextNode.next == null) return null;
+//         preNode = preNode.next;
+//         nextNode = nextNode.next.next;
+//         if(preNode==nextNode){
+//              preNode = head;
+//              while(1){
+//                 preNode = preNode.next;
+//                 nextNode = nextNode.next;
+//                 if(preNode==nextNode) return preNode;
+//             }
+//         }
+//     }   
+// };
 
-var LRUCache = class {
+// var LRUCache = class {
 
-    constructor(capacity) {
-        this.cache = new Map();
-        this.capacity = capacity;
-    }
+//     constructor(capacity) {
+//         this.cache = new Map();
+//         this.capacity = capacity;
+//     }
 
-    /**
-     * @param {number} key
-     * @return {number}
-     */
-    get(key) {
-        let cache = this.cache;
-        if (cache.has(key)) {
-            let temp = cache.get(key)
-            cache.delete(key);
-            cache.set(key, temp);
-            return temp;
-        } else {
-            return -1;
-        }
-    };
+//     /**
+//      * @param {number} key
+//      * @return {number}
+//      */
+//     get(key) {
+//         let cache = this.cache;
+//         if (cache.has(key)) {
+//             let temp = cache.get(key)
+//             cache.delete(key);
+//             cache.set(key, temp);
+//             return temp;
+//         } else {
+//             return -1;
+//         }
+//     };
 
-    /**
-     * @param {number} key
-     * @param {number} value
-     * @return {void}
-     */
-    put(key, value) {
-        let cache = this.cache;
-        if (cache.has(key)) {
-            cache.delete(key);
-        } else if (cache.size >= this.capacity) {
-            cache.delete(cache.keys().next().value);
-        }
-        cache.set(key, value);
-    };
-};
+//     /**
+//      * @param {number} key
+//      * @param {number} value
+//      * @return {void}
+//      */
+//     put(key, value) {
+//         let cache = this.cache;
+//         if (cache.has(key)) {
+//             cache.delete(key);
+//         } else if (cache.size >= this.capacity) {
+//             cache.delete(cache.keys().next().value);
+//         }
+//         cache.set(key, value);
+//     };
+// };
+
+/**
+ * @param {number[][]} obstacleGrid
+ * @return {number}
+ * 不同路径 II
+ */
+// var uniquePathsWithObstacles = function(obstacleGrid) {
+//     let width = obstacleGrid.length;
+//     let height = obstacleGrid[0].length;
+
+//     let dp = [[]];
+
+//     for(let i = 0; i < width; i++){
+//         dp[i] = new Array(height).fill(0);
+//     }
+
+//     dp[0][0] = obstacleGrid[0][0] == 0 ? 1 : 0;
+
+//     for(let i = 1; i < width; i++){
+//         if(obstacleGrid[i][0]!=1){
+//             dp[i][0] = dp[i-1][0];
+//         }
+//     }
+
+//     for(let i = 0; i < height; i++){
+//         if(obstacleGrid[0][i]!=1){
+//             dp[0][i] = dp[0][i-1];
+//         }
+//     }
+
+//     for(let i = 1; i < width; i++){
+//         for(let j = 1; j < height; j++){
+//             if(obstacleGrid[i][j]!=1){
+//                 dp[i][j] = dp[i][j-1] + dp[i-1][j];
+//             };
+//         }
+//     }
+
+//     return dp[width-1][height-1];
+// };
+
+// /**
+//  * @param {number[][]} obstacleGrid
+//  * @return {number}
+//  */
+// var uniquePathsWithObstacles = function(obstacleGrid) {
+//     // 行
+//     var n = obstacleGrid.length;
+//     // 列
+//     var m = obstacleGrid[0].length;
+//     // 初始化
+//     var dp = new Array(n);
+//     for(var i = 0;i<n;i++){
+//         dp[i] = new Array(m).fill(0);
+//     }
+//     dp[0][0] = obstacleGrid[0][0] == 0 ? 1 : 0;
+//     // 如果起点就是障碍物
+//     if(dp[0][0] == 0){
+//         return 0 ;
+//     }
+//     // 第一行
+//     for(var j = 1;j < m;j++){
+//         if(obstacleGrid[0][j] != 1){
+//             dp[0][j] = dp[0][j-1];
+//         }
+//     }
+//     // 第一列
+//     for(var r = 1;r < n;r++){
+//         if(obstacleGrid[r][0] != 1){
+//             dp[r][0] = dp[r-1][0];
+//         }
+//     }
+//     // 动态递推
+//     for(var i = 1;i < n;i++){
+//         for(var r = 1;r < m;r++){
+//             if(obstacleGrid[i][r] != 1){
+//                 dp[i][r] = dp[i-1][r] +dp[i][r-1];
+//             }
+//         }
+//     }
+//     return dp[n-1][m-1];
+// };

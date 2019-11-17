@@ -822,21 +822,40 @@
 //     return dp[n-1][m-1];
 // };
 
-/**
- * @param {number} n
- * @return {number}
- * 70.爬楼梯
- */
-var climbStairs = function(n) {
-    let arr  = [];
-    arr[0] = 1;
-    arr[1] = 1;
+// /**
+//  * @param {number} n
+//  * @return {number}
+//  * 70.爬楼梯
+//  */
+// var climbStairs = function(n) {
+//     let arr  = [];
+//     arr[0] = 1;
+//     arr[1] = 1;
 
-    for(let i = 2; i <= n; i++){
-        arr[i] = arr[i-1] + arr[i-2];
+//     for(let i = 2; i <= n; i++){
+//         arr[i] = arr[i-1] + arr[i-2];
+//     }
+
+//     return arr[n];
+// };
+
+// climbStairs(4)
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ * 198. 打家劫舍
+ */
+var rob = function(nums) {
+    let len = nums.length,
+        dp = [];
+    if(len == 0) return 0;
+    dp[0] = 0; 
+    dp[1] = nums[0];
+
+    for(let i = 2; i <= len; i++){
+        dp[i] = Math.max(dp[i-1],dp[i-2]+nums[i-1]);
     }
 
-    return arr[n];
+    return dp[len];
 };
-
-climbStairs(4)

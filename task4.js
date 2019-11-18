@@ -846,16 +846,63 @@
  * @return {number}
  * 198. 打家劫舍
  */
-var rob = function(nums) {
-    let len = nums.length,
-        dp = [];
-    if(len == 0) return 0;
-    dp[0] = 0; 
-    dp[1] = nums[0];
+// var rob = function(nums) {
+//     let len = nums.length,
+//         dp = [];
+//     if(len == 0) return 0;
+//     dp[0] = 0; 
+//     dp[1] = nums[0];
 
-    for(let i = 2; i <= len; i++){
-        dp[i] = Math.max(dp[i-1],dp[i-2]+nums[i-1]);
-    }
+//     for(let i = 2; i <= len; i++){
+//         dp[i] = Math.max(dp[i-1],dp[i-2]+nums[i-1]);
+//     }
 
-    return dp[len];
+//     return dp[len];
+// };
+
+// /**
+//  * Definition for a binary tree node.
+//  * 337. 打家劫舍 III
+//  * function TreeNode(val) {
+//  *     this.val = val;
+//  *     this.left = this.right = null;
+//  * }
+//  */
+// /**
+//  * @param {TreeNode} root
+//  * @return {number}
+//  */
+// var rob = function(root) {
+//     let dp = [];
+
+//     let fn = function(node,max){
+//         if(node) dp;
+//     }
+// };
+/**
+ * @param {number[]} nums
+ */
+var NumArray = function(nums) {
+    this.Arr = [0];
+    let temp;
+    nums.forEach((key)=>{
+        temp += key;
+        this.Arr.push(temp);
+    })
 };
+
+/** 
+ * @param {number} i 
+ * @param {number} j
+ * @return {number}
+ */
+NumArray.prototype.sumRange = function(i, j) {
+    console.log(this.Arr)
+    return this.Arr[j+1] - this.Arr[i]
+};
+
+/** 
+ * Your NumArray object will be instantiated and called as such:
+ * var obj = new NumArray(nums)
+ * var param_1 = obj.sumRange(i,j)
+ */

@@ -879,30 +879,81 @@
 //         if(node) dp;
 //     }
 // };
+
+
 /**
  * @param {number[]} nums
  */
-var NumArray = function(nums) {
-    this.Arr = [0];
-    let temp;
-    nums.forEach((key)=>{
-        temp += key;
-        this.Arr.push(temp);
-    })
-};
+// var NumArray = function(nums) {
+//     this.Arr = [0];
+//     let temp;
+//     nums.forEach((key)=>{
+//         temp += key;
+//         this.Arr.push(temp);
+//     })
+// };
 
-/** 
- * @param {number} i 
- * @param {number} j
+// /** 
+//  * @param {number} i 
+//  * @param {number} j
+//  * @return {number}
+//  */
+// NumArray.prototype.sumRange = function(i, j) {
+//     console.log(this.Arr)
+//     return this.Arr[j+1] - this.Arr[i]
+// };
+
+// /** 
+//  * Your NumArray object will be instantiated and called as such:
+//  * var obj = new NumArray(nums)
+//  * var param_1 = obj.sumRange(i,j)
+//  */
+
+
+/**
+ * @param {number[]} nums
+ * @param {number} S
  * @return {number}
  */
-NumArray.prototype.sumRange = function(i, j) {
-    console.log(this.Arr)
-    return this.Arr[j+1] - this.Arr[i]
-};
+// var findTargetSumWays = function(nums, S) {
+//     let len = nums.length - 1;
+//     let res = 0;
+//     let te = 0;
 
-/** 
- * Your NumArray object will be instantiated and called as such:
- * var obj = new NumArray(nums)
- * var param_1 = obj.sumRange(i,j)
+//     let dpfunc = function(temp,n){
+//         if(n==len&&(temp+nums[n]==S||temp-nums[n]==S)) res++;
+//         if(n>=len) return;
+//         temp = nums[n];
+//         n++;
+//         dpfunc(temp+nums[n],n);
+//         dpfunc(temp-nums[n],n)
+//     }
+
+//     dpfunc(0,0);
+//     console.log(res)
+//     return res;
+// };
+
+// findTargetSumWays([1, 1,1,1,1], 3)
+
+/**
+ * @param {number[]} nums
+ * @param {number} S
+ * @return {number}
  */
+var findTargetSumWays = function(nums, S) {
+    let sum = 0;
+    for (let num of nums) {
+        sum += num;
+    }
+    if (sum < S || (sum + S) % 2 === 1) return 0;
+    let target = (sum + S) / 2;
+    let dp = new Array(target+1).fill(0);
+    dp[0] = 1;
+    for (let num of nums) {
+        for (let i = target; i >= num; i--) {
+            dp[i] += dp[i - num];
+        }
+    }
+    return dp[target];
+};

@@ -941,19 +941,19 @@
  * @param {number} S
  * @return {number}
  */
-var findTargetSumWays = function(nums, S) {
-    let sum = 0;
-    for (let num of nums) {
-        sum += num;
-    }
-    if (sum < S || (sum + S) % 2 === 1) return 0;
-    let target = (sum + S) / 2;
-    let dp = new Array(target+1).fill(0);
-    dp[0] = 1;
-    for (let num of nums) {
-        for (let i = target; i >= num; i--) {
-            dp[i] += dp[i - num];
-        }
-    }
-    return dp[target];
-};
+// var findTargetSumWays = function(nums, S) {
+//     let sum = 0;
+//     for (let num of nums) {
+//         sum += num;
+//     }
+//     if (sum < S || (sum + S) % 2 === 1) return 0;
+//     let target = (sum + S) / 2;
+//     let dp = new Array(target+1).fill(0);
+//     dp[0] = 1;
+//     for (let num of nums) {
+//         for (let i = target; i >= num; i--) {
+//             dp[i] += dp[i - num];
+//         }
+//     }
+//     return dp[target];
+// };

@@ -968,3 +968,12 @@ var divisorGame = function(N) {
     if(N==2) return true;
     return N%2 === 0;
 };
+
+/**
+ * @param {number[]} piles
+ * @return {boolean}
+ * 877. 石子游戏
+ */
+var stoneGame = function(piles) {
+    return true;
+};

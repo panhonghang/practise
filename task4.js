@@ -957,3 +957,14 @@
 //     }
 //     return dp[target];
 // };
+
+/**
+ * @param {number} N
+ * @return {boolean}
+ * 1025. 除数博弈
+ */
+var divisorGame = function(N) {
+    if(N==1) return false;
+    if(N==2) return true;
+    return N%2 === 0;
+};

@@ -986,7 +986,7 @@ var stoneGame = function(piles) {
 
 //  状态方程 当n>3的时候 dp[n] = 2*(dp[0] +。。。。。+ dp[n-1])
 
-var numTrees = function(n) {
+// var numTrees = function(n) {
 //     if(n<=1) return 1;
 //     if(n==2) return 2;
 
@@ -1012,25 +1012,41 @@ var numTrees = function(n) {
  * @return {number}
  * 64. 最小路径和
  */
-var minPathSum = function(grid) {
-    if(grid.length == 0) return 0;
-    let Clen = grid.length,
-        dp = new Array(Clen + 1),
-        Rlen = grid[0].length;
+// var minPathSum = function(grid) {
+//     if(grid.length == 0) return 0;
+//     let Clen = grid.length,
+//         Rlen = grid[0].length;
         
-    for(let i = 0; i < Clen; i++){
-        for(let j = 0; j < Rlen; j++){
-            if( i != 0 && j!= 0){
-                grid[i][j] = Math.min(grid[i][j-1],grid[i-1][j])+grid[i][j];
-            }else if(i == 0 && j!=0){
-                grid[i][j] = grid[i][j-1]+grid[i][j];
-            }else if(i != 0 && j==0){
-                grid[i][j] = grid[i-1][j]+grid[i][j];
-            }else if(i == 0 && j==0){
-                grid[i][j] = grid[i][j];
-            }
+//     for(let i = 0; i < Clen; i++){
+//         for(let j = 0; j < Rlen; j++){
+//             if( i != 0 && j!= 0){
+//                 grid[i][j] = Math.min(grid[i][j-1],grid[i-1][j])+grid[i][j];
+//             }else if(i == 0 && j!=0){
+//                 grid[i][j] = grid[i][j-1]+grid[i][j];
+//             }else if(i != 0 && j==0){
+//                 grid[i][j] = grid[i-1][j]+grid[i][j];
+//             }else if(i == 0 && j==0){
+//                 grid[i][j] = grid[i][j];
+//             }
+//         }
+//     }
+
+//     return grid[Clen-1][Rlen-1]
+// };
+
+/**
+ * @param {number[][]} triangle
+ * @return {number}
+ * 120. 三角形最小路径和
+ */
+var minimumTotal = function(triangle) {
+    var dp = new Array(triangle.length+1).fill(0);
+    for(var i = triangle.length-1;i >= 0;i--){
+        for(var j = 0;j < triangle[i].length;j++){
+            dp[j] = Math.min(dp[j],dp[j+1]) + triangle[i][j];
         }
     }
-
-    return grid[Clen-1][Rlen-1]
+    return dp[0];
 };
+
+console.log(minimumTotal([[0],[1,2],[2,1,4],[5,6,7,8]]))

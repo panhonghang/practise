@@ -1039,14 +1039,24 @@ var stoneGame = function(piles) {
  * @return {number}
  * 120. 三角形最小路径和
  */
-var minimumTotal = function(triangle) {
-    var dp = new Array(triangle.length+1).fill(0);
-    for(var i = triangle.length-1;i >= 0;i--){
-        for(var j = 0;j < triangle[i].length;j++){
-            dp[j] = Math.min(dp[j],dp[j+1]) + triangle[i][j];
-        }
-    }
-    return dp[0];
-};
+// var minimumTotal = function(triangle) {
+//     var dp = new Array(triangle.length+1).fill(0);
+//     for(var i = triangle.length-1;i >= 0;i--){
+//         for(var j = 0;j < triangle[i].length;j++){
+//             dp[j] = Math.min(dp[j],dp[j+1]) + triangle[i][j];
+//         }
+//     }
+//     return dp[0];
+// };
 
-console.log(minimumTotal([[0],[1,2],[2,1,4],[5,6,7,8]]))
+// console.log(minimumTotal([[0],[1,2],[2,1,4],[5,6,7,8]]))
+
+/**
+ * @param {number} n
+ * @return {number}
+ * 1227. 飞机座位分配概率
+ */
+var nthPersonGetsNthSeat = function(n) {
+    if(n==1) return 1;
+    return 1/2;  
+};

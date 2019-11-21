@@ -1056,7 +1056,52 @@ var stoneGame = function(piles) {
  * @return {number}
  * 1227. 飞机座位分配概率
  */
-var nthPersonGetsNthSeat = function(n) {
-    if(n==1) return 1;
-    return 1/2;  
+// var nthPersonGetsNthSeat = function(n) {
+//     if(n==1) return 1;
+//     return 1/2;  
+// };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {number} n
+ * @return {TreeNode[]}
+ * 95. 不同的二叉搜索树 II
+ */
+var generateTrees = function(n) {
+    if(n<1) return [];
+
+    let dp = new Array(n+1);
+        dp.fill([]);
+        dp[0] = [];
+        dp[1] = [new TreeNode(1)];
+    let current;
+
+    let fn = function(node,arrLeft,arrRight){
+        let arr = [];
+        
+        arrLeft.forEach(key1=>{
+            arrRight.forEach(key2=>{
+                node.left = key1;
+                node.right = key2;
+                arr.push(node);
+            })
+        })
+        return arr;
+    }
+
+    for(let i = 1; i <= n; i++){
+        for(let j = 0; j < i; j++){
+            current = new TreeNode(i);
+            dp[i] = fn(current,dp[j],dp[i-j-1]);
+        }
+    }
+
+
+    return dp[n]
 };

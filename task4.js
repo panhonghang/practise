@@ -1074,34 +1074,27 @@ var stoneGame = function(piles) {
  * 95. 不同的二叉搜索树 II
  */
 var generateTrees = function(n) {
-    if(n<1) return [];
-
-    let dp = new Array(n+1);
-        dp.fill([]);
-        dp[0] = [];
-        dp[1] = [new TreeNode(1)];
-    let current;
-
-    let fn = function(node,arrLeft,arrRight){
-        let arr = [];
-        
-        arrLeft.forEach(key1=>{
-            arrRight.forEach(key2=>{
-                node.left = key1;
-                node.right = key2;
-                arr.push(node);
+    let results = new Array(n+1).fill(undefined).map(()=>[]);
+    if(n===0) return [];
+    results[0].push(null);
+    for(let i=1; i<n+1; i++){  //求i个节点的所有组合
+        for(let j=1; j<i+1; j++){  //其中第j个节点作为根节点
+            results[j-1].forEach(left =>{  //左子树的所有组合
+                results[i-j].forEach(right =>{  //右子树的所有组合
+                    let root = new TreeNode(j);
+                    root.left = left;
+                    root.right = cloneTree(right, j);  //右子树偏移j
+                    results[i].push(root);
+                })
             })
-        })
-        return arr;
-    }
-
-    for(let i = 1; i <= n; i++){
-        for(let j = 0; j < i; j++){
-            current = new TreeNode(i);
-            dp[i] = fn(current,dp[j],dp[i-j-1]);
         }
     }
-
-
-    return dp[n]
+    return results[n];
+    function cloneTree(root, offset){
+        if(!root) return null;
+        let newRoot = new TreeNode(root.val+offset);
+        newRoot.left = cloneTree(root.left, offset);
+        newRoot.right = cloneTree(root.right, offset);
+        return newRoot;
+    }
 };

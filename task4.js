@@ -1107,49 +1107,41 @@ var generateTrees = function(n) {
  * 
  */
 
-// int minimumDeleteSum(string s1, string s2) {
-//     vector<vector<int>> dp(s1.size()+1,vector<int>(len2+1,0));
-//     for(int i=1;i<s1.size()+1;i++)//初始化
-//         dp[i][0]=dp[i-1][0]+s1[i-1];
-//     for(int j=1;j<s2.size()+1;j++)//初始化
-//         dp[0][j]=dp[0][j-1]+s2[j-1];
-//     for(int i=1;i<=s1.size();i++)
-//         for(int j=1;j<=s2.size();j++)
-//         {
-//             if(s1[i-1]==s2[j-1]) dp[i][j]=dp[i-1][j-1];//相等
-//             else dp[i][j]=min(dp[i-1][j]+s1[i-1],dp[i][j-1]+s2[j-1]);//不相等
-//         }
-//     return dp[s1.size()][s2.size()];
-// }
-// var minimumDeleteSum = function(s1, s2) {
-//     let len1 = s1.length;
-//     let len2 = s2.length;
-//     let dp = new Array(len1 + 1).fill('').map(()=>new Array(len2+1).fill(''));
+var minimumDeleteSum = function(s1, s2) {
+    let m = s1.length, 
+        n = s2.length;
+    let fn = function(s){
+        let res = 0;
+        for(let i = 0; i < s.length; i++){
+            res += s[i].charCodeAt()
+        }
+        return res;
+    }
 
-//     let fn = function(s){
-//         let num = 0;
-//         for(let i = 0; i < s.length; i++){
-//             num += s[i].charCodeAt();
-//         }
-//         return num;
-//     }
+    if (m * n == 0) return fn(s1+s2);
 
-//     for(let i=1;i<=len1;i++) dp[i][0]=(dp[i-1][0]+s1[i-1]);
-//     for(let j=1;j<=len2;j++) dp[0][j]=(dp[0][j-1]+s2[j-1]);
+    let states = new Array(m + 1)
 
-//     for(let i=1;i<=len1;i++){
-//         for(let j=1;j<=len2;j++){
-//             if(s1[i-1]==s2[j-1]){
-//                 dp[i][j]=fn(dp[i-1][j-1]);//相等
-//             } else{
-//                 dp[i][j]=Math.min(fn(dp[i-1][j]+s1[i-1]),fn(dp[i][j-1]+s2[j-1]));
-//             }
-//         }
-//     }
-//     console.log(dp)
+    for (let i = 0; i < m + 1; i++) {
+        states[i] = new Array(n + 1)
+    }
 
-//     return dp[len1][len2];
-// };  
+    for (let i = 0; i < m + 1; i++) {
+        states[i][0] = i
+    }
+    for (let j = 0; j < n + 1; j++) {
+        states[0][j] = j
+    }
+
+    for (let i = 1; i < m + 1; i++) {
+        for (let j = 1; j < n + 1; j++) {
+            // 三目运算符简化了if else
+            states[i][j] = s1[i - 1] == s2[j - 1] ? states[i - 1][j - 1] :1 + Math.min(fn(states[i - 1][j]), fn(states[i][j - 1]))
+        }
+    }
+
+    return states[m][n]
+};  
 
 
 /**
@@ -1217,8 +1209,7 @@ var generateTrees = function(n) {
  var minDistance = function(word1, word2) {
     let len1 = word1.length,
         len2 = word2.length,
-        dp = new Array(len1 + 2).fill(0).map(()=>new Array(len2+2).fill(0)),
-        res = 0;
+        dp = new Array(len1 + 2).fill(0).map(()=>new Array(len2+2).fill(0));
     for(let i=2;i<=len1+1;i++){
         // 留下第二行和第二列的数为0
         dp[i][0]=word1[i-2];
@@ -1226,13 +1217,12 @@ var generateTrees = function(n) {
             dp[0][j]=word2[j-2];
             if(word1[i-2]==word2[j-2]){
                 dp[i][j] = dp[i-1][j-1] + 1;
-                res = Math.max(res,dp[i][j]);
             } else {
                 dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1]);
             }
         }
     }
-    return len1 + len2 - 2*res;
+    return len1 + len2 - 2*dp[len1+2,len2+2];
 };
 
 // leetcode里面JavaScript的最优解

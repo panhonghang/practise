@@ -1110,6 +1110,7 @@ var generateTrees = function(n) {
 var minimumDeleteSum = function(s1, s2) {
     let m = s1.length, 
         n = s2.length;
+
     let fn = function(s){
         let res = 0;
         for(let i = 0; i < s.length; i++){
@@ -1120,27 +1121,23 @@ var minimumDeleteSum = function(s1, s2) {
 
     if (m * n == 0) return fn(s1+s2);
 
-    let states = new Array(m + 1)
+    let dp = new Array(m + 1).fill(0);
 
     for (let i = 0; i < m + 1; i++) {
-        states[i] = new Array(n + 1)
-    }
-
-    for (let i = 0; i < m + 1; i++) {
-        states[i][0] = i
-    }
-    for (let j = 0; j < n + 1; j++) {
-        states[0][j] = j
+        dp[i] = new Array(n + 1).fill(0)
     }
 
     for (let i = 1; i < m + 1; i++) {
         for (let j = 1; j < n + 1; j++) {
             // 三目运算符简化了if else
-            states[i][j] = s1[i - 1] == s2[j - 1] ? states[i - 1][j - 1] :1 + Math.min(fn(states[i - 1][j]), fn(states[i][j - 1]))
+           if(s1[i-1]==s2[j-1]){
+               dp[i][j] = dp[i-1][j-1] + fn(s1[i-1])
+           } else {
+               dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1]);
+           }
         }
     }
-
-    return states[m][n]
+    return fn(s1+s2) - dp[m][n]*2
 };  
 
 

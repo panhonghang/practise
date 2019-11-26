@@ -1129,7 +1129,6 @@ var minimumDeleteSum = function(s1, s2) {
 
     for (let i = 1; i < m + 1; i++) {
         for (let j = 1; j < n + 1; j++) {
-            // 三目运算符简化了if else
            if(s1[i-1]==s2[j-1]){
                dp[i][j] = dp[i-1][j-1] + fn(s1[i-1])
            } else {

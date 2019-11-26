@@ -136,3 +136,72 @@ var minDistance = function (word1, word2) {
 	}
 	return dp[m][n]
 };
+
+
+
+/**
+ * @param {number} n
+ * @return {string[][]}
+ * 八皇后问题 对角线约束法
+ */
+var solveNQueens = function (n) {
+    const result = [];
+    const dfs = ( subResult = [], row = 0) => {
+        if (row === n) {
+            result.push(subResult.map(c => '.'.repeat(c) + 'Q' + '.'.repeat(n - c - 1)));
+            return;
+        }
+        for (let col = 0; col < n; col++) {
+            if (!subResult.some((j, k) => j === col || j - col === row - k || j - col === k - row)) {
+                subResult.push(col);
+                dfs( subResult, row + 1);
+                subResult.pop();
+            }
+        }
+    }
+    dfs();
+    return result;
+};
+
+
+/**
+ * @param {number} n
+ * @return {string[][]}
+ * 八皇后问题 回溯法
+ */
+var solveNQueens = function(n) {
+    let result = new Array(n);
+    let results = [];
+    let dfs = (row,column) => {
+        let leftColumn =  column-1;
+        let rightColumn = column+1;
+        for(let i = row - 1;i >= 0;i--){
+            if(result[i] == column){
+                return false;
+            }
+            if(leftColumn >= 0 && result[i] == leftColumn){
+                return false;
+            }
+            if(rightColumn < n && result[i] == rightColumn){
+                return false;
+            }
+            leftColumn--;
+            rightColumn++;
+        }
+        return true;
+    }
+    let Nqueens = (row) => {
+        if(row == n){
+            results.push(result.map(c=>'.'.repeat(c)+'Q'+'.'.repeat(n-1-c)));
+            return;
+        }
+        for(let j = 0;j < n;j++){
+            if(dfs(row,j)){
+                result[row] = j;
+                Nqueens(row+1)
+            }
+        }
+    }
+    Nqueens(0);
+    return results;
+};

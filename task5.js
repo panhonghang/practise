@@ -205,3 +205,30 @@ var solveNQueens = function(n) {
     Nqueens(0);
     return results;
 };
+
+/**
+ * @param {number} n
+ * @return {boolean}
+ * 快乐数
+ */
+//不快乐数最后都会为4
+var isHappy = function(n) {
+    while (n != 1 && n != 4) {
+        n = (n + '').split('').reduce((sum, dist) => sum + dist ** 2, 0);
+    }
+    return n == 1;
+};
+
+// 使用set效率最高
+var isHappy = function(n) {
+    let set = new Set();
+    while (n !== 1) {
+      n = (n + '').split('').reduce((sum, dist) => sum + dist ** 2, 0);
+      if (set.has(n)) {
+        return false;
+      } else {
+        set.add(n);
+      }
+    }
+    return true;
+  };

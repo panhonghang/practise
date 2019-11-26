@@ -252,7 +252,28 @@ var getSum = function(a, b) {
     return a;
 };
 
+/**
+ * @param {number} n
+ * @return {string[]}
+ * Fizz Buzz
+ */
+var fizzBuzz = function(n) {
+    let arr = [];
+   
+    for(let i = 1; i <= n; i++){
+        if(i < 3) temp = ''+i;
+        if(i%3==0){
+            if(i%5==0) temp = 'FizzBuzz';
+            temp = 'Fizz'
+        }
 
+        if(i%5==0) temp = 'Buzz';
+        arr.push(temp);
+    }
+}
+    
+    return arr;
+};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

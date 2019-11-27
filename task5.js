@@ -355,3 +355,27 @@ LRUCache.prototype.put = function(key, value) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxSumDivThree = function(nums) {
+    let dp = [0,0,0],
+        sum = nums.reduce((a,b)=>a+b,0),
+        len1 = nums.length;
+
+    if(sum%3==0) return sum;
+
+    for(let i = 0; i < len1; i++){
+        let mod = nums[i] % 3;
+        let a = dp[(3 + 0 - mod) % 3];
+        let b = dp[(3 + 1 - mod) % 3];
+        let c = dp[(3 + 2 - mod) % 3];
+        if (a!=0 || mod == 0) dp[0] = Math.max(dp[0], a + nums[i]);
+        if (b!=0 || mod == 1) dp[1] = Math.max(dp[1], b + nums[i]);
+        if (c!=0 || mod == 2) dp[2] = Math.max(dp[2], c + nums[i]);
+    }
+
+    return dp[0];
+};

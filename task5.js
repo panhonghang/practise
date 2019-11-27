@@ -359,7 +359,10 @@ LRUCache.prototype.put = function(key, value) {
 /**
  * @param {number[]} nums
  * @return {number}
+ * 1262. 可被三整除的最大和
  */
+
+//  最优法
 var maxSumDivThree = function(nums) {
     let dp = [0,0,0],
         sum = nums.reduce((a,b)=>a+b,0),
@@ -379,3 +382,50 @@ var maxSumDivThree = function(nums) {
 
     return dp[0];
 };
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ * 1262. 可被三整除的最大和
+ */
+
+//  暴力法
+var maxSumDivThree = function(nums) {
+    let dp = [[],[],[]],
+         sum = nums.reduce((a,b)=>a+b,0),
+         len1 = nums.length;
+     
+     nums = nums.sort((a,b)=>a-b);
+ 
+     if(sum%3==0) return sum;
+ 
+     for(let i = 0; i < len1; i++){
+         if(nums[i]%3==0) dp[0].push(nums[i]);
+         if(nums[i]%3==1) dp[1].push(nums[i]);
+         if(nums[i]%3==2) dp[2].push(nums[i]);
+     }
+     
+     if(sum%3==1) {
+         if(dp[1].length >= 1){
+             if(dp[2].length >=2) {
+                return sum - Math.min(dp[1][0],dp[2][0]+dp[2][1]);
+             } else {
+                return sum - dp[1][0]
+             }
+         } else {
+            return sum - (dp[2][0]+dp[2][1]);
+         }
+     }
+
+     if(sum%3==2) {
+        if(dp[2].length >= 1){
+            if(dp[1].length >=2) {
+               return sum - Math.min(dp[2][0],dp[1][0]+dp[1][1]);
+            } else {
+               return sum - dp[2][0]
+            }
+        } else {
+           return sum - (dp[1][0]+dp[1][1]);
+        }
+     }
+ };

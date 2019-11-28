@@ -429,3 +429,43 @@ var maxSumDivThree = function(nums) {
         }
      }
  };
+
+ /**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} n
+ * @return {ListNode}
+ * 19. 删除链表的倒数第N个节点
+ */
+var removeNthFromEnd = function(head, n) {
+    let num = n,
+        next = head,
+        pre = head;
+    if(!head.next) return null
+    while(n>0){
+        next = next.next;
+        n--;
+    }
+
+    while(next){
+        if(!pre.next.next) {
+            pre.next = null;
+            return head;
+        }
+        next = next.next;
+        pre = pre.next;
+        if(!pre.next.next) {
+            pre.next = null;
+            return head;
+        }
+    }
+    pre.val = pre.next.val;
+    pre.next = pre.next.next;
+    return head;
+};

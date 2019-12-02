@@ -476,20 +476,86 @@
  * @return {number}
  * 887. 鸡蛋掉落
  */
-var superEggDrop = function(K, N) {
-    let dp = new Array(K+1).fill(0).map(()=>new Array(N+1).fill(0));
-    if(K==1) return N;
-    if(N==1) return 1;
+// var superEggDrop = function(K, N) {
+//     let dp = new Array(K+1).fill(0).map(()=>new Array(N+1).fill(0));
+//     if(K==1) return N;
+//     if(N==1) return 1;
 
-    for(let i = 1; i <= N; i++) {
-        dp[0][i] = 0;
-        for(let j = 1; j <=K; j++) {
-            dp[j][i] = dp[j][i-1] + dp[j-1][i-1]+1;
-            if (dp[j][i] >= N) {
-                return i;
+//     for(let i = 1; i <= N; i++) {
+//         dp[0][i] = 0;
+//         for(let j = 1; j <=K; j++) {
+//             dp[j][i] = dp[j][i-1] + dp[j-1][i-1]+1;
+//             if (dp[j][i] >= N) {
+//                 return i;
+//             }
+//         }
+//     }
+// };
+
+// superEggDrop(2,3);
+
+// let xhr = new XMLHttpRequest();
+// xhr.open('get','https://www.baidu.com/');
+
+// xhr.onreadystatechange = ()=>{
+//     console.log('ss')
+//     if(xhr.readyState===4){
+//         console.log('ss')
+//         if(xhr.status>=200&& xhr.status < 300){
+//             console.log('aaa',xhr.responseText)
+//         }
+//     }
+// }
+// // 超时时间单位为毫秒
+// xhr.timeout = 100000
+
+// // 当请求超时时，会触发 ontimeout 方法
+// xhr.ontimeout = () => console.log('请求超时')
+
+// xhr.send()
+
+
+// 实现观察者模式
+/* Pubsub */
+function Pubsub(){
+    //存放事件和对应的处理方法
+   this.handles = {};
+}
+
+Pubsub.prototype = {
+    //传入事件类型type和事件处理handle
+    on: function (type, handle) {
+        if(!this.handles[type]){
+            this.handles[type] = [];
+        }
+        this.handles[type].push(handle);
+    },
+
+    emit: function () {
+        //通过传入参数获取事件类型
+       var type = Array.prototype.shift.call(arguments);
+        if(!this.handles[type]){
+            return false;
+        }
+        for (var i = 0; i < this.handles[type].length; i++) {
+            var handle = this.handles[type][i];
+            //执行事件
+           handle.apply(this, arguments);
+        }
+    },
+    off: function (type, handle) {
+        handles = this.handles[type];
+        if(handles){
+            if(!handle){
+                handles.length = 0;//清空数组
+           } else {
+                for (var i = 0; i < handles.length; i++) {
+                    var _handle = handles[i];
+                    if(_handle === handle){
+                        handles.splice(i,1);
+                    }
+                }
             }
         }
     }
-};
-
-superEggDrop(2,3);
+}

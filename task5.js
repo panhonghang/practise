@@ -517,45 +517,66 @@
 
 // 实现观察者模式
 /* Pubsub */
-function Pubsub(){
-    //存放事件和对应的处理方法
-   this.handles = {};
-}
+// function Pubsub(){
+//     //存放事件和对应的处理方法
+//    this.handles = {};
+// }
 
-Pubsub.prototype = {
-    //传入事件类型type和事件处理handle
-    on: function (type, handle) {
-        if(!this.handles[type]){
-            this.handles[type] = [];
-        }
-        this.handles[type].push(handle);
-    },
+// Pubsub.prototype = {
+//     //传入事件类型type和事件处理handle
+//     on: function (type, handle) {
+//         if(!this.handles[type]){
+//             this.handles[type] = [];
+//         }
+//         this.handles[type].push(handle);
+//     },
 
-    emit: function () {
-        //通过传入参数获取事件类型
-       var type = Array.prototype.shift.call(arguments);
-        if(!this.handles[type]){
-            return false;
-        }
-        for (var i = 0; i < this.handles[type].length; i++) {
-            var handle = this.handles[type][i];
-            //执行事件
-           handle.apply(this, arguments);
-        }
-    },
-    off: function (type, handle) {
-        handles = this.handles[type];
-        if(handles){
-            if(!handle){
-                handles.length = 0;//清空数组
-           } else {
-                for (var i = 0; i < handles.length; i++) {
-                    var _handle = handles[i];
-                    if(_handle === handle){
-                        handles.splice(i,1);
-                    }
-                }
-            }
-        }
+//     emit: function () {
+//         //通过传入参数获取事件类型
+//        var type = Array.prototype.shift.call(arguments);
+//         if(!this.handles[type]){
+//             return false;
+//         }
+//         for (var i = 0; i < this.handles[type].length; i++) {
+//             var handle = this.handles[type][i];
+//             //执行事件
+//            handle.apply(this, arguments);
+//         }
+//     },
+//     off: function (type, handle) {
+//         handles = this.handles[type];
+//         if(handles){
+//             if(!handle){
+//                 handles.length = 0;//清空数组
+//            } else {
+//                 for (var i = 0; i < handles.length; i++) {
+//                     var _handle = handles[i];
+//                     if(_handle === handle){
+//                         handles.splice(i,1);
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+/**
+ * @param {number} buckets
+ * @param {number} minutesToDie
+ * @param {number} minutesToTest
+ * @return {number}
+ * 458. 可怜的小猪
+ */
+var poorPigs = function(buckets, minutesToDie, minutesToTest) {
+    if(buckets==1) return 0;
+    let times = Math.floor(minutesToTest/minutesToDie) + 1,
+        temp = 1,
+        number = 0;
+    while(temp <= buckets){
+        number++;
+        temp = temp*times;
     }
-}
+    return number;
+};
+
+poorPigs(1000,15,60);

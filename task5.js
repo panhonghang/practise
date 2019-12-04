@@ -567,16 +567,16 @@
  * @return {number}
  * 458. 可怜的小猪
  */
-var poorPigs = function(buckets, minutesToDie, minutesToTest) {
-    if(buckets==1) return 0;
-    let times = Math.floor(minutesToTest/minutesToDie) + 1,
-        temp = 1,
-        number = 0;
-    while(temp <= buckets){
-        number++;
-        temp = temp*times;
-    }
-    return number;
-};
+// var poorPigs = function(buckets, minutesToDie, minutesToTest) {
+//     if(buckets==1) return 0;
+//     let times = Math.floor(minutesToTest/minutesToDie) + 1,
+//         temp = 1,
+//         number = 0;
+//     while(temp <= buckets){
+//         number++;
+//         temp = temp*times;
+//     }
+//     return number;
+// };
 
-poorPigs(1000,15,60);
+// poorPigs(1000,15,60);

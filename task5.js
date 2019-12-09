@@ -620,3 +620,12 @@ var gameOfLife = function(board) {
 };
 
 console.log(gameOfLife([[0,1,0],[0,0,1],[1,1,1],[0,0,0]]))
+
+/**
+ * @param {string} str
+ * @return {string}
+ * 709. 转换成小写字母
+ */
+var toLowerCase = function(str) {
+  return str.toLocaleLowerCase();
+};

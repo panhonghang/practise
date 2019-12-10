@@ -662,3 +662,22 @@ var swapPairs = function(head) {
   }
   return pre.next;
 };
+
+/**
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ * 27. 移除元素
+ */
+var removeElement = function(nums, val) {
+  let i = 0;
+
+  for(let num of nums){
+    if(num!==val){
+      nums[i] = num;
+      i++
+    }
+  }
+
+  return i;
+};

@@ -586,49 +586,49 @@
  * @return {void} Do not return anything, modify board in-place instead.
  */
 
-var gameOfLife = function(board) {
-  if(board.length==0) return [];
+// var gameOfLife = function(board) {
+//   if(board.length==0) return [];
 
-  let width = board.length,
-      height = board[0].length,
-      count = 0,
-      resArr = JSON.parse(JSON.stringify(board));
+//   let width = board.length,
+//       height = board[0].length,
+//       count = 0,
+//       resArr = JSON.parse(JSON.stringify(board));
 
-  for(let i = 0; i < width; i++){
-    for(let j = 0; j < height; j++){
-      // 计数重置
-      count = 0;
-      // 上、下、左、右、上左、上右、下左、下右
-      if(j>0)  count += resArr[i][j-1]       
-      if(j + 1 < height) count += resArr[i][j+1]
-      if(i>0)  count += resArr[i-1][j]
-      if(i+1 < width)  count += resArr[i+1][j]
-      if(i>0&&j>0)  count += resArr[i-1][j-1]
-      if(i+1<width&&j>0)  count += resArr[i+1][j-1]
-      if(i>0&j+1<height)  count += resArr[i-1][j+1]
-      if(i+1<width&&j+1<height)  count += resArr[i+1][j+1]
+//   for(let i = 0; i < width; i++){
+//     for(let j = 0; j < height; j++){
+//       // 计数重置
+//       count = 0;
+//       // 上、下、左、右、上左、上右、下左、下右
+//       if(j>0)  count += resArr[i][j-1]       
+//       if(j + 1 < height) count += resArr[i][j+1]
+//       if(i>0)  count += resArr[i-1][j]
+//       if(i+1 < width)  count += resArr[i+1][j]
+//       if(i>0&&j>0)  count += resArr[i-1][j-1]
+//       if(i+1<width&&j>0)  count += resArr[i+1][j-1]
+//       if(i>0&j+1<height)  count += resArr[i-1][j+1]
+//       if(i+1<width&&j+1<height)  count += resArr[i+1][j+1]
 
-      //live
-      if(resArr[i][j] == 1){
-        if(count > 3 || count < 2) board[i][j] = 0;
-      } else {
-        // dead
-        if(count == 3) board[i][j] = 1;
-      }
-    }
-  }
-};
+//       //live
+//       if(resArr[i][j] == 1){
+//         if(count > 3 || count < 2) board[i][j] = 0;
+//       } else {
+//         // dead
+//         if(count == 3) board[i][j] = 1;
+//       }
+//     }
+//   }
+// };
 
-console.log(gameOfLife([[0,1,0],[0,0,1],[1,1,1],[0,0,0]]))
+// console.log(gameOfLife([[0,1,0],[0,0,1],[1,1,1],[0,0,0]]))
 
 /**
  * @param {string} str
  * @return {string}
  * 709. 转换成小写字母
  */
-var toLowerCase = function(str) {
-  return str.toLocaleLowerCase();
-};
+// var toLowerCase = function(str) {
+//   return str.toLocaleLowerCase();
+// };
 
 /**
  * Definition for singly-linked list.
@@ -642,26 +642,26 @@ var toLowerCase = function(str) {
  * @return {ListNode}
  * 24. 两两交换链表中的节点
  */
-var swapPairs = function(head) {
-  let pre = new ListNode(0);
+// var swapPairs = function(head) {
+//   let pre = new ListNode(0);
    
-  pre.next = head;
+//   pre.next = head;
 
-  let temp = pre;
+//   let temp = pre;
 
-  while(temp.next != null && temp.next.next != null) {
+//   while(temp.next != null && temp.next.next != null) {
        
-      let start = temp.next,
-          end = temp.next.next;
+//       let start = temp.next,
+//           end = temp.next.next;
 
-      temp.next = end;
-      start.next = end.next;
+//       temp.next = end;
+//       start.next = end.next;
        
-      end.next = start;
-      temp = start;
-  }
-  return pre.next;
-};
+//       end.next = start;
+//       temp = start;
+//   }
+//   return pre.next;
+// };
 
 /**
  * @param {number[]} nums
@@ -669,18 +669,18 @@ var swapPairs = function(head) {
  * @return {number}
  * 27. 移除元素
  */
-var removeElement = function(nums, val) {
-  let i = 0;
+// var removeElement = function(nums, val) {
+//   let i = 0;
 
-  for(let num of nums){
-    if(num!==val){
-      nums[i] = num;
-      i++
-    }
-  }
+//   for(let num of nums){
+//     if(num!==val){
+//       nums[i] = num;
+//       i++
+//     }
+//   }
 
-  return i;
-};
+//   return i;
+// };
 
 
 /**
@@ -689,19 +689,40 @@ var removeElement = function(nums, val) {
  * @description 数组扁平化
  */
 
-var flat = function(arr){
-  let resArr = [];
+// var flat = function(arr){
+//   let resArr = [];
 
-  let fn = function(Arr){
-    if(Array.isArray(Arr)){
-      Arr.forEach(key=>fn(key))
-    } else {
-      resArr.push(Arr);
-    }
-  }
+//   let fn = function(Arr){
+//     if(Array.isArray(Arr)){
+//       Arr.forEach(key=>fn(key))
+//     } else {
+//       resArr.push(Arr);
+//     }
+//   }
 
-  fn(arr);
-  return resArr;
+//   fn(arr);
+//   return resArr;
+// }
+
+// console.log(flat([1,[2,3,[2]]]))
+/**
+ * 实现new操作
+ */
+let newfn = function(){
+    let resObj = {},
+        arg = [...arguments],
+        fn = arg.shift();
+    resObj._proto_ = fn.prototype;
+    fn.apply(resObj,arg);
+    return resObj;
 }
 
-console.log(flat([1,[2,3,[2]]]))
+function Student(name, age){
+  this.name = name;
+  this.age = age;
+}
+
+// let task1 = new Student('aa',11);
+let task1 = newfn(Student,'aa',11);
+
+console.log(task1)

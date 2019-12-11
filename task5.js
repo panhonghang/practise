@@ -681,3 +681,27 @@ var removeElement = function(nums, val) {
 
   return i;
 };
+
+
+/**
+ * @param  {any[]} arr
+ * @return {any[]} 
+ * @description 数组扁平化
+ */
+
+var flat = function(arr){
+  let resArr = [];
+
+  let fn = function(Arr){
+    if(Array.isArray(Arr)){
+      Arr.forEach(key=>fn(key))
+    } else {
+      resArr.push(Arr);
+    }
+  }
+
+  fn(arr);
+  return resArr;
+}
+
+console.log(flat([1,[2,3,[2]]]))

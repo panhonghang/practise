@@ -747,3 +747,23 @@ var strStr = function (haystack, needle) {
   return -1
 };
 
+/**
+ * @param {string} s
+ * @return {boolean}
+ * 125. 验证回文串
+ */
+var isPalindrome = function(s) {
+  s = s.replace(/[^0-9a-zA-Z]/g,"").toLowerCase();
+  return s == s.split('').reverse().join('');
+};
+// 双指针法
+var isPalindrome = function(s) {
+  s = s.replace(/[^0-9a-zA-Z]/g,"").toLowerCase();
+  let left = 0, right = s.length-1;
+  while(left < right){
+      if(s[left]!==s[right]) return false;
+      left++;
+      right--;
+  }
+  return true;
+};

@@ -767,3 +767,31 @@ var isPalindrome = function(s) {
   }
   return true;
 };
+
+/* 节流函数 */
+
+let throttle = function(fn,timer){
+  let flag = true;
+  return function(){
+      if(!flag) return;
+      flag = false;
+      settimeout(()=>{
+          fn();
+          flag = true;
+      },timer)
+  }
+}
+
+/* 防抖函数 */
+
+let debounce = function (fn, delay) {
+  var flag; // 维护一个 flag
+  return function () {
+      if (flag) {
+          clearTimeout(flag);
+      }
+      flag = setTimeout(function () {
+          fn();
+      }, delay);
+  };
+}

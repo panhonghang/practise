@@ -795,3 +795,37 @@ let debounce = function (fn, delay) {
       }, delay);
   };
 }
+
+/**
+ * @param  {} context
+ *  实现bind 
+ */
+Function.prototype.bind1 = function(context){
+  // this指向调用的函数
+  let fn = this;
+  
+  let arg = [...arguments];
+  // 去掉第一个元素
+  arg.shift();
+
+  return function(){
+    // 利用apply来实现的
+      return fn.apply(context,arg)
+  }
+}
+
+/* 测试 */
+let a = function(name){
+  console.log(this.value);
+  console.log(name);
+}
+
+let b = {
+  value: 1,
+}
+
+let c = {
+  value: 3
+}
+
+let a2 = a.bind1(b,'aa')();

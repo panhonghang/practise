@@ -795,6 +795,18 @@ let debounce = function (fn, delay) {
       }, delay);
   };
 }
+/**
+ * @param  {} con
+ * 实现apply函数
+ */
+Function.prototype.apply1 = function(context){
+    context.fn = this;
+    let list = [...arguments];
+    list.shift();
+    let result = context.fn(...list[0]);
+    delete context.fn;
+    return result;
+}
 
 /**
  * @param  {} context

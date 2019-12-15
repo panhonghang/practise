@@ -886,3 +886,19 @@ function selectionSort(arr) {
 }
 var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
 console.log(selectionSort(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+
+/* 插入排序 */
+function insertionSort(arr) {
+  for (let i = 1, len = arr.length; i < len; i++) {
+    const temp = arr[i];
+    let preIndex = i - 1;
+
+    while (arr[preIndex] > temp) {
+      arr[preIndex + 1] = arr[preIndex];
+      preIndex -= 1;
+    }
+    arr[preIndex + 1] = temp;
+  }
+
+  return arr;
+}

@@ -926,31 +926,52 @@
 
 
 
-var array = [ {"id": 20102034, "name": "报表集团", "pid": 0}, {"id": 20102035, "name": "北京分公司", "pid": 20102034}, {"id": 20102038, "name": "海淀分店", "pid": 20102035}, {"id": 20102039, "name": "朝阳分店", "pid": 20102035}, {"id": 20102065, "name": "青岛分店", "pid": 20102036}, {"id": 20102036, "name": "山东分公司", "pid": 20102034}, {"id": 20102066, "name": "烟台分店", "pid": 20102036} ];
+// var array = [ {"id": 20102034, "name": "报表集团", "pid": 0}, {"id": 20102035, "name": "北京分公司", "pid": 20102034}, {"id": 20102038, "name": "海淀分店", "pid": 20102035}, {"id": 20102039, "name": "朝阳分店", "pid": 20102035}, {"id": 20102065, "name": "青岛分店", "pid": 20102036}, {"id": 20102036, "name": "山东分公司", "pid": 20102034}, {"id": 20102066, "name": "烟台分店", "pid": 20102036} ];
 
-let treefn = function(arr){
-  let len = arr.length,
-    resObj = {},
-    tempObj ;
+// let treefn = function(arr){
+//   let len = arr.length,
+//     resObj = {},
+//     tempObj ;
 
-    resObj.children=[{}];
+//     resObj.children=[{}];
 
-    temp = resObj.children[0]
+//     temp = resObj.children[0]
 
-    for(let i = 0; i < len; i++){
-      if(i!==0) temp = temp.children[0];
+//     for(let i = 0; i < len; i++){
+//       if(i!==0) temp = temp.children[0];
       
-      temp.id = arr[i].id;
-      temp.pid = arr[i].pid;
-      temp.name = arr[i].name;
-      temp.children = [{}]
+//       temp.id = arr[i].id;
+//       temp.pid = arr[i].pid;
+//       temp.name = arr[i].name;
+//       temp.children = [{}]
+//     }
+//     console.log(resObj)
+//     return resObj;
+// }
+
+// treefn(array)
+
+/* 并归排序 */
+
+function merge(left,right){
+    var tmp=[];
+    while(left.length && right.length){
+        if(left[0]<right[0]){
+            tmp.push(left.shift());
+        }else{
+            tmp.push(right.shift());
+        }
     }
-    console.log(resObj)
-    return resObj;
+    return tmp.concat(left,right)
 }
 
-treefn(array)
-
+function mergeSort(arr){
+    if(arr.length==1) return arr;
+    var mid=Math.floor(a.length/2),
+        left=arr.slice(0,mid);
+        right=arr.slice(mid);
+    return merge(mergeSort(left),mergeSort(right))
+}
 
 
 

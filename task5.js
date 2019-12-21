@@ -1080,3 +1080,19 @@ var sortColors = function(nums) {
   }
   return nums
 };
+
+/**
+ * @param {string} J
+ * @param {string} S
+ * @return {number}
+ * 宝石与石头
+ */
+var numJewelsInStones = function(J, S) {
+  let res = 0,
+      len = S.length;
+  for(let i = 0; i < len; i++){
+      let re = new RegExp(S[i]);
+      if(re.test(J)) res++;
+  }
+  return res
+};

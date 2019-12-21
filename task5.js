@@ -1054,3 +1054,29 @@ var isAnagram = function(s, t) {
     }
     return true;
 };
+
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ * 75. 颜色分类
+ */
+
+var sortColors = function(nums) {
+  let len  = nums.length,
+      temp = 0;
+  
+  for(let i = 0; i < len; i++){
+      temp = nums[i];
+      if(temp==0){
+        nums.splice(i,1);
+        nums.unshift(temp);
+      } else if(temp==2){
+        let j = len;
+        while(j>i&&nums[j]!==1){
+            j--
+        }
+        [nums[i],nums[j]] = [nums[j],nums[i]]
+      }
+  }
+  return nums
+};

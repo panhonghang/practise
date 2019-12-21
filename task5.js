@@ -1037,3 +1037,20 @@ function swap(A, i, j) {
   let Arr = [4, 6, 8, 5, 9, 1, 2, 5, 3, 2];
   heapSort(Arr);
   alert(Arr);
+
+  /**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ * 242. 有效的字母异位词
+ */
+var isAnagram = function(s, t) {
+    if(s.length!==t.length) return false;
+    let len = s.length,
+        arr = s.split('');
+    for(let i = 0; i < len; i++){
+      if(!arr.includes(t[i])) return false;
+      arr.splice(arr.indexOf(t[i]),1);
+    }
+    return true;
+};

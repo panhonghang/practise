@@ -1115,3 +1115,32 @@ var removeDuplicates = function(nums) {
       }
   return nums.length;
 };
+
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ * 94. 二叉树的中序遍历
+ */
+var inorderTraversal = function(root) {
+    let arr = [];
+
+    let fn = function(node){
+      if(node){
+        fn(node.left);
+        arr.push(node.val);
+        fn(node.right)
+      }
+    }
+
+    fn(root);
+
+    return arr
+};

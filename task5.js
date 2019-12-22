@@ -1096,3 +1096,22 @@ var numJewelsInStones = function(J, S) {
   }
   return res
 };
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ * 80. 删除排序数组中的重复项 II
+ */
+var removeDuplicates = function(nums) {
+  let pre,middle,next;
+      for(let i = 0; i < nums.length - 2; i++){
+          pre = nums[i];
+          middle = nums[i+1];
+          next = nums[i+2];
+          if(pre==middle&&middle==next){
+              nums.splice(i+2,1);
+              i--
+          }
+      }
+  return nums.length;
+};

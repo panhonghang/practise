@@ -1144,3 +1144,32 @@ var inorderTraversal = function(root) {
 
     return arr
 };
+
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} x
+ * @return {ListNode}
+ * 86. 分隔链表
+ */
+
+//  未保存初始位置
+var partition = function(head, x) {
+    let pre = next = head;
+    while(next){
+      if(next.val < x){
+        pre.val = next.val;
+        pre = pre.next;
+      }
+      next = next.next;
+    }
+
+    return head;
+};

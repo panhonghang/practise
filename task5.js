@@ -1173,3 +1173,28 @@ var partition = function(head, x) {
 
     return head;
 };
+// 改进
+var partition = function(head, x) {
+
+  let node = head,
+      less = lessHead = new ListNode(0), 
+      more = moreHead = new ListNode(0);
+
+  while(node){
+    if(node.val < x){
+      less.next = new ListNode(node.val);
+      less = less.next;
+    } else {
+      more.next = new ListNode(node.val);
+      more = more.next
+    }
+    node = node.next
+  }
+
+  lessHead = lessHead.next;
+  moreHead = moreHead.next;
+  if(!lessHead) return moreHead
+  less.next = moreHead;
+
+  return lessHead;
+};

@@ -1173,6 +1173,7 @@ var partition = function(head, x) {
 
     return head;
 };
+
 // 改进
 var partition = function(head, x) {
 
@@ -1197,4 +1198,42 @@ var partition = function(head, x) {
   less.next = moreHead;
 
   return lessHead;
+};
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} k
+ * @return {ListNode}
+ * 25. K 个一组翻转链表
+ */
+var reverseKGroup = function(head, k) {
+  let temp1 = [],
+      temp2 = [],
+      res = resHead = new ListNode(0);
+
+    while(head){
+      temp1.push(head.val)
+      head = head.next;
+    }
+
+    while(temp1.length >= k){
+      temp2 = [...temp2,...temp1.splice(0,k).reverse()]
+    }
+    temp2 = [...temp2,...temp1];
+    
+    temp2.forEach(key=>{
+        res.next = new ListNode(key);
+        res = res.next;
+    })
+
+    resHead = resHead.next;
+
+    return resHead
 };

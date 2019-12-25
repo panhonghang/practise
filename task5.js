@@ -1237,3 +1237,22 @@ var reverseKGroup = function(head, k) {
 
     return resHead
 };
+
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ * 164. 最大间距
+ */
+var maximumGap = function(nums) {
+  let len = nums.length,
+      res = 0;
+
+  if(len < 2) return 0;
+
+  nums.sort((a,b)=>a-b);
+  for(let i = 0; i < len - 1; i++){
+      res = nums[i+1] - nums[i]>res?(nums[i+1] - nums[i]):res;
+  }
+  return res;
+};

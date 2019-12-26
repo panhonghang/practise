@@ -1256,3 +1256,27 @@ var maximumGap = function(nums) {
   }
   return res;
 };
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ * 287. 寻找重复数
+ * 参考环形链表的解题方式
+ */
+var findDuplicate = function(nums) {
+  let pre = next = 0;
+      next = nums[nums[next]];
+
+  while(nums[pre]!=nums[next]){
+      pre = nums[pre];
+      next = nums[nums[next]];
+  }
+  
+  pre = 0;
+  while(pre!=next){
+    pre = nums[pre];
+    next = nums[next]; 
+  }
+
+  return pre;
+};

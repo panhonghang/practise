@@ -1280,3 +1280,11 @@ var findDuplicate = function(nums) {
 
   return pre;
 };
+
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var circularArrayLoop = function(nums) {
+    
+};

@@ -1282,9 +1282,33 @@ var findDuplicate = function(nums) {
 };
 
 /**
- * @param {number[]} nums
- * @return {boolean}
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
  */
-var circularArrayLoop = function(nums) {
-    
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ * 234. 回文链表
+ */
+var isPalindrome = function(head) {
+  let slow = fast = head,
+      i = 0,
+      arr = [];
+      arr.unshift(slow.val);
+      while(fast&fast.next){
+          slow = slow.next;
+          fast = fast.next?fast.next.next:fast.next;
+          arr.unshift(slow.val);
+      }
+      console.log(arr,slow)
+      while(slow){
+          if(slow.val != arr[i]) return false
+          slow = slow.next;
+          i++;
+      }
+
+      return true
 };

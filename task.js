@@ -173,7 +173,10 @@
 // var t1 = f.call({id: 2})()();
 // var t2 = f().call({id: 3})();
 // var t3 = f()().call({id: 4});
-
+/**
+ * @param  {} con
+ * 实现apply
+ */
 // Function.prototype.apply1 = function(con){
 //     con.fn = this;
 //     let list = [...arguments];
@@ -183,7 +186,10 @@
 //     return result;
 // }
 
-
+/**
+ * @param  {} con
+ * 实现bind函数
+ */
 //  Function.prototype.bind1 = function bind1(con){
 //     self.fn  = this;
 //     let list = [...arguments];
@@ -193,20 +199,31 @@
 //     }
 // }
 
-// let a = function(name,age){
+// Function.prototype.bind1 = function(context){
+//     let fn = this;
+
+//     let arg = [...arguments];
+//     arg.shift();
+
+//     return function(){
+//         return fn.apply(context,arg)
+//     }
+// }
+
+// let a = function(name){
 //     console.log(this.value);
-//     console.log(name,age);
+//     console.log(name);
 // }
 
 // let b = {
-//     value: 1
+//     value: 1,
 // }
 
 // let c = {
 //     value: 3
 // }
 
-// let a2 = a.bind1(b,'aa','aa').bind1(c)();
+// let a2 = a.bind1(b,'aa')();
 
 // const log = function(ss){
 //     console.log(ss)
@@ -303,9 +320,3 @@
 // let clearInterval = ()=>{
 //     flag = false;
 // }
-
-
-
-
-
-

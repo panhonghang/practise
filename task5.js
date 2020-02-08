@@ -1362,3 +1362,27 @@ var reverseVowels = function(s) {
     return s.join('');
 };
 reverseVowels('holle')
+
+/**
+ * @param {string} name
+ * @param {string} typed
+ * @return {boolean}
+ */
+var isLongPressedName = function(name, typed) {
+    let i = 0, j = 0, N = name.length, T = typed.length;
+    if(N>T) return false
+    while(i<N-1){
+        let next = i, pre = i+1;
+        if(i==0&j==0&name[next]!==typed[j]) return false
+        if(name[next]==typed[j]&name[pre]==typed[j]){
+            i++; j++;
+        } else if(name[next]!==typed[j]&name[pre]==typed[j]) {
+            i++; j++;
+        } else if(name[pre]!==typed[j]&name[next]==typed[j]) {
+            j++;
+        } else {
+            return false
+        }
+    }
+    return true;
+};

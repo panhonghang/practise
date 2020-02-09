@@ -1364,6 +1364,7 @@ var reverseVowels = function(s) {
 reverseVowels('holle')
 
 /**
+ * @description 925. 长按键入
  * @param {string} name
  * @param {string} typed
  * @return {boolean}
@@ -1383,4 +1384,45 @@ var isLongPressedName = function(name, typed) {
         }
     }
     return true;
+};
+
+/**
+ * @param {number} capacity
+ */
+var LRUCache = function(capacity) {
+    this.cache = new Map();
+    this.capacity = capacity;
+};
+
+/** 
+ * @param {number} key
+ * @return {number}
+ */
+
+LRUCache.prototype.get = function(key) {
+    let cache = this.cache;
+    if (cache.has(key)) {
+        let temp = cache.get(key)
+        cache.delete(key);
+        cache.set(key, temp);
+        return temp;
+    } else {
+        return -1;
+    }
+};
+
+/** 
+ * @param {number} key 
+ * @param {number} value
+ * @return {void}
+ */
+
+LRUCache.prototype.put = function(key, value) {
+    let cache = this.cache;
+    if (cache.has(key)) {
+        cache.delete(key);
+    } else if (cache.size >= this.capacity) {
+        cache.delete(cache.keys().next().value);
+    }
+    cache.set(key, value);
 };

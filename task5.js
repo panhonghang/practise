@@ -1400,15 +1400,12 @@ var LRUCache = function(capacity) {
  */
 
 LRUCache.prototype.get = function(key) {
-    let cache = this.cache;
-    if (cache.has(key)) {
-        let temp = cache.get(key)
-        cache.delete(key);
-        cache.set(key, temp);
-        return temp;
-    } else {
-        return -1;
-    }
+    if (!this.cache.has(key)) return -1;
+    // 改变原来的顺序将命中的移动到最后
+    let temp = cache.get(key)
+    cache.delete(key);
+    cache.set(key, temp);
+    return temp;
 };
 
 /** 
@@ -1419,6 +1416,7 @@ LRUCache.prototype.get = function(key) {
 
 LRUCache.prototype.put = function(key, value) {
     let cache = this.cache;
+    // 删除已经存在的然后重新赋值
     if (cache.has(key)) {
         cache.delete(key);
     } else if (cache.size >= this.capacity) {

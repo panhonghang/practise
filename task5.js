@@ -1547,3 +1547,24 @@ var getKthFromEnd = function(head, k) {
     }
     return pre
 };
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {number[]}
+ * @description 剑指offer 06题
+ */
+var reversePrint = function(head) {
+    let arr = [];
+    //js里面unshift方法效率低下
+    while(head){
+        arr.push(head.val)
+        head = head.next;
+    }
+    return arr.reverse()
+};

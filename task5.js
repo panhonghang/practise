@@ -1660,3 +1660,26 @@ var kthLargest = function(root, k) {
     fn(root);
     return res;
 };
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ * @description 剑指offer 24题 迭代实现
+ */
+var reverseList = function(head) {
+    let pre = null, cur = head, next;
+    while(cur){
+        next = cur.next;
+        cur.next = pre;
+        pre = cur;
+        cur = next;
+    }
+    return pre
+};

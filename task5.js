@@ -1630,3 +1630,30 @@ var mergeTwoLists = function(l1, l2) {
     
     return head.next;
 };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} k
+ * @return {number}
+ * @description 剑指offer 54题
+ */
+var kthLargest = function(root, k) {
+    let num = 0,
+        res;
+
+    let fn = function(node){
+        if(!node) return
+        fn(node.right);
+        if(++num==k) res = node.val;
+        fn(node.left);
+    }
+    fn(root);
+    return res;
+};

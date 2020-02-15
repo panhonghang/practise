@@ -1428,8 +1428,19 @@ LRUCache.prototype.put = function(key, value) {
 /**
  * @param {number} n
  * @return {number}
- * @description leetcode 64题
+ * @description 剑指offer 64题
  */
 var sumNums = function(n) {
     return n&&(n + sumNums(n-1));
+};
+
+/**
+ * @param {string} s
+ * @param {number} n
+ * @return {string}
+ * @description 剑指offer 58题
+ */
+var reverseLeftWords = function(s, n) {
+    s = s.substr(n) + s.substr(0,n)
+    return s
 };

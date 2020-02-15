@@ -1424,3 +1424,12 @@ LRUCache.prototype.put = function(key, value) {
     }
     cache.set(key, value);
 };
+
+/**
+ * @param {number} n
+ * @return {number}
+ * @description leetcode 64题
+ */
+var sumNums = function(n) {
+    return n&&(n + sumNums(n-1));
+};

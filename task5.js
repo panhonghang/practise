@@ -1444,3 +1444,27 @@ var reverseLeftWords = function(s, n) {
     s = s.substr(n) + s.substr(0,n)
     return s
 };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ * @description 剑指offer 55题
+ */
+var maxDepth = function(root) {
+    let res = 0;
+    let dfs = function(node,n){
+        res = res>n?res:n;
+        if(!node) return
+        dfs(node.right,n+1);
+        dfs(node.left,n+1);
+    }
+    dfs(root,res)
+    return res
+};

@@ -1485,3 +1485,16 @@ var printNumbers = function(n) {
     }
     return arr
 };
+
+/**
+ * @param {string} s
+ * @return {string}
+ * @description 剑指offer 05题
+ */
+var replaceSpace = function(s) {
+    let arr = s.split('');
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i]==' ') arr[i] = '%20'
+    }
+    return arr.join('')
+};

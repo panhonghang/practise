@@ -1568,3 +1568,17 @@ var reversePrint = function(head) {
     }
     return arr.reverse()
 };
+
+/**
+ * @param {number} n - a positive integer
+ * @return {number}
+ * @description 剑指offer 15题
+ */
+var hammingWeight = function(n) {
+    let s = n.toString(2),
+        res = 0;
+    for(let i = 0; i < s.length; i++){
+        if(s[i]=='1') res++
+    }
+    return res;
+};

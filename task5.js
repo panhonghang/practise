@@ -1582,3 +1582,19 @@ var hammingWeight = function(n) {
     }
     return res;
 };
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ * @description 剑指offer 56题
+ */
+var singleNumber = function(nums) {
+    let pre = 0,
+        next = 2;
+    nums.sort((a,b)=>a-b);
+    while(nums[pre]==nums[next]){
+        pre = pre + 3;
+        next = next + 3;
+    }
+    return nums[pre]
+};

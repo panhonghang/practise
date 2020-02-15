@@ -1651,7 +1651,10 @@ var kthLargest = function(root, k) {
     let fn = function(node){
         if(!node) return
         fn(node.right);
-        if(++num==k) res = node.val;
+        if(++num==k){
+            res = node.val;
+            return
+        };
         fn(node.left);
     }
     fn(root);

@@ -1468,3 +1468,20 @@ var maxDepth = function(root) {
     dfs(root,res)
     return res
 };
+
+/**
+ * @param {number} n
+ * @return {number[]}
+ * @description 剑指offer 18题
+ */
+var printNumbers = function(n) {
+    let arr = [],
+        num = '';
+    for(let j = 0; j < n; j++){
+        num = num + '9'
+    }
+    for(let i = 1; i <= +num; i++){
+        arr.push(i)
+    }
+    return arr
+};

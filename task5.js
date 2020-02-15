@@ -1520,3 +1520,30 @@ var mirrorTree = function(root) {
 
     return root;
 };
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} k
+ * @return {ListNode}
+ * @description 剑指offer 22题
+ */
+var getKthFromEnd = function(head, k) {
+    let pre = head,
+        next = head;
+    while(k>0){
+        next = next.next;
+        k--
+    }
+    while(next){
+        pre = pre.next;
+        next = next.next;
+    }
+    return pre
+};

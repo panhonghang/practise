@@ -1750,7 +1750,7 @@ CQueue.prototype.deleteHead = function() {
  /**
  * @param {number[][]} grid
  * @return {number}
- * @description 剑指offer 47题 迭代实现
+ * @description 剑指offer 47题 
  */
 var maxValue = function(grid) {
     // let row = grid.length
@@ -1772,7 +1772,7 @@ var maxValue = function(grid) {
     // }
     // return grid[grid.length-1][grid[0].length-1]
     let up;
-    
+
     for (let i = 0,iLen = grid.length; i < iLen; i++) {
         for (let j = 0,jLen = grid[0].length; j < jLen; j++) {
             up = grid[i-1]===undefined?0:grid[i-1][j]
@@ -1781,3 +1781,33 @@ var maxValue = function(grid) {
     }
     return grid[grid.length-1][grid[0].length-1]
 };
+
+/**
+ * // Definition for a Node.
+ * function Node(val, next, random) {
+ *    this.val = val;
+ *    this.next = next;
+ *    this.random = random;
+ * };
+ */
+/**
+ * @param {Node} head
+ * @return {Node}
+ * @description 剑指offer 34题 迭代实现
+ */
+var copyRandomList = function(head) {
+    const mapping = new Map();
+    let copy = function(node) {
+      if (!node) return node; // 空结点
+      if (mapping.has(node)) return mapping.get(node); // 取缓存
+  
+      const res = new Node();
+      mapping.set(node, res); // 先放缓存
+      res.val = node.val;
+      res.next = copy(node.next); // 结点，要递归
+      res.random = copy(node.random); // 结点，要递归
+      return res;
+    }
+  
+    return copy(head);
+  };

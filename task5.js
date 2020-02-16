@@ -1746,3 +1746,28 @@ CQueue.prototype.deleteHead = function() {
  * obj.appendTail(value)
  * var param_2 = obj.deleteHead()
  */
+
+ /**
+ * @param {number[][]} grid
+ * @return {number}
+ * @description 剑指offer 47题 迭代实现
+ */
+var maxValue = function(grid) {
+    // let row = grid.length
+    // let col = grid[0].length
+    // let dp = [...new Array(row+1)].map(() => Array(col+1).fill(0))
+    // for(let i=1;i<=row;i++) {
+    //     for(let j=1;j<=col;j++) {
+    //         dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]) + grid[i-1][j-1]
+    //     }
+    // }
+    // return dp[row][col]
+    for (let i = 0,iLen = grid.length; i < iLen; i++) {
+        for (let j = 0,jLen = grid[0].length; j < jLen; j++) {
+            let left = grid[i][j-1]===undefined ? 0: grid[i][j-1]
+            let up = grid[i-1]===undefined?0:grid[i-1][j]
+            grid[i][j] = Math.max(left+grid[i][j],up+grid[i][j])
+        }
+    }
+    return grid[grid.length-1][grid[0].length-1]
+};

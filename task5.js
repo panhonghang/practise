@@ -1683,3 +1683,36 @@ var reverseList = function(head) {
     }
     return pre
 };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ * @description BFS 
+ */
+var levelOrder = function(root) {
+    if (!root) return [];
+    let result = [], 
+        tmp = [root];
+  
+    while (tmp.length) {
+      let childtmp = [],
+          level = []; 
+  
+      for (let i = 0, len = tmp.length; i < len; i++) {
+        level.push(tmp[i].val); 
+        tmp[i].left&&childtmp.push(tmp[i].left);
+        tmp[i].right&&childtmp.push(tmp[i].right);
+      }
+      
+      tmp = childtmp;
+      result.push(level);
+    }
+    return result;
+  };

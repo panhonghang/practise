@@ -1699,20 +1699,50 @@ var reverseList = function(head) {
 var levelOrder = function(root) {
     if (!root) return [];
     let result = [], 
+        // 缓存层节点
         tmp = [root];
   
     while (tmp.length) {
+      // 缓存子节点
       let childtmp = [],
+      // 缓存层节点的值
           level = []; 
   
-      for (let i = 0, len = tmp.length; i < len; i++) {
+      for (let i = 0, len = tmp.length; i < len; i++) { 
         level.push(tmp[i].val); 
+        // 添加左右子节点到缓存数组当中
         tmp[i].left&&childtmp.push(tmp[i].left);
         tmp[i].right&&childtmp.push(tmp[i].right);
       }
-      
+
       tmp = childtmp;
       result.push(level);
     }
     return result;
   };
+
+  var CQueue = function() {
+    this.arr = [];
+};
+
+/** 
+ * @param {number} value
+ * @return {void}
+ */
+CQueue.prototype.appendTail = function(value) {
+    this.arr.push(value)
+};
+
+/**
+ * @return {number}
+ */
+CQueue.prototype.deleteHead = function() {
+    return this.arr.length?this.arr.shift():-1;
+};
+
+/** 
+ * Your CQueue object will be instantiated and called as such:
+ * var obj = new CQueue()
+ * obj.appendTail(value)
+ * var param_2 = obj.deleteHead()
+ */

@@ -1762,11 +1762,21 @@ var maxValue = function(grid) {
     //     }
     // }
     // return dp[row][col]
+
+    // for (let i = 0,iLen = grid.length; i < iLen; i++) {
+    //     for (let j = 0,jLen = grid[0].length; j < jLen; j++) {
+    //         let left = grid[i][j-1]===undefined ? 0: grid[i][j-1]
+    //         let up = grid[i-1]===undefined?0:grid[i-1][j]
+    //         grid[i][j] = Math.max(left+grid[i][j],up+grid[i][j])
+    //     }
+    // }
+    // return grid[grid.length-1][grid[0].length-1]
+    let up;
+    
     for (let i = 0,iLen = grid.length; i < iLen; i++) {
         for (let j = 0,jLen = grid[0].length; j < jLen; j++) {
-            let left = grid[i][j-1]===undefined ? 0: grid[i][j-1]
-            let up = grid[i-1]===undefined?0:grid[i-1][j]
-            grid[i][j] = Math.max(left+grid[i][j],up+grid[i][j])
+            up = grid[i-1]===undefined?0:grid[i-1][j]
+            grid[i][j] = Math.max((grid[i][j-1]||0)+grid[i][j],up+grid[i][j])
         }
     }
     return grid[grid.length-1][grid[0].length-1]

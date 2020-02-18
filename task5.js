@@ -1793,7 +1793,7 @@ var maxValue = function(grid) {
 /**
  * @param {Node} head
  * @return {Node}
- * @description 剑指offer 34题 迭代实现
+ * @description 剑指offer 34题 
  */
 var copyRandomList = function(head) {
     const mapping = new Map();
@@ -1811,3 +1811,28 @@ var copyRandomList = function(head) {
   
     return copy(head);
   };
+
+  /**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {number[]} preorder
+ * @param {number[]} inorder
+ * @return {TreeNode}
+ * @description 剑指offer 07题 
+ */
+var buildTree = function(preorder, inorder) {
+    if (preorder.length ==0 || inorder.length == 0) return null;
+
+    let res = new TreeNode(preorder[0]);
+
+    let index = inorder.findIndex((i)=>i==preorder[0])
+    
+    res.left = buildTree(preorder.slice(1, index + 1), inorder.slice(0, index));
+    res.right = buildTree(preorder.slice(index + 1), inorder.slice(index + 1));
+    return res;
+};

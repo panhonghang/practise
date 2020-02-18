@@ -1895,3 +1895,22 @@ var fib = function(n) {
     }
     return cur2;
 };
+
+/**
+ * @param {number} n
+ * @return {number}
+ * 面试题49. 丑数
+ */
+var nthUglyNumber = function(n) {
+    let res = [1],
+        p2 = 0,p3 = 0,p5 = 0;
+
+    for(let i = 1; i <= n; i++){
+        res.push(Math.min(res[p2]*2,Math.min(res[p3]*3,res[p5]*5)));
+        if (res[i] == res[p2] * 2) p2++;
+        if (res[i] == res[p3] * 3) p3++;
+        if (res[i] == res[p5] * 5) p5++;
+    }
+
+    return res[n-1]
+};

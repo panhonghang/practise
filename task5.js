@@ -1836,3 +1836,20 @@ var buildTree = function(preorder, inorder) {
     res.right = buildTree(preorder.slice(index + 1), inorder.slice(index + 1));
     return res;
 };
+
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ * @description 剑指offer 03题 
+ */
+var findRepeatNumber = function(nums) {
+    //使用set 效率比 map高
+    let map = new Set();
+
+    for(let i = 0; i < nums.length; i++){
+        if(map.has(nums[i])) return nums[i];
+        map.add(nums[i])
+    }
+    return -1
+};

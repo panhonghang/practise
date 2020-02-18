@@ -1879,3 +1879,19 @@ var lowestCommonAncestor = function(root, p, q) {
         return root.val==q.val?q:p
     }
 };
+
+/**
+ * @param {number} n
+ * @return {number}
+ * 面试题10- I. 斐波那契数列
+ */
+var fib = function(n) {
+    if(n < 2) return n;
+    let cur1 = 0, cur2 = 1;
+    for(let i = 2; i <= n; i++){
+        let temp = cur1 + cur2;
+        cur1 = cur2;
+        cur2 = temp%1000000007;
+    }
+    return cur2;
+};

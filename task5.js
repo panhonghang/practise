@@ -1914,3 +1914,28 @@ var nthUglyNumber = function(n) {
 
     return res[n-1]
 };
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} val
+ * @description 面试题18. 删除链表的节点
+ * @return {ListNode}
+ */
+var deleteNode = function(head, val) {
+    if(head.val==val) return head.next;
+    let temp = head;
+    while(temp.next){
+        if(temp.next.val==val){
+            temp.next = temp.next.next;
+            return head
+        }
+        temp = temp.next
+    }
+};

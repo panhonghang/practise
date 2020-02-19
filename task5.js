@@ -1939,3 +1939,32 @@ var deleteNode = function(head, val) {
         temp = temp.next
     }
 };
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ * @description 面试题63
+ */
+var maxProfit = function(prices) {
+    if (prices.length<2) return 0;
+
+	let max = 0,
+        last = 0;
+
+	for (let i = 1; i < prices.length; i++){
+		last = last + prices[i] - prices[i-1];
+		last = last > 0 ? last:0;
+		max = max > last ? max:last;
+	}
+	return max;
+};
+
+var maxProfit = function(prices) {
+    let res = 0
+    let min = Infinity
+    for(let i=0;i<prices.length;i++) {
+        min = Math.min(min,prices[i])
+        res = Math.max(res, prices[i] - min)
+    }
+    return res
+};

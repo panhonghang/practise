@@ -1968,3 +1968,31 @@ var maxProfit = function(prices) {
     }
     return res
 };
+
+/**
+ * @param {number} target
+ * @return {number[][]}
+ * @description 面试题57 - II. 和为s的连续正数序列
+ */
+var findContinuousSequence = function(target) {
+    let res = [],
+        temp = [],
+        j = 0;
+    for(let i = 1; i < target; i++){
+        j = i+1;
+    
+        while(((i+j)*(j-i+1))/2<target){
+            j++
+        }
+        
+        if(((i+j)*(j-i+1))/2==target){
+            temp = [];
+            for(let k = i; k <= j; k++){
+                temp.push(k)
+            }
+            res.push(temp);
+        }
+    }
+
+    return res;
+};

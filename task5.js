@@ -1996,3 +1996,21 @@ var findContinuousSequence = function(target) {
 
     return res;
 };
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ * @description 面试题39. 数组中出现次数超过一半的数字
+ */
+var majorityElement = function(nums) {
+    // 排序找中位数的方法，效率太低
+    // nums.sort((a,b)=>a-b);
+    // return nums[parseInt(nums.length/2)]
+
+// 使用 Map 效率提升
+    let map = new Map();
+    nums.forEach(key=>{
+        map.set(key,map.get(key)+1||1)
+    });
+    return [...map].filter(([key,val])=>val > parseInt(nums.length/2))[0][0]
+};

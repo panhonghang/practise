@@ -1345,672 +1345,707 @@
  * @param {string} s
  * @return {string}
  */
-var reverseVowels = function(s) {
-    let pre = 0,
-        next = s.length-1,
-        arr  = ['a','e','i','o','u',"A","E","I","O","U"];
-    s = s.split('');
-    while(next>=pre){
-        if(arr.includes(s[pre])&&arr.includes(s[next])){
-           [s[pre],s[next]] = [s[next],s[pre]]
-            pre++;
-            next--
-        }
-        if(!arr.includes(s[pre])) pre++;
-        if(!arr.includes(s[next])) next--;
-    }        
-    return s.join('');
-};
-reverseVowels('holle')
+// var reverseVowels = function(s) {
+//     let pre = 0,
+//         next = s.length-1,
+//         arr  = ['a','e','i','o','u',"A","E","I","O","U"];
+//     s = s.split('');
+//     while(next>=pre){
+//         if(arr.includes(s[pre])&&arr.includes(s[next])){
+//            [s[pre],s[next]] = [s[next],s[pre]]
+//             pre++;
+//             next--
+//         }
+//         if(!arr.includes(s[pre])) pre++;
+//         if(!arr.includes(s[next])) next--;
+//     }        
+//     return s.join('');
+// };
+// reverseVowels('holle')
 
-/**
- * @description 925. 长按键入
- * @param {string} name
- * @param {string} typed
- * @return {boolean}
- */
-var isLongPressedName = function(name, typed) {
-    let i = 0, j = 0, N = name.length, T = typed.length;
-    if(N>T||(i==0&j==0&name[i]!==typed[j])) return false;
-    while(i<N-1){
-        if(name[i+1]==typed[j]){
-            i++; j++;
-        } else {
-            if(name[i]==typed[j]){
-                j++
-            } else {
-                return false
-            }
-        }
-    }
-    return true;
-};
+// /**
+//  * @description 925. 长按键入
+//  * @param {string} name
+//  * @param {string} typed
+//  * @return {boolean}
+//  */
+// var isLongPressedName = function(name, typed) {
+//     let i = 0, j = 0, N = name.length, T = typed.length;
+//     if(N>T||(i==0&j==0&name[i]!==typed[j])) return false;
+//     while(i<N-1){
+//         if(name[i+1]==typed[j]){
+//             i++; j++;
+//         } else {
+//             if(name[i]==typed[j]){
+//                 j++
+//             } else {
+//                 return false
+//             }
+//         }
+//     }
+//     return true;
+// };
 
-/**
- * @param {number} capacity
- */
-var LRUCache = function(capacity) {
-    this.cache = new Map();
-    this.capacity = capacity;
-};
+// /**
+//  * @param {number} capacity
+//  */
+// var LRUCache = function(capacity) {
+//     this.cache = new Map();
+//     this.capacity = capacity;
+// };
 
-/** 
- * @param {number} key
- * @return {number}
- */
+// /** 
+//  * @param {number} key
+//  * @return {number}
+//  */
 
-LRUCache.prototype.get = function(key) {
-    if (!this.cache.has(key)) return -1;
-    // 改变原来的顺序将命中的移动到最后
-    let temp = cache.get(key)
-    cache.delete(key);
-    cache.set(key, temp);
-    return temp;
-};
+// LRUCache.prototype.get = function(key) {
+//     if (!this.cache.has(key)) return -1;
+//     // 改变原来的顺序将命中的移动到最后
+//     let temp = cache.get(key)
+//     cache.delete(key);
+//     cache.set(key, temp);
+//     return temp;
+// };
 
-/** 
- * @param {number} key 
- * @param {number} value
- * @return {void}
- */
+// /** 
+//  * @param {number} key 
+//  * @param {number} value
+//  * @return {void}
+//  */
 
-LRUCache.prototype.put = function(key, value) {
-    let cache = this.cache;
-    // 删除已经存在的然后重新赋值
-    if (cache.has(key)) {
-        cache.delete(key);
-    } else if (cache.size >= this.capacity) {
-        cache.delete(cache.keys().next().value);
-    }
-    cache.set(key, value);
-};
+// LRUCache.prototype.put = function(key, value) {
+//     let cache = this.cache;
+//     // 删除已经存在的然后重新赋值
+//     if (cache.has(key)) {
+//         cache.delete(key);
+//     } else if (cache.size >= this.capacity) {
+//         cache.delete(cache.keys().next().value);
+//     }
+//     cache.set(key, value);
+// };
 
-/**
- * @param {number} n
- * @return {number}
- * @description 剑指offer 64题
- */
-var sumNums = function(n) {
-    return n&&(n + sumNums(n-1));
-};
+// /**
+//  * @param {number} n
+//  * @return {number}
+//  * @description 剑指offer 64题
+//  */
+// var sumNums = function(n) {
+//     return n&&(n + sumNums(n-1));
+// };
 
-/**
- * @param {string} s
- * @param {number} n
- * @return {string}
- * @description 剑指offer 58题
- */
-var reverseLeftWords = function(s, n) {
-    s = s.substr(n) + s.substr(0,n)
-    return s
-};
+// /**
+//  * @param {string} s
+//  * @param {number} n
+//  * @return {string}
+//  * @description 剑指offer 58题
+//  */
+// var reverseLeftWords = function(s, n) {
+//     s = s.substr(n) + s.substr(0,n)
+//     return s
+// };
 
-/**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- */
-/**
- * @param {TreeNode} root
- * @return {number}
- * @description 剑指offer 55题
- */
-var maxDepth = function(root) {
-    let res = 0;
-    let dfs = function(node,n){
-        res = res>n?res:n;
-        if(!node) return
-        dfs(node.right,n+1);
-        dfs(node.left,n+1);
-    }
-    dfs(root,res)
-    return res
-};
+// /**
+//  * Definition for a binary tree node.
+//  * function TreeNode(val) {
+//  *     this.val = val;
+//  *     this.left = this.right = null;
+//  * }
+//  */
+// /**
+//  * @param {TreeNode} root
+//  * @return {number}
+//  * @description 剑指offer 55题
+//  */
+// var maxDepth = function(root) {
+//     let res = 0;
+//     let dfs = function(node,n){
+//         res = res>n?res:n;
+//         if(!node) return
+//         dfs(node.right,n+1);
+//         dfs(node.left,n+1);
+//     }
+//     dfs(root,res)
+//     return res
+// };
 
-/**
- * @param {number} n
- * @return {number[]}
- * @description 剑指offer 18题
- */
-var printNumbers = function(n) {
-    let arr = [],
-        num = '';
-    for(let j = 0; j < n; j++){
-        num = num + '9'
-    }
-    for(let i = 1; i <= +num; i++){
-        arr.push(i)
-    }
-    return arr
-};
+// /**
+//  * @param {number} n
+//  * @return {number[]}
+//  * @description 剑指offer 18题
+//  */
+// var printNumbers = function(n) {
+//     let arr = [],
+//         num = '';
+//     for(let j = 0; j < n; j++){
+//         num = num + '9'
+//     }
+//     for(let i = 1; i <= +num; i++){
+//         arr.push(i)
+//     }
+//     return arr
+// };
 
-/**
- * @param {string} s
- * @return {string}
- * @description 剑指offer 05题
- */
-var replaceSpace = function(s) {
-    let arr = s.split('');
-    for(let i = 0; i < arr.length; i++){
-        if(arr[i]==' ') arr[i] = '%20'
-    }
-    return arr.join('')
-};
+// /**
+//  * @param {string} s
+//  * @return {string}
+//  * @description 剑指offer 05题
+//  */
+// var replaceSpace = function(s) {
+//     let arr = s.split('');
+//     for(let i = 0; i < arr.length; i++){
+//         if(arr[i]==' ') arr[i] = '%20'
+//     }
+//     return arr.join('')
+// };
 
-/**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- */
-/**
- * @param {TreeNode} root
- * @return {TreeNode}
- * @description 剑指offer 27题
- */
-var mirrorTree = function(root) {
-    if (!root) return null;
-    [root.left, root.right] = [root.right,root.left]
+// /**
+//  * Definition for a binary tree node.
+//  * function TreeNode(val) {
+//  *     this.val = val;
+//  *     this.left = this.right = null;
+//  * }
+//  */
+// /**
+//  * @param {TreeNode} root
+//  * @return {TreeNode}
+//  * @description 剑指offer 27题
+//  */
+// var mirrorTree = function(root) {
+//     if (!root) return null;
+//     [root.left, root.right] = [root.right,root.left]
     
-    mirrorTree(root.left);
-    mirrorTree(root.right);
+//     mirrorTree(root.left);
+//     mirrorTree(root.right);
 
-    return root;
-};
+//     return root;
+// };
 
-/**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
-/**
- * @param {ListNode} head
- * @param {number} k
- * @return {ListNode}
- * @description 剑指offer 22题
- */
-var getKthFromEnd = function(head, k) {
-    let pre = head,
-        next = head;
-    while(k>0){
-        next = next.next;
-        k--
-    }
-    while(next){
-        pre = pre.next;
-        next = next.next;
-    }
-    return pre
-};
-/**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
-/**
- * @param {ListNode} head
- * @return {number[]}
- * @description 剑指offer 06题
- */
-var reversePrint = function(head) {
-    let arr = [];
-    //js里面unshift方法效率低下
-    while(head){
-        arr.push(head.val)
-        head = head.next;
-    }
-    return arr.reverse()
-};
+// /**
+//  * Definition for singly-linked list.
+//  * function ListNode(val) {
+//  *     this.val = val;
+//  *     this.next = null;
+//  * }
+//  */
+// /**
+//  * @param {ListNode} head
+//  * @param {number} k
+//  * @return {ListNode}
+//  * @description 剑指offer 22题
+//  */
+// var getKthFromEnd = function(head, k) {
+//     let pre = head,
+//         next = head;
+//     while(k>0){
+//         next = next.next;
+//         k--
+//     }
+//     while(next){
+//         pre = pre.next;
+//         next = next.next;
+//     }
+//     return pre
+// };
+// /**
+//  * Definition for singly-linked list.
+//  * function ListNode(val) {
+//  *     this.val = val;
+//  *     this.next = null;
+//  * }
+//  */
+// /**
+//  * @param {ListNode} head
+//  * @return {number[]}
+//  * @description 剑指offer 06题
+//  */
+// var reversePrint = function(head) {
+//     let arr = [];
+//     //js里面unshift方法效率低下
+//     while(head){
+//         arr.push(head.val)
+//         head = head.next;
+//     }
+//     return arr.reverse()
+// };
 
-/**
- * @param {number} n - a positive integer
- * @return {number}
- * @description 剑指offer 15题
- */
-var hammingWeight = function(n) {
-    let s = n.toString(2),
-        res = 0;
-    for(let i = 0; i < s.length; i++){
-        if(s[i]=='1') res++
-    }
-    return res;
-};
+// /**
+//  * @param {number} n - a positive integer
+//  * @return {number}
+//  * @description 剑指offer 15题
+//  */
+// var hammingWeight = function(n) {
+//     let s = n.toString(2),
+//         res = 0;
+//     for(let i = 0; i < s.length; i++){
+//         if(s[i]=='1') res++
+//     }
+//     return res;
+// };
 
-/**
- * @param {number[]} nums
- * @return {number}
- * @description 剑指offer 56题
- */
-var singleNumber = function(nums) {
-    let pre = 0,
-        next = 2;
-    nums.sort((a,b)=>a-b);
-    while(nums[pre]==nums[next]){
-        pre = pre + 3;
-        next = next + 3;
-    }
-    return nums[pre]
-};
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  * @description 剑指offer 56题
+//  */
+// var singleNumber = function(nums) {
+//     let pre = 0,
+//         next = 2;
+//     nums.sort((a,b)=>a-b);
+//     while(nums[pre]==nums[next]){
+//         pre = pre + 3;
+//         next = next + 3;
+//     }
+//     return nums[pre]
+// };
 
-/**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
-/**
- * @param {ListNode} l1
- * @param {ListNode} l2
- * @return {ListNode}
- * @description 剑指offer 25题
- */
-var mergeTwoLists = function(l1, l2) {
-    let head , temp;
-    head = temp = new ListNode(0);
+// /**
+//  * Definition for singly-linked list.
+//  * function ListNode(val) {
+//  *     this.val = val;
+//  *     this.next = null;
+//  * }
+//  */
+// /**
+//  * @param {ListNode} l1
+//  * @param {ListNode} l2
+//  * @return {ListNode}
+//  * @description 剑指offer 25题
+//  */
+// var mergeTwoLists = function(l1, l2) {
+//     let head , temp;
+//     head = temp = new ListNode(0);
 
-    while(l1&&l2){
-        if(l1.val>l2.val){
-            temp.next = new ListNode(l2.val);
-            l2 = l2.next;
-        } else {
-            temp.next = new ListNode(l1.val);
-            l1 = l1.next;
-        }
-        temp = temp.next;
-    }
-    temp.next = l1?l1:l2;
+//     while(l1&&l2){
+//         if(l1.val>l2.val){
+//             temp.next = new ListNode(l2.val);
+//             l2 = l2.next;
+//         } else {
+//             temp.next = new ListNode(l1.val);
+//             l1 = l1.next;
+//         }
+//         temp = temp.next;
+//     }
+//     temp.next = l1?l1:l2;
     
-    return head.next;
-};
+//     return head.next;
+// };
 
-/**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- */
-/**
- * @param {TreeNode} root
- * @param {number} k
- * @return {number}
- * @description 剑指offer 54题
- */
-var kthLargest = function(root, k) {
-    let num = 0,
-        res;
+// /**
+//  * Definition for a binary tree node.
+//  * function TreeNode(val) {
+//  *     this.val = val;
+//  *     this.left = this.right = null;
+//  * }
+//  */
+// /**
+//  * @param {TreeNode} root
+//  * @param {number} k
+//  * @return {number}
+//  * @description 剑指offer 54题
+//  */
+// var kthLargest = function(root, k) {
+//     let num = 0,
+//         res;
 
-    let fn = function(node){
-        if(!node) return
-        fn(node.right);
-        if(++num==k){
-            res = node.val;
-            return
-        };
-        fn(node.left);
-    }
-    fn(root);
-    return res;
-};
+//     let fn = function(node){
+//         if(!node) return
+//         fn(node.right);
+//         if(++num==k){
+//             res = node.val;
+//             return
+//         };
+//         fn(node.left);
+//     }
+//     fn(root);
+//     return res;
+// };
 
-/**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
-/**
- * @param {ListNode} head
- * @return {ListNode}
- * @description 剑指offer 24题 迭代实现
- */
-var reverseList = function(head) {
-    let pre = null, cur = head, next;
-    while(cur){
-        next = cur.next;
-        cur.next = pre;
-        pre = cur;
-        cur = next;
-    }
-    return pre
-};
+// /**
+//  * Definition for singly-linked list.
+//  * function ListNode(val) {
+//  *     this.val = val;
+//  *     this.next = null;
+//  * }
+//  */
+// /**
+//  * @param {ListNode} head
+//  * @return {ListNode}
+//  * @description 剑指offer 24题 迭代实现
+//  */
+// var reverseList = function(head) {
+//     let pre = null, cur = head, next;
+//     while(cur){
+//         next = cur.next;
+//         cur.next = pre;
+//         pre = cur;
+//         cur = next;
+//     }
+//     return pre
+// };
 
-/**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- */
-/**
- * @param {TreeNode} root
- * @return {number[][]}
- * @description BFS 
- */
-var levelOrder = function(root) {
-    if (!root) return [];
-    let result = [], 
-        // 缓存层节点
-        tmp = [root];
+// /**
+//  * Definition for a binary tree node.
+//  * function TreeNode(val) {
+//  *     this.val = val;
+//  *     this.left = this.right = null;
+//  * }
+//  */
+// /**
+//  * @param {TreeNode} root
+//  * @return {number[][]}
+//  * @description BFS 
+//  */
+// var levelOrder = function(root) {
+//     if (!root) return [];
+//     let result = [], 
+//         // 缓存层节点
+//         tmp = [root];
   
-    while (tmp.length) {
-      // 缓存子节点
-      let childtmp = [],
-      // 缓存层节点的值
-          level = []; 
+//     while (tmp.length) {
+//       // 缓存子节点
+//       let childtmp = [],
+//       // 缓存层节点的值
+//           level = []; 
   
-      for (let i = 0, len = tmp.length; i < len; i++) { 
-        level.push(tmp[i].val); 
-        // 添加左右子节点到缓存数组当中
-        tmp[i].left&&childtmp.push(tmp[i].left);
-        tmp[i].right&&childtmp.push(tmp[i].right);
-      }
+//       for (let i = 0, len = tmp.length; i < len; i++) { 
+//         level.push(tmp[i].val); 
+//         // 添加左右子节点到缓存数组当中
+//         tmp[i].left&&childtmp.push(tmp[i].left);
+//         tmp[i].right&&childtmp.push(tmp[i].right);
+//       }
 
-      tmp = childtmp;
-      result.push(level);
-    }
-    return result;
-  };
+//       tmp = childtmp;
+//       result.push(level);
+//     }
+//     return result;
+//   };
 
-  var CQueue = function() {
-    this.arr = [];
-};
+//   var CQueue = function() {
+//     this.arr = [];
+// };
 
-/** 
- * @param {number} value
- * @return {void}
- */
-CQueue.prototype.appendTail = function(value) {
-    this.arr.push(value)
-};
+// /** 
+//  * @param {number} value
+//  * @return {void}
+//  */
+// CQueue.prototype.appendTail = function(value) {
+//     this.arr.push(value)
+// };
 
-/**
- * @return {number}
- */
-CQueue.prototype.deleteHead = function() {
-    return this.arr.length?this.arr.shift():-1;
-};
+// /**
+//  * @return {number}
+//  */
+// CQueue.prototype.deleteHead = function() {
+//     return this.arr.length?this.arr.shift():-1;
+// };
 
-/** 
- * Your CQueue object will be instantiated and called as such:
- * var obj = new CQueue()
- * obj.appendTail(value)
- * var param_2 = obj.deleteHead()
- */
+// /** 
+//  * Your CQueue object will be instantiated and called as such:
+//  * var obj = new CQueue()
+//  * obj.appendTail(value)
+//  * var param_2 = obj.deleteHead()
+//  */
 
- /**
- * @param {number[][]} grid
- * @return {number}
- * @description 剑指offer 47题 
- */
-var maxValue = function(grid) {
-    // let row = grid.length
-    // let col = grid[0].length
-    // let dp = [...new Array(row+1)].map(() => Array(col+1).fill(0))
-    // for(let i=1;i<=row;i++) {
-    //     for(let j=1;j<=col;j++) {
-    //         dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]) + grid[i-1][j-1]
-    //     }
-    // }
-    // return dp[row][col]
+//  /**
+//  * @param {number[][]} grid
+//  * @return {number}
+//  * @description 剑指offer 47题 
+//  */
+// var maxValue = function(grid) {
+//     // let row = grid.length
+//     // let col = grid[0].length
+//     // let dp = [...new Array(row+1)].map(() => Array(col+1).fill(0))
+//     // for(let i=1;i<=row;i++) {
+//     //     for(let j=1;j<=col;j++) {
+//     //         dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]) + grid[i-1][j-1]
+//     //     }
+//     // }
+//     // return dp[row][col]
 
-    // for (let i = 0,iLen = grid.length; i < iLen; i++) {
-    //     for (let j = 0,jLen = grid[0].length; j < jLen; j++) {
-    //         let left = grid[i][j-1]===undefined ? 0: grid[i][j-1]
-    //         let up = grid[i-1]===undefined?0:grid[i-1][j]
-    //         grid[i][j] = Math.max(left+grid[i][j],up+grid[i][j])
-    //     }
-    // }
-    // return grid[grid.length-1][grid[0].length-1]
-    let up;
+//     // for (let i = 0,iLen = grid.length; i < iLen; i++) {
+//     //     for (let j = 0,jLen = grid[0].length; j < jLen; j++) {
+//     //         let left = grid[i][j-1]===undefined ? 0: grid[i][j-1]
+//     //         let up = grid[i-1]===undefined?0:grid[i-1][j]
+//     //         grid[i][j] = Math.max(left+grid[i][j],up+grid[i][j])
+//     //     }
+//     // }
+//     // return grid[grid.length-1][grid[0].length-1]
+//     let up;
 
-    for (let i = 0,iLen = grid.length; i < iLen; i++) {
-        for (let j = 0,jLen = grid[0].length; j < jLen; j++) {
-            up = grid[i-1]===undefined?0:grid[i-1][j]
-            grid[i][j] = Math.max((grid[i][j-1]||0)+grid[i][j],up+grid[i][j])
-        }
-    }
-    return grid[grid.length-1][grid[0].length-1]
-};
+//     for (let i = 0,iLen = grid.length; i < iLen; i++) {
+//         for (let j = 0,jLen = grid[0].length; j < jLen; j++) {
+//             up = grid[i-1]===undefined?0:grid[i-1][j]
+//             grid[i][j] = Math.max((grid[i][j-1]||0)+grid[i][j],up+grid[i][j])
+//         }
+//     }
+//     return grid[grid.length-1][grid[0].length-1]
+// };
 
-/**
- * // Definition for a Node.
- * function Node(val, next, random) {
- *    this.val = val;
- *    this.next = next;
- *    this.random = random;
- * };
- */
-/**
- * @param {Node} head
- * @return {Node}
- * @description 剑指offer 34题 
- */
-var copyRandomList = function(head) {
-    const mapping = new Map();
-    let copy = function(node) {
-      if (!node) return node; // 空结点
-      if (mapping.has(node)) return mapping.get(node); // 取缓存
+// /**
+//  * // Definition for a Node.
+//  * function Node(val, next, random) {
+//  *    this.val = val;
+//  *    this.next = next;
+//  *    this.random = random;
+//  * };
+//  */
+// /**
+//  * @param {Node} head
+//  * @return {Node}
+//  * @description 剑指offer 34题 
+//  */
+// var copyRandomList = function(head) {
+//     const mapping = new Map();
+//     let copy = function(node) {
+//       if (!node) return node; // 空结点
+//       if (mapping.has(node)) return mapping.get(node); // 取缓存
   
-      const res = new Node();
-      mapping.set(node, res); // 先放缓存
-      res.val = node.val;
-      res.next = copy(node.next); // 结点，要递归
-      res.random = copy(node.random); // 结点，要递归
-      return res;
-    }
+//       const res = new Node();
+//       mapping.set(node, res); // 先放缓存
+//       res.val = node.val;
+//       res.next = copy(node.next); // 结点，要递归
+//       res.random = copy(node.random); // 结点，要递归
+//       return res;
+//     }
   
-    return copy(head);
-  };
+//     return copy(head);
+//   };
 
-  /**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- */
-/**
- * @param {number[]} preorder
- * @param {number[]} inorder
- * @return {TreeNode}
- * @description 剑指offer 07题 
- */
-var buildTree = function(preorder, inorder) {
-    if (preorder.length ==0 || inorder.length == 0) return null;
+//   /**
+//  * Definition for a binary tree node.
+//  * function TreeNode(val) {
+//  *     this.val = val;
+//  *     this.left = this.right = null;
+//  * }
+//  */
+// /**
+//  * @param {number[]} preorder
+//  * @param {number[]} inorder
+//  * @return {TreeNode}
+//  * @description 剑指offer 07题 
+//  */
+// var buildTree = function(preorder, inorder) {
+//     if (preorder.length ==0 || inorder.length == 0) return null;
 
-    let res = new TreeNode(preorder[0]);
+//     let res = new TreeNode(preorder[0]);
 
-    let index = inorder.findIndex((i)=>i==preorder[0])
+//     let index = inorder.findIndex((i)=>i==preorder[0])
     
-    res.left = buildTree(preorder.slice(1, index + 1), inorder.slice(0, index));
-    res.right = buildTree(preorder.slice(index + 1), inorder.slice(index + 1));
-    return res;
-};
+//     res.left = buildTree(preorder.slice(1, index + 1), inorder.slice(0, index));
+//     res.right = buildTree(preorder.slice(index + 1), inorder.slice(index + 1));
+//     return res;
+// };
 
 
-/**
- * @param {number[]} nums
- * @return {number}
- * @description 剑指offer 03题 
- */
-var findRepeatNumber = function(nums) {
-    //使用set 效率比 map高
-    let map = new Set();
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  * @description 剑指offer 03题 
+//  */
+// var findRepeatNumber = function(nums) {
+//     //使用set 效率比 map高
+//     let map = new Set();
 
-    for(let i = 0; i < nums.length; i++){
-        if(map.has(nums[i])) return nums[i];
-        map.add(nums[i])
-    }
-    return -1
-};
+//     for(let i = 0; i < nums.length; i++){
+//         if(map.has(nums[i])) return nums[i];
+//         map.add(nums[i])
+//     }
+//     return -1
+// };
 
-/**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- */
-/**
- * @param {TreeNode} root
- * @param {TreeNode} p
- * @param {TreeNode} q
- * @return {TreeNode}
- * 面试题68 - I. 二叉搜索树的最近公共祖先
- */
-var lowestCommonAncestor = function(root, p, q) {
-    if(root.val < p.val&& root.val < q.val ){
-       return lowestCommonAncestor(root.right, p, q)
-    } else if(root.val > p.val&& root.val > q.val ){
-       return lowestCommonAncestor(root.left, p, q)
-    } else if((root.val > p.val&& root.val < q.val)||(root.val < p.val&& root.val > q.val )){
-        return root
-    } else {
-        return root.val==q.val?q:p
-    }
-};
+// /**
+//  * Definition for a binary tree node.
+//  * function TreeNode(val) {
+//  *     this.val = val;
+//  *     this.left = this.right = null;
+//  * }
+//  */
+// /**
+//  * @param {TreeNode} root
+//  * @param {TreeNode} p
+//  * @param {TreeNode} q
+//  * @return {TreeNode}
+//  * 面试题68 - I. 二叉搜索树的最近公共祖先
+//  */
+// var lowestCommonAncestor = function(root, p, q) {
+//     if(root.val < p.val&& root.val < q.val ){
+//        return lowestCommonAncestor(root.right, p, q)
+//     } else if(root.val > p.val&& root.val > q.val ){
+//        return lowestCommonAncestor(root.left, p, q)
+//     } else if((root.val > p.val&& root.val < q.val)||(root.val < p.val&& root.val > q.val )){
+//         return root
+//     } else {
+//         return root.val==q.val?q:p
+//     }
+// };
 
-/**
- * @param {number} n
- * @return {number}
- * 面试题10- I. 斐波那契数列
- */
-var fib = function(n) {
-    if(n < 2) return n;
-    let cur1 = 0, cur2 = 1;
-    for(let i = 2; i <= n; i++){
-        let temp = cur1 + cur2;
-        cur1 = cur2;
-        cur2 = temp%1000000007;
-    }
-    return cur2;
-};
+// /**
+//  * @param {number} n
+//  * @return {number}
+//  * 面试题10- I. 斐波那契数列
+//  */
+// var fib = function(n) {
+//     if(n < 2) return n;
+//     let cur1 = 0, cur2 = 1;
+//     for(let i = 2; i <= n; i++){
+//         let temp = cur1 + cur2;
+//         cur1 = cur2;
+//         cur2 = temp%1000000007;
+//     }
+//     return cur2;
+// };
 
-/**
- * @param {number} n
- * @return {number}
- * 面试题49. 丑数
- */
-var nthUglyNumber = function(n) {
-    let res = [1],
-        p2 = 0,p3 = 0,p5 = 0;
+// /**
+//  * @param {number} n
+//  * @return {number}
+//  * 面试题49. 丑数
+//  */
+// var nthUglyNumber = function(n) {
+//     let res = [1],
+//         p2 = 0,p3 = 0,p5 = 0;
 
-    for(let i = 1; i <= n; i++){
-        res.push(Math.min(res[p2]*2,Math.min(res[p3]*3,res[p5]*5)));
-        if (res[i] == res[p2] * 2) p2++;
-        if (res[i] == res[p3] * 3) p3++;
-        if (res[i] == res[p5] * 5) p5++;
-    }
+//     for(let i = 1; i <= n; i++){
+//         res.push(Math.min(res[p2]*2,Math.min(res[p3]*3,res[p5]*5)));
+//         if (res[i] == res[p2] * 2) p2++;
+//         if (res[i] == res[p3] * 3) p3++;
+//         if (res[i] == res[p5] * 5) p5++;
+//     }
 
-    return res[n-1]
-};
+//     return res[n-1]
+// };
 
-/**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
-/**
- * @param {ListNode} head
- * @param {number} val
- * @description 面试题18. 删除链表的节点
- * @return {ListNode}
- */
-var deleteNode = function(head, val) {
-    if(head.val==val) return head.next;
-    let temp = head;
-    while(temp.next){
-        if(temp.next.val==val){
-            temp.next = temp.next.next;
-            return head
-        }
-        temp = temp.next
-    }
-};
+// /**
+//  * Definition for singly-linked list.
+//  * function ListNode(val) {
+//  *     this.val = val;
+//  *     this.next = null;
+//  * }
+//  */
+// /**
+//  * @param {ListNode} head
+//  * @param {number} val
+//  * @description 面试题18. 删除链表的节点
+//  * @return {ListNode}
+//  */
+// var deleteNode = function(head, val) {
+//     if(head.val==val) return head.next;
+//     let temp = head;
+//     while(temp.next){
+//         if(temp.next.val==val){
+//             temp.next = temp.next.next;
+//             return head
+//         }
+//         temp = temp.next
+//     }
+// };
 
-/**
- * @param {number[]} prices
- * @return {number}
- * @description 面试题63
- */
-var maxProfit = function(prices) {
-    if (prices.length<2) return 0;
+// /**
+//  * @param {number[]} prices
+//  * @return {number}
+//  * @description 面试题63
+//  */
+// var maxProfit = function(prices) {
+//     if (prices.length<2) return 0;
 
-	let max = 0,
-        last = 0;
+// 	let max = 0,
+//         last = 0;
 
-	for (let i = 1; i < prices.length; i++){
-		last = last + prices[i] - prices[i-1];
-		last = last > 0 ? last:0;
-		max = max > last ? max:last;
-	}
-	return max;
-};
+// 	for (let i = 1; i < prices.length; i++){
+// 		last = last + prices[i] - prices[i-1];
+// 		last = last > 0 ? last:0;
+// 		max = max > last ? max:last;
+// 	}
+// 	return max;
+// };
 
-var maxProfit = function(prices) {
-    let res = 0
-    let min = Infinity
-    for(let i=0;i<prices.length;i++) {
-        min = Math.min(min,prices[i])
-        res = Math.max(res, prices[i] - min)
-    }
-    return res
-};
+// var maxProfit = function(prices) {
+//     let res = 0
+//     let min = Infinity
+//     for(let i=0;i<prices.length;i++) {
+//         min = Math.min(min,prices[i])
+//         res = Math.max(res, prices[i] - min)
+//     }
+//     return res
+// };
 
-/**
- * @param {number} target
- * @return {number[][]}
- * @description 面试题57 - II. 和为s的连续正数序列
- */
-var findContinuousSequence = function(target) {
-    let res = [],
-        temp = [],
-        j = 0;
-    for(let i = 1; i < target; i++){
-        j = i+1;
+// /**
+//  * @param {number} target
+//  * @return {number[][]}
+//  * @description 面试题57 - II. 和为s的连续正数序列
+//  */
+// var findContinuousSequence = function(target) {
+//     let res = [],
+//         temp = [],
+//         j = 0;
+//     for(let i = 1; i < target; i++){
+//         j = i+1;
     
-        while(((i+j)*(j-i+1))/2<target){
-            j++
-        }
+//         while(((i+j)*(j-i+1))/2<target){
+//             j++
+//         }
         
-        if(((i+j)*(j-i+1))/2==target){
-            temp = [];
-            for(let k = i; k <= j; k++){
-                temp.push(k)
-            }
-            res.push(temp);
+//         if(((i+j)*(j-i+1))/2==target){
+//             temp = [];
+//             for(let k = i; k <= j; k++){
+//                 temp.push(k)
+//             }
+//             res.push(temp);
+//         }
+//     }
+
+//     return res;
+// };
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  * @description 面试题39. 数组中出现次数超过一半的数字
+//  */
+// var majorityElement = function(nums) {
+//     // 排序找中位数的方法，效率太低
+//     // nums.sort((a,b)=>a-b);
+//     // return nums[parseInt(nums.length/2)]
+
+// // 使用 Map 效率提升
+//     let map = new Map();
+//     nums.forEach(key=>{
+//         map.set(key,map.get(key)+1||1)
+//     });
+//     return [...map].filter(([key,val])=>val > parseInt(nums.length/2))[0][0]
+// };
+
+
+let fn = (N,num)=>{
+    let flag = (start,end,key)=>{
+        for(let i = start; i <= end; i++){
+            if(num[i]>key) return false
         }
+        return true
+    }
+    
+    let flag1 = (start,end,key)=>{
+        for(let i = start; i >= end; i--){
+            if(num[i]>key) return false
+        }
+        return true
     }
 
-    return res;
-};
+    let arr = new Array(N);
+        arr.fill(1)
+    for(let i = 0; i < N; i++){
+        
+        for(let j = i+1; j < N; j++){
+            if(flag(i+1,j,num[j])) arr[i]++
+        }
 
-/**
- * @param {number[]} nums
- * @return {number}
- * @description 面试题39. 数组中出现次数超过一半的数字
- */
-var majorityElement = function(nums) {
-    // 排序找中位数的方法，效率太低
-    // nums.sort((a,b)=>a-b);
-    // return nums[parseInt(nums.length/2)]
+        for(let k = i-1; k >= 0; k--){
+            if(flag1(i-1,k,num[k])) arr[i]++
+        }
+    }
+    return arr.join(' ')
+}
 
-// 使用 Map 效率提升
-    let map = new Map();
-    nums.forEach(key=>{
-        map.set(key,map.get(key)+1||1)
-    });
-    return [...map].filter(([key,val])=>val > parseInt(nums.length/2))[0][0]
-};
+fn(6,[5,3,8,3,2,5])
+
+

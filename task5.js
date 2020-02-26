@@ -2016,36 +2016,69 @@
 // };
 
 
-let fn = (N,num)=>{
-    let flag = (start,end,key)=>{
-        for(let i = start; i <= end; i++){
-            if(num[i]>key) return false
-        }
-        return true
-    }
+// let fn = (N,num)=>{
+//     let flag = (start,end,key)=>{
+//         for(let i = start; i <= end; i++){
+//             if(num[i]>key) return false
+//         }
+//         return true
+//     }
     
-    let flag1 = (start,end,key)=>{
-        for(let i = start; i >= end; i--){
-            if(num[i]>key) return false
-        }
-        return true
-    }
+//     let flag1 = (start,end,key)=>{
+//         for(let i = start; i >= end; i--){
+//             if(num[i]>key) return false
+//         }
+//         return true
+//     }
 
-    let arr = new Array(N);
-        arr.fill(1)
-    for(let i = 0; i < N; i++){
+//     let arr = new Array(N);
+//         arr.fill(1)
+//     for(let i = 0; i < N; i++){
         
-        for(let j = i+1; j < N; j++){
-            if(flag(i+1,j,num[j])) arr[i]++
-        }
+//         for(let j = i+1; j < N; j++){
+//             if(flag(i+1,j,num[j])) arr[i]++
+//         }
 
-        for(let k = i-1; k >= 0; k--){
-            if(flag1(i-1,k,num[k])) arr[i]++
-        }
+//         for(let k = i-1; k >= 0; k--){
+//             if(flag1(i-1,k,num[k])) arr[i]++
+//         }
+//     }
+//     return arr.join(' ')
+// }
+
+// fn(6,[5,3,8,3,2,5])
+
+let Str = (s)=>{
+    let start = s[0],
+        res = ''
+    s = s.slice(2)
+    for(let i = 0; i < start; i++){
+        res=res+s
     }
-    return arr.join(' ')
+    return res
 }
 
-fn(6,[5,3,8,3,2,5])
+let fn = (str)=>{
+    let left = [],
+        right = 0;
 
+    for(let i = 0; i < str.length; i++){
+        if(str[i]=='[') left.push(i);
+    }
 
+    left.reverse();
+    for(let j = 0; j < left.length; j++){
+        right = 0;
+        while(str[right]!==']'){
+            right++;
+            if(str[right]==']') break
+        }
+        str = str.slice(0,left[j]) + Str(str.slice(left[j]+1,right)) + str.slice(right+1);
+    }
+
+    return str
+}
+
+fn('HG[3|B[2|CA]]F')
+
+//HGBCACABCACABCACAF

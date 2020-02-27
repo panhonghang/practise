@@ -2048,37 +2048,219 @@
 
 // fn(6,[5,3,8,3,2,5])
 
-let Str = (s)=>{
-    let start = s[0],
-        res = ''
-    s = s.slice(2)
-    for(let i = 0; i < start; i++){
-        res=res+s
-    }
-    return res
-}
+// 重复生成字符串
+// let Str = (s)=>{
+//     let start = s[0],
+//         res = ''
+//     s = s.slice(2)
+//     for(let i = 0; i < start; i++){
+//         res=res+s
+//     }
+//     return res
+// }
 
-let fn = (str)=>{
-    let left = [],
-        right = 0;
+// let fn = (str)=>{
+//     let left = [],
+//         right = 0;
+// // 记录 [ 的位置
+//     for(let i = 0; i < str.length; i++){
+//         if(str[i]=='[') left.push(i);
+//     }
+//     // 反转
+//     left.reverse();
+//     for(let j = 0; j < left.length; j++){
+//         // 每次都重新查找 right
+//         right = 0;
+//         // 查找right值
+//         while(str[right]!==']'){
+//             right++;
+//             if(str[right]==']') break
+//         }
+//         // 拼接
+//         str = str.slice(0,left[j]) + Str(str.slice(left[j]+1,right)) + str.slice(right+1);
+//     }
 
-    for(let i = 0; i < str.length; i++){
-        if(str[i]=='[') left.push(i);
-    }
+//     return str
+// }
 
-    left.reverse();
-    for(let j = 0; j < left.length; j++){
-        right = 0;
-        while(str[right]!==']'){
-            right++;
-            if(str[right]==']') break
+// fn('HG[3|B[2|CA]]F')
+
+// //HGBCACABCACABCACAF
+
+// /**
+//  * 已有函数：生成一个二叉树
+//  * function TreeNode(val) {
+//  *     this.val = val;
+//  *     this.left = this.right = null;
+//  * }
+//  */
+// /**
+//  * @param {TreeNode} t1
+//  * @param {TreeNode} t2
+//  * @return {TreeNode}
+//  */
+// var mergeTrees = function(t1, t2) {
+//     // 填入代码
+//     let resNode = null;
+
+//     if (t1==null && t2==null) return null
+//     if (!t1) return t2;
+//     if (!t2) return t1;
+
+//     resNode = new TreeNode(t1.val + t2.val);
+//     resNode.left = mergeTrees(t1.left, t2.left);
+//     resNode.right = mergeTrees(t1.right, t2.right);
+
+//     return resNode;
+// };
+
+// 2.	子串问题
+// 给定两个字符串s1和s2，如果s2包含s1的任一排列，则返回true。
+// 换句话说，第一个字符串的排列之一，是第二个字符串的子串。
+// 例1：
+// Input: s1 = "ab", s2 = "eidbaooo"
+// Output: True
+// 说明: s2包含s1的一个排列("ba")
+
+// 例2：
+// Input: s1= "ab", s2 = "eidboaoo"
+// Output: False
+// 注：
+// 1）输入的字符串只包含小写字母。
+// 2）两个字符串的长度在[1, 10,000]范围内。
+
+/**
+ * @param {string} s1
+ * @param {string} s2
+ * @return {boolean}
+ */
+// var checkInclusion = function(s1, s2) {
+//     // 填入代码
+//     let temp = s2.split('');
+//     for(let i = 0; i < s1.length; i++){
+//         if(!temp.includes(s1[i])) return false;
+//     }
+//     return true
+// };
+
+// var oddEvenList = function(head) {
+//     // 填入代码
+//     let arr1 = [],
+//         arr2 = [],
+//         flag = 1,
+//         temp = head;
+//     // 取出节点，并且分类
+//     while(temp){
+//         if(flag%2===1){
+//             arr1.push(temp.val)
+//         } else {
+//             arr2.push(temp.val)
+//         }
+//         flag++;
+//         temp = temp.next;
+//     }
+//     // 重新赋值
+//     temp = head;
+//     flag = 1;
+//     while(temp){
+//         if(flag%2===1){
+//            temp.val = arr1.shift()
+//         } else {
+//            temp.val = arr2.shift()
+//         }
+//         flag++;
+//         temp = temp.next;
+//     }
+//     return head;
+// };
+
+
+// console.log(checkInclusion("abc","eidboaoo")) 
+
+var genUrl = function(requireTree) {
+    // 填入代码
+    let str = ''
+    
+    /**
+     * 描述
+     * @date 2020-02-27
+     * @description 实现层次遍历，并且返回一个数组
+     * @param {any} arr
+     * @returns {any}
+     */
+    let fn = function(arr){
+        if (arr.length == 0) return [];
+        // 层次遍历
+        let res = [], 
+            // 维护一个栈来储存每层的数值
+            queue = [];
+
+        queue.push(arr);
+
+        while(queue.length!==0){
+            var level = [];
+
+            for (var i = 0; i < queue.length; i ++) {
+                var item = queue.shift();
+                // 遍历属性
+                for (var j = 0; j < item.length; j ++) {
+                    level.push(item[j]['name']);
+                    // 添加子元素到queue当中
+                    if(item[j]["require"]) queue.push(item[j]["require"]);
+                }
+
+            }
+
+            // 加入数组当中
+            res.push(...level);
         }
-        str = str.slice(0,left[j]) + Str(str.slice(left[j]+1,right)) + str.slice(right+1);
+        // 数组去重
+        res = [...new Set(res)]
+        // 返回遍历后的数组，要求是从底到顶遍历
+        return res.reverse();
     }
 
+    let temp = fn(requireTree["require"]);
+    str = 'http://res.wx.qq.com/' + temp.join(',') + ','+requireTree['name']
+    console.log(str)
     return str
+};
+
+let requireTree = { 
+	"name":"page.js",
+	"require":[
+		{
+			"name":"A.js",
+			"require":[
+				{
+					"name":"C.js",
+					"require":[
+						{
+							"name":"F.js"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name":"B.js",
+			"require":[
+				{
+					"name":"D.js",
+					"require":[
+						{
+							"name":"F.js"
+						}
+					]
+				},
+				{
+					"name":"E.js",
+					"require":[]
+				}
+			]
+		},
+	]
 }
 
-fn('HG[3|B[2|CA]]F')
 
-//HGBCACABCACABCACAF
+genUrl(requireTree)

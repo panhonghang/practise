@@ -2208,7 +2208,6 @@ var genUrl = function(requireTree) {
                     // 添加子元素到queue当中
                     if(item[j]["require"]) queue.push(item[j]["require"]);
                 }
-
             }
 
             // 加入数组当中
@@ -2264,3 +2263,27 @@ let requireTree = {
 
 
 genUrl(requireTree)
+
+
+function permution (str) {
+	let results = [];
+	let strArr = str.split('');
+	let cur = [];
+	search(strArr, cur, results);
+	return results;
+}
+
+function search (strArr, cur, results) {
+	if (cur.length === strArr.length) {
+		results.push(cur.slice(0));
+		return;
+	}
+	for (let i = 0; i < strArr.length; i++) {
+		if (cur.indexOf(strArr[i]) === -1) {
+			cur.push(strArr[i]);
+			search(strArr, cur, results);
+			cur.pop();
+		}
+	}
+	
+}

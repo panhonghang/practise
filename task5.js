@@ -2177,113 +2177,118 @@
 
 // console.log(checkInclusion("abc","eidboaoo")) 
 
-var genUrl = function(requireTree) {
-    // 填入代码
-    let str = ''
+// var genUrl = function(requireTree) {
+//     // 填入代码
+//     let str = ''
     
-    /**
-     * 描述
-     * @date 2020-02-27
-     * @description 实现层次遍历，并且返回一个数组
-     * @param {any} arr
-     * @returns {any}
-     */
-    let fn = function(arr){
-        if (arr.length == 0) return [];
-        // 层次遍历
-        let res = [], 
-            // 维护一个栈来储存每层的数值
-            queue = [];
+//     /**
+//      * 描述
+//      * @date 2020-02-27
+//      * @description 实现层次遍历，并且返回一个数组
+//      * @param {any} arr
+//      * @returns {any}
+//      */
+//     let fn = function(arr){
+//         if (arr.length == 0) return [];
+//         // 层次遍历
+//         let res = [], 
+//             // 维护一个栈来储存每层的数值
+//             queue = [];
 
-        queue.push(arr);
+//         queue.push(arr);
 
-        while(queue.length!==0){
-            var level = [];
+//         while(queue.length!==0){
+//             var level = [];
 
-            for (var i = 0; i < queue.length; i ++) {
-                var item = queue.shift();
-                // 遍历属性
-                for (var j = 0; j < item.length; j ++) {
-                    level.push(item[j]['name']);
-                    // 添加子元素到queue当中
-                    if(item[j]["require"]) queue.push(item[j]["require"]);
-                }
-            }
+//             for (var i = 0; i < queue.length; i ++) {
+//                 var item = queue.shift();
+//                 // 遍历属性
+//                 for (var j = 0; j < item.length; j ++) {
+//                     level.push(item[j]['name']);
+//                     // 添加子元素到queue当中
+//                     if(item[j]["require"]) queue.push(item[j]["require"]);
+//                 }
+//             }
 
-            // 加入数组当中
-            res.push(...level);
-        }
-        // 数组去重
-        res = [...new Set(res)]
-        // 返回遍历后的数组，要求是从底到顶遍历
-        return res.reverse();
-    }
+//             // 加入数组当中
+//             res.push(...level);
+//         }
+//         // 数组去重
+//         res = [...new Set(res)]
+//         // 返回遍历后的数组，要求是从底到顶遍历
+//         return res.reverse();
+//     }
 
-    let temp = fn(requireTree["require"]);
-    str = 'http://res.wx.qq.com/' + temp.join(',') + ','+requireTree['name']
-    console.log(str)
-    return str
-};
+//     let temp = fn(requireTree["require"]);
+//     str = 'http://res.wx.qq.com/' + temp.join(',') + ','+requireTree['name']
+//     console.log(str)
+//     return str
+// };
 
-let requireTree = { 
-	"name":"page.js",
-	"require":[
-		{
-			"name":"A.js",
-			"require":[
-				{
-					"name":"C.js",
-					"require":[
-						{
-							"name":"F.js"
-						}
-					]
-				}
-			]
-		},
-		{
-			"name":"B.js",
-			"require":[
-				{
-					"name":"D.js",
-					"require":[
-						{
-							"name":"F.js"
-						}
-					]
-				},
-				{
-					"name":"E.js",
-					"require":[]
-				}
-			]
-		},
-	]
-}
-
-
-genUrl(requireTree)
+// let requireTree = { 
+// 	"name":"page.js",
+// 	"require":[
+// 		{
+// 			"name":"A.js",
+// 			"require":[
+// 				{
+// 					"name":"C.js",
+// 					"require":[
+// 						{
+// 							"name":"F.js"
+// 						}
+// 					]
+// 				}
+// 			]
+// 		},
+// 		{
+// 			"name":"B.js",
+// 			"require":[
+// 				{
+// 					"name":"D.js",
+// 					"require":[
+// 						{
+// 							"name":"F.js"
+// 						}
+// 					]
+// 				},
+// 				{
+// 					"name":"E.js",
+// 					"require":[]
+// 				}
+// 			]
+// 		},
+// 	]
+// }
 
 
-function permution (str) {
-	let results = [];
-	let strArr = str.split('');
-	let cur = [];
-	search(strArr, cur, results);
-	return results;
-}
+// genUrl(requireTree)
 
-function search (strArr, cur, results) {
-	if (cur.length === strArr.length) {
-		results.push(cur.slice(0));
-		return;
-	}
-	for (let i = 0; i < strArr.length; i++) {
-		if (cur.indexOf(strArr[i]) === -1) {
-			cur.push(strArr[i]);
-			search(strArr, cur, results);
-			cur.pop();
+
+function permution(str) {
+	let res = [],
+		temp = [],
+		arr = str.split('');
+		
+	let fn = function(curArr,strArr){
+		if(curArr.length==strArr.length){
+			// 注意这里需要生成一个新数组
+			res.push([...curArr]);
+			return 
 		}
+		
+		strArr.forEach((k,i)=>{
+			if(!curArr.includes(k)){
+				curArr.push(k);
+				fn(curArr,strArr);
+				curArr.pop()
+			}
+		})
 	}
-	
+
+	fn(temp,arr);
+	console.log(res)
+	return res	
 }
+
+permution('asd')

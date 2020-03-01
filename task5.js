@@ -2390,3 +2390,28 @@
 
 //     return res;
 // };
+
+/**
+ * @param {string} S
+ * @return {string[]}
+ */
+var letterCasePermutation = function(S) {
+    let res = [],
+        temp = S.split('');
+    let fn = function(s,arr){
+        if(s.length==S.length){
+            res.push(s);
+            return;
+        }
+        for(let i = 0; i < arr.length; i++){
+			let t = arr.shift();
+			// 防止恶意输入
+            fn(`${s}`+`${t}`,arr);
+            arr.push(t)
+        }
+    }
+	fn('',temp);
+    return res;
+};
+
+letterCasePermutation("a1b2")

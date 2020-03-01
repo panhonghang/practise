@@ -2317,48 +2317,76 @@
 
 // fn(9)
 
-let myNew = function(){
-	let obj = {};
-	let fn = [...arguments].shift();
-	console.log(fn)
-	obj._proto_ = fn.prototype;
-	fn.call(obj,...arguments);
-	return obj;
-}
+// let myNew = function(){
+// 	let obj = {};
+// 	let fn = [...arguments].shift();
+// 	console.log(fn)
+// 	obj._proto_ = fn.prototype;
+// 	fn.call(obj,...arguments);
+// 	return obj;
+// }
 
-function a(aa){
-	this.a = aa
-}
+// function a(aa){
+// 	this.a = aa
+// }
 
-// a();
+// // a();
 
-let b = new a(11);
-let c = myNew(a,10);
+// let b = new a(11);
+// let c = myNew(a,10);
 
-console.log(c)
+// console.log(c)
 
-Function.prototype.myCall = function (obj = window) {
-	obj.fn = this
-	const args = [...arguments].splice(1)
-	const result = obj.fn(...args)
-	delete obj.fn
-	return result
-  }
+// Function.prototype.myCall = function (obj = window) {
+// 	obj.fn = this
+// 	const args = [...arguments].splice(1)
+// 	const result = obj.fn(...args)
+// 	delete obj.fn
+// 	return result
+//   }
   
-  Function.prototype.myApply = function (obj = window) {
-	obj.fn = this
-	const args = arguments[1]
-	let result = args ?
-	  obj.fn(...args) :
-	  obj.fn()
-	delete obj.fn
-	return result
-  }
+//   Function.prototype.myApply = function (obj = window) {
+// 	obj.fn = this
+// 	const args = arguments[1]
+// 	let result = args ?
+// 	  obj.fn(...args) :
+// 	  obj.fn()
+// 	delete obj.fn
+// 	return result
+//   }
   
-  Function.prototype.myBind = function (obj = window) {
-	const that = this
-	const args = [...arguments].splice(1)
-	return function () {
-	  return that.apply(obj, [...args, ...arguments])
-	}
-  }
+//   Function.prototype.myBind = function (obj = window) {
+// 	const that = this
+// 	const args = [...arguments].splice(1)
+// 	return function () {
+// 	  return that.apply(obj, [...args, ...arguments])
+// 	}
+//   }
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+// var levelOrder = function(root) {
+//     let temp = [],
+//         res = [];
+//     let fn = function(node){
+//         if(node==null) return;
+//         res.push(node.val);
+//         node.left&&temp.push(node.left);
+//         node.right&&temp.push(node.right);
+//         while(temp.length>0){
+//             fn(temp.shift())
+//         }
+//     }
+//     fn(root);
+
+//     return res;
+// };

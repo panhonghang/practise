@@ -2336,3 +2336,29 @@ let b = new a(11);
 let c = myNew(a,10);
 
 console.log(c)
+
+Function.prototype.myCall = function (obj = window) {
+	obj.fn = this
+	const args = [...arguments].splice(1)
+	const result = obj.fn(...args)
+	delete obj.fn
+	return result
+  }
+  
+  Function.prototype.myApply = function (obj = window) {
+	obj.fn = this
+	const args = arguments[1]
+	let result = args ?
+	  obj.fn(...args) :
+	  obj.fn()
+	delete obj.fn
+	return result
+  }
+  
+  Function.prototype.myBind = function (obj = window) {
+	const that = this
+	const args = [...arguments].splice(1)
+	return function () {
+	  return that.apply(obj, [...args, ...arguments])
+	}
+  }

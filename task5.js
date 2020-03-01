@@ -2265,30 +2265,74 @@
 // genUrl(requireTree)
 
 
-function permution(str) {
-	let res = [],
-		temp = [],
-		arr = str.split('');
+// function permution(str) {
+// 	let res = [],
+// 		temp = [],
+// 		arr = str.split('');
 		
-	let fn = function(curArr,strArr){
-		if(curArr.length==strArr.length){
-			// 注意这里需要生成一个新数组
-			res.push([...curArr]);
-			return 
-		}
+// 	let fn = function(curArr,strArr){
+// 		if(curArr.length==strArr.length){
+// 			// 注意这里需要生成一个新数组
+// 			res.push([...curArr]);
+// 			return 
+// 		}
 		
-		strArr.forEach((k,i)=>{
-			if(!curArr.includes(k)){
-				curArr.push(k);
-				fn(curArr,strArr);
-				curArr.pop()
-			}
-		})
-	}
+// 		strArr.forEach((k,i)=>{
+// 			if(!curArr.includes(k)){
+// 				curArr.push(k);
+// 				fn(curArr,strArr);
+// 				curArr.pop()
+// 			}
+// 		})
+// 	}
 
-	fn(temp,arr);
-	console.log(res)
-	return res	
+// 	fn(temp,arr);
+// 	console.log(res)
+// 	return res	
+// }
+
+// permution('asd')
+
+
+// let fn = function(n){
+// 	if(n<5){
+// 		console.log(1);
+// 		return
+// 	}
+// 	// 能生的
+// 	let arr1 = [1],
+// 	// 不能生的
+// 		arr2 = [];
+// 	for(let i = 5; i <= n; i++){
+// 		for(let j = 0; j < arr1.length; j++){
+// 			arr2.push(1);
+// 		}
+// 		if(i%4==0){
+// 			arr1.push(1);
+// 			arr2.shift()
+// 		}
+// 	}
+// 	console.log(arr1.length+arr2.length);
+// }
+
+// fn(9)
+
+let myNew = function(){
+	let obj = {};
+	let fn = [...arguments].shift();
+	console.log(fn)
+	obj._proto_ = fn.prototype;
+	fn.call(obj,...arguments);
+	return obj;
 }
 
-permution('asd')
+function a(aa){
+	this.a = aa
+}
+
+// a();
+
+let b = new a(11);
+let c = myNew(a,10);
+
+console.log(c)

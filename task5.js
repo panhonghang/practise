@@ -2395,23 +2395,44 @@
  * @param {string} S
  * @return {string[]}
  */
-var letterCasePermutation = function(S) {
-    let res = [],
-        temp = S.split('');
-    let fn = function(s,arr){
-        if(s.length==S.length){
-            res.push(s);
-            return;
-        }
-        for(let i = 0; i < arr.length; i++){
-			let t = arr.shift();
-			// 防止恶意输入
-            fn(`${s}`+`${t}`,arr);
-            arr.push(t)
-        }
-    }
-	fn('',temp);
-    return res;
-};
+// var letterCasePermutation = function(S) {
+//     let res = [],
+//         temp = S.split('');
+//     let fn = function(s,arr){
+//         if(s.length==S.length){
+//             res.push(s);
+//             return;
+//         }
+//         for(let i = 0; i < arr.length; i++){
+// 			let t = arr.shift();
+// 			// 防止恶意输入
+//             fn(`${s}`+`${t}`,arr);
+//             arr.push(t)
+//         }
+//     }
+// 	fn('',temp);
+//     return res;
+// };
 
-letterCasePermutation("a1b2")
+// letterCasePermutation("a1b2")
+
+var obj = {
+// 如果Symbol.toPrimitive()方法，优先调用再返回
+// 调用valueOf()，如果转换为原始类型，则返回
+// 调用toString()，如果转换为原始类型，则返回
+// 如果都没有返回原始类型，会报错
+    value: 3,
+    valueOf() {
+      this.value = this.value+1;
+      return this.value;
+    },
+    toString() {
+      this.value = this.value+2;
+      return this.value;
+    },
+    [Symbol.toPrimitive](){
+      this.value = this.value+3;
+      return this.value;
+    }
+  }
+  console.log(obj==6,obj==9); // 输出true true

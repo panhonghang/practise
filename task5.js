@@ -2477,3 +2477,41 @@
 // function Child () {
 //     Parent.call(this);
 // }
+
+
+// 快排
+let arr = [2,2,4,1,5,7,2,7,9,2,5,8,4,7];
+
+let quickSort = function(arr){
+    if(arr.length<2) return arr
+    let middle = Math.floor(arr.length/2);
+    
+    let fn = function(index,start,end){
+        let newI = index,
+            newS = start,
+            newE = end;
+        if(end-start==1) return
+
+        while(start<end){
+            if(arr[start]>arr[index]){
+                [arr[start],arr[index]]=[arr[index],arr[start]];
+            } else{
+                start++
+            }
+            if(arr[end]<arr[index]){
+                [arr[end],arr[index]]=[arr[index],arr[end]];
+            } else{
+                end--
+            }
+        }
+
+        fn(Math.floor((newI+newS)/2),newS,newI);
+        fn(Math.floor((newI+newE)/2),newI,newE);
+    }
+
+    fn(middle,0,arr.length-1);
+
+    return arr
+}
+
+console.log(quickSort(arr));

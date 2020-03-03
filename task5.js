@@ -2436,3 +2436,44 @@
 //     }
 //   }
 //   console.log(obj==6,obj==9); // 输出true true
+
+// 寄生继承
+//function createObj (o) {
+//    var clone = object.create(o);
+//    return clone;
+//}
+
+// 组合继承
+// function Child (name, age) {
+//    Parent.call(this);
+//}
+//Child.prototype = new Parent();
+
+// 原型链继承
+// function Child () {}
+
+// Child.prototype = new Parent();
+// 原型式继承
+// function createObj(o) {
+//     function F(){}
+//     F.prototype = o;
+//     return new F();
+// }
+// Child = creatObj(Parent)
+// 寄生组合继承
+//function object(o) {
+//     function F() {}
+//     F.prototype = o;
+//     return new F();
+// }
+// function prototype(child, parent) {
+//     var prototype = object(parent.prototype);
+//     prototype.constructor = child;
+//     child.prototype = prototype;
+// }
+// 当我们使用的时候：
+// prototype(Child, Parent);
+// 构造函数继承
+// function Child () {
+//     Parent.call(this);
+// }

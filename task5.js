@@ -2480,38 +2480,66 @@
 
 
 // 快排
-let arr = [2,2,4,1,5,7,2,7,9,2,5,8,4,7];
+// let arr = [2,2,4,1,5,7,2,7,9,2,5,8,4,7];
 
-let quickSort = function(arr){
-    if(arr.length<2) return arr
-    let middle = Math.floor(arr.length/2);
+// let quickSort = function(arr){
+//     if(arr.length<2) return arr
+//     let middle = Math.floor(arr.length/2);
     
-    let fn = function(index,start,end){
-        let newI = index,
-            newS = start,
-            newE = end;
-        if(end-start==1) return
+//     let fn = function(index,start,end){
+//         let newI = index,
+//             newS = start,
+//             newE = end;
+//         if(end-start==1) return
 
-        while(start<end){
-            if(arr[start]>arr[index]){
-                [arr[start],arr[index]]=[arr[index],arr[start]];
-            } else{
-                start++
-            }
-            if(arr[end]<arr[index]){
-                [arr[end],arr[index]]=[arr[index],arr[end]];
-            } else{
-                end--
-            }
-        }
+//         while(start<end){
+//             if(arr[start]>arr[index]){
+//                 [arr[start],arr[index]]=[arr[index],arr[start]];
+//             } else{
+//                 start++
+//             }
+//             if(arr[end]<arr[index]){
+//                 [arr[end],arr[index]]=[arr[index],arr[end]];
+//             } else{
+//                 end--
+//             }
+//         }
 
-        fn(Math.floor((newI+newS)/2),newS,newI);
-        fn(Math.floor((newI+newE)/2),newI,newE);
+//         fn(Math.floor((newI+newS)/2),newS,newI);
+//         fn(Math.floor((newI+newE)/2),newI,newE);
+//     }
+
+//     fn(middle,0,arr.length-1);
+
+//     return arr
+// }
+
+// console.log(quickSort(arr));
+
+let bigNumberAdd = function(num1,num2){
+    let res = '',
+        s1 = '',
+        s2 = '',
+        temp = 0;
+    if(num1==0) return num2;
+    if(num2==0) return num1;
+    num1 = num1+'';
+    num2 = num2+'';
+
+    s1 = num1.length-1;
+    s2 = num2.length-1;
+
+    while(s1>=0||s2>=0){
+        let a1 = parseInt(num1[s1])||0,
+            a2 = parseInt(num2[s2])||0;
+
+        res = res+(temp+a1+a2)%10;
+        temp = Math.floor((a1+a2)/10)
+        s1--;
+        s2--;
     }
-
-    fn(middle,0,arr.length-1);
-
-    return arr
+    res = +(res+"").split('').reverse().join('')
+    return res;
 }
 
-console.log(quickSort(arr));
+console.log(bigNumberAdd(1234,109))

@@ -2516,30 +2516,30 @@
 
 // console.log(quickSort(arr));
 
-let bigNumberAdd = function(num1,num2){
-    let res = '',
-        s1 = '',
-        s2 = '',
-        temp = 0;
-    if(num1==0) return num2;
-    if(num2==0) return num1;
-    num1 = num1+'';
-    num2 = num2+'';
+// let bigNumberAdd = function(num1,num2){
+//     let res = '',
+//         s1 = '',
+//         s2 = '',
+//         temp = 0;
+//     if(num1==0) return num2;
+//     if(num2==0) return num1;
+//     num1 = num1+'';
+//     num2 = num2+'';
 
-    s1 = num1.length-1;
-    s2 = num2.length-1;
+//     s1 = num1.length-1;
+//     s2 = num2.length-1;
 
-    while(s1>=0||s2>=0){
-        let a1 = parseInt(num1[s1])||0,
-            a2 = parseInt(num2[s2])||0;
+//     while(s1>=0||s2>=0){
+//         let a1 = parseInt(num1[s1])||0,
+//             a2 = parseInt(num2[s2])||0;
 
-        res = res+(temp+a1+a2)%10;
-        temp = Math.floor((a1+a2)/10)
-        s1--;
-        s2--;
-    }
-    res = +(res+"").split('').reverse().join('')
-    return res;
-}
+//         res = res+(temp+a1+a2)%10;
+//         temp = Math.floor((a1+a2)/10)
+//         s1--;
+//         s2--;
+//     }
+//     res = +(res+"").split('').reverse().join('')
+//     return res;
+// }
 
-console.log(bigNumberAdd(1234,109))
+// console.log(bigNumberAdd(1234,109))

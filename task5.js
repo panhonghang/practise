@@ -2543,3 +2543,24 @@
 // }
 
 // console.log(bigNumberAdd(1234,109))
+
+
+const deepCopy = function(obj){
+    let newObj = {};
+    if(obj.__proto__.constructor !=="Object") return
+    for(let k in obj){
+        if(obj.hasOwnProperty(k)){
+            newObj[k] = obj[k];
+        }
+    }
+    console.log(newObj)
+    return newObj;
+}
+
+let a = {
+    a:1,
+    b:2
+}
+console.log(a.__proto__.constructor.prototype.s  = 0)
+
+deepCopy(a)

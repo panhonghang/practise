@@ -2545,22 +2545,45 @@
 // console.log(bigNumberAdd(1234,109))
 
 
-const deepCopy = function(obj){
-    let newObj = {};
-    if(obj.__proto__.constructor !=="Object") return
-    for(let k in obj){
-        if(obj.hasOwnProperty(k)){
-            newObj[k] = obj[k];
-        }
-    }
-    console.log(newObj)
-    return newObj;
-}
+// const deepCopy = function(obj){
+//     let newObj = {};
+//     if(obj.__proto__.constructor !=="Object") return
+//     for(let k in obj){
+//         if(obj.hasOwnProperty(k)){
+//             newObj[k] = obj[k];
+//         }
+//     }
+//     console.log(newObj)
+//     return newObj;
+// }
 
-let a = {
-    a:1,
-    b:2
-}
-console.log(a.__proto__.constructor.prototype.s  = 0)
+// let a = {
+//     a:1,
+//     b:2
+// }
+// console.log(a.__proto__.constructor.prototype.s  = 0)
 
-deepCopy(a)
+// deepCopy(a)
+
+
+// const newFlat = function(arr){
+//     let resArr = [];
+    
+//     let fn = function(ARR){
+//         ARR.forEach((k)=>{
+//             if(Array.isArray(k)){
+//                 fn(k);
+//             } else{
+//                 resArr.push(k)
+//             }
+
+//         });
+//     }
+//     fn(arr)
+
+//     console.log(resArr);
+//     return resArr
+// }
+
+
+// newFlat([1,2,3,4,[3,4,5,[6,6,7]]])

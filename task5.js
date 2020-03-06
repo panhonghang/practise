@@ -2587,3 +2587,61 @@
 
 
 // newFlat([1,2,3,4,[3,4,5,[6,6,7]]])
+
+// const throttle = function(fn,time){
+//     let timer = null;
+    
+//     return function(){
+//         if(timer) return;
+//         timer = true;
+//         let fn1 = ()=>{
+//             fn();
+//             timer = false;
+//         }
+//         setTimeout(fn1,time);
+//     }
+// }
+// let a = function(){
+//     console.log(1)
+// }
+
+// setInterval(throttle(a,5000),0)
+
+const debounce = function(fn,time){
+    let timer = null;
+    return function(){
+        if(timer){
+            clearTimeout(timer);
+            timer = null;
+        }
+        timer = setTimeout(fn,time);
+    }
+}
+
+const a = function(){
+    console.log(1)
+}
+setInterval(debounce(a,500),1000)
+
+
+// function debounce(fn, wait) {
+//     var timer = null;
+//     return function () {
+//         var context = this
+//         var args = arguments
+//         if (timer) {
+//             clearTimeout(timer);
+//             timer = null;
+//         }
+//         timer = setTimeout(function () {
+//             fn.apply(context, args)
+//         }, wait)
+//     }
+//   }
+  
+//   var fn = function () {
+//     console.log('boom')
+//   }
+  
+//   setInterval(debounce(fn,500),1000) 
+  

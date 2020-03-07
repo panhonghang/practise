@@ -2655,3 +2655,26 @@ const myNew = function(){
     }
     return obj;
 }
+
+Function.prototype.myCall = function(){
+    let fn = this;
+    let [context,...arg] = [...arguments];
+    context.fn = fn;
+    let res = context.fn(...arg);
+    delete context.fn;
+    return res;
+}
+
+Function.prototype.myApply = function(){
+    let fn = this;
+    let [context,arr] = [...arguments];
+    context.fn = fn;
+    let res = null;
+    if(!arr){
+       res  = context.fn()
+    } else{
+        res  = context.fn(...arr)
+    }
+    delete context.fn;
+    return res;
+}

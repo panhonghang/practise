@@ -2645,36 +2645,51 @@
   
 //   setInterval(debounce(fn,500),1000) 
   
-const myNew = function(){
-    let obj = {};
-    let [constructor,...arg] = [...agruments];
-    obj.__proto__ = constructor.prototype;
-    let res = constructor.apply(obj,agr);
-    if(typeof res == 'object'&&res){
-        return res
-    }
-    return obj;
-}
+// const myNew = function(){
+//     let obj = {};
+//     let [constructor,...arg] = [...agruments];
+//     obj.__proto__ = constructor.prototype;
+//     let res = constructor.apply(obj,agr);
+//     if(typeof res == 'object'&&res){
+//         return res
+//     }
+//     return obj;
+// }
 
-Function.prototype.myCall = function(){
-    let fn = this;
-    let [context,...arg] = [...arguments];
-    context.fn = fn;
-    let res = context.fn(...arg);
-    delete context.fn;
-    return res;
-}
+// Function.prototype.myCall = function(){
+//     let fn = this;
+//     let [context,...arg] = [...arguments];
+//     context.fn = fn;
+//     let res = context.fn(...arg);
+//     delete context.fn;
+//     return res;
+// }
 
-Function.prototype.myApply = function(){
-    let fn = this;
-    let [context,arr] = [...arguments];
-    context.fn = fn;
-    let res = null;
-    if(!arr){
-       res  = context.fn()
+// Function.prototype.myApply = function(){
+//     let fn = this;
+//     let [context,arr] = [...arguments];
+//     context.fn = fn;
+//     let res = null;
+//     if(!arr){
+//        res  = context.fn()
+//     } else{
+//         res  = context.fn(...arr)
+//     }
+//     delete context.fn;
+//     return res;
+// }
+
+function curry(fn,...arg){
+    if(fn.length>arg.length){
+        return (...newAgr)=>curry(fn,...arg,...newAgr);
     } else{
-        res  = context.fn(...arr)
+        return fn(...arg)
     }
-    delete context.fn;
-    return res;
 }
+let add = function(a,b,c,d){
+    return a+b+c+d;
+}
+
+let a = curry(add)
+
+console.log(a(1)(2,4)(3))

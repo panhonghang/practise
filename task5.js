@@ -2607,21 +2607,21 @@
 
 // setInterval(throttle(a,5000),0)
 
-const debounce = function(fn,time){
-    let timer = null;
-    return function(){
-        if(timer){
-            clearTimeout(timer);
-            timer = null;
-        }
-        timer = setTimeout(fn,time);
-    }
-}
+// const debounce = function(fn,time){
+//     let timer = null;
+//     return function(){
+//         if(timer){
+//             clearTimeout(timer);
+//             timer = null;
+//         }
+//         timer = setTimeout(fn,time);
+//     }
+// }
 
-const a = function(){
-    console.log(1)
-}
-setInterval(debounce(a,500),1000)
+// const a = function(){
+//     console.log(1)
+// }
+// setInterval(debounce(a,500),1000)
 
 
 // function debounce(fn, wait) {
@@ -2645,3 +2645,13 @@ setInterval(debounce(a,500),1000)
   
 //   setInterval(debounce(fn,500),1000) 
   
+const myNew = function(){
+    let obj = {};
+    let [constructor,...arg] = [...agruments];
+    obj.__proto__ = constructor.prototype;
+    let res = constructor.apply(obj,agr);
+    if(typeof res == 'object'&&res){
+        return res
+    }
+    return obj;
+}

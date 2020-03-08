@@ -2679,17 +2679,101 @@
 //     return res;
 // }
 
-function curry(fn,...arg){
-    if(fn.length>arg.length){
-        return (...newAgr)=>curry(fn,...arg,...newAgr);
-    } else{
-        return fn(...arg)
-    }
-}
-let add = function(a,b,c,d){
-    return a+b+c+d;
+// function curry(fn,...arg){
+//     if(fn.length>arg.length){
+//         return (...newAgr)=>curry(fn,...arg,...newAgr);
+//     } else{
+//         return fn(...arg)
+//     }
+// }
+// let add = function(a,b,c,d){
+//     return a+b+c+d;
+// }
+
+// let a = curry(add)
+
+// console.log(a(1)(2,4)(3))
+
+
+// const JSONP = function(res){
+//     let script = document.createElement('script');
+//     var url = req.url + '?callback=' + req.callback.name;
+//     script.src = url;
+//     document.getElementsByTagName('head')[0].appendChild(script); 
+// }
+
+// function hello(res){
+//     alert('hello ' + res.data);
+// }
+// jsonp({
+//     url : '',
+//     callback : hello 
+// });
+
+// const ajax = function(){
+
+// }
+
+// function ajax() {
+    //     var xhr = new XMLHttpRequest();
+    //     xhr.open('get', 'http://localhost:8080/readNum');
+    //     xhr.send();
+    //     xhr.onreadystatechange = function() {
+    //         if (xhr.readyState === 4) {
+    //             console.log('success', xhr.responseText);
+    //         } else {
+    //             console.log('error', xhr.responseText);
+    //         }
+    //     }
+// }
+
+// 继承方式
+function parent() {
+    
 }
 
-let a = curry(add)
+function child() {
+    
+}
+// 原型链继承
+child.prototype = new parent();
 
-console.log(a(1)(2,4)(3))
+// 构造函数继承
+function child(){
+    parent.call(this);
+}
+// 组合继承
+
+function child(){
+    parent.call(this);
+}
+
+child.prototype = new parent()
+// 原型式继承
+
+child = Object.create(parent);
+
+// Object.create()原理
+
+const object = function(fn){
+    let F = function(){}
+    F.prototype = fn;
+    return new F;
+}
+
+// 寄生式继承
+
+const Fn = function(fn){
+    let clone = Object.create(fn);
+    return clone;
+}
+
+child = Fn(parent);
+
+// 寄生组合式
+
+function prototype(child, parent) {
+    var prototype = Object.create(parent.prototype);
+    prototype.constructor = child;
+    child.prototype = prototype;
+}

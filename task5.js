@@ -2727,53 +2727,109 @@
     //     }
 // }
 
-// 继承方式
-function parent() {
+// // 继承方式
+// function parent() {
     
-}
+// }
 
-function child() {
+// function child() {
     
+// }
+// // 原型链继承
+// child.prototype = new parent();
+
+// // 构造函数继承
+// function child(){
+//     parent.call(this);
+// }
+// // 组合继承
+
+// function child(){
+//     parent.call(this);
+// }
+
+// child.prototype = new parent()
+// // 原型式继承
+
+// child = Object.create(parent);
+
+// // Object.create()原理
+
+// const object = function(fn){
+//     let F = function(){}
+//     F.prototype = fn;
+//     return new F;
+// }
+
+// // 寄生式继承
+
+// const Fn = function(fn){
+//     let clone = Object.create(fn);
+//     return clone;
+// }
+
+// child = Fn(parent);
+
+// // 寄生组合式
+
+// function prototype(child, parent) {
+//     var prototype = Object.create(parent.prototype);
+//     prototype.constructor = child;
+//     child.prototype = prototype;
+// }
+
+const quicksort = function(arr){
+    const fn = function(start,end){
+        if(end-start==1) return
+        let mid = Math.floor((start+end)/2);
+        let newS = start, newE = end;
+        while(start<end){
+            if(arr[start]>arr[mid]){
+                [arr[start],arr[mid]] = [arr[mid],arr[start]]
+            }
+            start++
+            if(arr[end]<arr[mid]){
+                [arr[end],arr[mid]] = [arr[mid],arr[end]];
+            }
+            end--
+        }
+        fn(newS,mid);
+        fn(mid,newE);
+    }
+
+    fn(0,arr.length-1)
+    return arr
 }
-// 原型链继承
-child.prototype = new parent();
 
-// 构造函数继承
-function child(){
-    parent.call(this);
-}
-// 组合继承
+console.log(quicksort([1,4,2,6,7,3,8,3,10]))
 
-function child(){
-    parent.call(this);
-}
 
-child.prototype = new parent()
-// 原型式继承
+// 并归排序
 
-child = Object.create(parent);
+// const mergeSort = function(arr){
+//     if(arr.length<2) return arr;
+//     let mid = Math.floor(arr.length/2),
+//         left = arr.splice(0,mid),
+//         right = arr;
+//     const merge = function(L,R){
+//         let res = [];
+//         while(L.length&&R.length){
+//             if(L[0]>R[0]){
+//                 res.push(R.shift())
+//             } else{
+//                 res.push(L.shift())
+//             }
+//         }
+//         while(L.length){
+//             res.push(L.shift())
+//         }
+//         while(R.length){
+//             res.push(R.shift())
+//         }
+//         return res;
+//     }
 
-// Object.create()原理
+//     return merge(mergeSort(left),mergeSort(right))
+// }
 
-const object = function(fn){
-    let F = function(){}
-    F.prototype = fn;
-    return new F;
-}
-
-// 寄生式继承
-
-const Fn = function(fn){
-    let clone = Object.create(fn);
-    return clone;
-}
-
-child = Fn(parent);
-
-// 寄生组合式
-
-function prototype(child, parent) {
-    var prototype = Object.create(parent.prototype);
-    prototype.constructor = child;
-    child.prototype = prototype;
-}
+// console.log(mergeSort([1,4,2,6,7,3,8,3,10]))

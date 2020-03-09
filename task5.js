@@ -2854,41 +2854,15 @@
 // var myArray = str.match(re);
 // console.log(myArray);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //line=readline()
 //print(line)
 
-function func1(cb){
-  
+function func1(cb){ 
     setTimeout(function(){
       console.log(1);
       cb();
-    }, 400)
-    
-  }
-  
+    }, 400)   
+  }  
   
   function func2(cb){
     setTimeout(function(){
@@ -2902,8 +2876,7 @@ function func1(cb){
     setTimeout(function(){
       console.log(3)
       cb();
-    }, 10)
-    
+    }, 10)   
   }
 //   async await 实现
 // function queue(list, count){
@@ -2938,7 +2911,21 @@ function func1(cb){
 //   }
 // }
 
-// queue([func1, func2, func3], 2)
+function queue(list, count){
+  let arr = [];
+  let cb = function(){
+    queue(list,count)
+  };
+  for(let i = 0; i < count; i++) {
+    if(!list.length) break;
+      arr.push(list.shift())
+    }
+  for(let i = 0; i < arr.length; i++) {
+    arr[i](cb)
+  }
+}
+
+queue([func1, func2, func3], 2)
 
   // 输出 2, 1, 3
   

@@ -2857,27 +2857,28 @@
 //line=readline()
 //print(line)
 
-function func1(cb){ 
-    setTimeout(function(){
-      console.log(1);
-      cb();
-    }, 400)   
-  }  
+// function func1(cb){ 
+//     setTimeout(function(){
+//       console.log(1);
+//       cb();
+//     }, 400)   
+//   }  
   
-  function func2(cb){
-    setTimeout(function(){
-      console.log(2)
-      cb();
-    }, 300)
-  }
+//   function func2(cb){
+//     setTimeout(function(){
+//       console.log(2)
+//       cb();
+//     }, 300)
+//   }
   
-  function func3(cb){
+//   function func3(cb){
    
-    setTimeout(function(){
-      console.log(3)
-      cb();
-    }, 10)   
-  }
+//     setTimeout(function(){
+//       console.log(3)
+//       cb();
+//     }, 10)   
+//   }
+
 //   async await 实现
 // function queue(list, count){
 
@@ -2911,21 +2912,50 @@ function func1(cb){
 //   }
 // }
 
-function queue(list, count){
-  let arr = [];
-  let cb = function(){
-    queue(list,count)
-  };
-  for(let i = 0; i < count; i++) {
-    if(!list.length) break;
-      arr.push(list.shift())
-    }
-  for(let i = 0; i < arr.length; i++) {
-    arr[i](cb)
-  }
-}
+// function queue(list, count){
+//   let arr = [];
+//   let cb = function(){
+//     queue(list,count)
+//   };
+//   for(let i = 0; i < count; i++) {
+//     if(!list.length) break;
+//       arr.push(list.shift())
+//     }
+//   for(let i = 0; i < arr.length; i++) {
+//     arr[i](cb)
+//   }
+// }
 
-queue([func1, func2, func3], 2)
+// queue([func1, func2, func3], 2)
 
   // 输出 2, 1, 3
   
+const fn = function(s1,s2){
+    let pre = s1.length -1,
+        next = s2.length-1,
+        temp = 0,
+        res = '';
+    while(pre>=0||next>=0){
+        let c = s1[pre]||0,
+            d = s2[next]||0;
+
+          c = +c;
+          d = +d;
+
+          res = ((temp + c + d)%2).toString()+res;
+          temp = Math.floor((temp + c + d)/2);
+          
+          if(pre>=0) pre--;
+          if(next>=0) next--;
+    }
+    if(temp) res = (temp).toString()+res;
+    console.log(res);
+    return res;
+}
+
+fn('010','110')
+
+
+
+
+

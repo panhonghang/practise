@@ -2929,33 +2929,103 @@
 // queue([func1, func2, func3], 2)
 
   // 输出 2, 1, 3
-  
-const fn = function(s1,s2){
-    let pre = s1.length -1,
-        next = s2.length-1,
-        temp = 0,
-        res = '';
-    while(pre>=0||next>=0){
-        let c = s1[pre]||0,
-            d = s2[next]||0;
 
-          c = +c;
-          d = +d;
+  //二进制加减
+// const fn = function(s1,s2){
+//     let pre = s1.length -1,
+//         next = s2.length-1,
+//         temp = 0,
+//         res = '';
+//     while(pre>=0||next>=0){
+//         let c = s1[pre]||0,
+//             d = s2[next]||0;
 
-          res = ((temp + c + d)%2).toString()+res;
-          temp = Math.floor((temp + c + d)/2);
+//           c = +c;
+//           d = +d;
+
+//           res = ((temp + c + d)%2).toString()+res;
+//           temp = Math.floor((temp + c + d)/2);
           
-          if(pre>=0) pre--;
-          if(next>=0) next--;
-    }
-    if(temp) res = (temp).toString()+res;
-    console.log(res);
-    return res;
-}
+//           if(pre>=0) pre--;
+//           if(next>=0) next--;
+//     }
+//     if(temp) res = (temp).toString()+res;
+//     console.log(res);
+//     return res;
+// }
 
-fn('010','110')
-
-
+// fn('010','110')
 
 
 
+
+
+//从一个整数数组中，找出连续递增的最长序列。
+
+// function findCont(arr){
+
+//       let Offset = 0, /*序列的开始位置*/
+//           Count = 1;/*序列长度*/
+//      let templen = 1,
+//          tempstart = 0;
+
+//       for(let i = 0; i < arr.length-1;i++){
+//           if(arr[i]+1==arr[i+1]){
+//             templen++
+//           }else{
+//             if(Count<templen){
+//                 Count = templen;
+//                 Offset = tempstart;
+//             }
+//             templen = 1,
+//             tempstart = i+1;
+//           }
+//       }
+//       if(Count<templen){
+//         Count = templen;
+//         Offset = tempstart;
+//       }
+//       return {offset : Offset, count: Count};
+// }
+// console.log(findCont([1,2,3,1,2,3,4]))
+// 在二叉排序树{value:Number, left:Object, right:Object}
+//上面找出第3大的节点。注意：不能把二叉树全量存储到另外的存储空间，
+//比如存储到数组中，然后取出数组的第三个元素。
+
+// function find(root){
+
+//     let pre = root,
+//         next = null,
+//         num1 = 0,
+//         num2 = 0;
+//     const fn = function(node){
+//         if(node.left) fn(node.left);
+//         next = node;
+//         num1++;
+//         if(num1==3) fn(pre);
+//         if(node.right) fn(node.right);
+//     }
+
+//     const fn1 = function(node){
+//         if(node.left) fn(node.left);
+//         pre = node;
+//         num2++;
+//         if(node.right) fn(node.right);
+//     }
+//     fn(root)
+//     return pre;
+// }
+
+//设定如下的对应关系(A=1,B=2,C=3,...,Z=26,AA=27,AB=28,....AZ=, BA=, .....AAA=, ...)，
+//编写一个转换函数，根据上面的规则把一个字符串: "WECHAT" 转换为数字
+
+// function StrToInt(str){
+//     let num = 0,
+//         len = str.length;
+
+//     for(let i = 0; i < len; i++){
+//         num = num + (str[i].charCodeAt()-64)*Math.pow(26,len-i-1);
+//     }
+//     return num;
+// }
+// console.log(StrToInt('AA'))

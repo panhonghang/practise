@@ -3029,3 +3029,54 @@
 //     return num;
 // }
 // console.log(StrToInt('AA'))
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[][]}
+ */
+const findNSum = function (nums, target,n) {
+  const fn = function (nums, target, N, result, results) {
+    // 结束条件
+    if (nums.length<N || target < nums[0]*N || target > nums[nums.length-1]*N) return;
+
+    if (N === 2){
+      let left = 0,
+          right = nums.length - 1;
+      while (left < right) {
+          let s = nums[left] + nums[right];
+        if (s === target) {
+          //返回结果
+          results.push([...result,nums[left],nums[right]]);
+          //去重
+          while (left < right && nums[left] === nums[left+1]) left++;
+          while (left < right && nums[right] === nums[right-1]) right++;
+          // 继续找其他结果
+          left++;
+          right--;
+        } else if (s < target) {
+          left++;
+        } else {
+          right--;
+        }
+      }
+    } else {
+      for(let i = 0; i < nums.length - N + 1; i++) {
+        if (i === 0 || (i > 0 && nums[i-1] !== nums[i])){
+          // 先定其中一个值，再求值
+          fn(nums.slice(i + 1), target - nums[i], N-1, [...result,...[nums[i]]], results);
+        }
+      }
+    }
+  };
+  let results = [];
+  
+  nums.sort((a,b)=>a-b);
+
+  fn(nums, target, n, [], results);
+
+  return results;
+};
+
+
+console.log(findNSum([-2, -1, -1, 1, 1, 2, 2], 0, 4));

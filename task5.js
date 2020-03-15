@@ -3299,17 +3299,45 @@
  *   isSorted([4, 3, 2]); // -1
  *   isSorted([4, 3, 5]); // 0
  */
-function isSorted(arr) {
-  /* 代码实现 */
-  let res = 0,
-    temp1 = [...arr],
-    temp2 = [...arr];
-    
-    temp1.sort((a,b)=>a-b);
-    temp2.sort((a,b)=>b-a);
-    arr = arr.join('');
+// function isSorted(arr) {
+//   /* 代码实现 */
+//   let res = 0,
+//     temp1 = [...arr],
+//     temp2 = [...arr];
+
+//     temp1.sort((a,b)=>a-b);
+//     temp2.sort((a,b)=>b-a);
+//     arr = arr.join('');
   
-  if(arr==temp1.join('')) return 1;
-  if(arr==temp2.join('')) return -1;
-  return res;
-}
+//   if(arr==temp1.join('')) return 1;
+//   if(arr==temp2.join('')) return -1;
+//   return res;
+// }
+
+/** 
+ * 题目三
+ * 函数组合运行
+ * 说明：实现一个方法，可将多个函数方法按从左到右的方式组合运行。
+ *   如`composeFunctions(fn1,fn2,fn3,fn4)`等价于`fn4(fn3(fn2(fn1))`。
+ * 示例：
+ *  const add = x => x + 1;
+ *  const multiply = (x, y) => x * y;
+ *  const multiplyAdd = composeFunctions(multiply, add);
+ *  multiplyAdd(3, 4) // 返回 13
+ */
+
+// function composeFunctions(...fns) {
+//   return (...agr)  =>{
+//     let res = fns[0](...agr);
+//     for(let i = 1; i < fns.length; i++){
+//       res = fns[i](res)
+//     }
+//     return res;
+//   }
+// }
+
+// const add = x => x + 1;
+// const multiply = (x, y) => x*y;
+// const multiplyAdd = composeFunctions(multiply, add);
+
+// console.log(multiplyAdd(3, 4)) // 返回 13

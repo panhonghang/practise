@@ -3289,3 +3289,27 @@
 // }
 
 // flatten({a: 1, b: { c:{}, d: 2, e:{f:1} }})
+
+/**
+ * 题目二
+ * 判断数组的排序
+ * 说明：实现一个方法，数组为升序返回1，数组为降序返回-1，乱序返回0
+ * 示例：
+ *   isSorted([0, 1, 2, 2]); // 1
+ *   isSorted([4, 3, 2]); // -1
+ *   isSorted([4, 3, 5]); // 0
+ */
+function isSorted(arr) {
+  /* 代码实现 */
+  let res = 0,
+    temp1 = [...arr],
+    temp2 = [...arr];
+    
+    temp1.sort((a,b)=>a-b);
+    temp2.sort((a,b)=>b-a);
+    arr = arr.join('');
+  
+  if(arr==temp1.join('')) return 1;
+  if(arr==temp2.join('')) return -1;
+  return res;
+}

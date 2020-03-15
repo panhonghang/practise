@@ -3250,3 +3250,42 @@
 // const s = '2[abc]3[cd]ef'; 
 
 // decodeString(s)
+
+
+/**
+ * 题目一
+ * 实现一个方法，接受一个对象，把其打平成一层
+ * 说明：1. 对象的key符合变量名规则。2. 打平时，空对象忽略
+ * 示例：
+ *   flatten({a: 1, b: { c:{}, d: 2 }}); // {a: 1, 'b.d': 2}
+ */
+// function flatten(Obj) {
+//   /* 代码实现 */
+//   let res = {};
+//   const fn = function(key,obj){
+//     for(let k in obj){
+//       if(obj.hasOwnProperty(k)){
+//         if((obj[k] instanceof Object)){
+//           if(JSON.stringify(obj[k])!=='{}'){
+//             if(key!==''){
+//               fn(`${key}`+'.'+`${k}`,obj[k]);
+//             } else{
+//               fn(`${k}`,obj[k]);
+//             }
+//           }
+//         } else{
+//           if(key!==''){
+//             res[`${key}`+'.'+`${k}`] = obj[k]
+//           } else{
+//             res[k] = obj[k]
+//           }
+//         }
+//       }
+//     }
+//   }
+
+//   fn('',Obj)
+//   console.log(res)
+// }
+
+// flatten({a: 1, b: { c:{}, d: 2, e:{f:1} }})

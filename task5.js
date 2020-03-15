@@ -3341,3 +3341,46 @@
 // const multiplyAdd = composeFunctions(multiply, add);
 
 // console.log(multiplyAdd(3, 4)) // 返回 13
+
+/**
+ * 说明：给定一个编码字符，按编码规则进行解码，输出字符串
+ *     编码规则是`count[letter]`，将letter的内容count次输出，count是0或正整数，letter是区分大小写的纯字母
+ * 示例：
+ * const s = '3[a]2[bc]'; decodeString(s); // 返回'aaabcbc'
+ * const s = '3[a2[c]]'; decodeString(s); // 返回'accaccacc'
+ * const s = '2[abc]3[cd]ef'; decodeString(s); // 返回'abcabccdcdcdef'
+ */
+
+   /* 功能实现 */
+// const Str = (num,s)=>{
+//   let res = '';
+//   while(num){
+//     res += s
+//     num--;
+//   }
+//   return res;
+// }
+
+// function decodeString(str){
+//   let left = [],
+//       len = str.length;
+
+//   for(let i = 0; i < len; i++){
+//     if(str[i]=='[') left.push(i);
+//   }
+
+//   left = left.reverse();
+//   for(let j = 0; j < left.length; j++){
+//       let k = str.length;
+//       while(str[k]!==']'){
+//         k--;
+//       }
+//       str = str.slice(0,left[j]-1) + Str(str[left[j]-1],str.slice(left[j]+1,k)) + str.slice(k+1);
+//   }
+//   return str
+// }
+
+
+// const s = '2[abc]3[cd]ef'; 
+
+// console.log(decodeString(s));

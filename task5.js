@@ -3166,3 +3166,87 @@
 // }
 
 // fn(5,['.','.','X','.','X'],['X','X','.','.','.'])
+
+// function flatten(obj) {
+//   /* 代码实现 */
+//   let res = {};
+//   for(let k in obj){
+//     if(obj.hasOwnProperty(k)){
+//       if((obj[k] instanceof Object)){
+//         if(JSON.stringify(obj[k])!=='{}') res[k] = flatten(obj[k])
+//       } else{
+//         res[k] = obj[k]
+//       }
+//     }
+//   }
+//   return res;
+// }
+
+// console.log(flatten({a: 1,b:{c:{}, d: 2 }}))
+
+// function isSorted(arr) {
+//   /* 代码实现 */
+//   let res = 0,
+//       temp1 = [...arr],
+//       temp2 = [...arr];
+//       temp1.sort((a,b)=>a-b);
+//       temp2.sort((a,b)=>b-a);
+//       arr = arr.join('');
+//       if(arr==temp1.join('')) return 1;
+
+//       if(arr==temp2.join('')) return -1
+
+//   return res;
+// }
+
+// console.log(isSorted([0, 1, 2, 2])); // 1
+// console.log(isSorted([4, 3, 2])); // -1
+// console.log(isSorted([4, 3, 5])); // 0
+
+// const add = x => x + 1;
+// const multiply = (x, y) => x * y;
+// const multiplyAdd = composeFunctions(multiply, add);
+
+// console.log(multiplyAdd)
+
+// function composeFunctions(...fns) {
+//   let len = fns.length -1;
+//    if(len > 0){
+//      let fn1 = fns.pop();
+//       return fn1(composeFunctions(...fns),...arguments);
+//    } else{
+//      return (...agruments) => fns[0](...agruments)
+//    }
+// }
+
+// const Str = (len,s)=>{
+//     let res = '';
+
+//     for(let i = 0; i < len; i++){
+//         res=res+s
+//     }
+//     return res
+// }
+
+// let decodeString = (str)=>{
+//     let left = [],
+//         right = 0,
+//         num = 0;
+//     for(let i = 0; i < str.length; i++){
+//         if(str[i]=='[') left.push(i);
+//     }
+
+//     for(let j = 0; j < left.length; j++){
+//         right = 0;
+//         while(str[right]!==']'){
+//             right++;
+//             if(str[right]==']') break
+//         }
+//         str = str.slice(0,left[j]-1) + Str(str[left[j]-1],str.slice(left[j]+1,right)) + str.slice(right+1);
+//     }
+//     console.log(str)
+//     return str
+// }
+// const s = '2[abc]3[cd]ef'; 
+
+// decodeString(s)

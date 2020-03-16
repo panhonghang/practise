@@ -3480,7 +3480,40 @@
  * @param {TreeNode} root
  * @return {number[][]}
  */
-var levelOrder = function(root) {
+// var levelOrder = function(root) {
+//   if(!root) return [];
+//   let arr = [],
+//       res = [],
+//       level = 0,
+//       len = 0,
+//       temp = null;
+//       arr.push(root);
+//   while(arr.length){
+//       len = arr.length;
+//       res.push([]);
+//       for(let i = 0; i < len; i++){
+//           temp = arr.shift();
+//           res[level].push(temp.val);
+//           if(temp.left) arr.push(temp.left);
+//           if(temp.right) arr.push(temp.right);
+//       }
+//       level++;
+//   }
+//   return res;
+// };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var rightSideView = function(root) {
   if(!root) return [];
   let arr = [],
       res = [],
@@ -3490,14 +3523,12 @@ var levelOrder = function(root) {
       arr.push(root);
   while(arr.length){
       len = arr.length;
-      res.push([]);
+      res.push(arr[0].val);
       for(let i = 0; i < len; i++){
           temp = arr.shift();
-          res[level].push(temp.val);
-          if(temp.left) arr.push(temp.left);
           if(temp.right) arr.push(temp.right);
+          if(temp.left) arr.push(temp.left);
       }
-      level++;
   }
   return res;
 };

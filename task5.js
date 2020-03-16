@@ -3397,21 +3397,53 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-var swapPairs = function(head) {
-  if(!head||!head.next) return head;
-  let node = head,
-      pre = new ListNode(null),
-      next = null;
-      head = head.next;
-  while(node){
-      if(!node||!node.next) break;
-      next = node.next;
-      pre.next = next;
-      node.next = next.next;
-      next.next = node;
+// var swapPairs = function(head) {
+//   if(!head||!head.next) return head;
+//   let node = head,
+//       pre = new ListNode(null),
+//       next = null;
+//       head = head.next;
+//   while(node){
+//       if(!node||!node.next) break;
+//       next = node.next;
+//       pre.next = next;
+//       node.next = next.next;
+//       next.next = node;
 
-      pre = node;
-      node = node.next;
+//       pre = node;
+//       node = node.next;
+//   }
+//   return head
+// };
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} k
+ * @return {ListNode}
+ */
+var reverseKGroup = function(head, k) {
+  let p = head,
+      cur = head,
+      pre = null,
+      next = null;
+  for(let i = 0; i < k; i++){
+      if(!p) return head;
+      p = p.next
   }
-  return head
+  for(let i = 0; i < k; i++){
+      next = cur.next;
+      cur.next = pre;
+
+      pre = cur;
+      cur = next;
+  }
+  head.next = reverseKGroup(cur,k)
+  return pre;
 };

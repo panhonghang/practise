@@ -3384,3 +3384,34 @@
 // const s = '2[abc]3[cd]ef'; 
 
 // console.log(decodeString(s));
+
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var swapPairs = function(head) {
+  if(!head||!head.next) return head;
+  let node = head,
+      pre = new ListNode(null),
+      next = null;
+      head = head.next;
+  while(node){
+      if(!node||!node.next) break;
+      next = node.next;
+      pre.next = next;
+      node.next = next.next;
+      next.next = node;
+
+      pre = node;
+      node = node.next;
+  }
+  return head
+};

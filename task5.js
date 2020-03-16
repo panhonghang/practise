@@ -3452,19 +3452,52 @@
  * @param {string} s
  * @return {boolean}
  */
-var isValid = function(s) {
-  let arr = [];
-  for(let i = 0; i < s.length; i++){
-      if(s[i]==']'){
-          if(arr.pop()!=='[') return false;
-      } else if(s[i]=='}'){
-          if(arr.pop()!=='{') return false;
-      } else if(s[i]==')'){
-          if(arr.pop()!=='(') return false;
-      } else{
-          arr.push(s[i])
-      }
-  }
+// var isValid = function(s) {
+//   let arr = [];
+//   for(let i = 0; i < s.length; i++){
+//       if(s[i]==']'){
+//           if(arr.pop()!=='[') return false;
+//       } else if(s[i]=='}'){
+//           if(arr.pop()!=='{') return false;
+//       } else if(s[i]==')'){
+//           if(arr.pop()!=='(') return false;
+//       } else{
+//           arr.push(s[i])
+//       }
+//   }
 
-  return arr.length==0?true:false;
+//   return arr.length==0?true:false;
+// };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+var levelOrder = function(root) {
+  if(!root) return [];
+  let arr = [],
+      res = [],
+      level = 0,
+      len = 0,
+      temp = null;
+      arr.push(root);
+  while(arr.length){
+      len = arr.length;
+      res.push([]);
+      for(let i = 0; i < len; i++){
+          temp = arr.shift();
+          res[level].push(temp.val);
+          if(temp.left) arr.push(temp.left);
+          if(temp.right) arr.push(temp.right);
+      }
+      level++;
+  }
+  return res;
 };

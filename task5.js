@@ -3428,22 +3428,43 @@
  * @param {number} k
  * @return {ListNode}
  */
-var reverseKGroup = function(head, k) {
-  let p = head,
-      cur = head,
-      pre = null,
-      next = null;
-  for(let i = 0; i < k; i++){
-      if(!p) return head;
-      p = p.next
-  }
-  for(let i = 0; i < k; i++){
-      next = cur.next;
-      cur.next = pre;
+// var reverseKGroup = function(head, k) {
+//   let p = head,
+//       cur = head,
+//       pre = null,
+//       next = null;
+//   for(let i = 0; i < k; i++){
+//       if(!p) return head;
+//       p = p.next
+//   }
+//   for(let i = 0; i < k; i++){
+//       next = cur.next;
+//       cur.next = pre;
 
-      pre = cur;
-      cur = next;
+//       pre = cur;
+//       cur = next;
+//   }
+//   head.next = reverseKGroup(cur,k)
+//   return pre;
+// };
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function(s) {
+  let arr = [];
+  for(let i = 0; i < s.length; i++){
+      if(s[i]==']'){
+          if(arr.pop()!=='[') return false;
+      } else if(s[i]=='}'){
+          if(arr.pop()!=='{') return false;
+      } else if(s[i]==')'){
+          if(arr.pop()!=='(') return false;
+      } else{
+          arr.push(s[i])
+      }
   }
-  head.next = reverseKGroup(cur,k)
-  return pre;
+
+  return arr.length==0?true:false;
 };

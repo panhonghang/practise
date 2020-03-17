@@ -3034,6 +3034,7 @@
  * @param {number[]} nums
  * @param {number} target
  * @return {number[][]}
+ * n数和
  */
 // const findNSum = function (nums, target,n) {
 //   const fn = function (nums, target, N, result, results) {
@@ -3513,22 +3514,94 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-var rightSideView = function(root) {
-  if(!root) return [];
-  let arr = [],
-      res = [],
-      level = 0,
-      len = 0,
-      temp = null;
-      arr.push(root);
-  while(arr.length){
-      len = arr.length;
-      res.push(arr[0].val);
-      for(let i = 0; i < len; i++){
-          temp = arr.shift();
-          if(temp.right) arr.push(temp.right);
-          if(temp.left) arr.push(temp.left);
-      }
-  }
-  return res;
-};
+// var rightSideView = function(root) {
+//   if(!root) return [];
+//   let arr = [],
+//       res = [],
+//       level = 0,
+//       len = 0,
+//       temp = null;
+//       arr.push(root);
+//   while(arr.length){
+//       len = arr.length;
+//       res.push(arr[0].val);
+//       for(let i = 0; i < len; i++){
+//           temp = arr.shift();
+//           if(temp.right) arr.push(temp.right);
+//           if(temp.left) arr.push(temp.left);
+//       }
+//   }
+//   return res;
+// };
+
+// function deepClone(data, hash = new WeakMap()) {
+//   if(data === null) return null
+//   if(typeof data !== 'object'){
+//     return data
+//   }
+//   if(hash.has(data)) return hash.get(data) // 利用hash表处理循环引用
+
+//   let newData
+//   if (isType(data, 'Array')) { // 处理数组复制
+//     newData = []
+//   } else if(isType(data, 'RegExp')){ // 处理正则表达式
+//     newData = new RegExp(data.source, getRegExpFlag(data))
+//   } else if(isType(data, 'Date')) { // 处理时间对象
+//     newData = new Date(data.getTime())
+//   } else { // 处理对象复制，并保留其原型
+//     let prototype = Object.getPrototypeOf(data)
+//     newData = Object.create(prototype)
+//   }
+
+//   hash.set(data, newData)
+
+//   for(let i in data){
+//     if(data.hasOwnProperty(i)){
+//       newData[i] = deepClone(data[i], hash)
+//     }
+//   }
+//   return newData
+// }
+
+// function isType(data, type){
+//   return Object.prototype.toString.call(data) === `[object ${type}]`
+// }
+
+// function getRegExpFlag(data) {
+//   let flag = ''
+//   if(data.global) flag += 'g'
+//   if(data.ignoreCase) flag += 'i'
+//   if(data.multiline) flag += 'm'
+//   return flag
+// }
+
+// const fn = function(obj){
+//   console.log(1);
+
+//   if(obj instanceof Date) return new Date(obj.getTime());
+//   if(typeof obj == 'function') return obj;
+
+//   let res = Array.isArray(obj)?[]:{};
+//   if(typeof obj !== "object") return obj;
+//   for(let i in obj){
+//     if(obj.hasOwnProperty(i)){
+//       if(typeof obj[i]=='object'){
+//         res[i] = fn(obj[i])
+//       } else{
+//         res[i] = obj[i]
+//       }
+//     }
+//   }
+
+//   return res;
+// }
+
+// let time = new Date(123);
+
+// console.log(fn(function(){}))
+
+
+
+// for(let i = 1; i <= 26; i++){
+//     console.log(String.fromCharCode(i+64).charCodeAt())
+// }

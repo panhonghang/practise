@@ -3599,9 +3599,7 @@
 // let time = new Date(123);
 
 // console.log(fn(function(){}))
-
-
-
 // for(let i = 1; i <= 26; i++){
 //     console.log(String.fromCharCode(i+64).charCodeAt())
 // }
+

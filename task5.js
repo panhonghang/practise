@@ -3603,3 +3603,130 @@
 //     console.log(String.fromCharCode(i+64).charCodeAt())
 // }
 
+// const levelOrder = function(root) {
+//   if(!root) return [];
+//   let queue = [],
+//       res = [],
+//       level = 0;
+  
+//   queue.push(root);
+  
+//   let temp;
+//   while(queue.length) {
+//       res.push([]);
+//       let size = queue.length;
+//       while(size --) {
+//           let front = queue.shift();
+//           res[level].push(front.val);
+//           if(front.left) queue.push(front.left);
+//           if(front.right) queue.push(front.right);
+//       }        
+//       level++;
+//   }
+//   return res;
+// };
+
+
+// const fn = function(n){
+//   let sum = fn(n - 1) + fn(n - 2);
+//   if (n<=1) return n;
+// }
+// console.log(fn(10))
+
+// function DistanceToHigher(height) {
+//     let temp = [],
+//         res = [0];
+//     for(let i = 1; i < height.length; i++){
+//       temp = height.slice(0,i);
+//       temp.reverse();
+//       for(let j = 0; j < temp.length;j++){
+//         if(temp[j]>height[i]){
+//           res.push(j+1);
+//           break;
+//         }
+//         if(j==temp.length-1)  res.push(0);
+//       }
+//     }
+//     return res;
+// }
+
+// DistanceToHigher([175,174,179,163,167,177])
+
+// const fn = function(arr){
+//   let temp = [],
+//       res = [];
+//   for(let i = 1; i < arr.length; i++){
+//     let num = 0;
+//     temp = arr.slice(0,i);
+//     for(let j = 0; j < temp.length;j++){
+//       if(temp[j]>arr[i]){
+//         num++;
+//       }
+//     }
+//     if(num==1) res.push(i);
+//   }
+//   return res.join(' ');
+// }
+
+// fn([1,22,22,33,22,12,45,44,5])
+
+// const fn = function(arr){
+//   let res = [],
+//       // arr1为豹子
+//       arr1 = [],
+//       // arr2为顺子
+//       arr2 = [];
+//   for(let i = 0; i < arr.length; i++){
+//     let temp = arr[i]+'',
+//         //顺子 
+//         num = 1,
+//         resNum = 0,
+//         // 豹子
+//         num1 = 1,
+//         resNum1 = 0;
+//     for(let j = 4; j < temp.length; j++){
+//       // 顺子检查
+//       if(parseInt(temp[j-1]) + 1 == parseInt(temp[j])){
+//         num++;
+//       } else{
+//         resNum = num>resNum?num:resNum;
+//       }
+//       // 豹子检查
+//       if(temp[j-1] == temp[j]){
+//         num1++;
+//       } else{
+//         resNum1 = num1>resNum1?num1:resNum1;
+//       }
+//     }
+//     if(resNum>resNum1){
+//       if(resNum>=3) arr1.push({arr:temp,num:resNum})
+//     } else{
+//       if(resNum1>=3) arr2.push({arr:temp,num:resNum1})
+//     }
+//   }
+
+//   arr1.sort((a,b)=>b.num-a.num);
+//   arr2.sort((a,b)=>b.num-a.num);
+//   let pre = null,
+//       next = null;
+//   while(arr1.length>0||arr2.length>0){
+//       pre = arr1.shift()||{arr:[],num:0};
+//       next = arr2.shift()||{arr:[],num:0};
+//       if(pre.num>next.num){
+//         if(pre.num==0) break;
+//         res.push(pre.arr);
+//         arr2.unshift(next);
+//       } else{
+//         if(next.num==0) break;
+//         res.push(next.arr);
+//         arr1.unshift(pre);
+//       }
+//   }
+//   if(res.length>0){
+//     console.log(res.join(','));
+//   } else {
+//     console.log(null);
+//   }
+// }
+
+// fn([15166667234,15188887234])

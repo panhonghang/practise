@@ -3730,3 +3730,51 @@
 // }
 
 // fn([15166667234,15188887234])
+
+// var lastRemaining = function (n, m) {
+//   let ans = 0;
+//   for (let i = 2; i <= n; i++) {
+//     ans = (ans + m) % i;
+//   }
+//   return ans;
+// };
+
+// lastRemaining(5,3)
+
+// const Queue = function(){
+//   this.arr = [];
+//   this.obj = {
+//     this.arr = [];
+//   };
+//   this.task = function(timer,fn){
+//     this.arr.push({timer:timer,fn:fn})
+//     return this.obj
+//   };
+//   this.obj.start = function(){
+//     let that = this;
+//     console.log()
+//     // for(let i = 0; i < this.arr.length; i++){
+//     //   setTimeout(arr[i].fn,arr[i].timer)
+//     // }
+//   };
+// }
+
+// console.log(new Queue().task(1000, () => { 
+//   console.log(1);
+// }).start())
+
+// const fn2 = function(N){
+//   if(N==1||N==2) return 1;
+//   let pre = 1,
+//       i = 4,
+//       next = 1;
+//   while(N>=i){
+//     let temp = next;
+//       next = pre + next;
+//       pre = temp;
+//       i++
+//   }
+//   return pre+next;
+// }
+
+// console.log(fn2(10))

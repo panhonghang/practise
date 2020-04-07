@@ -2857,28 +2857,6 @@
 //line=readline()
 //print(line)
 
-// function func1(cb){ 
-//     setTimeout(function(){
-//       console.log(1);
-//       cb();
-//     }, 400)   
-//   }  
-  
-//   function func2(cb){
-//     setTimeout(function(){
-//       console.log(2)
-//       cb();
-//     }, 300)
-//   }
-  
-//   function func3(cb){
-   
-//     setTimeout(function(){
-//       console.log(3)
-//       cb();
-//     }, 10)   
-//   }
-
 //   async await 实现
 // function queue(list, count){
 
@@ -2912,23 +2890,6 @@
 //   }
 // }
 
-// function queue(list, count){
-//   let arr = [];
-//   let cb = function(){
-//     queue(list,count)
-//   };
-//   for(let i = 0; i < count; i++) {
-//     if(!list.length) break;
-//       arr.push(list.shift())
-//     }
-//   for(let i = 0; i < arr.length; i++) {
-//     arr[i](cb)
-//   }
-// }
-
-// queue([func1, func2, func3], 2)
-
-  // 输出 2, 1, 3
 
   //二进制加减
 // const fn = function(s1,s2){
@@ -3763,8 +3724,7 @@
 //   console.log(1);
 // }).start())
 
-// const fn2 = function(N){
-//   if(N==1||N==2) return 1;
+// const fn = function(N){
 //   let pre = 1,
 //       i = 4,
 //       next = 1;
@@ -3777,4 +3737,42 @@
 //   return pre+next;
 // }
 
-// console.log(fn2(10))
+// console.log(fn(100))
+
+
+function func1(cb){ 
+  setTimeout(function(){
+    console.log(1);
+    cb();
+  }, 400)   
+}  
+
+function func2(cb){
+  setTimeout(function(){
+    console.log(2)
+    cb();
+  }, 300)
+}
+
+function func3(cb){
+  setTimeout(function(){
+    console.log(3)
+    cb();
+  }, 10)   
+}
+
+function queue(list, count){
+  let arr = [];
+  let cb = function(){
+    queue(list,count)
+  };
+  for(let i = 0; i < count; i++) {
+    if(!list.length) break;
+      arr.push(list.shift())
+    }
+  for(let i = 0; i < arr.length; i++) {
+    arr[i](cb)
+  }
+}
+
+queue([func1, func2, func3], 2)

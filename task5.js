@@ -3740,39 +3740,73 @@
 // console.log(fn(100))
 
 
-function func1(cb){ 
-  setTimeout(function(){
-    console.log(1);
-    cb();
-  }, 400)   
-}  
+// function func1(cb){ 
+//   setTimeout(function(){
+//     console.log(1);
+//     cb();
+//   }, 400)   
+// }  
 
-function func2(cb){
-  setTimeout(function(){
-    console.log(2)
-    cb();
-  }, 300)
-}
+// function func2(cb){
+//   setTimeout(function(){
+//     console.log(2)
+//     cb();
+//   }, 300)
+// }
 
-function func3(cb){
-  setTimeout(function(){
-    console.log(3)
-    cb();
-  }, 10)   
-}
+// function func3(cb){
+//   setTimeout(function(){
+//     console.log(3)
+//     cb();
+//   }, 10)   
+// }
 
-function queue(list, count){
-  let arr = [];
-  let cb = function(){
-    queue(list,count)
-  };
-  for(let i = 0; i < count; i++) {
-    if(!list.length) break;
-      arr.push(list.shift())
-    }
-  for(let i = 0; i < arr.length; i++) {
-    arr[i](cb)
-  }
-}
+// function queue(list, count){
+//   let arr = [];
+//   let cb = function(){
+//     queue(list,count)
+//   };
+//   for(let i = 0; i < count; i++) {
+//     if(!list.length) break;
+//       arr.push(list.shift())
+//     }
+//   for(let i = 0; i < arr.length; i++) {
+//     arr[i](cb)
+//   }
+// }
 
-queue([func1, func2, func3], 2)
+// queue([func1, func2, func3], 2)
+
+// var arr = document.getElementsByClassName('a');
+// var tempArr = []
+// for(var i = 0; i < arr.length; i++){
+//    tempArr.push(arr[i].getAttribute('aa'));
+// }
+// console.log(tempArr)
+
+// console.log(window.a,a);
+// var a = 0;
+// console.log(window.a,a);
+// if(true){
+//   console.log(window.a,a);
+//   a=1;
+//   console.log(window.a,a);
+//   function a(){};
+//   console.log(window.a,a);
+//   a=21;
+//   console.log(window.a,a);
+// }
+
+// console.log(a)
+
+
+
+
+
+
+
+
+
+
+
+

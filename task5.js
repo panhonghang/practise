@@ -3853,24 +3853,43 @@
 //   return dp[n]
 // };
 
-let waysToChange = (n)=>{
-  let arr = new Array(n+1).fill(0),
-      dp= new Array(4).fill(arr),
-      coins= [1,5,10,25];
+// let waysToChange = (n)=>{
+//   let arr = new Array(n+1).fill(0),
+//       dp= new Array(4).fill(arr),
+//       coins= [1,5,10,25];
 
-  for(let i=0;i<=n;i++) dp[0][i]=1;
-  for(let i=0;i<4;i++) dp[i][0]=1;
+//   for(let i=0;i<=n;i++) dp[0][i]=1;
+//   for(let i=0;i<4;i++) dp[i][0]=1;
       
-  for(let i=1;i<4;i++){
-      for(let j=1;j<=n;j++){
-          if(j>=coins[i]){
-            dp[i][j]=(dp[i-1][j]+dp[i][j-coins[i]])%1000000007;
-          } else {
-            dp[i][j]=dp[i-1][j];
-          }
+//   for(let i=1;i<4;i++){
+//       for(let j=1;j<=n;j++){
+//           if(j>=coins[i]){
+//             dp[i][j]=(dp[i-1][j]+dp[i][j-coins[i]])%1000000007;
+//           } else {
+//             dp[i][j]=dp[i-1][j];
+//           }
+//       }
+//   }
+//   return dp[3][n];
+// }
+
+// console.log(waysToChange(100));
+
+
+/**
+ * @param {string} astr
+ * @return {boolean}
+ */
+var isUnique = function(astr) {
+  let pre = 0,
+      next = 1;
+  for(let i = 0; i < astr.length-1; i++){
+      pre = i;
+      next = pre+1;
+      while(next<astr.length){
+          if(astr[next]===astr[pre]) return false
+          next++
       }
   }
-  return dp[3][n];
-}
-
-console.log(waysToChange(100));
+  return true
+};

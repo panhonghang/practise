@@ -3902,3 +3902,27 @@
 // var CheckPermutation = function(s1, s2) {
 //   return s1.split('').sort().join('') == s2.split('').sort().join('')
 // };
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+// var permute = function(nums) {
+//   let resArr = [];
+//   const fn = (arr,temp)=>{
+//     if(arr.length==0){
+//       resArr.push(temp);
+//       return
+//     }
+//     arr.forEach((key,index)=>{
+//       temp.push(key);
+//       fn([...arr.slice(0,index),...arr.slice(index+1)],[...temp])
+//       temp.pop(key);
+//     })
+//   }
+
+//   fn(nums,[])
+//   return resArr;
+// };
+
+// console.log(permute([1,2,3]))

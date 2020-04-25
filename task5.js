@@ -3880,16 +3880,25 @@
  * @param {string} astr
  * @return {boolean}
  */
-var isUnique = function(astr) {
-  let pre = 0,
-      next = 1;
-  for(let i = 0; i < astr.length-1; i++){
-      pre = i;
-      next = pre+1;
-      while(next<astr.length){
-          if(astr[next]===astr[pre]) return false
-          next++
-      }
-  }
-  return true
-};
+// var isUnique = function(astr) {
+//   let pre = 0,
+//       next = 1;
+//   for(let i = 0; i < astr.length-1; i++){
+//       pre = i;
+//       next = pre+1;
+//       while(next<astr.length){
+//           if(astr[next]===astr[pre]) return false
+//           next++
+//       }
+//   }
+//   return true
+// };
+
+// /**
+//  * @param {string} s1
+//  * @param {string} s2
+//  * @return {boolean}
+//  */
+// var CheckPermutation = function(s1, s2) {
+//   return s1.split('').sort().join('') == s2.split('').sort().join('')
+// };

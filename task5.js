@@ -3943,3 +3943,40 @@
   // }
   // return res;
 // };
+
+/**
+ * @param {string} s
+ * @param {number} numRows
+ * @return {string}
+ */
+var convert = function(s, numRows) {
+  let arr = [],
+      // 判断反转，true为从上到下，否则从下到上
+      flag = true,
+      row = 0;
+      S = s.split('');
+  if(numRows==1) return s;
+  for(let i = 0; i < numRows; i++){
+    arr.push([]);
+  }
+
+  while(S.length>0){
+
+      if(row==numRows){
+        row = 0;
+        flag=!flag;
+      }
+      if(flag){
+          arr[row].push(S.shift())
+      } else{
+          if(row>0&&row<numRows-1){
+            arr[numRows-1-row].push(S.shift())
+          } else{
+            arr[numRows-1-row].push('');
+          }
+      }
+
+      row++;
+  }
+  return arr.map(k=>k.join('')).join('')
+};

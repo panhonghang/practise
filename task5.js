@@ -4030,18 +4030,42 @@
  * @param {number[]} nums
  * @return {number}
  */
-var findLengthOfLCIS = function(nums) {
+// var findLengthOfLCIS = function(nums) {
+//     if(nums.length==0) return 0;
+//     let res = 1,
+//         temp = 1;
+//    for(let i = 0; i < nums.length-1; i++){
+//         if(nums[i]<nums[i+1]){
+//             temp++;
+//         } else {
+//             res = Math.max(res,temp);
+//             temp = 1;
+//         }
+//     }
+//     res = Math.max(res,temp);
+//     return res;
+// };
+
+var longestConsecutive = function(nums) {
     if(nums.length==0) return 0;
     let res = 1,
         temp = 1;
-   for(let i = 0; i < nums.length-1; i++){
-        if(nums[i]<nums[i+1]){
+
+    nums.sort((a,b)=>a-b);
+    console.log(nums)
+    for(let i = 0; i < nums.length-1; i++){
+        if(nums[i]+1==nums[i+1]){
             temp++;
+        } else if(nums[i]==nums[i+1]){
+            continue;
         } else {
             res = Math.max(res,temp);
             temp = 1;
         }
     }
+
     res = Math.max(res,temp);
     return res;
 };
+
+console.log(longestConsecutive([1,2,0,1]))

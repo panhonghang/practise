@@ -3949,34 +3949,99 @@
  * @param {number} numRows
  * @return {string}
  */
-var convert = function(s, numRows) {
-  let arr = [],
-      // 判断反转，true为从上到下，否则从下到上
-      flag = true,
-      row = 0;
-      S = s.split('');
-  if(numRows==1) return s;
-  for(let i = 0; i < numRows; i++){
-    arr.push([]);
-  }
+// var convert = function(s, numRows) {
+//   let arr = [],
+//       // 判断反转，true为从上到下，否则从下到上
+//       flag = true,
+//       row = 0;
+//       S = s.split('');
+//   if(numRows==1) return s;
+//   for(let i = 0; i < numRows; i++){
+//     arr.push([]);
+//   }
 
-  while(S.length>0){
+//   while(S.length>0){
 
-      if(row==numRows){
-        row = 0;
-        flag=!flag;
-      }
-      if(flag){
-          arr[row].push(S.shift())
-      } else{
-          if(row>0&&row<numRows-1){
-            arr[numRows-1-row].push(S.shift())
-          } else{
-            arr[numRows-1-row].push('');
-          }
-      }
+//       if(row==numRows){
+//         row = 0;
+//         flag=!flag;
+//       }
+//       if(flag){
+//           arr[row].push(S.shift())
+//       } else{
+//           if(row>0&&row<numRows-1){
+//             arr[numRows-1-row].push(S.shift())
+//           } else{
+//             arr[numRows-1-row].push('');
+//           }
+//       }
 
-      row++;
-  }
-  return arr.map(k=>k.join('')).join('')
+//       row++;
+//   }
+//   return arr.map(k=>k.join('')).join('')
+// };
+
+
+/**
+ * @param {string} s
+ * @param {string} p
+ * @return {boolean}
+ */
+
+// let isMatch = function (s, p) {
+//   let dp = Array(s.length + 1);
+
+//   for (let i = 0; i < dp.length; i++) {
+//       dp[i] = Array(p.length + 1).fill(false)
+//   }
+  
+//   dp[0][0] = true;
+
+//   for (let i = 1; i < p.length; i++) {
+//       if (p.charAt(i) === "*") {
+//           dp[0][i + 1] = dp[0][i - 1]
+//       }
+//   }
+
+//   for (let i = 0; i < s.length; i++) {
+//       for (let j = 0; j < p.length; j++) {
+//           if (p.charAt(j) === '.') {
+//               dp[i + 1][j + 1] = dp[i][j]
+//           }
+
+//           if (p.charAt(j) === s.charAt(i)) {
+//               dp[i + 1][j + 1] = dp[i][j]
+//           }
+
+//           if (p.charAt(j) === '*') {
+//               if (p.charAt(j - 1) !== s.charAt(i) && p.charAt(j - 1) !== '.') {
+//                   dp[i + 1][j + 1] = dp[i + 1][j - 1]
+//               } else {
+//                   dp[i + 1][j + 1] = (dp[i + 1][j] || dp[i][j + 1] || dp[i + 1][j - 1])
+//               }
+//           }
+//       }
+//   }
+//   return dp[s.length][p.length]
+// };
+
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findLengthOfLCIS = function(nums) {
+    if(nums.length==0) return 0;
+    let res = 1,
+        temp = 1;
+   for(let i = 0; i < nums.length-1; i++){
+        if(nums[i]<nums[i+1]){
+            temp++;
+        } else {
+            res = Math.max(res,temp);
+            temp = 1;
+        }
+    }
+    res = Math.max(res,temp);
+    return res;
 };

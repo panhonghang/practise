@@ -4115,27 +4115,42 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-var singleNumbers = function(nums) {
-    let a = 0;
-    let b = 0;
-    let c = 0;
-    nums.forEach((item) => {
-    c ^= item;
-    });
-    let mark = 1;             // mark就是分组凭据
-    console.log(mark&c)
-    while((mark & c) === 0) { // 一直到找到第一个1为止 
-        mark <<= 1;
-    }
-    console.log(mark)
-    nums.forEach((item) => {
-    if ((mark & item) === 0) { // 分组
-        a ^= item
-    } else {
-        b ^= item;
-    }
-    });
-    return [a, b];
-};
+// var singleNumbers = function(nums) {
+//     let a = 0;
+//     let b = 0;
+//     let c = 0;
+//     nums.forEach((item) => {
+//     c ^= item;
+//     });
+//     let mark = 1;             // mark就是分组凭据
+//     console.log(mark&c)
+//     while((mark & c) === 0) { // 一直到找到第一个1为止 
+//         mark <<= 1;
+//     }
+//     console.log(mark)
+//     nums.forEach((item) => {
+//     if ((mark & item) === 0) { // 分组
+//         a ^= item
+//     } else {
+//         b ^= item;
+//     }
+//     });
+//     return [a, b];
+// };
 
-singleNumbers([3,4,2,3])
+// singleNumbers([3,4,2,3])
+
+/**
+ * @param {string} S
+ * @param {number} length
+ * @return {string}
+ */
+var replaceSpaces = function(S, length) {
+  return S.split('').map(k=>{
+      if(k==' '){
+          return '%20';
+      } else{
+          return k;
+      }
+  }).slice(0,length).join('');
+};

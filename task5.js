@@ -4140,26 +4140,51 @@
 
 // singleNumbers([3,4,2,3])
 
-/**
- * @param {string} S
- * @param {number} length
- * @return {string}
- */
-var replaceSpaces = function(S, length) {
-  return S.split('').map(k=>{
-      if(k==' '){
-          return '%20';
-      } else{
-          return k;
-      }
-  }).slice(0,length).join('');
-};
+// /**
+//  * @param {string} S
+//  * @param {number} length
+//  * @return {string}
+//  */
+// var replaceSpaces = function(S, length) {
+//   return S.split('').map(k=>{
+//       if(k==' '){
+//           return '%20';
+//       } else{
+//           return k;
+//       }
+//   }).slice(0,length).join('');
+// };
+
+// /**
+//  * @param {string} S
+//  * @param {number} length
+//  * @return {string}
+//  */
+// var replaceSpaces = function(S, length) {
+//   return S.slice(0,length).replace(/[ ]/g,'%20');
+// };
+
 
 /**
- * @param {string} S
- * @param {number} length
- * @return {string}
+ * @param {string} s
+ * @return {boolean}
  */
-var replaceSpaces = function(S, length) {
-  return S.slice(0,length).replace(/[ ]/g,'%20');
+var canPermutePalindrome = function(s) {
+  if(s.length==1) return true;
+
+  let arr = s.split('').sort();
+  let point = 0,
+      sum = 0;
+  while(point<s.length-1){
+      if(arr[point]==arr[point+1]){
+          point = point + 2;
+      } else{
+          point++;
+          sum++
+      }
+  }
+  if(point!==s.length) sum++
+  return sum<=1
 };
+
+console.log(canPermutePalindrome('asa'))

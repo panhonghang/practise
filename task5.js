@@ -4188,3 +4188,20 @@ var canPermutePalindrome = function(s) {
 };
 
 console.log(canPermutePalindrome('asa'))
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var canPermutePalindrome = function(s) {
+  if(s.length==1) return true;
+  let map = new Map();
+  for(let i = 0; i < s.length; i++){
+      if(map.has(s[i])){
+          map.delete(s[i])
+      } else{
+          map.set(s[i])
+      }
+  }
+  return map.size<=1
+};

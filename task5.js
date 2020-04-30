@@ -4165,43 +4165,73 @@
 // };
 
 
-/**
- * @param {string} s
- * @return {boolean}
- */
-var canPermutePalindrome = function(s) {
-  if(s.length==1) return true;
+// /**
+//  * @param {string} s
+//  * @return {boolean}
+//  */
+// var canPermutePalindrome = function(s) {
+//   if(s.length==1) return true;
 
-  let arr = s.split('').sort();
-  let point = 0,
-      sum = 0;
-  while(point<s.length-1){
-      if(arr[point]==arr[point+1]){
-          point = point + 2;
-      } else{
-          point++;
-          sum++
+//   let arr = s.split('').sort();
+//   let point = 0,
+//       sum = 0;
+//   while(point<s.length-1){
+//       if(arr[point]==arr[point+1]){
+//           point = point + 2;
+//       } else{
+//           point++;
+//           sum++
+//       }
+//   }
+//   if(point!==s.length) sum++
+//   return sum<=1
+// };
+
+// console.log(canPermutePalindrome('asa'))
+
+// /**
+//  * @param {string} s
+//  * @return {boolean}
+//  */
+// var canPermutePalindrome = function(s) {
+//   if(s.length==1) return true;
+//   let map = new Map();
+//   for(let i = 0; i < s.length; i++){
+//       if(map.has(s[i])){
+//           map.delete(s[i])
+//       } else{
+//           map.set(s[i])
+//       }
+//   }
+//   return map.size<=1
+// };
+
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var subarraySum = function(nums, k) {
+  //当刚刚相减为0的时候
+  let map = new Map([[0,1]]),
+      sum = 0,
+      res = 0;
+  nums.forEach(item=>{
+      sum += item;
+      if(map.has(sum-k)) res+=map.get(sum-k);
+      if(map.has(sum)){
+          map.set(sum,map.get(sum)+1);
+      } else {
+          map.set(sum,1);
       }
-  }
-  if(point!==s.length) sum++
-  return sum<=1
+  })
+  return res;
 };
 
-console.log(canPermutePalindrome('asa'))
-
-/**
- * @param {string} s
- * @return {boolean}
- */
-var canPermutePalindrome = function(s) {
-  if(s.length==1) return true;
-  let map = new Map();
-  for(let i = 0; i < s.length; i++){
-      if(map.has(s[i])){
-          map.delete(s[i])
-      } else{
-          map.set(s[i])
-      }
-  }
-  return map.size<=1
-};
+console.log(subarraySum([1,2,3],2))

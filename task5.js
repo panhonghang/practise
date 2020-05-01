@@ -4248,18 +4248,43 @@
  * @param {number[]} nums
  * @return {number}
  */
-var findMaxLength = function(nums) {
-  let map = new Map([[0,-1]]),
-      max = 0, 
-      sum = 0;      
-  nums.forEach((k,i)=>{
-    sum = sum + (k == 1 ? 1 : -1);
-    if (map.has(sum)) {
-      max = Math.max(max, i - map.get(sum));
-    } else {
-      map.set(sum, i);
-    }
-  })
-  return max;
-};
+// var findMaxLength = function(nums) {
+//   let map = new Map([[0,-1]]),
+//       max = 0, 
+//       sum = 0;      
+//   nums.forEach((k,i)=>{
+//     sum = sum + (k == 1 ? 1 : -1);
+//     if (map.has(sum)) {
+//       max = Math.max(max, i - map.get(sum));
+//     } else {
+//       map.set(sum, i);
+//     }
+//   })
+//   return max;
+// };
 
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
+  let map = new Map();
+   for(let i = 0; i < nums.length;i++){
+       if(map.has(target-nums[i])){
+           return [map.get(target-nums[i]),i]
+       } else{
+           map.set(nums[i],i)
+       }
+   }
+};

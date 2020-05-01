@@ -4206,32 +4206,41 @@
 //   return map.size<=1
 // };
 
+// /**
+//  * @param {number[]} nums
+//  * @param {number} k
+//  * @return {number}
+//  */
+// var subarraySum = function(nums, k) {
+//   //当刚刚相减为0的时候
+//   let map = new Map([[0,1]]),
+//       sum = 0,
+//       res = 0;
+//   nums.forEach(item=>{
+//       sum += item;
+//       if(map.has(sum-k)) res+=map.get(sum-k);
+//       if(map.has(sum)){
+//           map.set(sum,map.get(sum)+1);
+//       } else {
+//           map.set(sum,1);
+//       }
+//   })
+//   return res;
+// };
 
-/**
- * @param {number[]} nums
- * @param {number} k
- * @return {number}
- */
-/**
- * @param {number[]} nums
- * @param {number} k
- * @return {number}
- */
-var subarraySum = function(nums, k) {
-  //当刚刚相减为0的时候
-  let map = new Map([[0,1]]),
-      sum = 0,
-      res = 0;
-  nums.forEach(item=>{
-      sum += item;
-      if(map.has(sum-k)) res+=map.get(sum-k);
-      if(map.has(sum)){
-          map.set(sum,map.get(sum)+1);
-      } else {
-          map.set(sum,1);
-      }
-  })
-  return res;
-};
+// console.log(subarraySum([1,2,3],2))
 
-console.log(subarraySum([1,2,3],2))
+
+// function Foo(property_num,element_num) {
+//   //添加可索引属性
+//   for (let i = 0; i < element_num; i++) {
+//       this[i] = `e${i}`
+//   }
+//   //添加常规属性
+//   for (let i = 0; i < property_num; i++) {
+//       let ppt = `p${i}`
+//       this[ppt] = ppt
+//   }
+// }
+// var bar = new Foo(20,0)
+

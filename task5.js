@@ -4288,3 +4288,39 @@ var twoSum = function(nums, target) {
        }
    }
 };
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var threeSum = function(nums) {
+  nums.sort((a,b)=>a-b);
+  let left = 0,
+      right = nums.length-1,
+      map = new Map(),
+      sum = 0,
+      res = [];
+  for(let i = 0; i < nums.length-2; i++){
+      // 判断是否相等
+      if(map.has(nums[i])) continue;
+      left = i+1;
+      right = nums.length-1;
+      while(left<right){
+          sum = nums[i] + nums[left] + nums[right];
+          if(sum==0){
+              res.push([nums[i],nums[left],nums[right]]);
+              left++;
+              right--;
+              //判断现在与之前是否相等
+              while(nums[left]==nums[left-1]) left++;
+              while(nums[right]==nums[right+1]) right--;
+          } else if(sum<0){
+              left++
+          } else{
+              right--;
+          }
+      }
+      map.set(nums[i]);
+  }
+  return res;
+};

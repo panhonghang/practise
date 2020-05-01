@@ -4244,3 +4244,22 @@
 // }
 // var bar = new Foo(20,0)
 
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMaxLength = function(nums) {
+  let map = new Map([[0,-1]]),
+      max = 0, 
+      sum = 0;      
+  nums.forEach((k,i)=>{
+    sum = sum + (k == 1 ? 1 : -1);
+    if (map.has(sum)) {
+      max = Math.max(max, i - map.get(sum));
+    } else {
+      map.set(sum, i);
+    }
+  })
+  return max;
+};
+

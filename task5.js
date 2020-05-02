@@ -4372,23 +4372,20 @@ var fourSum = function(nums, target) {
  * @return {number}
  */
 var leastBricks = function (wall) {
-    var map = new Map(), res = 0, sum = 0, temp = 0;
-    wall.forEach(function (arr) {
-        arr.forEach(function (k) {
-            sum += k;
+    var map = new Map(), res = 0, sum = 0;
+    for(let i = 0; i < wall.length; i++) {
+        for(let j = 0; j < wall[i].length-1; j++){
+            sum += wall[i][j];
             if (map.has(sum)) {
                 map.set(sum, map.get(sum) + 1);
             }
             else {
                 map.set(sum, 1);
             }
-        });
-        temp = sum;
+        }
         sum = 0;
-    });
+    };
     
-    map.delete(temp);
-
     map.forEach(function (v) { 
         return res = Math.max(res, v); 
     });

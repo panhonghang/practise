@@ -4399,3 +4399,16 @@ leastBricks([
     [2,4],
     [3,1,2],
     [1,3,1,1]])
+
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var trailingZeroes = function(n) {
+    let res = 0;
+    while(n>=5){
+        n = Math.floor(n/5);
+        res+= n;
+    }
+    return res;
+};

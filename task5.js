@@ -4364,4 +4364,41 @@ var fourSum = function(nums, target) {
   return res
 };
 
-console.log(fourSum([1,0,-1,0,-2,2],0))
+// console.log(fourSum([1,0,-1,0,-2,2],0))
+
+
+/**
+ * @param {number[][]} wall
+ * @return {number}
+ */
+var leastBricks = function (wall) {
+    var map = new Map(), res = 0, sum = 0, temp = 0;
+    wall.forEach(function (arr) {
+        arr.forEach(function (k) {
+            sum += k;
+            if (map.has(sum)) {
+                map.set(sum, map.get(sum) + 1);
+            }
+            else {
+                map.set(sum, 1);
+            }
+        });
+        temp = sum;
+        sum = 0;
+    });
+    
+    map.delete(temp);
+
+    map.forEach(function (v) { 
+        return res = Math.max(res, v); 
+    });
+    return wall.length - res;
+};
+
+leastBricks([
+    [1,2,2,1],
+    [3,1,2],
+    [1,3,2],
+    [2,4],
+    [3,1,2],
+    [1,3,1,1]])

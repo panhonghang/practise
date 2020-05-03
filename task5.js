@@ -4412,3 +4412,21 @@ var trailingZeroes = function(n) {
     }
     return res;
 };
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxSubArray = function(nums) {
+    let res = nums[0],
+        sum = 0;
+    nums.forEach(k=>{
+        if(k+sum>k){
+            sum += k;
+        } else{
+            sum = k;
+        }
+        res = Math.max(res,sum);
+    })
+    return res;
+};

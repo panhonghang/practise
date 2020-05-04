@@ -4470,3 +4470,26 @@ var romanToInt = function(s) {
     }
     return ans;
 };
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var jump = function(nums) {
+    let left = 0,
+        right = 1,
+        steps = 0,
+        max = 0;
+
+    while (right < nums.length) {
+        max = 0;
+        for (let i = left; i < right; i++) {
+            max = Math.max(max,nums[i]+i);
+        }
+
+        left = right;
+        right = max + 1;
+        steps++;
+    }
+    return steps;
+}

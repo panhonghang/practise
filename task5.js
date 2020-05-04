@@ -4493,3 +4493,50 @@ var jump = function(nums) {
     }
     return steps;
 }
+
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+ 
+var isValidBST = function(root,leftVal=-Infinity,rightVal=Infinity) {  
+    if(!root) return true;
+    if(leftVal>=root.val||rightVal<=root.val) return false;
+    return isValidBST(root.right,root.val,rightVal)&&isValidBST(root.left,leftVal,root.val);
+};
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isValidBST = function(root) {
+    let arr = [];
+    
+    const fn = function(node){
+        if(!node) return;
+        fn(node.left);
+        arr.push(node.val);
+        fn(node.right);
+    }
+    fn(root);
+
+    for(let i = 0; i < arr.length-1;i++){
+        if(arr[i] >= arr[i+1]) return false;
+    }
+    return true;
+};

@@ -4540,3 +4540,31 @@ var isValidBST = function(root) {
     }
     return true;
 };
+
+
+/**
+ * @param {number[]} days
+ * @param {number[]} costs
+ * @return {number}
+ */
+var mincostTickets = function(days, costs) {
+    let lastDay = days[days.length-1], 
+        dp = new Array(lastDay+1).fill(0);
+        
+    for(let i = 1; i < dp.length; i++) {
+      if(days.indexOf(i)==-1) { 
+          dp[i] = dp[i-1]; 
+          continue;
+      }
+
+      if(i>=30){
+        dp[i] = Math.min(dp[i-1] + costs[0],dp[i-7] + costs[1],dp[i-30] + costs[2]);
+      } else if(30>i&&i>=7){
+        dp[i] = Math.min(dp[i-1] + costs[0],dp[i-7] + costs[1],costs[2]);
+      } else{
+        dp[i] = Math.min(dp[i-1] + costs[0],costs[1],costs[2]);
+      }
+    } 
+
+    return dp[lastDay]
+};

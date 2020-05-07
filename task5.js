@@ -4568,3 +4568,44 @@ var mincostTickets = function(days, costs) {
 
     return dp[lastDay]
 };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} s
+ * @param {TreeNode} t
+ * @return {boolean}
+ */
+var isSubtree = function(s, t) {
+    let flag = false;
+
+    const fn1 = (node1,node2)=>{
+        if(!node1||!node2){
+            if(node1!==node2){
+                return false;
+            } 
+            return true;
+        }
+        if(node1.val!==node2.val) return false;
+        return fn1(node1.left,node2.left)&&fn1(node1.right,node2.right);
+    }
+
+    const fn = (node)=>{
+        if(flag||!node) return
+
+        if(node.val==t.val){
+            if(fn1(node,t)) flag =true
+        }
+        fn(node.left,);
+        fn(node.right);
+    }
+
+    fn(s);    
+    return flag
+};

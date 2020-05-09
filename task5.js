@@ -4278,221 +4278,221 @@
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function(nums, target) {
-  let map = new Map();
-   for(let i = 0; i < nums.length;i++){
-       if(map.has(target-nums[i])){
-           return [map.get(target-nums[i]),i]
-       } else{
-           map.set(nums[i],i)
-       }
-   }
-};
+// var twoSum = function(nums, target) {
+//   let map = new Map();
+//    for(let i = 0; i < nums.length;i++){
+//        if(map.has(target-nums[i])){
+//            return [map.get(target-nums[i]),i]
+//        } else{
+//            map.set(nums[i],i)
+//        }
+//    }
+// };
 
 /**
  * @param {number[]} nums
  * @return {number[][]}
  */
-var threeSum = function(nums) {
-  nums.sort((a,b)=>a-b);
-  let left = 0,
-      right = nums.length-1,
-      map = new Map(),
-      sum = 0,
-      res = [];
-  for(let i = 0; i < nums.length-2; i++){
+// var threeSum = function(nums) {
+//   nums.sort((a,b)=>a-b);
+//   let left = 0,
+//       right = nums.length-1,
+//       map = new Map(),
+//       sum = 0,
+//       res = [];
+//   for(let i = 0; i < nums.length-2; i++){
       // 判断是否相等
-      if(map.has(nums[i])) continue;
-      left = i+1;
-      right = nums.length-1;
-      while(left<right){
-          sum = nums[i] + nums[left] + nums[right];
-          if(sum==0){
-              res.push([nums[i],nums[left],nums[right]]);
-              left++;
-              right--;
-              //判断现在与之前是否相等
-              while(nums[left]==nums[left-1]) left++;
-              while(nums[right]==nums[right+1]) right--;
-          } else if(sum<0){
-              left++
-          } else{
-              right--;
-          }
-      }
-      map.set(nums[i]);
-  }
-  return res;
-};
+//       if(map.has(nums[i])) continue;
+//       left = i+1;
+//       right = nums.length-1;
+//       while(left<right){
+//           sum = nums[i] + nums[left] + nums[right];
+//           if(sum==0){
+//               res.push([nums[i],nums[left],nums[right]]);
+//               left++;
+//               right--;
+//               //判断现在与之前是否相等
+//               while(nums[left]==nums[left-1]) left++;
+//               while(nums[right]==nums[right+1]) right--;
+//           } else if(sum<0){
+//               left++
+//           } else{
+//               right--;
+//           }
+//       }
+//       map.set(nums[i]);
+//   }
+//   return res;
+// };
 
 
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[][]}
- */
-var fourSum = function(nums, target) {
-  nums.sort((a,b)=>a-b);
-  let res = [],
-      left = 0,
-      right = nums.length-1,
-      sum = 0;
+// /**
+//  * @param {number[]} nums
+//  * @param {number} target
+//  * @return {number[][]}
+//  */
+// var fourSum = function(nums, target) {
+//   nums.sort((a,b)=>a-b);
+//   let res = [],
+//       left = 0,
+//       right = nums.length-1,
+//       sum = 0;
 
-  for(let i = 0; i < nums.length-3; i++){
-    while(nums[i]==nums[i-1]&&i!==0) i++;
-      for(let j = i+1; j < nums.length-2; j++){
-          while(nums[j]==nums[j-1]&&j!==i+1) j++;
-          left = j+1;
-          right = nums.length-1;
-          while(left<right){
-              sum = nums[i]+nums[j]+nums[left]+nums[right];
-              if(sum==target){
-                  res.push([nums[i],nums[j],nums[left],nums[right]]);
-                  right--;
-                  left++;
-                  while(nums[right]==nums[right+1]) right--;
-                  while(nums[left]==nums[left-1]) left++;
-              } else if(target<sum){
-                  right--;
-              } else{
-                  left++;
-              }
-          }
-      }
-  }
+//   for(let i = 0; i < nums.length-3; i++){
+//     while(nums[i]==nums[i-1]&&i!==0) i++;
+//       for(let j = i+1; j < nums.length-2; j++){
+//           while(nums[j]==nums[j-1]&&j!==i+1) j++;
+//           left = j+1;
+//           right = nums.length-1;
+//           while(left<right){
+//               sum = nums[i]+nums[j]+nums[left]+nums[right];
+//               if(sum==target){
+//                   res.push([nums[i],nums[j],nums[left],nums[right]]);
+//                   right--;
+//                   left++;
+//                   while(nums[right]==nums[right+1]) right--;
+//                   while(nums[left]==nums[left-1]) left++;
+//               } else if(target<sum){
+//                   right--;
+//               } else{
+//                   left++;
+//               }
+//           }
+//       }
+//   }
 
-  return res
-};
+//   return res
+// };
 
-// console.log(fourSum([1,0,-1,0,-2,2],0))
+// // console.log(fourSum([1,0,-1,0,-2,2],0))
 
 
-/**
- * @param {number[][]} wall
- * @return {number}
- */
-var leastBricks = function (wall) {
-    var map = new Map(), res = 0, sum = 0;
-    for(let i = 0; i < wall.length; i++) {
-        for(let j = 0; j < wall[i].length-1; j++){
-            sum += wall[i][j];
-            if (map.has(sum)) {
-                map.set(sum, map.get(sum) + 1);
-            }
-            else {
-                map.set(sum, 1);
-            }
-        }
-        sum = 0;
-    };
+// /**
+//  * @param {number[][]} wall
+//  * @return {number}
+//  */
+// var leastBricks = function (wall) {
+//     var map = new Map(), res = 0, sum = 0;
+//     for(let i = 0; i < wall.length; i++) {
+//         for(let j = 0; j < wall[i].length-1; j++){
+//             sum += wall[i][j];
+//             if (map.has(sum)) {
+//                 map.set(sum, map.get(sum) + 1);
+//             }
+//             else {
+//                 map.set(sum, 1);
+//             }
+//         }
+//         sum = 0;
+//     };
     
-    map.forEach(function (v) { 
-        return res = Math.max(res, v); 
-    });
-    return wall.length - res;
-};
+//     map.forEach(function (v) { 
+//         return res = Math.max(res, v); 
+//     });
+//     return wall.length - res;
+// };
 
-leastBricks([
-    [1,2,2,1],
-    [3,1,2],
-    [1,3,2],
-    [2,4],
-    [3,1,2],
-    [1,3,1,1]])
+// leastBricks([
+//     [1,2,2,1],
+//     [3,1,2],
+//     [1,3,2],
+//     [2,4],
+//     [3,1,2],
+//     [1,3,1,1]])
 
-/**
- * @param {number} n
- * @return {number}
- */
-var trailingZeroes = function(n) {
-    let res = 0;
-    while(n>=5){
-        n = Math.floor(n/5);
-        res+= n;
-    }
-    return res;
-};
+// /**
+//  * @param {number} n
+//  * @return {number}
+//  */
+// var trailingZeroes = function(n) {
+//     let res = 0;
+//     while(n>=5){
+//         n = Math.floor(n/5);
+//         res+= n;
+//     }
+//     return res;
+// };
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// var maxSubArray = function(nums) {
+//     let res = nums[0],
+//         sum = 0;
+//     nums.forEach(k=>{
+//         if(k+sum>k){
+//             sum += k;
+//         } else{
+//             sum = k;
+//         }
+//         res = Math.max(res,sum);
+//     })
+//     return res;
+// };
+
+
+// /**
+//  * @param {string} s
+//  * @return {number}
+//  */
+// var romanToInt = function(s) {
+//     const map = {
+//         I : 1,
+//         IV: 4,
+//         V: 5,
+//         IX: 9,
+//         X: 10,
+//         XL: 40,
+//         L: 50,
+//         XC: 90,
+//         C: 100,
+//         CD: 400,
+//         D: 500,
+//         CM: 900,
+//         M: 1000
+//     };
+//     let ans = 0,
+//         len = s.length,
+//         i = 0;
+//     while(i < len) {
+//         if(i == len-1) {
+//             ans += map[s[i]];
+//             break;
+//         }
+//         if(map[s[i]+s[i+1]]) {
+//             ans += map[s[i]+s[i+1]];
+//             i += 2;
+//         } else {
+//             ans += map[s[i]];
+//             i++;
+//         }
+//     }
+//     return ans;
+// };
 
 /**
  * @param {number[]} nums
  * @return {number}
  */
-var maxSubArray = function(nums) {
-    let res = nums[0],
-        sum = 0;
-    nums.forEach(k=>{
-        if(k+sum>k){
-            sum += k;
-        } else{
-            sum = k;
-        }
-        res = Math.max(res,sum);
-    })
-    return res;
-};
+// var jump = function(nums) {
+//     let left = 0,
+//         right = 1,
+//         steps = 0,
+//         max = 0;
 
+//     while (right < nums.length) {
+//         max = 0;
+//         for (let i = left; i < right; i++) {
+//             max = Math.max(max,nums[i]+i);
+//         }
 
-/**
- * @param {string} s
- * @return {number}
- */
-var romanToInt = function(s) {
-    const map = {
-        I : 1,
-        IV: 4,
-        V: 5,
-        IX: 9,
-        X: 10,
-        XL: 40,
-        L: 50,
-        XC: 90,
-        C: 100,
-        CD: 400,
-        D: 500,
-        CM: 900,
-        M: 1000
-    };
-    let ans = 0,
-        len = s.length,
-        i = 0;
-    while(i < len) {
-        if(i == len-1) {
-            ans += map[s[i]];
-            break;
-        }
-        if(map[s[i]+s[i+1]]) {
-            ans += map[s[i]+s[i+1]];
-            i += 2;
-        } else {
-            ans += map[s[i]];
-            i++;
-        }
-    }
-    return ans;
-};
-
-/**
- * @param {number[]} nums
- * @return {number}
- */
-var jump = function(nums) {
-    let left = 0,
-        right = 1,
-        steps = 0,
-        max = 0;
-
-    while (right < nums.length) {
-        max = 0;
-        for (let i = left; i < right; i++) {
-            max = Math.max(max,nums[i]+i);
-        }
-
-        left = right;
-        right = max + 1;
-        steps++;
-    }
-    return steps;
-}
+//         left = right;
+//         right = max + 1;
+//         steps++;
+//     }
+//     return steps;
+// }
 
 
 /**
@@ -4507,11 +4507,11 @@ var jump = function(nums) {
  * @return {boolean}
  */
  
-var isValidBST = function(root,leftVal=-Infinity,rightVal=Infinity) {  
-    if(!root) return true;
-    if(leftVal>=root.val||rightVal<=root.val) return false;
-    return isValidBST(root.right,root.val,rightVal)&&isValidBST(root.left,leftVal,root.val);
-};
+// var isValidBST = function(root,leftVal=-Infinity,rightVal=Infinity) {  
+//     if(!root) return true;
+//     if(leftVal>=root.val||rightVal<=root.val) return false;
+//     return isValidBST(root.right,root.val,rightVal)&&isValidBST(root.left,leftVal,root.val);
+// };
 
 /**
  * Definition for a binary tree node.
@@ -4524,149 +4524,173 @@ var isValidBST = function(root,leftVal=-Infinity,rightVal=Infinity) {
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isValidBST = function(root) {
-    let arr = [];
+// var isValidBST = function(root) {
+//     let arr = [];
     
-    const fn = function(node){
-        if(!node) return;
-        fn(node.left);
-        arr.push(node.val);
-        fn(node.right);
-    }
-    fn(root);
+//     const fn = function(node){
+//         if(!node) return;
+//         fn(node.left);
+//         arr.push(node.val);
+//         fn(node.right);
+//     }
+//     fn(root);
 
-    for(let i = 0; i < arr.length-1;i++){
-        if(arr[i] >= arr[i+1]) return false;
-    }
-    return true;
-};
+//     for(let i = 0; i < arr.length-1;i++){
+//         if(arr[i] >= arr[i+1]) return false;
+//     }
+//     return true;
+// };
 
 
-/**
- * @param {number[]} days
- * @param {number[]} costs
- * @return {number}
- */
-var mincostTickets = function(days, costs) {
-    let lastDay = days[days.length-1], 
-        dp = new Array(lastDay+1).fill(0);
+// /**
+//  * @param {number[]} days
+//  * @param {number[]} costs
+//  * @return {number}
+//  */
+// var mincostTickets = function(days, costs) {
+//     let lastDay = days[days.length-1], 
+//         dp = new Array(lastDay+1).fill(0);
         
-    for(let i = 1; i < dp.length; i++) {
-      if(days.indexOf(i)==-1) { 
-          dp[i] = dp[i-1]; 
-          continue;
-      }
+//     for(let i = 1; i < dp.length; i++) {
+//       if(days.indexOf(i)==-1) { 
+//           dp[i] = dp[i-1]; 
+//           continue;
+//       }
 
-      if(i>=30){
-        dp[i] = Math.min(dp[i-1] + costs[0],dp[i-7] + costs[1],dp[i-30] + costs[2]);
-      } else if(30>i&&i>=7){
-        dp[i] = Math.min(dp[i-1] + costs[0],dp[i-7] + costs[1],costs[2]);
-      } else{
-        dp[i] = Math.min(dp[i-1] + costs[0],costs[1],costs[2]);
-      }
-    } 
+//       if(i>=30){
+//         dp[i] = Math.min(dp[i-1] + costs[0],dp[i-7] + costs[1],dp[i-30] + costs[2]);
+//       } else if(30>i&&i>=7){
+//         dp[i] = Math.min(dp[i-1] + costs[0],dp[i-7] + costs[1],costs[2]);
+//       } else{
+//         dp[i] = Math.min(dp[i-1] + costs[0],costs[1],costs[2]);
+//       }
+//     } 
 
-    return dp[lastDay]
-};
+//     return dp[lastDay]
+// };
 
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
-/**
- * @param {TreeNode} s
- * @param {TreeNode} t
- * @return {boolean}
- */
-var isSubtree = function(s, t) {
-    let flag = false;
+// /**
+//  * Definition for a binary tree node.
+//  * function TreeNode(val, left, right) {
+//  *     this.val = (val===undefined ? 0 : val)
+//  *     this.left = (left===undefined ? null : left)
+//  *     this.right = (right===undefined ? null : right)
+//  * }
+//  */
+// /**
+//  * @param {TreeNode} s
+//  * @param {TreeNode} t
+//  * @return {boolean}
+//  */
+// var isSubtree = function(s, t) {
+//     let flag = false;
 
-    const fn1 = (node1,node2)=>{
-        if(!node1||!node2){
-            if(node1!==node2){
-                return false;
-            } 
-            return true;
-        }
-        if(node1.val!==node2.val) return false;
-        return fn1(node1.left,node2.left)&&fn1(node1.right,node2.right);
-    }
+//     const fn1 = (node1,node2)=>{
+//         if(!node1||!node2){
+//             if(node1!==node2){
+//                 return false;
+//             } 
+//             return true;
+//         }
+//         if(node1.val!==node2.val) return false;
+//         return fn1(node1.left,node2.left)&&fn1(node1.right,node2.right);
+//     }
 
-    const fn = (node)=>{
-        if(flag||!node) return
+//     const fn = (node)=>{
+//         if(flag||!node) return
 
-        if(node.val==t.val){
-            if(fn1(node,t)) flag =true
-        }
-        fn(node.left,);
-        fn(node.right);
-    }
+//         if(node.val==t.val){
+//             if(fn1(node,t)) flag =true
+//         }
+//         fn(node.left,);
+//         fn(node.right);
+//     }
 
-    fn(s);    
-    return flag
-};
+//     fn(s);    
+//     return flag
+// };
 
-var mySqrt = function(x) {
-    if (x < 2) {
-        return x;
-    }
-    let left = 2;
-    let right = x;
-    while (left <= right) {
-        let mid = left + Math.floor((right - left) / 2);
-        let num = mid * mid;
-        if (num > x) {
-            right = mid - 1;
-        }
-        else if (num < x) {
-            left = mid + 1;
-        }
-        else {
-            return mid;
-        }
-    }
-    return right;
-};
+// var mySqrt = function(x) {
+//     if (x < 2) {
+//         return x;
+//     }
+//     let left = 2;
+//     let right = x;
+//     while (left <= right) {
+//         let mid = left + Math.floor((right - left) / 2);
+//         let num = mid * mid;
+//         if (num > x) {
+//             right = mid - 1;
+//         }
+//         else if (num < x) {
+//             left = mid + 1;
+//         }
+//         else {
+//             return mid;
+//         }
+//     }
+//     return right;
+// };
 
-/**
- * @param {number[]} nums
- * @param {number} k
- * @return {boolean}
- */
-var checkSubarraySum = function(nums, k) {
-    if(nums.length<2) return false;
+// /**
+//  * @param {number[]} nums
+//  * @param {number} k
+//  * @return {boolean}
+//  */
+// var checkSubarraySum = function(nums, k) {
+//     if(nums.length<2) return false;
     
-    k = Math.abs(k);
-    if(k==1) return true
+//     k = Math.abs(k);
+//     if(k==1) return true
     
-    let map = new Map(),
-        sum = 0,
-        temp = sum;
+//     let map = new Map(),
+//         sum = 0,
+//         temp = sum;
 
-    for(let i = 0; i < nums.length; i++){
-        sum += nums[i];
-        temp = sum;
+//     for(let i = 0; i < nums.length; i++){
+//         sum += nums[i];
+//         temp = sum;
         
-        if(k!=0){
-            if(sum % k == 0&&i>0) return true;
-            temp = sum % k;    
-        }
+//         if(k!=0){
+//             if(sum % k == 0&&i>0) return true;
+//             temp = sum % k;    
+//         }
 
-        if(!map.has(temp)){
-            map.set(temp,i);
-        } else if(map.get(temp)+2 <= i){
-            return true;
-        }
-    }
+//         if(!map.has(temp)){
+//             map.set(temp,i);
+//         } else if(map.get(temp)+2 <= i){
+//             return true;
+//         }
+//     }
 
-    // 连续0；
-    for(let i = 1;i < nums.length;i++){
-        if(nums[i-1] == 0 && nums[i] == 0) return true;
-    }
+//     // 连续0；
+//     for(let i = 1;i < nums.length;i++){
+//         if(nums[i-1] == 0 && nums[i] == 0) return true;
+//     }
 
-    return false;
-};
+//     return false;
+// };
+
+/* 完成一个函数fn，它接受多个函数作为参数，然后fn返回的也是一个函数，达到以下的效果：
+
+const operate = fn(div2, mul3, add1, add1)
+operate(0) // => 相当于 div2(mul3(add1(add1(0))))
+operate(2) // => 相当于 div2(mul3(add1(add1(2))))
+
+// 其中
+// const add1 = (x) => x + 1
+// const mul3 = (x) => x * 3
+// const div2 = (x) => x / 2
+
+*/
+const add1 = (x) => x + 1
+const mul3 = (x) => x * 3
+const div2 = (x) => x / 2
+
+const fn = function(){
+    return [...arguments].reduce((a, b) => (...args) => a(b(...args)))
+}
+
+const operate = fn(div2, mul3, add1, add1)
+
+console.log(operate(2)) // => 相当于 div2(mul3(add1(add1(2))))

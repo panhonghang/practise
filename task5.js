@@ -4631,3 +4631,42 @@ var mySqrt = function(x) {
     }
     return right;
 };
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {boolean}
+ */
+var checkSubarraySum = function(nums, k) {
+    if(nums.length<2) return false;
+    
+    k = Math.abs(k);
+    if(k==1) return true
+    
+    let map = new Map(),
+        sum = 0,
+        temp = sum;
+
+    for(let i = 0; i < nums.length; i++){
+        sum += nums[i];
+        temp = sum;
+        
+        if(k!=0){
+            if(sum % k == 0&&i>0) return true;
+            temp = sum % k;    
+        }
+
+        if(!map.has(temp)){
+            map.set(temp,i);
+        } else if(map.get(temp)+2 <= i){
+            return true;
+        }
+    }
+
+    // 连续0；
+    for(let i = 1;i < nums.length;i++){
+        if(nums[i-1] == 0 && nums[i] == 0) return true;
+    }
+
+    return false;
+};

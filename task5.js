@@ -4723,3 +4723,29 @@ var lowestCommonAncestor = function(root, p, q) {
   }
   return null;
 };
+
+/**
+ * @param {number} n
+ * @return {string}
+ */
+var countAndSay = function(n) {
+  let res = '1',
+      temp = '';
+      counter = 1;
+  while(counter<n){
+      let num = 1;
+      for(let i = 0; i < res.length; i++){
+          if(i<res.length-1&&res[i]==res[i+1]){
+              num++
+              continue;
+          } else{
+              temp += `${num}`+res[i];
+              num=1;
+          }
+      }
+      counter++;
+      res = temp;
+      temp = '';
+  }
+  return res;
+};

@@ -4762,7 +4762,7 @@ operate(2) // => 相当于 div2(mul3(add1(add1(2))))
 var generateParenthesis = function(n) {
   var result = [];
 
-  function fn(left,right,str){
+  const fn = (left,right,str)=>{
       if(left == n && right == n){
           result.push(str)
           return;

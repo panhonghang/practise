@@ -4683,14 +4683,43 @@ operate(2) // => 相当于 div2(mul3(add1(add1(2))))
 // const div2 = (x) => x / 2
 
 */
-const add1 = (x) => x + 1
-const mul3 = (x) => x * 3
-const div2 = (x) => x / 2
+// const add1 = (x) => x + 1
+// const mul3 = (x) => x * 3
+// const div2 = (x) => x / 2
 
-const fn = function(){
-    return [...arguments].reduce((a, b) => (...args) => a(b(...args)))
-}
+// const fn = function(){
+//     return [...arguments].reduce((a, b) => (...args) => a(b(...args)))
+// }
 
-const operate = fn(div2, mul3, add1, add1)
+// const operate = fn(div2, mul3, add1, add1)
 
-console.log(operate(2)) // => 相当于 div2(mul3(add1(add1(2))))
+// console.log(operate(2)) // => 相当于 div2(mul3(add1(add1(2))))
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */
+var lowestCommonAncestor = function(root, p, q) {
+  if (root == null || root == p || root == q) {
+      return root;
+  }
+  let left = lowestCommonAncestor(root.left, p, q);
+  let right = lowestCommonAncestor(root.right, p, q);
+  if (left != null && right != null) {
+      return root;
+  } else if (left != null) {
+      return left;
+  } else if (right != null) {
+      return right;
+  }
+  return null;
+};

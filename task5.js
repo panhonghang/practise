@@ -4708,44 +4708,76 @@ operate(2) // => 相当于 div2(mul3(add1(add1(2))))
  * @param {TreeNode} q
  * @return {TreeNode}
  */
-var lowestCommonAncestor = function(root, p, q) {
-  if (root == null || root == p || root == q) {
-      return root;
-  }
-  let left = lowestCommonAncestor(root.left, p, q);
-  let right = lowestCommonAncestor(root.right, p, q);
-  if (left != null && right != null) {
-      return root;
-  } else if (left != null) {
-      return left;
-  } else if (right != null) {
-      return right;
-  }
-  return null;
-};
+// var lowestCommonAncestor = function(root, p, q) {
+//   if (root == null || root == p || root == q) {
+//       return root;
+//   }
+//   let left = lowestCommonAncestor(root.left, p, q);
+//   let right = lowestCommonAncestor(root.right, p, q);
+//   if (left != null && right != null) {
+//       return root;
+//   } else if (left != null) {
+//       return left;
+//   } else if (right != null) {
+//       return right;
+//   }
+//   return null;
+// };
 
 /**
  * @param {number} n
  * @return {string}
  */
-var countAndSay = function(n) {
-  let res = '1',
-      temp = '';
-      counter = 1;
-  while(counter<n){
-      let num = 1;
-      for(let i = 0; i < res.length; i++){
-          if(i<res.length-1&&res[i]==res[i+1]){
-              num++
-              continue;
-          } else{
-              temp += `${num}`+res[i];
-              num=1;
-          }
+// var countAndSay = function(n) {
+//   let res = '1',
+//       temp = '';
+//       counter = 1;
+//   while(counter<n){
+//       let num = 1;
+//       for(let i = 0; i < res.length; i++){
+//           if(i<res.length-1&&res[i]==res[i+1]){
+//               num++
+//               continue;
+//           } else{
+//               temp += `${num}`+res[i];
+//               num=1;
+//           }
+//       }
+//       counter++;
+//       res = temp;
+//       temp = '';
+//   }
+//   return res;
+// };
+
+
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+var generateParenthesis = function(n) {
+  var result = [];
+
+  function fn(left,right,str){
+      if(left == n && right == n){
+          result.push(str)
+          return;
       }
-      counter++;
-      res = temp;
-      temp = '';
+      
+      if(left < n){
+          fn(left+1,right,str+'(');
+      }
+      if(left > right){
+          fn(left,right+1,str+')');
+      }
   }
-  return res;
+
+  fn(0,0,'');
+  return result;
 };
+
+generateParenthesis(3)

@@ -4817,25 +4817,67 @@ operate(2) // => 相当于 div2(mul3(add1(add1(2))))
  * @param {string} p
  * @return {boolean}
  */
-var isMatch = function(s, p) {
-  if (p === "*" || s === p) return true;
-  let dp = Array.from(Array(s.length + 1), ()=> Array(p.length + 1).fill(false));
+// var isMatch = function(s, p) {
+//   if (p === "*" || s === p) return true;
+//   let dp = Array.from(Array(s.length + 1), ()=> Array(p.length + 1).fill(false));
   
-  dp[0][0] = true;
+//   dp[0][0] = true;
   
-  for (let i  = 1; i <= p.length; i++) {
-      if (!dp[0][i - 1]) break;
-      if (p[i - 1] === '*') dp[0][i] = true;
-  }
+//   for (let i  = 1; i <= p.length; i++) {
+//       if (!dp[0][i - 1]) break;
+//       if (p[i - 1] === '*') dp[0][i] = true;
+//   }
 
-  for (let i = 1; i <= s.length; i++) {
-      for (let j = 1; j <= p.length; j++) {
-          if (s[i - 1] === p[j - 1] || p[j - 1] === "?") {
-              dp[i][j] = dp[i - 1][j - 1];
-          } else if (p[j - 1] === "*") {
-              dp[i][j] = dp[i - 1][j] || dp[i][j - 1];
-          }
-      }
-  }
-  return dp[s.length][p.length];
-};
+//   for (let i = 1; i <= s.length; i++) {
+//       for (let j = 1; j <= p.length; j++) {
+//           if (s[i - 1] === p[j - 1] || p[j - 1] === "?") {
+//               dp[i][j] = dp[i - 1][j - 1];
+//           } else if (p[j - 1] === "*") {
+//               dp[i][j] = dp[i - 1][j] || dp[i][j - 1];
+//           }
+//       }
+//   }
+//   return dp[s.length][p.length];
+// };
+
+/**
+ * @param {string} s
+ * @param {string} p
+ * @return {boolean}
+ */
+// var isMatch = function (s, p) {
+//   // 字符串s的起点位置
+//   let i = 0;
+//   // 字符串p的起点位置
+//   let j = 0;
+//   // s的当前位置
+//   let s_match = 0;
+//   // *的位置
+//   let startIdx = -1;
+
+//   let n = s.length;
+//   let m = p.length;
+
+//   while (i < n) {
+//     if (j < m && (p[j] == "?" || s[i] == p[j])) {
+//       i++;
+//       j++;
+//     } else if (j < m && p[j] == "*") {
+//       startIdx = j;
+//       s_match = i;
+//       j++;
+//     } else if (startIdx != -1) {
+//       j = startIdx + 1;
+//       s_match++;
+//       i = s_match;
+//     } else {
+//       return false;
+//     }
+//   }
+  
+//   while (j < m && p[j] == "*") {
+//     j++;
+//   }
+
+//   return j == m;
+// };

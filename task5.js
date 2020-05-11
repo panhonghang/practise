@@ -4683,17 +4683,27 @@ operate(2) // => 相当于 div2(mul3(add1(add1(2))))
 // const div2 = (x) => x / 2
 
 */
-// const add1 = (x) => x + 1
-// const mul3 = (x) => x * 3
-// const div2 = (x) => x / 2
+const add1 = (x) => x + 1
+const mul3 = (x) => x * 3
+const div2 = (x) => x / 2
 
 // const fn = function(){
 //     return [...arguments].reduce((a, b) => (...args) => a(b(...args)))
 // }
 
-// const operate = fn(div2, mul3, add1, add1)
+const fn = (...arg) => {
+  return function(x) {
+    if (arg.length <= 1) return arg[0](x)
+    
+    const currentFn = arg.shift();
 
-// console.log(operate(2)) // => 相当于 div2(mul3(add1(add1(2))))
+    return currentFn(fn(...arg)(x))
+  }
+};
+
+const operate = fn(div2, mul3, add1, add1)
+
+console.log(operate(2)) // => 相当于 div2(mul3(add1(add1(2))))
 
 /**
  * Definition for a binary tree node.

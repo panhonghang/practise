@@ -4787,26 +4787,55 @@ operate(2) // => 相当于 div2(mul3(add1(add1(2))))
  * @param {number} n
  * @return {number}
  */
-var myPow = function(x, n) {
-  if(x==0) return 0;
-  if(n==0) return 1;
+// var myPow = function(x, n) {
+//   if(x==0) return 0;
+//   if(n==0) return 1;
 
-  let res = 1;
+//   let res = 1;
   
-  const fn = (num,pow)=>{
-      if(pow==1) return num;
-      if(pow%2==0){
-          return fn(num*num,pow/2);
-      } else{
-          return fn(num*num,(pow-1)/2)*num;
-      }
+//   const fn = (num,pow)=>{
+//       if(pow==1) return num;
+//       if(pow%2==0){
+//           return fn(num*num,pow/2);
+//       } else{
+//           return fn(num*num,(pow-1)/2)*num;
+//       }
+//   }
+
+//   res = fn(x,Math.abs(n))
+  
+//   if(n<0) res = 1/res;
+
+//   return res;
+// };
+
+// myPow(-1.00000,2)
+
+
+/**
+ * @param {string} s
+ * @param {string} p
+ * @return {boolean}
+ */
+var isMatch = function(s, p) {
+  if (p === "*" || s === p) return true;
+  let dp = Array.from(Array(s.length + 1), ()=> Array(p.length + 1).fill(false));
+  
+  dp[0][0] = true;
+  
+  for (let i  = 1; i <= p.length; i++) {
+      if (!dp[0][i - 1]) break;
+      if (p[i - 1] === '*') dp[0][i] = true;
   }
 
-  res = fn(x,Math.abs(n))
-  
-  if(n<0) res = 1/res;
-
-  return res;
+  for (let i = 1; i <= s.length; i++) {
+      for (let j = 1; j <= p.length; j++) {
+          if (s[i - 1] === p[j - 1] || p[j - 1] === "?") {
+              dp[i][j] = dp[i - 1][j - 1];
+          } else if (p[j - 1] === "*") {
+              dp[i][j] = dp[i - 1][j] || dp[i][j - 1];
+          }
+      }
+  }
+  return dp[s.length][p.length];
 };
-
-myPow(-1.00000,2)

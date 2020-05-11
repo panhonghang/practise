@@ -4759,25 +4759,54 @@ operate(2) // => 相当于 div2(mul3(add1(add1(2))))
  * @param {number} n
  * @return {string[]}
  */
-var generateParenthesis = function(n) {
-  var result = [];
+// var generateParenthesis = function(n) {
+//   var result = [];
 
-  const fn = (left,right,str)=>{
-      if(left == n && right == n){
-          result.push(str)
-          return;
-      }
+//   const fn = (left,right,str)=>{
+//       if(left == n && right == n){
+//           result.push(str)
+//           return;
+//       }
       
-      if(left < n){
-          fn(left+1,right,str+'(');
-      }
-      if(left > right){
-          fn(left,right+1,str+')');
+//       if(left < n){
+//           fn(left+1,right,str+'(');
+//       }
+//       if(left > right){
+//           fn(left,right+1,str+')');
+//       }
+//   }
+
+//   fn(0,0,'');
+//   return result;
+// };
+
+// generateParenthesis(3)
+
+/**
+ * @param {number} x
+ * @param {number} n
+ * @return {number}
+ */
+var myPow = function(x, n) {
+  if(x==0) return 0;
+  if(n==0) return 1;
+
+  let res = 1;
+  
+  const fn = (num,pow)=>{
+      if(pow==1) return num;
+      if(pow%2==0){
+          return fn(num*num,pow/2);
+      } else{
+          return fn(num*num,(pow-1)/2)*num;
       }
   }
 
-  fn(0,0,'');
-  return result;
+  res = fn(x,Math.abs(n))
+  
+  if(n<0) res = 1/res;
+
+  return res;
 };
 
-generateParenthesis(3)
+myPow(-1.00000,2)

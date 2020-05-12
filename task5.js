@@ -4691,19 +4691,19 @@ const div2 = (x) => x / 2
 //     return [...arguments].reduce((a, b) => (...args) => a(b(...args)))
 // }
 
-const fn = (...arg) => {
-  return function(x) {
-    if (arg.length <= 1) return arg[0](x)
+// const fn = (...arg) => {
+//   return function(x) {
+//     if (arg.length <= 1) return arg[0](x)
     
-    const currentFn = arg.shift();
+//     const currentFn = arg.shift();
 
-    return currentFn(fn(...arg)(x))
-  }
-};
+//     return currentFn(fn(...arg)(x))
+//   }
+// };
 
-const operate = fn(div2, mul3, add1, add1)
+// const operate = fn(div2, mul3, add1, add1)
 
-console.log(operate(2)) // => 相当于 div2(mul3(add1(add1(2))))
+// console.log(operate(2)) // => 相当于 div2(mul3(add1(add1(2))))
 
 /**
  * Definition for a binary tree node.
@@ -4895,54 +4895,89 @@ console.log(operate(2)) // => 相当于 div2(mul3(add1(add1(2))))
 /**
  * initialize your data structure here.
  */
-var MinStack = function() {
-    this.arr = [];
-    this.min = 0;
-};
+// var MinStack = function() {
+//     this.arr = [];
+//     this.min = 0;
+// };
 
-/** 
- * @param {number} x
- * @return {void}
- */
-MinStack.prototype.push = function(x) {
-    this.arr.push(x);
-    for(let i = 0; i < this.arr.length; i++){
-        if(this.arr[this.min]>this.arr[i]) this.min = i;
-    }
-};
+// /** 
+//  * @param {number} x
+//  * @return {void}
+//  */
+// MinStack.prototype.push = function(x) {
+//     this.arr.push(x);
+//     for(let i = 0; i < this.arr.length; i++){
+//         if(this.arr[this.min]>this.arr[i]) this.min = i;
+//     }
+// };
+
+// /**
+//  * @return {void}
+//  */
+// MinStack.prototype.pop = function() {
+//     this.arr.pop();
+//     if(this.min>=this.arr.length-1){
+//         this.min = 0;
+//         for(let i = 0; i < this.arr.length; i++){
+//            if(this.arr[this.min]>this.arr[i]) this.min = i;
+//         }
+//     }
+// };
+
+// /**
+//  * @return {number}
+//  */
+// MinStack.prototype.top = function() {
+//     return this.arr[this.arr.length-1];
+// };
+
+// /**
+//  * @return {number}
+//  */
+// MinStack.prototype.getMin = function() {
+//     return this.arr[this.min]
+// };
+
+// /**
+//  * Your MinStack object will be instantiated and called as such:
+//  * var obj = new MinStack()
+//  * obj.push(x)
+//  * obj.pop()
+//  * var param_3 = obj.top()
+//  * var param_4 = obj.getMin()
+//  */
+
 
 /**
- * @return {void}
+ * @param {string} digits
+ * @return {string[]}
  */
-MinStack.prototype.pop = function() {
-    this.arr.pop();
-    if(this.min>=this.arr.length-1){
-        this.min = 0;
-        for(let i = 0; i < this.arr.length; i++){
-           if(this.arr[this.min]>this.arr[i]) this.min = i;
-        }
-    }
-};
+// var letterCombinations = function(digits) {
+//   if(digits.length==0) return [];
 
-/**
- * @return {number}
- */
-MinStack.prototype.top = function() {
-    return this.arr[this.arr.length-1];
-};
+//   let temp = [],
+//       map = [[],[],['a','b','c'],['d','e','f'],['g','h','i'],['j','k','l'],['m','n','o'],['p','q','r','s'],['t','u','v'],['w','x','y','z']];
 
-/**
- * @return {number}
- */
-MinStack.prototype.getMin = function() {
-    return this.arr[this.min]
-};
+//   for(let i = 0; i < digits.length; i++){
+//       temp.push(map[digits[i]])
+//   }
 
-/**
- * Your MinStack object will be instantiated and called as such:
- * var obj = new MinStack()
- * obj.push(x)
- * obj.pop()
- * var param_3 = obj.top()
- * var param_4 = obj.getMin()
- */
+//   if(temp.length==1) return temp[0]
+  
+//   let lists = [...temp[0]],
+//       len = lists.length,
+//       str = '';
+//   for(let i = 1; i < temp.length; i++){
+//       len = lists.length;
+//       for(let k = 0; k < len; k++){
+//           str = lists.shift();
+//           for(let j = 0; j < temp[i].length; j++){
+//               lists.push(str+temp[i][j]);
+//           }
+//       }
+//   }       
+  
+//   return lists;
+// };
+
+// console.log(letterCombinations('22'));

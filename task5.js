@@ -4891,3 +4891,58 @@ console.log(operate(2)) // => 相当于 div2(mul3(add1(add1(2))))
 
 //   return j == m;
 // };
+
+/**
+ * initialize your data structure here.
+ */
+var MinStack = function() {
+    this.arr = [];
+    this.min = 0;
+};
+
+/** 
+ * @param {number} x
+ * @return {void}
+ */
+MinStack.prototype.push = function(x) {
+    this.arr.push(x);
+    for(let i = 0; i < this.arr.length; i++){
+        if(this.arr[this.min]>this.arr[i]) this.min = i;
+    }
+};
+
+/**
+ * @return {void}
+ */
+MinStack.prototype.pop = function() {
+    this.arr.pop();
+    if(this.min>=this.arr.length-1){
+        this.min = 0;
+        for(let i = 0; i < this.arr.length; i++){
+           if(this.arr[this.min]>this.arr[i]) this.min = i;
+        }
+    }
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.top = function() {
+    return this.arr[this.arr.length-1];
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.getMin = function() {
+    return this.arr[this.min]
+};
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * var obj = new MinStack()
+ * obj.push(x)
+ * obj.pop()
+ * var param_3 = obj.top()
+ * var param_4 = obj.getMin()
+ */

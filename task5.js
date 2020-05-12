@@ -4981,3 +4981,14 @@ const div2 = (x) => x / 2
 // };
 
 // console.log(letterCombinations('22'));
+
+
+const obj1 = {key: "this is key"};
+const obj2 = {value: "this is value"};
+
+const fn = (obj)=>{
+  console.log(obj?.key||"no key",obj?.value||"no value");
+}
+
+fn(obj1);
+fn(obj2);

@@ -4983,12 +4983,40 @@ const div2 = (x) => x / 2
 // console.log(letterCombinations('22'));
 
 
-const obj1 = {key: "this is key"};
-const obj2 = {value: "this is value"};
+// const obj1 = {key: "this is key"};
+// const obj2 = {value: "this is value"};
 
-const fn = (obj)=>{
-  console.log(obj?.key||"no key",obj?.value||"no value");
-}
+// const fn = (obj)=>{
+//   console.log(obj?.key||"no key",obj?.value||"no value");
+// }
 
-fn(obj1);
-fn(obj2);
+// fn(obj1);
+// fn(obj2);
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+var levelOrder = function(root) {
+  const res = []
+  if (!root) return res;
+
+  const fn = function(root, level, res) {
+      if(res.length === level) res[level] = [];
+      
+      res[level].push(root.val)
+      if (root.left) fn(root.left, level + 1, res)
+      if (root.right) fn(root.right, level + 1, res)
+  }
+
+  fn(root, 0, res);
+
+  return res
+};

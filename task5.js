@@ -5004,19 +5004,19 @@ const div2 = (x) => x / 2
  * @param {TreeNode} root
  * @return {number[][]}
  */
-var levelOrder = function(root) {
-  const res = []
-  if (!root) return res;
+// var levelOrder = function(root) {
+//   const res = []
+//   if (!root) return res;
 
-  const fn = function(root, level, res) {
-      if(res.length === level) res[level] = [];
+//   const fn = function(root, level, res) {
+//       if(res.length === level) res[level] = [];
       
-      res[level].push(root.val)
-      if (root.left) fn(root.left, level + 1, res)
-      if (root.right) fn(root.right, level + 1, res)
-  }
+//       res[level].push(root.val)
+//       if (root.left) fn(root.left, level + 1, res)
+//       if (root.right) fn(root.right, level + 1, res)
+//   }
 
-  fn(root, 0, res);
+//   fn(root, 0, res);
 
-  return res
-};
+//   return res
+// };

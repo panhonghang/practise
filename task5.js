@@ -5020,3 +5020,36 @@ const div2 = (x) => x / 2
 
 //   return res
 // };
+
+
+/**
+ * @param {number} N
+ * @return {number}
+ */
+// var numDupDigitsAtMostN = function(N) {
+//   if(N<11) return 0;
+//   let res = 0,
+//       arr = N.toString().split('');
+
+//   for(let i = 0; i < arr.length; i++){
+//       let sum = 1,
+//           counte = arr.length - i -1;
+      
+//       if(arr[i]==0) continue;
+
+//       while(counte>0){
+//           sum *= (10-counte);
+//           counte--;
+//       }
+//       console.log(sum);
+      
+//       sum *= arr[i];
+//       res += sum;
+//       sum = 1;
+//   }
+
+//   return N - res;
+// };
+
+// numDupDigitsAtMostN(1000)
+

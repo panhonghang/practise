@@ -5052,4 +5052,52 @@ const div2 = (x) => x / 2
 // };
 
 // numDupDigitsAtMostN(1000)
+/**
+ * @param {number[]} arr
+ * @param {number} k
+ * @return {number}
+ */
 
+var maxSubArray = function(nums) {
+  let res = nums[0],
+      sum = 0;
+  nums.forEach(k=>{
+      if(k+sum>k){
+          sum += k;
+      } else{
+          sum = k;
+      }
+      res = Math.max(res,sum);
+  })
+  return res;
+};
+
+var kConcatenationMaxSum = function(arr, k) {
+  if(arr.length==0) return 0;
+  let modnum = Math.pow(10,9) + 7;
+  
+  if(k==1){
+      return  maxSubArray([...arr])%modnum ;
+  } 
+  if(k==2){
+      return  maxSubArray([...arr,...arr])%modnum ;
+  } 
+  let time1 =  maxSubArray(arr);
+  let time2 =  maxSubArray([...arr,...arr]);
+  let time3 =  maxSubArray([...arr,...arr,...arr]);
+
+  console.log(time1,time2,time3);
+
+  if(time1<=0) return 0;
+
+  if(time1 >= time2){
+      return time1%modnum ;
+  }
+
+  if(time3>time2){
+      let less = time2 - time1;
+      return (time1 + less * (k-1) )%modnum ;
+  }else{
+      return time2%modnum;
+  }
+};

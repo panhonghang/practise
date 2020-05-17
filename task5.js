@@ -5171,52 +5171,81 @@ const div2 = (x) => x / 2
  * @param {number[][]} prerequisites
  * @return {number[]}
  */
-var findOrder = function(numCourses, prerequisites) {
-    // 入度表
-    let mapCount = new Map(),
-        //队列
-        queue = [],
-        // 结果数组
-        res = new Array(numCourses).fill(false);
+// var findOrder = function(numCourses, prerequisites) {
+//     // 入度表
+//     let mapCount = new Map(),
+//         //队列
+//         queue = [],
+//         // 结果数组
+//         res = new Array(numCourses).fill(false);
         
-    for(let i = 0; i <prerequisites.length; i++){
-        let item = prerequisites[i];
-        if(mapCount.has(item[0])){
-            mapCount.set(item[0],mapCount.get(item[0])+1)
-        } else{
-            mapCount.set(item[0],1);
-        }
-    };
+//     for(let i = 0; i <prerequisites.length; i++){
+//         let item = prerequisites[i];
+//         if(mapCount.has(item[0])){
+//             mapCount.set(item[0],mapCount.get(item[0])+1)
+//         } else{
+//             mapCount.set(item[0],1);
+//         }
+//     };
 
-    for(let i = 0; i < numCourses; i++){
-        if(!mapCount.has(i)){
-            queue.push(i)
-        }
-    }
-
-    if(queue.length==0) return [];
+//     for(let i = 0; i < numCourses; i++){
+//         if(!mapCount.has(i)){
+//            // 放入入度为1的
+//             queue.push(i)
+//         }
+//     }
+        // 都有入度则为空
+//     if(queue.length==0) return [];
     
-    let index = 0;
+//     let index = 0;
 
-    while(queue.length>0){
-        let start = queue.shift();
-        // 放入结果
-        res[index] = start;
+//     while(queue.length>0){
+//         let start = queue.shift();
+//         // 放入结果
+//         res[index] = start;
 
-        // 使用start入度的减一，
-        for(let i = 0; i <prerequisites.length; i++){
-            let item = prerequisites[i];
-            if(item[1]==start){
-                mapCount.set(item[0],mapCount.get(item[0])-1);
-                if(mapCount.get(item[0])<=0) queue.push(item[0])
-            } 
+//         // 使用start入度的减一，
+//         for(let i = 0; i <prerequisites.length; i++){
+//             let item = prerequisites[i];
+//             if(item[1]==start){
+//                 mapCount.set(item[0],mapCount.get(item[0])-1);
+//                 if(mapCount.get(item[0])<=0) queue.push(item[0])
+//             } 
+//         }
+//         index++;
+//     }
+
+//     if(res[numCourses-1]===false) return [];
+
+//     return res;
+// };
+
+// console.log(findOrder(4,[[1,0],[2,0],[3,1],[3,2]]))
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxProduct = function(nums) {
+    if(nums.length==1) return nums[0];
+
+    let res = 0,
+        max = 1,
+        min = 1,
+        temp = 0;
+    
+    for(let i = 0; i < nums.length; i++){
+        if(nums[i] < 0){ 
+              tmp = max;
+              max = min;
+              min = tmp;
         }
-        index++;
-    }
+        
+        max = Math.max(max*nums[i], nums[i]);
+        min = Math.min(min*nums[i], nums[i]);
 
-    if(res[numCourses-1]===false) return [];
+        res = Math.max(res,max);
+    }
 
     return res;
 };
-
-console.log(findOrder(4,[[1,0],[2,0],[3,1],[3,2]]))

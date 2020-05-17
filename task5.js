@@ -5114,58 +5114,109 @@ const div2 = (x) => x / 2
  * @param {number} k
  * @return {ListNode}
  */
-var reverseKGroup = function(head, k) {
-    if(!head||!head.next) return head;
+// var reverseKGroup = function(head, k) {
+//     if(!head||!head.next) return head;
 
-    let current = head,
-        next = current,
-        pre = null,
-        flag = true,
-        start = null,
-        temp = null,
-        len = 0,
-        num = k;
+//     let current = head,
+//         next = current,
+//         pre = null,
+//         flag = true,
+//         temp = null,
+//         len = 0,
+//         num = k;
 
-    while(current!==null){
-        len++;
-        current = current.next;
+//     while(current!==null){
+//         len++;
+//         current = current.next;
+//     }
+
+//     current = head;
+
+//     while(next!==null){
+//         if(len<k){
+//             temp.next = current;
+//             break;
+//         }
+
+//         while(num>0){
+//             next = current.next;
+//             current.next = pre;
+
+//             pre = current;
+//             if(num==k) temp = pre;
+//             current = next;
+//             next = current?current.next:null;
+//             num--;
+//             len--;
+//         }
+
+//         // 跳过第一次
+//         if(!flag) temp.next = pre;
+//         num = k;
+//         // 第一次的节点
+//         if(flag){
+//             head = pre; 
+//             flag = false;
+//         }
+
+//         pre = null;
+//         next = current;
+//     }    
+    
+//     return head;
+// };
+
+/**
+ * @param {number} numCourses
+ * @param {number[][]} prerequisites
+ * @return {number[]}
+ */
+var findOrder = function(numCourses, prerequisites) {
+    // 入度表
+    let mapCount = new Map(),
+        //队列
+        queue = [],
+        // 结果数组
+        res = new Array(numCourses).fill(false);
+        
+    for(let i = 0; i <prerequisites.length; i++){
+        let item = prerequisites[i];
+        if(mapCount.has(item[0])){
+            mapCount.set(item[0],mapCount.get(item[0])+1)
+        } else{
+            mapCount.set(item[0],1);
+        }
+    };
+
+    for(let i = 0; i < numCourses; i++){
+        if(!mapCount.has(i)){
+            queue.push(i)
+        }
     }
 
-    current = head;
-
-    while(next!==null){
-        if(len<k){
-            temp.next = current;
-            break;
-        }
-
-        while(num>0){
-            next = current.next;
-            current.next = pre;
-
-            pre = current;
-            if(num==k) start = pre;
-            current = next;
-            next = current?current.next:null;
-            num--;
-            len--;
-        }
-
-        // 跳过第一次
-        if(!flag) temp.next = pre;
-
-        temp = start;
-
-        num = k;
-        // 第一次的节点
-        if(flag){
-            head = pre; 
-            flag = false;
-        }
-
-        pre = null;
-        next = current;
-    }    
+    if(queue.length==0) return [];
     
-    return head;
+    let index = 0;
+
+    while(queue.length>0){
+        let start = queue.shift();
+        // 放入结果
+        res[index] = start;
+
+        // 使用start入度的减一，
+        for(let i = 0; i <prerequisites.length; i++){
+            let item = prerequisites[i];
+            if(item[1]==start){
+                mapCount.set(item[0],mapCount.get(item[0])-1);
+                if(mapCount.get(item[0])<=0) queue.push(item[0])
+            } 
+        }
+        index++;
+    }
+
+    if(res[numCourses-1]===false) return [];
+
+    return res;
 };
+
+console.log(findOrder(4,[[1,0],[2,0],[3,1],[3,2]]))

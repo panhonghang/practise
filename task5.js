@@ -4673,9 +4673,9 @@
 
 /* 完成一个函数fn，它接受多个函数作为参数，然后fn返回的也是一个函数，达到以下的效果：
 
-const operate = fn(div2, mul3, add1, add1)
-operate(0) // => 相当于 div2(mul3(add1(add1(0))))
-operate(2) // => 相当于 div2(mul3(add1(add1(2))))
+// const operate = fn(div2, mul3, add1, add1)
+// operate(0) // => 相当于 div2(mul3(add1(add1(0))))
+// operate(2) // => 相当于 div2(mul3(add1(add1(2))))
 
 // 其中
 // const add1 = (x) => x + 1
@@ -5226,26 +5226,58 @@ const div2 = (x) => x / 2
  * @param {number[]} nums
  * @return {number}
  */
-var maxProduct = function(nums) {
-    if(nums.length==1) return nums[0];
+// var maxProduct = function(nums) {
+//     if(nums.length==1) return nums[0];
 
-    let res = 0,
-        max = 1,
-        min = 1,
-        temp = 0;
+//     let res = 0,
+//         max = 1,
+//         min = 1,
+//         temp = 0;
     
-    for(let i = 0; i < nums.length; i++){
-        if(nums[i] < 0){ 
-              tmp = max;
-              max = min;
-              min = tmp;
-        }
+//     for(let i = 0; i < nums.length; i++){
+//         if(nums[i] < 0){ 
+//               tmp = max;
+//               max = min;
+//               min = tmp;
+//         }
         
-        max = Math.max(max*nums[i], nums[i]);
-        min = Math.min(min*nums[i], nums[i]);
+//         max = Math.max(max*nums[i], nums[i]);
+//         min = Math.min(min*nums[i], nums[i]);
 
-        res = Math.max(res,max);
+//         res = Math.max(res,max);
+//     }
+
+//     return res;
+// };
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+function isPali(str, l, r) { // 辅助函数
+  while (l < r) { // 指针相遇 结束循环
+    if (str[l] !== str[r]) { // 一票否决
+      return false 
     }
+    l++ // 指针挪动，相互逼近
+    r--
+  }
+  return true // 没有遇到不同，返回true
+}
 
-    return res;
+var validPalindrome = function(s) {
+  let start = 0,
+      end = s.length-1;
+  while(start<=end){
+      if(s[start]!==s[end]){
+          return isPali(s,start+1,end)||isPali(s,start,end-1)
+      }
+
+      start++;
+      end--;
+  }
+
+  return true;
 };
+
+console.log(validPalindrome("pidbliassaqozokmtgahluruufwbjdtayuhbxwoicviygilgzduudzgligyviciowxbhuyatdjbwfuurulhagtmkozoqassailbdip"));

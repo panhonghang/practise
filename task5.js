@@ -5324,49 +5324,49 @@
  * @param {string} s
  * @return {string}
  */
-const fn = function(s,left,right){
-  let L=left,
-      R=right;
+// const fn = function(s,left,right){
+//   let L=left,
+//       R=right;
 
-  while(L>=0 && R<s.length && s[R]==s[L]){
-      L--;
-      R++;
-  }
+//   while(L>=0 && R<s.length && s[R]==s[L]){
+//       L--;
+//       R++;
+//   }
 
-  return R-L-1;
-}
+//   return R-L-1;
+// }
 
-var longestPalindrome = function(s) {
-  if (!s || !s.trim()) return '';
-  if (s.length === 1) return s;
-  if (s.length === 2) return s[0] === s[1] ? s[0] + s[1] : s[1];
+// var longestPalindrome = function(s) {
+//   if (!s || !s.trim()) return '';
+//   if (s.length === 1) return s;
+//   if (s.length === 2) return s[0] === s[1] ? s[0] + s[1] : s[1];
   
-  let start = 0,
-      end = 0,
-      cur = 0,
-      len1 = 0,
-      len2 = 0,
-      maxlen = 0;
+//   let start = 0,
+//       end = 0,
+//       cur = 0,
+//       len1 = 0,
+//       len2 = 0,
+//       maxlen = 0;
 
-  while(cur < s.length){
-      len1=fn(s,cur,cur);
-      len2=fn(s,cur,cur+1);
+//   while(cur < s.length){
+//       len1=fn(s,cur,cur);
+//       len2=fn(s,cur,cur+1);
 
-      if(len1>maxlen||len2>maxlen){
-          if(len1>len2){
-              maxlen = len1;
-              start= cur - Math.floor((maxlen)/2);
-              end= cur + Math.floor(maxlen/2);
-          } else{
-              maxlen = len2;
-              start= cur - Math.floor((maxlen)/2)+1;
-              end= cur + Math.floor(maxlen/2);
-          }
-      }
-    cur++;
-  }
+//       if(len1>maxlen||len2>maxlen){
+//           if(len1>len2){
+//               maxlen = len1;
+//               start= cur - Math.floor((maxlen)/2);
+//               end= cur + Math.floor(maxlen/2);
+//           } else{
+//               maxlen = len2;
+//               start= cur - Math.floor((maxlen)/2)+1;
+//               end= cur + Math.floor(maxlen/2);
+//           }
+//       }
+//     cur++;
+//   }
 
-  return s.substring(start,end+1);
-};
+//   return s.substring(start,end+1);
+// };
 
-console.log(longestPalindrome("cacd"))
+// console.log(longestPalindrome("cacd"))

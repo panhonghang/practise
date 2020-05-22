@@ -5370,3 +5370,64 @@
 // };
 
 // console.log(longestPalindrome("cacd"))
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {number[]} preorder
+ * @param {number[]} inorder
+ * @return {TreeNode}
+ */
+var buildTree = function(preorder, inorder) {
+    if (inorder.length === 0) return null;
+
+    let node = new TreeNode(preorder[0]),
+        index = inorder.indexOf(preorder[0]);
+
+    node.left = buildTree(preorder.slice(1, index + 1), inorder.slice(0, index));
+    node.right = buildTree(preorder.slice(index + 1), inorder.slice(index + 1));
+
+    return node;
+};
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {number[]} preorder
+ * @param {number[]} inorder
+ * @return {TreeNode}
+ */
+var buildTree = function(preorder, inorder) {
+    if (!preorder.length || !inorder.length) return null;
+    
+    let size = inorder.length;
+    const map = new Map();
+    let nodeIndex = 0;
+
+    for (let i = 0; i < size; i++) {
+        map.set(inorder[i], i);
+    }
+
+    var traversal = function (left, right) {
+        if (left === right) return null;
+        const nodeVal = preorder[nodeIndex];
+        const node = new TreeNode(nodeVal);
+        nodeIndex++;
+        const mid = map.get(nodeVal);
+        node.left = traversal(left, mid);
+        node.right = traversal(mid + 1, right);
+        return node;
+    };
+
+    return traversal(0, inorder.length);
+};

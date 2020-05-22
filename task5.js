@@ -5383,51 +5383,107 @@
  * @param {number[]} inorder
  * @return {TreeNode}
  */
-var buildTree = function(preorder, inorder) {
-    if (inorder.length === 0) return null;
+// var buildTree = function(preorder, inorder) {
+//     if (inorder.length === 0) return null;
 
-    let node = new TreeNode(preorder[0]),
-        index = inorder.indexOf(preorder[0]);
+//     let node = new TreeNode(preorder[0]),
+//         index = inorder.indexOf(preorder[0]);
 
-    node.left = buildTree(preorder.slice(1, index + 1), inorder.slice(0, index));
-    node.right = buildTree(preorder.slice(index + 1), inorder.slice(index + 1));
+//     node.left = buildTree(preorder.slice(1, index + 1), inorder.slice(0, index));
+//     node.right = buildTree(preorder.slice(index + 1), inorder.slice(index + 1));
 
-    return node;
+//     return node;
+// };
+
+// /**
+//  * Definition for a binary tree node.
+//  * function TreeNode(val) {
+//  *     this.val = val;
+//  *     this.left = this.right = null;
+//  * }
+//  */
+// /**
+//  * @param {number[]} preorder
+//  * @param {number[]} inorder
+//  * @return {TreeNode}
+//  */
+// var buildTree = function(preorder, inorder) {
+//     if (!preorder.length || !inorder.length) return null;
+    
+//     let size = inorder.length;
+//     const map = new Map();
+//     let nodeIndex = 0;
+
+//     for (let i = 0; i < size; i++) {
+//         map.set(inorder[i], i);
+//     }
+
+//     var traversal = function (left, right) {
+//         if (left === right) return null;
+//         const nodeVal = preorder[nodeIndex];
+//         const node = new TreeNode(nodeVal);
+//         nodeIndex++;
+//         const mid = map.get(nodeVal);
+//         node.left = traversal(left, mid);
+//         node.right = traversal(mid + 1, right);
+//         return node;
+//     };
+
+//     return traversal(0, inorder.length);
+// };
+
+/**
+ * @param {number} dividend
+ * @param {number} divisor
+ * @return {number}
+ */
+var divide = function(dividend, divisor) {
+    //判断符号
+        let symbol=(dividend>0&&divisor>0)||(dividend<0&&divisor<0)?1:-1;
+        //边界情况直接返回
+        if(dividend==Infinity&&divisor==1) return dividend;
+        if(dividend==Infinity&&divisor==-1) return -dividend;
+        if(dividend==-Infinity&&divisor==1) return -dividend;
+        if(dividend==-Infinity&&divisor==-1) return Infinity;
+
+        let a=Math.abs(dividend),b=Math.abs(divisor);
+        //记录结果
+        let result=0;
+        let i=0;
+        //temp用于保存最初始的b
+        let temp=b;
+        //当a恰好是2^n，b=2的时候是存在a=temp的，所以需要加上a==temp的情况
+        while(a>=b){
+            //左移，相当于b*2
+            b=b<<1;
+            //a<b情况说明到达临界点了
+            if(a<b){
+                //计算result的值 2<<(i-1)等价与Math.pow(2,i),如果是i=0的情况说明Math.pow(2,0)就是1
+               result=result+(i>0?2<<(i-1):1); 
+                //获取差值
+               a=a-(b>>1);
+                //重新开始计算
+               b=temp;
+               i=0;
+            }else{
+                //累计乘2的次数
+                i++;
+            }
+        }
+        
+    return symbol>0?result:-result;
 };
 
-/**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- */
-/**
- * @param {number[]} preorder
- * @param {number[]} inorder
- * @return {TreeNode}
- */
-var buildTree = function(preorder, inorder) {
-    if (!preorder.length || !inorder.length) return null;
-    
-    let size = inorder.length;
-    const map = new Map();
-    let nodeIndex = 0;
+var divide = function(dividend, divisor) {
+    let result = dividend / divisor
+    let sign = Math.sign(result);
 
-    for (let i = 0; i < size; i++) {
-        map.set(inorder[i], i);
+    let min = Math.pow(-2, 31);
+    let max = Math.pow(2, 31) - 1;
+
+    if (divisor !== 0 && result > min && result < max) {
+        return sign !== -1 ? Math.floor(result) : Math.floor(Math.abs(result)) * sign
+    } else {
+        return sign !== -1 ? max : min;
     }
-
-    var traversal = function (left, right) {
-        if (left === right) return null;
-        const nodeVal = preorder[nodeIndex];
-        const node = new TreeNode(nodeVal);
-        nodeIndex++;
-        const mid = map.get(nodeVal);
-        node.left = traversal(left, mid);
-        node.right = traversal(mid + 1, right);
-        return node;
-    };
-
-    return traversal(0, inorder.length);
 };

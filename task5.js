@@ -5494,54 +5494,54 @@
  * @param {string} t
  * @return {string}
  */
-var minWindow = function(s, t) {
-    let sleft = 0,
-        sright = 0,
-        start = Infinity,
-        min = Infinity,
-        slen = s.length,
-        tlen = t.length;
+// var minWindow = function(s, t) {
+//     let sleft = 0,
+//         sright = 0,
+//         start = Infinity,
+//         min = Infinity,
+//         slen = s.length,
+//         tlen = t.length;
 
-    // 构建一个哈希表，用来查找当前元素是否在t当中;
-    let map = new Map(),
-        // 字符的种类，防止t当中有重复的字符；
-        chartypes = 0;
+//     // 构建一个哈希表，用来查找当前元素是否在t当中;
+//     let map = new Map(),
+//         // 字符的种类，防止t当中有重复的字符；
+//         chartypes = 0;
 
-    t.split('')
-        .forEach(key=>{
-            if(map.has(key)){
-                map.set(key,map.get(key)+1);
-            } else{
-                map.set(key,1);
-                chartypes++;
-            }
-        });
+//     t.split('')
+//         .forEach(key=>{
+//             if(map.has(key)){
+//                 map.set(key,map.get(key)+1);
+//             } else{
+//                 map.set(key,1);
+//                 chartypes++;
+//             }
+//         });
 
-    while(sright<slen){
-        // 匹配到了
-        if(map.has(s[sright])) {
-            map.set(s[sright],map.get(s[sright])-1);
-            if(map.get(s[sright])==0) chartypes--;
-        }
+//     while(sright<slen){
+//         // 匹配到了
+//         if(map.has(s[sright])) {
+//             map.set(s[sright],map.get(s[sright])-1);
+//             if(map.get(s[sright])==0) chartypes--;
+//         }
         
-        // 匹配完全就开始缩小区间，移动左指针
-        while(chartypes==0){
-            if (sright-sleft+1 < min) { // 计算长度，和min比较
-                min = sright - sleft + 1 // 更新min
-                start = sleft // 更新最小子串的起点
-            }
+//         // 匹配完全就开始缩小区间，移动左指针
+//         while(chartypes==0){
+//             if (sright-sleft+1 < min) { // 计算长度，和min比较
+//                 min = sright - sleft + 1 // 更新min
+//                 start = sleft // 更新最小子串的起点
+//             }
 
-            if(map.has(s[sleft])){
-                map.set(s[sleft],map.get(s[sleft])+1);
-                if(map.get(s[sleft])>0) chartypes++;
-            }
-            sleft++;
-        }
+//             if(map.has(s[sleft])){
+//                 map.set(s[sleft],map.get(s[sleft])+1);
+//                 if(map.get(s[sleft])>0) chartypes++;
+//             }
+//             sleft++;
+//         }
 
-        // 移动右指针
-        sright++;
-    }
-    return s.substring(start,start+min);
-};
+//         // 移动右指针
+//         sright++;
+//     }
+//     return s.substring(start,start+min);
+// };
 
-console.log(minWindow("ADAOBECODEBANC","ABCsfdjf"));
+// console.log(minWindow("ADAOBECODEBANC","ABCsfdjf"));

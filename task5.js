@@ -5594,3 +5594,54 @@
 
 //     return dp[n];
 // };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+// var isSymmetric = function(root) {
+//     if(root==null) return true;
+
+//     let queue = [root, root];
+    
+//     while (queue.length > 0) {
+//         let l = queue.shift();
+//         let r = queue.shift();
+        
+//         if (l === null && r === null) continue;
+//         if (l === null || r === null) return false;
+
+//         if (l.val !== r.val) return false;
+
+//         queue.push(l.left);
+//         queue.push(r.right);
+//         queue.push(l.right);
+//         queue.push(r.left);
+//     }
+
+//     return true;
+// };
+
+// var isSymmetric = function(root) {
+//     if (root === null) {
+//         return true
+//     }
+//     return fn(root.left, root.right)
+// };
+
+// var fn = function(left, right) {
+//     if (left === null || right === null) {
+//         return left === right
+//     }
+//     if (left.val !== right.val) {
+//         return false
+//     }
+//     return fn(left.left, right.right) && fn(left.right, right.left)
+// }

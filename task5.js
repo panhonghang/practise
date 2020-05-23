@@ -5437,53 +5437,111 @@
  * @param {number} divisor
  * @return {number}
  */
-var divide = function(dividend, divisor) {
-    //判断符号
-        let symbol=(dividend>0&&divisor>0)||(dividend<0&&divisor<0)?1:-1;
-        //边界情况直接返回
-        if(dividend==Infinity&&divisor==1) return dividend;
-        if(dividend==Infinity&&divisor==-1) return -dividend;
-        if(dividend==-Infinity&&divisor==1) return -dividend;
-        if(dividend==-Infinity&&divisor==-1) return Infinity;
+// var divide = function(dividend, divisor) {
+//     //判断符号
+//         let symbol=(dividend>0&&divisor>0)||(dividend<0&&divisor<0)?1:-1;
+//         //边界情况直接返回
+//         if(dividend==Infinity&&divisor==1) return dividend;
+//         if(dividend==Infinity&&divisor==-1) return -dividend;
+//         if(dividend==-Infinity&&divisor==1) return -dividend;
+//         if(dividend==-Infinity&&divisor==-1) return Infinity;
 
-        let a=Math.abs(dividend),b=Math.abs(divisor);
-        //记录结果
-        let result=0;
-        let i=0;
-        //temp用于保存最初始的b
-        let temp=b;
-        //当a恰好是2^n，b=2的时候是存在a=temp的，所以需要加上a==temp的情况
-        while(a>=b){
-            //左移，相当于b*2
-            b=b<<1;
-            //a<b情况说明到达临界点了
-            if(a<b){
-                //计算result的值 2<<(i-1)等价与Math.pow(2,i),如果是i=0的情况说明Math.pow(2,0)就是1
-               result=result+(i>0?2<<(i-1):1); 
-                //获取差值
-               a=a-(b>>1);
-                //重新开始计算
-               b=temp;
-               i=0;
-            }else{
-                //累计乘2的次数
-                i++;
+//         let a=Math.abs(dividend),b=Math.abs(divisor);
+//         //记录结果
+//         let result=0;
+//         let i=0;
+//         //temp用于保存最初始的b
+//         let temp=b;
+//         //当a恰好是2^n，b=2的时候是存在a=temp的，所以需要加上a==temp的情况
+//         while(a>=b){
+//             //左移，相当于b*2
+//             b=b<<1;
+//             //a<b情况说明到达临界点了
+//             if(a<b){
+//                 //计算result的值 2<<(i-1)等价与Math.pow(2,i),如果是i=0的情况说明Math.pow(2,0)就是1
+//                result=result+(i>0?2<<(i-1):1); 
+//                 //获取差值
+//                a=a-(b>>1);
+//                 //重新开始计算
+//                b=temp;
+//                i=0;
+//             }else{
+//                 //累计乘2的次数
+//                 i++;
+//             }
+//         }
+        
+//     return symbol>0?result:-result;
+// };
+
+// var divide = function(dividend, divisor) {
+//     let result = dividend / divisor
+//     let sign = Math.sign(result);
+
+//     let min = Math.pow(-2, 31);
+//     let max = Math.pow(2, 31) - 1;
+
+//     if (divisor !== 0 && result > min && result < max) {
+//         return sign !== -1 ? Math.floor(result) : Math.floor(Math.abs(result)) * sign
+//     } else {
+//         return sign !== -1 ? max : min;
+//     }
+// };
+
+
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {string}
+ */
+var minWindow = function(s, t) {
+    let sleft = 0,
+        sright = 0,
+        start = Infinity,
+        min = Infinity,
+        slen = s.length,
+        tlen = t.length;
+
+    // 构建一个哈希表，用来查找当前元素是否在t当中;
+    let map = new Map(),
+        // 字符的种类，防止t当中有重复的字符；
+        chartypes = 0;
+
+    t.split('')
+        .forEach(key=>{
+            if(map.has(key)){
+                map.set(key,map.get(key)+1);
+            } else{
+                map.set(key,1);
+                chartypes++;
             }
+        });
+
+    while(sright<slen){
+        // 匹配到了
+        if(map.has(s[sright])) {
+            map.set(s[sright],map.get(s[sright])-1);
+            if(map.get(s[sright])==0) chartypes--;
         }
         
-    return symbol>0?result:-result;
-};
+        // 匹配完全就开始缩小区间，移动左指针
+        while(chartypes==0){
+            if (sright-sleft+1 < min) { // 计算长度，和min比较
+                min = sright - sleft + 1 // 更新min
+                start = sleft // 更新最小子串的起点
+            }
 
-var divide = function(dividend, divisor) {
-    let result = dividend / divisor
-    let sign = Math.sign(result);
+            if(map.has(s[sleft])){
+                map.set(s[sleft],map.get(s[sleft])+1);
+                if(map.get(s[sleft])>0) chartypes++;
+            }
+            sleft++;
+        }
 
-    let min = Math.pow(-2, 31);
-    let max = Math.pow(2, 31) - 1;
-
-    if (divisor !== 0 && result > min && result < max) {
-        return sign !== -1 ? Math.floor(result) : Math.floor(Math.abs(result)) * sign
-    } else {
-        return sign !== -1 ? max : min;
+        // 移动右指针
+        sright++;
     }
+    return s.substring(start,start+min);
 };
+
+console.log(minWindow("ADAOBECODEBANC","ABCsfdjf"));

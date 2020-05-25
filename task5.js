@@ -5720,58 +5720,74 @@
 
 // console.log(findMedianSortedArrays([1,2],[-1,3]));
 
-class _LazyMan {
-    constructor(name) {
-      this.tasks = [() => {
-        console.log(`Hi! This is ${name}`);
-        this.next()
-    }];
-      // 如果不是异步就会导致tasks当中的任务还没有添加完全就结束了执行
-      setTimeout(()=>this.next(),0)
-    }
+// class _LazyMan {
+//     constructor(name) {
+//       this.tasks = [() => {
+//         console.log(`Hi! This is ${name}`);
+//         this.next()
+//     }];
+//       // 如果不是异步就会导致tasks当中的任务还没有添加完全就结束了执行
+//       setTimeout(()=>this.next(),0)
+//     }
   
-    next() {      
-      const task = this.tasks.shift(); // 取第一个任务执行
-      task && task();
-    }
+//     next() {      
+//       const task = this.tasks.shift(); // 取第一个任务执行
+//       task && task();
+//     }
   
-    sleep(time) {
-      this._sleepWrapper(time, false);
-      return this;                     // 链式调用
-    }
+//     sleep(time) {
+//       this._sleepWrapper(time, false);
+//       return this;                     // 链式调用
+//     }
   
-    sleepFirst(time) {
-      this._sleepWrapper(time, true);
-      return this;
-    }
+//     sleepFirst(time) {
+//       this._sleepWrapper(time, true);
+//       return this;
+//     }
   
-    _sleepWrapper(time, first) {
-      const task = () => {
-        setTimeout(() => {
-          console.log(`Wake up after ${time}`);
-          this.next();
-        }, time * 1000)
-      }
-      if (first) {
-        this.tasks.unshift(task);     // 放到任务队列顶部
-      } else {
-        this.tasks.push(task);        // 放到任务队列尾部
-      }
-    }
+//     _sleepWrapper(time, first) {
+//       const task = () => {
+//         setTimeout(() => {
+//           console.log(`Wake up after ${time}`);
+//           this.next();
+//         }, time * 1000)
+//       }
+//       if (first) {
+//         this.tasks.unshift(task);     // 放到任务队列顶部
+//       } else {
+//         this.tasks.push(task);        // 放到任务队列尾部
+//       }
+//     }
   
-    eat(name) {
-      const task = () => {
-        console.log(`Eat ${name}`);
-        this.next();
-      }
-      this.tasks.push(task);
-      return this;
-    }
-  }
+//     eat(name) {
+//       const task = () => {
+//         console.log(`Eat ${name}`);
+//         this.next();
+//       }
+//       this.tasks.push(task);
+//       return this;
+//     }
+//   }
   
-function LazyMan(name) {
-    return new _LazyMan(name);
-}
+// function LazyMan(name) {
+//     return new _LazyMan(name);
+// }
 
 
-LazyMan('Hank').sleep(1).eat('dinner')
+// LazyMan('Hank').sleep(1).eat('dinner')
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findDuplicate = function(nums) {
+    for(let i = 0; i < nums.length; i++){
+        for(let j = i+1; j < nums.length; j++){
+            if((nums[i]^nums[j])===0) {
+                return nums[j];
+            }
+        }
+    }
+};
+
+console.log(findDuplicate([1,3,4,2,2]))

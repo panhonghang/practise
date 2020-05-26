@@ -5816,3 +5816,35 @@
 // };
 
 // console.log(findDuplicate([1,3,4,2,2]))
+
+/**
+ * @param {number[]} height
+ * @return {number}
+ */
+var trap = function(height) {
+    let res = 0,
+        left = 0,
+        right = 0,
+        min = 0;
+
+    for(let index=1; index<height.length-1; index++){
+        left = 0;
+        right = 0;
+
+        for(let i = index-1; i>=0; i--){
+            left = Math.max(height[i],left);
+        }
+
+        for(let i=index+1; i<height.length; i++){
+            right = Math.max(height[i],right);
+        }
+
+        min = Math.min(left,right);
+
+        if(min > height[index]){
+            res += min-height[index] 
+        }
+    }
+
+    return res;
+};

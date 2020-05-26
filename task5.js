@@ -5776,18 +5776,43 @@
 
 // LazyMan('Hank').sleep(1).eat('dinner')
 
-/**
- * @param {number[]} nums
- * @return {number}
- */
-var findDuplicate = function(nums) {
-    for(let i = 0; i < nums.length; i++){
-        for(let j = i+1; j < nums.length; j++){
-            if((nums[i]^nums[j])===0) {
-                return nums[j];
-            }
-        }
-    }
-};
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// var findDuplicate = function(nums) {
+//     for(let i = 0; i < nums.length; i++){
+//         for(let j = i+1; j < nums.length; j++){
+//             if((nums[i]^nums[j])===0) {
+//                 return nums[j];
+//             }
+//         }
+//     }
+// };
 
-console.log(findDuplicate([1,3,4,2,2]))
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+// var findDuplicate = function(nums) {
+//     let slow = 0, 
+//         fast = 0;
+
+//     while(1) {
+//         slow = nums[slow] // 慢指针前进
+//         fast = nums[nums[fast]] //快指针前进
+//         if (slow === fast) break;
+//     }
+    
+//     fast = 0;
+
+//     while(1) {
+//         fast = nums[fast]
+//         slow = nums[slow]
+//         if (fast === slow) break;
+//     }
+
+//     return slow
+// };
+
+// console.log(findDuplicate([1,3,4,2,2]))

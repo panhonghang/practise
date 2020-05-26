@@ -5821,30 +5821,55 @@
  * @param {number[]} height
  * @return {number}
  */
-var trap = function(height) {
-    let res = 0,
-        left = 0,
-        right = 0,
-        min = 0;
+// var trap = function(height) {
+//     let res = 0,
+//         left = 0,
+//         right = 0,
+//         min = 0;
 
-    for(let index=1; index<height.length-1; index++){
-        left = 0;
-        right = 0;
+//     for(let index=1; index<height.length-1; index++){
+//         left = 0;
+//         right = 0;
 
-        for(let i = index-1; i>=0; i--){
-            left = Math.max(height[i],left);
-        }
+//         for(let i = index-1; i>=0; i--){
+//             left = Math.max(height[i],left);
+//         }
 
-        for(let i=index+1; i<height.length; i++){
-            right = Math.max(height[i],right);
-        }
+//         for(let i=index+1; i<height.length; i++){
+//             right = Math.max(height[i],right);
+//         }
 
-        min = Math.min(left,right);
+//         min = Math.min(left,right);
 
-        if(min > height[index]){
-            res += min-height[index] 
-        }
-    }
+//         if(min > height[index]){
+//             res += min-height[index] 
+//         }
+//     }
 
-    return res;
-};
+//     return res;
+// };
+
+/**
+ * @param {number[]} A
+ * @param {number[]} B
+ * @param {number[]} C
+ * @return {void} Do not return anything, modify C in-place instead.
+ */
+// var hanota = function(A, B, C) {
+//     let len = A.length;
+//     if(len==0) return [];
+
+//     const fn = function(N,FROM,MID,TO){
+//         if(N==1){
+//             TO.push(FROM.pop())
+//             return;
+//         }
+//         fn(N-1,FROM,TO,MID);
+//         TO.push(FROM.pop());
+//         fn(N-1,MID,FROM,TO);
+//     }
+
+//     fn(len,A,B,C);
+
+//     return C;
+// };

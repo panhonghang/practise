@@ -5897,3 +5897,32 @@
 
 //     return res;
 // };
+
+/**
+ * @param {number[]} A
+ * @param {number} K
+ * @return {number}
+ */
+var subarraysDivByK = function(A, K) {
+    let map = new Map([[0,1]]),
+        res = 0,
+        sum = 0;
+        
+        A.forEach((key)=>{
+            sum = (sum+key)%K;
+
+            if(sum<0) sum += K;
+
+            if(map.has(sum)){
+                res += map.get(sum);
+            }
+
+            if(map.has(sum)){
+                map.set(sum,map.get(sum)+1);
+            } else{
+                map.set(sum,1);
+            }
+        })
+
+    return res;
+};

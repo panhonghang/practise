@@ -5903,26 +5903,107 @@
  * @param {number} K
  * @return {number}
  */
-var subarraysDivByK = function(A, K) {
-    let map = new Map([[0,1]]),
-        res = 0,
-        sum = 0;
+// var subarraysDivByK = function(A, K) {
+//     let map = new Map([[0,1]]),
+//         res = 0,
+//         sum = 0;
         
-        A.forEach((key)=>{
-            sum = (sum+key)%K;
+//         A.forEach((key)=>{
+//             sum = (sum+key)%K;
 
-            if(sum<0) sum += K;
+//             if(sum<0) sum += K;
 
-            if(map.has(sum)){
-                res += map.get(sum);
-            }
+//             if(map.has(sum)){
+//                 res += map.get(sum);
+//             }
 
-            if(map.has(sum)){
-                map.set(sum,map.get(sum)+1);
-            } else{
-                map.set(sum,1);
-            }
-        })
+//             if(map.has(sum)){
+//                 map.set(sum,map.get(sum)+1);
+//             } else{
+//                 map.set(sum,1);
+//             }
+//         })
 
-    return res;
+//     return res;
+// };
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+// var decodeString = function(s) {
+    
+//     // num重复次数，str字符串
+//     const fn = (str,num)=>{    
+//         let temp = str;
+//         console.log(str,num)
+//         for(let i = 1; i < num; i++){
+//             str += temp
+//         }
+//         return str;
+//     }
+
+//     for(let i = 0; i < s.length; i++){
+//         // 是数字
+//         if(s[i]=='['){
+            
+//             let end = i,
+//                 start = i,
+//                 count = 0;
+            
+//             // 找到str
+//             while(1){
+//                 if(s[end]=='['){
+//                     count++;
+//                 } else if(s[end]==']'){
+//                     count--;
+//                 }
+
+//                 if(s[end]==']'&&count==0) break;
+                
+//                 end++;
+//             }
+
+//             // 找到num
+//             while(1){
+//                 if(isNaN(s[i-1])||i==0) break;
+//                 i--;
+//             }
+            
+//             console.log(s.slice(i,start));
+
+//             s = s.slice(0,i) + fn(s.slice(start+1,end),s.slice(i,start)) + s.slice(end+1);
+//         }
+//     }
+
+//     return s;
+// };
+
+// console.log(decodeString("s20[bc]"))
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var decodeString = function(s) {
+    let reg = /([0-9]*)\[([a-zA-Z]*?)\]/g;
+    let count,
+        str;
+
+    while(s.match(reg)){
+      s = s.replace(reg,(...args)=>{
+        console.log(...args)
+        count = args[1];
+        str = ''
+        while(count){
+          str += args[2];
+          count --;
+        }
+        return str
+      })
+    }
+
+    return s;
 };
+
+console.log(decodeString("s20[bc]"))

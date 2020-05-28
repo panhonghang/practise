@@ -5985,25 +5985,25 @@
  * @param {string} s
  * @return {string}
  */
-var decodeString = function(s) {
-    let reg = /([0-9]*)\[([a-zA-Z]*?)\]/g;
-    let count,
-        str;
+// var decodeString = function(s) {
+//     let reg = /([0-9]*)\[([a-zA-Z]*?)\]/g;
+//     let count,
+//         str;
 
-    while(s.match(reg)){
-      s = s.replace(reg,(...args)=>{
-        console.log(...args)
-        count = args[1];
-        str = ''
-        while(count){
-          str += args[2];
-          count --;
-        }
-        return str
-      })
-    }
+//     while(s.match(reg)){
+//       s = s.replace(reg,(...args)=>{
+//         console.log(...args)
+//         count = args[1];
+//         str = ''
+//         while(count){
+//           str += args[2];
+//           count --;
+//         }
+//         return str
+//       })
+//     }
 
-    return s;
-};
+//     return s;
+// };
 
-console.log(decodeString("s20[bc]"))
+// console.log(decodeString("s20[bc]"))

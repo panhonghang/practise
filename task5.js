@@ -6012,19 +6012,37 @@
  * @param {number[]} nums
  * @return {number}
  */
-var rob = function(nums) {
-    let len = nums.length,
-        dp = [];
-    if(len == 0) return 0;
-    if(len == 1) return nums[0];
-    if(len == 2) return Math.max(nums[0],nums[1]);
+// var rob = function(nums) {
+//     let len = nums.length,
+//         dp = [];
+//     if(len == 0) return 0;
+//     if(len == 1) return nums[0];
+//     if(len == 2) return Math.max(nums[0],nums[1]);
     
-    dp[0] = 0;
-    dp[1] = nums[0];
+//     dp[0] = 0;
+//     dp[1] = nums[0];
     
-    for(let i = 2; i <= len; i++){
-        dp[i] = Math.max(dp[i-1],dp[i-2]+nums[i-1]);
-    }
+//     for(let i = 2; i <= len; i++){
+//         dp[i] = Math.max(dp[i-1],dp[i-2]+nums[i-1]);
+//     }
     
-    return dp[len];
-}; 
+//     return dp[len];
+// }; 
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+// var maxSubArray = function(nums) {
+//     let max = -Infinity;
+
+//     nums.reduce((total,cur,i)=>{
+//         if( total > 0 ) total += cur;
+//         else total = cur;
+        
+//         max = max > total?max:total;
+//         return total;
+//     },0)
+
+//     return max;
+// };

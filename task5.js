@@ -6046,3 +6046,22 @@
 
 //     return max;
 // };
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+// var maxProfit = function(prices) {
+//     let max = 0,
+//         min = Infinity;
+
+//     for(let i = 0; i < prices.length; i++) {
+//         if(prices[i] > min) {
+//            max = Math.max(max,prices[i] - min)
+//         } else{
+//             min = prices[i]
+//         }
+//     }
+
+//     return max
+// };

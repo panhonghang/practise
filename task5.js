@@ -6007,3 +6007,24 @@
 // };
 
 // console.log(decodeString("s20[bc]"))
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var rob = function(nums) {
+    let len = nums.length,
+        dp = [];
+    if(len == 0) return 0;
+    if(len == 1) return nums[0];
+    if(len == 2) return Math.max(nums[0],nums[1]);
+    
+    dp[0] = 0;
+    dp[1] = nums[0];
+    
+    for(let i = 2; i <= len; i++){
+        dp[i] = Math.max(dp[i-1],dp[i-2]+nums[i-1]);
+    }
+    
+    return dp[len];
+}; 

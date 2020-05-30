@@ -6070,35 +6070,56 @@
  * @param {number[]} heights
  * @return {number}
  */
-var largestRectangleArea = function(heights) {
-    // 往左往右找到边界
-    let max = heights[0],
-        left = 0,
-        right = 0,
-        width = 1;
+// var largestRectangleArea = function(heights) {
+//     // 往左往右找到边界
+//     let max = heights[0],
+//         left = 0,
+//         right = 0,
+//         width = 1;
 
-    for(let i = 0; i < heights.length; i++){
-        left = i;
-        right = i;
+//     for(let i = 0; i < heights.length; i++){
+//         left = i;
+//         right = i;
 
-        // 找左边
-        while(heights[i]<=heights[left]){
-            left--;
-        }
-        // 找右边
-        while(heights[i]<=heights[right]){
-            right++;
-        }
+//         // 找左边
+//         while(heights[i]<=heights[left]){
+//             left--;
+//         }
+//         // 找右边
+//         while(heights[i]<=heights[right]){
+//             right++;
+//         }
 
-        width = right-left-1;
+//         width = right-left-1;
 
-        console.log(width);
-        max = Math.max(max, heights[i]*width);
+//         console.log(width);
+//         max = Math.max(max, heights[i]*width);
 
-        width = 1;
-    }
+//         width = 1;
+//     }
 
-    return max;
-};
+//     return max;
+// };
 
-console.log(largestRectangleArea([3,1]))
+// console.log(largestRectangleArea([3,1]))
+
+
+/**
+ * @param {number[]} heights
+ * @return {number}
+ */
+// var largestRectangleArea = function(heights) {
+//     const stack = [];
+//     heights.unshift(0);
+//     heights.push(0);
+//     let res = 0;
+//     for (let i=0;i<heights.length;i++) {
+//         while (stack.length > 0 && heights[i] < heights[stack[stack.length-1]]) {
+//             let cur = stack.pop();
+//             let top = stack[stack.length-1];
+//             res = Math.max(res, heights[cur] * (i - top -1))
+//         }
+//         stack.push(i);
+//     }
+//     return res;
+// };

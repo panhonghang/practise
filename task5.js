@@ -6065,3 +6065,40 @@
 
 //     return max
 // };
+
+/**
+ * @param {number[]} heights
+ * @return {number}
+ */
+var largestRectangleArea = function(heights) {
+    // 往左往右找到边界
+    let max = heights[0],
+        left = 0,
+        right = 0,
+        width = 1;
+
+    for(let i = 0; i < heights.length; i++){
+        left = i;
+        right = i;
+
+        // 找左边
+        while(heights[i]<=heights[left]){
+            left--;
+        }
+        // 找右边
+        while(heights[i]<=heights[right]){
+            right++;
+        }
+
+        width = right-left-1;
+
+        console.log(width);
+        max = Math.max(max, heights[i]*width);
+
+        width = 1;
+    }
+
+    return max;
+};
+
+console.log(largestRectangleArea([3,1]))

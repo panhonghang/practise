@@ -6175,3 +6175,18 @@
 //     }
 //     return fn(left.left, right.right) && fn(left.right, right.left)
 // }
+
+/**
+ * @param {number[]} candies
+ * @param {number} extraCandies
+ * @return {boolean[]}
+ */
+var kidsWithCandies = function(candies, extraCandies) {
+    let len = candies.length,
+        // 数组最大值
+        max = Math.max(...candies);
+
+    return candies.map(key=>{
+        return (key+extraCandies)>=max
+    });
+};

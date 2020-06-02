@@ -6181,12 +6181,16 @@
  * @param {number} extraCandies
  * @return {boolean[]}
  */
-var kidsWithCandies = function(candies, extraCandies) {
-    let len = candies.length,
-        // 数组最大值
-        max = Math.max(...candies);
+// var kidsWithCandies = function(candies, extraCandies) {
+//     let len = candies.length,
+//         // 数组最大值
+//         max = Math.max(...candies);
 
-    return candies.map(key=>{
-        return (key+extraCandies)>=max
-    });
+//     return candies.map(key=>{
+//         return (key+extraCandies)>=max
+//     });
+// };
+
+var sumNums = function(n: number): number {
+    return n&&sumNums(n-1)+n;
 };

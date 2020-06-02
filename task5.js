@@ -6248,21 +6248,39 @@
  * @return {number}
  */
 // var new21Game = function(N, K, W) {
-//   if(k == 0){
-//     return 1;
-//   }
+  // if(k == 0){
+  //   return 1;
+  // }
 
-//   const dp = new Array(k+W+1).fill(0);
+  // const dp = new Array(k+W+1).fill(0);
   
-//   for(let i = k; i <= N&& i<K+W; i++){
-//     dp[i] = 1;
-//   }
+  // for(let i = k; i <= N&& i<K+W; i++){
+  //   dp[i] = 1;
+  // }
 
-//   dp[k-1] = Math.min(N-K+1,W)/W;
+  // dp[k-1] = Math.min(N-K+1,W)/W;
 
-//   for(let i = k-2; i>= 0; i--){
-//     dp[i] = dp[i+1] - (dp[i + W + 1] - dp[i + 1]) / W;
-//   }
-//   return dp[0];
+  // for(let i = k-2; i>= 0; i--){
+  //   dp[i] = dp[i+1] - (dp[i + W + 1] - dp[i + 1]) / W;
+  // }
+  // return dp[0];
 // };  
 
+function new21Game(N: number, K: number, W: number): number {
+  if(K == 0){
+    return 1;
+  }
+
+  const dp:number[] = new Array(K+W+1).fill(0);
+  
+  for(let i = K; i <= N&& i<K+W; i++){
+    dp[i] = 1;
+  }K
+
+  dp[K-1] = Math.min(N-K+1,W)/W;
+
+  for(let i = K-2; i>= 0; i--){
+    dp[i] = dp[i+1] - (dp[i + W + 1] - dp[i + 1]) / W;
+  }
+  return dp[0];
+};

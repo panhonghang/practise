@@ -6266,21 +6266,52 @@
   // return dp[0];
 // };  
 
-function new21Game(N: number, K: number, W: number): number {
-  if(K == 0){
-    return 1;
-  }
+// function new21Game(N: number, K: number, W: number): number {
+//   if(K == 0){
+//     return 1;
+//   }
 
-  const dp:number[] = new Array(K+W+1).fill(0);
+//   const dp:number[] = new Array(K+W+1).fill(0);
   
-  for(let i = K; i <= N&& i<K+W; i++){
-    dp[i] = 1;
-  }K
+//   for(let i = K; i <= N&& i<K+W; i++){
+//     dp[i] = 1;
+//   }K
 
-  dp[K-1] = Math.min(N-K+1,W)/W;
+//   dp[K-1] = Math.min(N-K+1,W)/W;
 
-  for(let i = K-2; i>= 0; i--){
-    dp[i] = dp[i+1] - (dp[i + W + 1] - dp[i + 1]) / W;
+//   for(let i = K-2; i>= 0; i--){
+//     dp[i] = dp[i+1] - (dp[i + W + 1] - dp[i + 1]) / W;
+//   }
+//   return dp[0];
+// };
+
+/**
+ * @param {string} s
+ * @return {string[]}
+ */
+var restoreIpAddresses = function(s) {
+  let resArr = [];
+
+  const fn = function(str,start,count){
+    if(count>3){
+      if(start>=s.length){
+        resArr.push(str.slice(1));
+      }
+      return;
+    }
+
+      let temp = '';
+      for(let i = 0; i < 3; i++){
+          temp += s[start+i];
+          // 判断小于255，并且防止 0.1.00.10", "0.1.001.0"这种情况
+          if(Number(temp)<=255&&Number(temp).toString()==temp){
+              fn(str+'.'+temp,start+i+1,count+1);
+          } else{
+              break;
+          }
+      }
   }
-  return dp[0];
+
+  fn('',0,0);
+  return resArr;
 };

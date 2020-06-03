@@ -6289,10 +6289,37 @@
  * @param {string} s
  * @return {string[]}
  */
-var restoreIpAddresses = function(s) {
-  let resArr = [];
+// var restoreIpAddresses = function(s) {
+//   let resArr = [];
 
-  const fn = function(str,start,count){
+//   const fn = function(str,start,count){
+//     if(count>3){
+//       if(start>=s.length){
+//         resArr.push(str.slice(1));
+//       }
+//       return;
+//     }
+
+//       let temp = '';
+//       for(let i = 0; i < 3; i++){
+//           temp += s[start+i];
+//           // 判断小于255，并且防止 0.1.00.10", "0.1.001.0"这种情况
+//           if(Number(temp)<=255&&Number(temp).toString()==temp){
+//               fn(str+'.'+temp,start+i+1,count+1);
+//           } else{
+//               break;
+//           }
+//       }
+//   }
+
+//   fn('',0,0);
+//   return resArr;
+// };
+
+function restoreIpAddresses(s: string): string[] {
+  let resArr:string[] = [];
+
+  const fn = function(str:string,start:number,count:number){
     if(count>3){
       if(start>=s.length){
         resArr.push(str.slice(1));
@@ -6300,10 +6327,9 @@ var restoreIpAddresses = function(s) {
       return;
     }
 
-      let temp = '';
-      for(let i = 0; i < 3; i++){
+      let temp:string = '';
+      for(let i:number = 0; i < 3; i++){
           temp += s[start+i];
-          // 判断小于255，并且防止 0.1.00.10", "0.1.001.0"这种情况
           if(Number(temp)<=255&&Number(temp).toString()==temp){
               fn(str+'.'+temp,start+i+1,count+1);
           } else{

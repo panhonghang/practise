@@ -6391,10 +6391,33 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-var productExceptSelf = function (nums) {
-    let current = 1,
-        len = nums.length,
-        res = [];
+// var productExceptSelf = function (nums) {
+//     let current = 1,
+//         len = nums.length,
+//         res = [];
+    
+//     // 从头到尾
+//     for(let i=0;i<len;i++){
+//         res[i] = current;
+//         current *= nums[i];
+//     }
+    
+//     // 反转
+//     current = 1;
+    
+//     // 从尾到头
+//     for(let j=len-1;j>=0;j--){
+//         res[j] *= current;
+//         current *= nums[j];
+//     }
+
+//     return res;
+// };
+
+function productExceptSelf(nums: number[]): number[] {
+    let current:number = 1,
+        len:number = nums.length,
+        res:number[] = [];
     
     // 从头到尾
     for(let i=0;i<len;i++){

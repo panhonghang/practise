@@ -6316,28 +6316,100 @@
 //   return resArr;
 // };
 
-function restoreIpAddresses(s: string): string[] {
-  let resArr:string[] = [];
+// function restoreIpAddresses(s: string): string[] {
+//   let resArr:string[] = [];
 
-  const fn = function(str:string,start:number,count:number){
-    if(count>3){
-      if(start>=s.length){
-        resArr.push(str.slice(1));
-      }
-      return;
+//   const fn = function(str:string,start:number,count:number){
+//     if(count>3){
+//       if(start>=s.length){
+//         resArr.push(str.slice(1));
+//       }
+//       return;
+//     }
+
+//       let temp:string = '';
+//       for(let i:number = 0; i < 3; i++){
+//           temp += s[start+i];
+//           if(Number(temp)<=255&&Number(temp).toString()==temp){
+//               fn(str+'.'+temp,start+i+1,count+1);
+//           } else{
+//               break;
+//           }
+//       }
+//   }
+
+//   fn('',0,0);
+//   return resArr;
+// };
+
+/**
+ * @param {number} n
+ * @return {string[][]}
+ */
+// var solveNQueens = function(n) {
+//   let ARR = [],
+//       resArr = [];
+
+//       for(let i = 0; i < n; i++){
+//         ARR[i] = new Array(n).fill(0)
+//       }
+
+//   // row 层数,col 哪一个位置,TheArr 需要改变的数组
+//   const ChangeZeroToOne = function(row,col,TheArr){
+//       for(let i = row; i <= n; i++){
+//           for(let j = 1; j <= n; j++){
+//               if(TheArr[i-1][j-1]==1||TheArr[i-1][j-1]=='Q') continue;
+//               if(j==col||(j/i)==(col/row)||(row/col)==(i/j)) TheArr[i-1][j-1] = 1;
+//           }
+//       }
+
+//       return TheArr;
+//   }
+
+//   const fn = function(level,arr){
+//       if(level>=n-1){
+//           resArr.push([...arr])
+//       }
+//       for(let i = 0; i < n; i++){
+//           if(arr[level][i] !== 1){
+//               arr[level][i] = 'Q';
+//               let temp = ChangeZeroToOne(level+1,i+1,[...arr]);
+//               fn(level+1,[...temp]);
+//           }
+//       }
+//   }
+
+//   fn(0,[...ARR]);
+//   console.log(resArr)
+//   return resArr;
+// };
+
+// solveNQueens(4)
+
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var productExceptSelf = function (nums) {
+    let current = 1,
+        len = nums.length,
+        res = [];
+    
+    // 从头到尾
+    for(let i=0;i<len;i++){
+        res[i] = current;
+        current *= nums[i];
+    }
+    
+    // 反转
+    current = 1;
+    
+    // 从尾到头
+    for(let j=len-1;j>=0;j--){
+        res[j] *= current;
+        current *= nums[j];
     }
 
-      let temp:string = '';
-      for(let i:number = 0; i < 3; i++){
-          temp += s[start+i];
-          if(Number(temp)<=255&&Number(temp).toString()==temp){
-              fn(str+'.'+temp,start+i+1,count+1);
-          } else{
-              break;
-          }
-      }
-  }
-
-  fn('',0,0);
-  return resArr;
+    return res;
 };

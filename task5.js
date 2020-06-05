@@ -6464,3 +6464,27 @@
 // };
 
 // console.log(spiralOrder([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]))
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var longestConsecutive = function(nums) {
+  let maxCount = 0;
+      nums = new Set(nums);
+  
+  for (let value of nums) {
+    if (nums.has(value - 1)) continue;
+    
+    let curr = value, 
+        count = 1;
+    while (nums.has(value + 1)) {
+      nums.delete( value + 1 );
+      value++;
+      count++;
+    }
+    maxCount = Math.max(maxCount, count);
+  }
+  
+  return maxCount;
+}

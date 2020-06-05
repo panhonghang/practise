@@ -6469,22 +6469,58 @@
  * @param {number[]} nums
  * @return {number}
  */
-var longestConsecutive = function(nums) {
-  let maxCount = 0;
-      nums = new Set(nums);
+// var longestConsecutive = function(nums) {
+//   let maxCount = 0;
+//       nums = new Set(nums);
   
-  for (let value of nums) {
-    if (nums.has(value - 1)) continue;
+//   for (let value of nums) {
+//     if (nums.has(value - 1)) continue;
     
-    let curr = value, 
-        count = 1;
-    while (nums.has(value + 1)) {
-      nums.delete( value + 1 );
-      value++;
-      count++;
-    }
-    maxCount = Math.max(maxCount, count);
-  }
+//     let curr = value, 
+//         count = 1;
+//     while (nums.has(value + 1)) {
+//       nums.delete( value + 1 );
+//       value++;
+//       count++;
+//     }
+//     maxCount = Math.max(maxCount, count);
+//   }
   
-  return maxCount;
-}
+//   return maxCount;
+// }
+
+// function longestConsecutive(nums: number[]): number {
+  
+//   interface Set<T> {
+//     add(value: T): Set<T>;
+//     clear(): void;
+//     delete(value: T): boolean;
+//     entries(): IterableIterator<[T, T]>;
+//     forEach(callbackfn: (value: T, index: T, set: Set<T>) => void, thisArg?: any): void;
+//     has(value: T): boolean;
+//     keys(): IterableIterator<T>;
+//     size: number;
+//     values(): IterableIterator<T>;
+//     [Symbol.iterator]():IterableIterator<T>;
+//     [Symbol.toStringTag]: string;
+//   }
+
+//   let maxCount:number = 0,
+//       set = new Set(nums);
+  
+//   for (let value of set) {
+//     if (set.has(value - 1)) continue;
+    
+//     let curr:number = value, 
+//         count:number = 1;
+
+//     while(set.has(value + 1)) {
+//       set.delete( value + 1 );
+//       value++;
+//       count++;
+//     }
+//     maxCount = Math.max(maxCount, count);
+//   }
+  
+//   return maxCount;
+// };

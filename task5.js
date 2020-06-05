@@ -6346,46 +6346,25 @@
  * @param {number} n
  * @return {string[][]}
  */
+/**
+ * @param {number} n
+ * @return {string[][]}
+ */
 // var solveNQueens = function(n) {
-//   let ARR = [],
-//       resArr = [];
+//     let result = [];
+    
+//     function dfs(cols) {
+//         let row = cols.length;
+//         if (row === n) return result.push(cols.map(col => '.'.repeat(col) + 'Q' + '.'.repeat(n - col -1)));
+//         for (let col = 0; col < n; col++) {
+//             if(cols.some((exCol, exRow) => (exCol === col || exRow - exCol === row - col || exRow + exCol === row + col))) continue;
+//             dfs(cols.concat(col))
+//         } 
+//     }
+//     dfs([]);
 
-//       for(let i = 0; i < n; i++){
-//         ARR[i] = new Array(n).fill(0)
-//       }
-
-//   // row 层数,col 哪一个位置,TheArr 需要改变的数组
-//   const ChangeZeroToOne = function(row,col,TheArr){
-//       for(let i = row; i <= n; i++){
-//           for(let j = 1; j <= n; j++){
-//               if(TheArr[i-1][j-1]==1||TheArr[i-1][j-1]=='Q') continue;
-//               if(j==col||(j/i)==(col/row)||(row/col)==(i/j)) TheArr[i-1][j-1] = 1;
-//           }
-//       }
-
-//       return TheArr;
-//   }
-
-//   const fn = function(level,arr){
-//       if(level>=n-1){
-//           resArr.push([...arr])
-//       }
-//       for(let i = 0; i < n; i++){
-//           if(arr[level][i] !== 1){
-//               arr[level][i] = 'Q';
-//               let temp = ChangeZeroToOne(level+1,i+1,[...arr]);
-//               fn(level+1,[...temp]);
-//           }
-//       }
-//   }
-
-//   fn(0,[...ARR]);
-//   console.log(resArr)
-//   return resArr;
+//     return result;
 // };
-
-// solveNQueens(4)
-
 
 /**
  * @param {number[]} nums
@@ -6414,25 +6393,74 @@
 //     return res;
 // };
 
-function productExceptSelf(nums: number[]): number[] {
-    let current:number = 1,
-        len:number = nums.length,
-        res:number[] = [];
+// function productExceptSelf(nums: number[]): number[] {
+//     let current:number = 1,
+//         len:number = nums.length,
+//         res:number[] = [];
     
-    // 从头到尾
-    for(let i=0;i<len;i++){
-        res[i] = current;
-        current *= nums[i];
-    }
+//     // 从头到尾
+//     for(let i=0;i<len;i++){
+//         res[i] = current;
+//         current *= nums[i];
+//     }
     
-    // 反转
-    current = 1;
+//     // 反转
+//     current = 1;
     
-    // 从尾到头
-    for(let j=len-1;j>=0;j--){
-        res[j] *= current;
-        current *= nums[j];
-    }
+//     // 从尾到头
+//     for(let j=len-1;j>=0;j--){
+//         res[j] *= current;
+//         current *= nums[j];
+//     }
 
-    return res;
-};
+//     return res;
+// };
+
+
+/**
+ * @param {number[][]} matrix
+ * @return {number[]}
+ */
+// var spiralOrder = function(matrix) {
+//     if(matrix.length == 0) return [];
+//     let arr = [];
+//     let n = matrix.length;
+//     let w =matrix[0].length;
+//     let m = 0;
+
+//     while(n>m){
+//         // left => right
+//         for(let i = m; i < w-m; i++ ){
+//             if(matrix[m][i]!==undefined){
+//                 arr.push(matrix[m][i]);    
+//                 matrix[m][i]=undefined           
+//             }
+//         }
+//         // top => bottom
+//         for(let i = m; i < n - m; i++ ){
+//             if(matrix[i][w-m-1]!==undefined){
+//                 arr.push(matrix[i][w-m-1]);
+//                 matrix[i][w-m-1]=undefined;
+//             }
+//         }
+//         // right => left
+//         for(let i = w - m - 1; i > 0; i-- ){
+//             if(matrix[n-m-1][i]!==undefined){
+//                 arr.push(matrix[n-m-1][i]);
+//                 matrix[n-m-1][i]=undefined;
+//             }
+//         }
+//         // bottom => top
+//         for(let i = n - m -1; i > 0; i-- ){
+//             if(matrix[i][m]!==undefined){
+//                 arr.push(matrix[i][m]);
+//                 matrix[i][m]=undefined;
+//             }
+//         }
+//         ++m;
+//     }
+
+//     return arr;
+// };
+
+// console.log(spiralOrder([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]))

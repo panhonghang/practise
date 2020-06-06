@@ -6524,3 +6524,43 @@
   
 //   return maxCount;
 // };
+
+/**
+ * @param {string} s
+ * @param {string[]} words
+ * @return {number[]}
+ */
+var findSubstring = function(s, words) {
+  if(''===s||words.length==0) return [];
+
+  // 储存全排列字符的数组
+  let arr = [],
+      res = new Set();
+  // 先全排列，再使用indexOf匹配位置，返回不是-1的
+  
+  const fn = function(curArr,resArr){
+      if(resArr.length==words.length){
+          arr.push(resArr.join(''));
+          return;
+      }
+      for(let i = 0; i < curArr.length; i++){
+          fn([...curArr.slice(0,i),...curArr.slice(i+1)],[...resArr,curArr[i]])
+      }
+  }
+
+  fn(words,[])
+ 
+  arr.forEach(k=>{
+      if(s.indexOf(k)!==-1){
+        let pos = s.indexOf(k);
+        // 查找所有符合条件的下标，indexOf的第二个参数代表下一次查询的起点
+        while(pos>-1){
+          res.add(pos);
+          pos = s.indexOf(k,pos+1);
+        }
+      } 
+  })
+  return [...res];
+};
+
+findSubstring("foobarfoobar",["foo","bar"])

@@ -6566,38 +6566,88 @@
 //   return [...res];
 // };
 
-var findSubstring = function(s, words) {
-  if(''===s||words.length==0) return [];
+// 可以通过但是效率低下
+// var findSubstring = function(s, words) {
+//   if(''===s||words.length==0) return [];
 
-  let res = new Set(),
-      len = words[0].length;
+//   let res = new Set(),
+//       len = words[0].length;
 
-  //以这个元素开头
-  for(let i = 0; i < s.length; i++){
-    let temp = [...words];
+//   //以这个元素开头
+//   for(let i = 0; i < s.length; i++){
+//     let temp = [...words];
 
-    if(temp.indexOf(s.slice(i,i+len))!==-1){
-      let index = i;
+//     if(temp.indexOf(s.slice(i,i+len))!==-1){
+//       let index = i;
       
-      while(1){
-        // 在temp当中的位置
-        let tIndex = temp.indexOf(s.slice(index,index+len));
+//       while(1){
+//         // 在temp当中的位置
+//         let tIndex = temp.indexOf(s.slice(index,index+len));
 
-        if(tIndex!==-1){
-          // 删除这个元素
-          temp.splice(tIndex,1);
-          // 往下一步走
-          index += len
-        } else{
-          break;
-        }
-      }
+//         if(tIndex!==-1){
+//           // 删除这个元素
+//           temp.splice(tIndex,1);
+//           // 往下一步走
+//           index += len
+//         } else{
+//           break;
+//         }
+//       }
       
-      // 走完了就添加
-      if(temp.length===0) res.add(i)
-    }
-  }
-  return [...res];
-};
+//       // 走完了就添加
+//       if(temp.length===0) res.add(i)
+//     }
+//   }
+//   return [...res];
+// };
+
+// 使用map，效率提升，但是还是低下
+// var findSubstring = function(s, words) {
+//   if(''===s||words.length==0) return [];
+
+//   let res = [],
+//       len = words[0].length;
+
+//   //以这个元素开头
+//   for(let i = 0; i < s.length; i++){
+
+//     if(words.indexOf(s.slice(i,i+len))!==-1){
+      
+//       let map = new Map(),
+//           index = i,
+//           str = s.slice(index,index+len);
+
+//       // 因为要频繁删除所以使用map
+//       words.forEach(item=>{
+//         if(map.has(item)){
+//           map.set(item,map.get(item)+1)
+//         } else{
+//           map.set(item,0);
+//         }
+//       })
+          
+//       while(1){
+//         if(map.has(str)){
+//           // 删除这个元素
+//           if(map.get(str)>0){
+//             map.set(str,map.get(str)-1)
+//           } else{
+//             map.delete(str)
+//           }
+//           // 往下一步走
+//           index += len
+//         } else{
+//           break;
+//         }
+        
+//         str = s.slice(index,index+len);
+//       }
+      
+//       // 走完了就添加
+//       if(map.size===0) res.push(i)
+//     }
+//   }
+//   return res;
+// };
 
 findSubstring("pjzkrkevzztxductzzxmxsvwjkxpvukmfjywwetvfnujhweiybwvvsrfequzkhossmootkmyxgjgfordrpapjuunmqnxxdrqrfgkrsjqbszgiqlcfnrpjlcwdrvbumtotzylshdvccdmsqoadfrpsvnwpizlwszrtyclhgilklydbmfhuywotjmktnwrfvizvnmfvvqfiokkdprznnnjycttprkxpuykhmpchiksyucbmtabiqkisgbhxngmhezrrqvayfsxauampdpxtafniiwfvdufhtwajrbkxtjzqjnfocdhekumttuqwovfjrgulhekcpjszyynadxhnttgmnxkduqmmyhzfnjhducesctufqbumxbamalqudeibljgbspeotkgvddcwgxidaiqcvgwykhbysjzlzfbupkqunuqtraxrlptivshhbihtsigtpipguhbhctcvubnhqipncyxfjebdnjyetnlnvmuxhzsdahkrscewabejifmxombiamxvauuitoltyymsarqcuuoezcbqpdaprxmsrickwpgwpsoplhugbikbkotzrtqkscekkgwjycfnvwfgdzogjzjvpcvixnsqsxacfwndzvrwrycwxrcismdhqapoojegggkocyrdtkzmiekhxoppctytvphjynrhtcvxcobxbcjjivtfjiwmduhzjokkbctweqtigwfhzorjlkpuuliaipbtfldinyetoybvugevwvhhhweejogrghllsouipabfafcxnhukcbtmxzshoyyufjhzadhrelweszbfgwpkzlwxkogyogutscvuhcllphshivnoteztpxsaoaacgxyaztuixhunrowzljqfqrahosheukhahhbiaxqzfmmwcjxountkevsvpbzjnilwpoermxrtlfroqoclexxisrdhvfsindffslyekrzwzqkpeocilatftymodgztjgybtyheqgcpwogdcjlnlesefgvimwbxcbzvaibspdjnrpqtyeilkcspknyylbwndvkffmzuriilxagyerjptbgeqgebiaqnvdubrtxibhvakcyotkfonmseszhczapxdlauexehhaireihxsplgdgmxfvaevrbadbwjbdrkfbbjjkgcztkcbwagtcnrtqryuqixtzhaakjlurnumzyovawrcjiwabuwretmdamfkxrgqgcdgbrdbnugzecbgyxxdqmisaqcyjkqrntxqmdrczxbebemcblftxplafnyoxqimkhcykwamvdsxjezkpgdpvopddptdfbprjustquhlazkjfluxrzopqdstulybnqvyknrchbphcarknnhhovweaqawdyxsqsqahkepluypwrzjegqtdoxfgzdkydeoxvrfhxusrujnmjzqrrlxglcmkiykldbiasnhrjbjekystzilrwkzhontwmehrfsrzfaqrbbxncphbzuuxeteshyrveamjsfiaharkcqxefghgceeixkdgkuboupxnwhnfigpkwnqdvzlydpidcljmflbccarbiegsmweklwngvygbqpescpeichmfidgsjmkvkofvkuehsmkkbocgejoiqcnafvuokelwuqsgkyoekaroptuvekfvmtxtqshcwsztkrzwrpabqrrhnlerxjojemcxel",["dhvf","sind","ffsl","yekr","zwzq","kpeo","cila","tfty","modg","ztjg","ybty","heqg","cpwo","gdcj","lnle","sefg","vimw","bxcb"])

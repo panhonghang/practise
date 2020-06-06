@@ -6699,24 +6699,54 @@
  * @return {number}
  */
 
-var longestValidParentheses = function(s) {
-  let max = 0,
-      stack = [-1];
+// var longestValidParentheses = function(s) {
+//   let max = 0,
+//       stack = [-1];
 
-  for(let i = 0;i < s.length;i++){  
-    if(s[i] == '('){
-      stack.push(i);
-    }else{
-      stack.pop();
-      if(stack.length == 0){
-        stack.push(i);
-      }else{
-        max = Math.max(max,i - stack[stack.length-1]);
+//   for(let i = 0;i < s.length;i++){  
+//     if(s[i] == '('){
+//       stack.push(i);
+//     }else{
+//       stack.pop();
+//       if(stack.length == 0){
+//         stack.push(i);
+//       }else{
+//         max = Math.max(max,i - stack[stack.length-1]);
+//       }
+//     }
+//   }
+//   return max;
+// };
+
+
+// longestValidParentheses('()()(())(')
+
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var canJump = function(nums) {
+  let len = nums.length,
+      res = false;
+
+  if(len<=1) return true;
+  nums.unshift(0);
+  // 当前位置
+  const fn = function(cur){
+      if(cur === len){
+        res = true;
+        return;
       }
-    }
+      if(nums[cur]==0) return;
+
+      for(let i = 1; i <= nums[cur]; i++){
+          fn(cur+i)
+      }
   }
-  return max;
+
+  fn(1);
+
+  return res;
 };
 
-
-longestValidParentheses('()()(())(')
+canJump([2,3,1,1,4])

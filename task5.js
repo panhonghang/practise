@@ -6771,3 +6771,57 @@
   
 //   return len < max;
 // };
+
+/**
+ * @param {string} beginWord
+ * @param {string} endWord
+ * @param {string[]} wordList
+ * @return {string[][]}
+ */
+// 检查能不能转化
+const checkChange = function(str1,str2){
+  if(str1.length!==str2.length||str1===str2) return false;
+
+  let count = 0;
+
+  for(let i = 0; i < str1.length; i++){
+    if(str1[i]!==str2[i]){
+      count++;
+    }
+  }
+
+  return count<2;
+}
+
+
+var findLadders = function(beginWord, endWord, wordList) {
+  if(wordList.indexOf(endWord)==-1) return [];
+
+  let res = [],
+      minlen = Infinity;
+      
+  wordList = [...new Set(wordList)];
+  
+  // 当前的值，转化过程arr，剩下的list
+  const fn = function(cur,arr,list){
+      if(arr.length>minlen) return;
+
+      if(cur==endWord){
+          minlen = Math.min(minlen,arr.length);
+          if(arr.length<=minlen) res.push(arr);
+      }
+
+      for(let i = 0; i < list.length; i++){
+          // 可以转化
+          if(checkChange(list[i],cur)){
+            if(arr.length<=minlen) fn(list[i],[...arr,list[i]],[...list.slice(0,i),...list.slice(i+1)]);
+          }
+      }
+  }
+
+  fn(beginWord,[beginWord],wordList)
+
+  return res.length>0?res.filter(k=>k.length==minlen):[];
+};
+
+findLadders("qa","sq",["si","go","se","cm","so","ph","mt","db","mb","sb","kr","ln","tm","le","av","sm","ar","ci","ca","br","ti","ba","to","ra","fa","yo","ow","sn","ya","cr","po","fe","ho","ma","re","or","rn","au","ur","rh","sr","tc","lt","lo","as","fr","nb","yb","if","pb","ge","th","pm","rb","sh","co","ga","li","ha","hz","no","bi","di","hi","qa","pi","os","uh","wm","an","me","mo","na","la","st","er","sc","ne","mn","mi","am","ex","pt","io","be","fm","ta","tb","ni","mr","pa","he","lr","sq","ye"])

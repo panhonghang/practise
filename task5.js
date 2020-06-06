@@ -6725,28 +6725,49 @@
  * @param {number[]} nums
  * @return {boolean}
  */
-var canJump = function(nums) {
-  let len = nums.length,
-      res = false;
+// var canJump = function(nums) {
+//   let len = nums.length,
+//       res = false;
 
-  if(len<=1) return true;
-  nums.unshift(0);
-  // 当前位置
-  const fn = function(cur){
-      if(cur === len){
-        res = true;
-        return;
-      }
-      if(nums[cur]==0) return;
+//   if(len<=1) return true;
+//   nums.unshift(0);
+//   // 当前位置
+//   const fn = function(cur){
+//       if(cur === len||res){
+//         res = true;
+//         return;
+//       }
+//       if(nums[cur]==0) return;
 
-      for(let i = 1; i <= nums[cur]; i++){
-          fn(cur+i)
-      }
-  }
+//       for(let i = 1; i <= nums[cur]; i++){
+//         if(res) return
+//         fn(cur+i)
+//       }
+//   }
 
-  fn(1);
+//   fn(1);
 
-  return res;
-};
+//   return res;
+// };
 
-canJump([2,3,1,1,4])
+// canJump([2,3,1,1,4])
+
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+// var canJump = function(nums) {
+//   let len = nums.length,
+//       max = 0;
+
+//   if(len<=1) return true;
+  
+//   for (let i = 0; i < len; i++) {
+//     if (i <= max) {
+//       max = Math.max(max, i + nums[i]);
+//       if (max >= len - 1) return true;
+//     }
+//   }
+  
+//   return len < max;
+// };

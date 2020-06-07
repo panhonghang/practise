@@ -6933,25 +6933,62 @@
  * @param {number[]} ratings
  * @return {number}
  */
-var candy = function(ratings) {
-    let left = new Array(ratings.length).fill(1);
+// var candy = function(ratings) {
+//     let left = new Array(ratings.length).fill(1);
 
-    let right = new Array(ratings.length).fill(1);
+//     let right = new Array(ratings.length).fill(1);
 
-    for (let i = 1; i < ratings.length; i++) {
-        if(ratings[i] > ratings[i-1])
-            left[i] = left[i-1] + 1;
-    }
+//     for (let i = 1; i < ratings.length; i++) {
+//         if(ratings[i] > ratings[i-1])
+//             left[i] = left[i-1] + 1;
+//     }
 
-    let count = left[ratings.length - 1];
+//     let count = left[ratings.length - 1];
     
-    for (let j = ratings.length - 2; j >= 0; j-- ) {
-        if(ratings[j] > ratings[j+1]) {
-            right[j] = right[j+1] + 1;
-        }
-        count += Math.max(left[j], right[j])
-    }
-    return count;
-};
+//     for (let j = ratings.length - 2; j >= 0; j-- ) {
+//         if(ratings[j] > ratings[j+1]) {
+//             right[j] = right[j+1] + 1;
+//         }
+//         count += Math.max(left[j], right[j])
+//     }
+//     return count;
+// };
 
-candy([1,2,2,3,2,2,1])
+// candy([1,2,2,3,2,2,1])
+
+/**
+ * @param {string[]} equations
+ * @return {boolean}
+ */
+var equationsPossible = function(equations) {
+    const unionfind = {};
+    for (const [c1, c2, c3, c4] of equations) {
+      if (c2 === "=") {
+        union(c1, c4);
+      }
+    }
+  
+    for (const [c1, c2, c3, c4] of equations) {
+      const x = find(c1);
+      const y = find(c4);
+      if (c2 === "!") {
+        if (x === y) {
+          return false;
+        }
+      }
+    }
+    return true;
+  
+    function find(i) {
+      if (unionfind[i] === undefined) {
+        return (unionfind[i] = i);
+      }
+      return unionfind[i] === i ? i : (unionfind[i] = find(unionfind[i]));
+    }
+  
+    function union(x, y) {
+      x = find(x);
+      y = find(y);
+      unionfind[y] = x;
+    }
+  };

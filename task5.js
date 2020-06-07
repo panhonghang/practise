@@ -6824,106 +6824,134 @@
 //   return res.length>0?res.filter(k=>k.length==minlen):[];
 // };
 
-var findLadders = function(beginWord, endWord, wordList) {
+// var findLadders = function(beginWord, endWord, wordList) {
 
-  let wordId = new Map(),//单词到id的映射
-      idWord = [],//id到单词的映射
-      edges,//存边用的数组
-      id = 0;
+//   let wordId = new Map(),//单词到id的映射
+//       idWord = [],//id到单词的映射
+//       edges,//存边用的数组
+//       id = 0;
 
-  // 两个字符串是否可以通过改变一个字母后相等
-  function transformCheck(str1,str2){
-      if(str1.length!==str2.length||str1===str2) return false;
-      let count = 0;
+//   // 两个字符串是否可以通过改变一个字母后相等
+//   function transformCheck(str1,str2){
+//       if(str1.length!==str2.length||str1===str2) return false;
+//       let count = 0;
 
-      for(let i = 0; i < str1.length; i++){
-        if(str1[i]!==str2[i]){
-          count++;
+//       for(let i = 0; i < str1.length; i++){
+//         if(str1[i]!==str2[i]){
+//           count++;
+//         }
+//       }
+
+//       return count<2;
+//   }
+
+//   // 将wordList所有单词加入wordId中 相同的只保留一个  并为每一个单词分配一个id
+//   for (let word of wordList) {
+//       if (!wordId.has(word)) {
+//           wordId.set(word, id++);
+//           idWord.push(word);
+//       }
+//   }
+
+//   // 若endWord不在wordList中 则无解
+//   if (!wordId.has(endWord)) {
+//       return [];
+//   }
+
+//   // 把beginWord也加入wordId中
+//   if (!wordId.has(beginWord)) {
+//       wordId.set(beginWord, id++);
+//       idWord.push(beginWord);
+//   }
+
+//   // 初始化存边用的数组
+//   edges = new Array(idWord.length);
+//   for (let i = 0; i < idWord.length; i++) {
+//       edges[i] = [];
+//   }
+
+//   // 添加边
+//   for (let i = 0; i < idWord.length; i++) {
+//       for (let j = i + 1; j < idWord.length; j++) {
+//           // 若两者可以通过转换得到 则在它们间建一条无向边
+//           if (transformCheck(idWord[i], idWord[j])) {
+//               edges[i].push(j);
+//               edges[j].push(i);
+//           }
+//       }
+//   }
+
+//   let dest = wordId.get(endWord),//目的id
+//       res = [],//保存结果
+//       cost =  new Array(id);//到每个点的代价
+
+//   for (let i = 0; i < id; i++) {
+//       cost[i] = Number.MAX_VALUE; // 每个点的代价初始化为无穷大
+//   }
+
+//   // 将起点加入队列 并将其cost设为0
+//   let queue = [],
+//       tmpBegin = [];
+
+//   tmpBegin.push(wordId.get(beginWord));
+//   queue.unshift(tmpBegin);
+//   cost[wordId.get(beginWord)] = 0;
+
+//   //开始广度优先搜索
+//   while(queue.length !== 0){
+//       let now = queue.pop(),
+//           last = now[now.length - 1]; // 最近访问的点
+
+//       if(last === dest){// 若该点为终点则将其存入答案res中
+//           let tmp = [];
+//           for (let index of now) {
+//               tmp.push(idWord[index]); // 转换为对应的word
+//           }
+//           res.push(tmp);
+//       }else{
+//           for (let i = 0; i < edges[last].length; i++) {
+//               let to = edges[last][i];
+//               // 此处<=目的在于把代价相同的不同路径全部保留下来
+//               if (cost[last] + 1 <= cost[to]) {
+//                   cost[to] = cost[last] + 1;
+//                   // 把to加入路径中
+//                   let tmp = now.map(ele=>ele);
+//                   tmp.push(to);
+//                   queue.unshift(tmp); // 把这个路径加入队列
+//               }
+//           }
+//       }
+//   }
+
+//   return res;
+// };
+
+// findLadders("qa","sq",["si","go","se","cm","so","ph","mt","db","mb","sb","kr","ln","tm","le","av","sm","ar","ci","ca","br","ti","ba","to","ra","fa","yo","ow","sn","ya","cr","po","fe","ho","ma","re","or","rn","au","ur","rh","sr","tc","lt","lo","as","fr","nb","yb","if","pb","ge","th","pm","rb","sh","co","ga","li","ha","hz","no","bi","di","hi","qa","pi","os","uh","wm","an","me","mo","na","la","st","er","sc","ne","mn","mi","am","ex","pt","io","be","fm","ta","tb","ni","mr","pa","he","lr","sq","ye"])
+
+
+/**
+ * @param {number[]} ratings
+ * @return {number}
+ */
+var candy = function(ratings) {
+    let left = new Array(ratings.length).fill(1);
+
+    let right = new Array(ratings.length).fill(1);
+
+    for (let i = 1; i < ratings.length; i++) {
+        if(ratings[i] > ratings[i-1])
+            left[i] = left[i-1] + 1;
+    }
+
+    let count = left[ratings.length - 1];
+    
+    for (let j = ratings.length - 2; j >= 0; j-- ) {
+        if(ratings[j] > ratings[j+1]) {
+            right[j] = right[j+1] + 1;
         }
-      }
-
-      return count<2;
-  }
-
-  // 将wordList所有单词加入wordId中 相同的只保留一个  并为每一个单词分配一个id
-  for (let word of wordList) {
-      if (!wordId.has(word)) {
-          wordId.set(word, id++);
-          idWord.push(word);
-      }
-  }
-
-  // 若endWord不在wordList中 则无解
-  if (!wordId.has(endWord)) {
-      return [];
-  }
-
-  // 把beginWord也加入wordId中
-  if (!wordId.has(beginWord)) {
-      wordId.set(beginWord, id++);
-      idWord.push(beginWord);
-  }
-
-  // 初始化存边用的数组
-  edges = new Array(idWord.length);
-  for (let i = 0; i < idWord.length; i++) {
-      edges[i] = [];
-  }
-
-  // 添加边
-  for (let i = 0; i < idWord.length; i++) {
-      for (let j = i + 1; j < idWord.length; j++) {
-          // 若两者可以通过转换得到 则在它们间建一条无向边
-          if (transformCheck(idWord[i], idWord[j])) {
-              edges[i].push(j);
-              edges[j].push(i);
-          }
-      }
-  }
-
-  let dest = wordId.get(endWord),//目的id
-      res = [],//保存结果
-      cost =  new Array(id);//到每个点的代价
-
-  for (let i = 0; i < id; i++) {
-      cost[i] = Number.MAX_VALUE; // 每个点的代价初始化为无穷大
-  }
-
-  // 将起点加入队列 并将其cost设为0
-  let queue = [],
-      tmpBegin = [];
-
-  tmpBegin.push(wordId.get(beginWord));
-  queue.unshift(tmpBegin);
-  cost[wordId.get(beginWord)] = 0;
-
-  //开始广度优先搜索
-  while(queue.length !== 0){
-      let now = queue.pop(),
-          last = now[now.length - 1]; // 最近访问的点
-
-      if(last === dest){// 若该点为终点则将其存入答案res中
-          let tmp = [];
-          for (let index of now) {
-              tmp.push(idWord[index]); // 转换为对应的word
-          }
-          res.push(tmp);
-      }else{
-          for (let i = 0; i < edges[last].length; i++) {
-              let to = edges[last][i];
-              // 此处<=目的在于把代价相同的不同路径全部保留下来
-              if (cost[last] + 1 <= cost[to]) {
-                  cost[to] = cost[last] + 1;
-                  // 把to加入路径中
-                  let tmp = now.map(ele=>ele);
-                  tmp.push(to);
-                  queue.unshift(tmp); // 把这个路径加入队列
-              }
-          }
-      }
-  }
-
-  return res;
+        count += Math.max(left[j], right[j])
+    }
+    return count;
 };
 
-findLadders("qa","sq",["si","go","se","cm","so","ph","mt","db","mb","sb","kr","ln","tm","le","av","sm","ar","ci","ca","br","ti","ba","to","ra","fa","yo","ow","sn","ya","cr","po","fe","ho","ma","re","or","rn","au","ur","rh","sr","tc","lt","lo","as","fr","nb","yb","if","pb","ge","th","pm","rb","sh","co","ga","li","ha","hz","no","bi","di","hi","qa","pi","os","uh","wm","an","me","mo","na","la","st","er","sc","ne","mn","mi","am","ex","pt","io","be","fm","ta","tb","ni","mr","pa","he","lr","sq","ye"])
+candy([1,2,2,3,2,2,1])

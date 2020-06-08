@@ -6960,35 +6960,68 @@
  * @param {string[]} equations
  * @return {boolean}
  */
-var equationsPossible = function(equations) {
-    const unionfind = {};
-    for (const [c1, c2, c3, c4] of equations) {
-      if (c2 === "=") {
-        union(c1, c4);
-      }
-    }
+// var equationsPossible = function(equations) {
+//     const unionfind = {};
+//     for (const [c1, c2, c3, c4] of equations) {
+//       if (c2 === "=") {
+//         union(c1, c4);
+//       }
+//     }
   
-    for (const [c1, c2, c3, c4] of equations) {
-      const x = find(c1);
-      const y = find(c4);
-      if (c2 === "!") {
-        if (x === y) {
-          return false;
-        }
-      }
-    }
-    return true;
+//     for (const [c1, c2, c3, c4] of equations) {
+//       const x = find(c1);
+//       const y = find(c4);
+//       if (c2 === "!") {
+//         if (x === y) {
+//           return false;
+//         }
+//       }
+//     }
+//     return true;
   
-    function find(i) {
-      if (unionfind[i] === undefined) {
-        return (unionfind[i] = i);
-      }
-      return unionfind[i] === i ? i : (unionfind[i] = find(unionfind[i]));
-    }
+//     function find(i) {
+//       if (unionfind[i] === undefined) {
+//         return (unionfind[i] = i);
+//       }
+//       return unionfind[i] === i ? i : (unionfind[i] = find(unionfind[i]));
+//     }
   
-    function union(x, y) {
-      x = find(x);
-      y = find(y);
-      unionfind[y] = x;
-    }
-  };
+//     function union(x, y) {
+//       x = find(x);
+//       y = find(y);
+//       unionfind[y] = x;
+//     }
+//   };
+
+
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var translateNum = function(num) {
+  if(num<10) return 1;
+
+  let str = num.toString(),
+      arr = [[str[0]]];
+
+  const fn = function(theArr,index){
+      if(index >= str.length) return;
+
+      theArr.forEach(item=>{
+          let pre = item[item.length-1];
+
+          if(pre!='0'&&Number(pre+str[index])<26){
+              arr.push([[...item].slice(0,item.length-1),Number(pre+str[index])])
+          }
+          item.push(str[index]);
+      })
+
+      fn([...arr],index+1)
+  }
+
+  fn(arr,1)
+  console.log(arr);
+  return arr.length;
+};
+
+translateNum(10)

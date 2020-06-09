@@ -6998,30 +6998,93 @@
  * @param {number} num
  * @return {number}
  */
-var translateNum = function(num) {
-  if(num<10) return 1;
+// var translateNum = function(num) {
+//   if(num<10) return 1;
 
-  let str = num.toString(),
-      arr = [[str[0]]];
+//   let str = num.toString(),
+//       arr = [[str[0]]];
 
-  const fn = function(theArr,index){
-      if(index >= str.length) return;
+//   const fn = function(theArr,index){
+//       if(index >= str.length) return;
 
-      theArr.forEach(item=>{
-          let pre = item[item.length-1];
+//       theArr.forEach(item=>{
+//           let pre = item[item.length-1];
 
-          if(pre!='0'&&Number(pre+str[index])<26){
-              arr.push([[...item].slice(0,item.length-1),Number(pre+str[index])])
-          }
-          item.push(str[index]);
-      })
+//           if(pre!='0'&&Number(pre+str[index])<26){
+//               arr.push([[...item].slice(0,item.length-1),Number(pre+str[index])])
+//           }
+//           item.push(str[index]);
+//       })
 
-      fn([...arr],index+1)
-  }
+//       fn([...arr],index+1)
+//   }
 
-  fn(arr,1)
-  console.log(arr);
-  return arr.length;
-};
+//   fn(arr,1)
+//   console.log(arr);
+//   return arr.length;
+// };
 
-translateNum(10)
+// translateNum(10)
+
+/**
+ * @param {number[]} height
+ * @return {number}
+ */
+/**
+ * @param {number[]} height
+ * @return {number}
+ */
+// var trap = function(height) {
+//   if(height.length < 3) return 0;
+
+//   let left = 0, 
+//       right = height.length - 1,
+//       leftmax = height[left], 
+//       rightmax = height[right],
+//       res = 0;
+
+//   while(left < right){
+//       if(leftmax < rightmax){
+//           res += leftmax - height[left];
+//           left++;
+//           leftmax = Math.max(height[left], leftmax);
+//       }else{
+//           res += rightmax - height[right];
+//           right--;
+//           rightmax = Math.max(height[right], rightmax);
+//       }
+//       console.log(leftmax,rightmax,res)
+//   }
+
+//   return res;
+// };
+
+// var trap = function(height) {
+//   let res = 0,
+//       left = 0,
+//       right = 0,
+//       min = 0;
+
+//   for(let index=1; index<height.length-1; index++){
+//       left = 0;
+//       right = 0;
+
+//       for(let i = index-1; i>=0; i--){
+//           left = Math.max(height[i],left);
+//       }
+
+//       for(let i=index+1; i<height.length; i++){
+//           right = Math.max(height[i],right);
+//       }
+
+//       min = Math.min(left,right);
+
+//       if(min > height[index]){
+//           res += min-height[index] 
+//       }
+//   }
+
+//   return res;
+// };
+
+// trap([0,1,0,2,1,0,1,3,2,1,2,1])

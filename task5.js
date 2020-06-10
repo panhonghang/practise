@@ -7088,3 +7088,42 @@
 // };
 
 // trap([0,1,0,2,1,0,1,3,2,1,2,1])
+
+/**
+ * @param {number} x
+ * @return {boolean}
+ */
+var isPalindrome = function(x) {
+    if(x<0) return false;
+    let str = x.toString(),
+        pre = 0,
+        next = str.length-1;
+    while(pre<=next){
+        if(str[pre]==str[next]){
+            pre++;
+            next--;
+        } else{
+            return false;
+        }
+    }
+
+    return true;
+};
+
+/**
+ * @param {number} x
+ * @return {boolean}
+ */
+var isPalindrome = function(x) {
+  if(x<0) return false;
+  
+  let num = x,
+      reverseNum = '';
+
+  while(x>0){
+      reverseNum = reverseNum + x%10;
+      x = parseInt(x/10);
+  }
+  
+  return num==reverseNum;
+};

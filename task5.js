@@ -7186,3 +7186,26 @@
 //     }
 //     return res;
 // };
+
+/**
+ * @param {number} n
+ * @return {number}
+ */
+// var climbStairs = function(n) {
+//   if(n<2) return 1;
+//   if(n==2) return 2;
+//   let pre = 1,
+//       next = 2,
+//       temp = pre;
+  
+//   while(n>2){
+//       temp = next;
+
+//       next += pre;
+      
+//       pre = temp;
+//       n--;
+//   }
+
+//   return next;
+// };

@@ -7209,3 +7209,31 @@
 
 //   return next;
 // };
+
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var totalNQueens = function(n) {
+  let res = 0;
+  
+  const fn = (subResult, row) => {
+      // 到了最底层
+      if (row === n) {
+          res++;
+          return;
+      }
+      // 每一列
+      for (let col = 0; col < n; col++) {
+          // 判断下方，右下，左下
+          if (!subResult.some((j, k) => j === col || j - col === row - k || j - col === k - row)){
+              // 回溯
+              subResult.push(col);
+              fn([...subResult], row+1);
+              subResult.pop();
+          }
+      }
+  }
+  fn([],0);
+  return res;
+};

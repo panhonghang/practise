@@ -7214,26 +7214,42 @@
  * @param {number} n
  * @return {number}
  */
-var totalNQueens = function(n) {
-  let res = 0;
+// var totalNQueens = function(n) {
+//   let res = 0;
   
-  const fn = (subResult, row) => {
-      // 到了最底层
-      if (row === n) {
-          res++;
-          return;
-      }
-      // 每一列
-      for (let col = 0; col < n; col++) {
-          // 判断下方，右下，左下
-          if (!subResult.some((j, k) => j === col || j - col === row - k || j - col === k - row)){
-              // 回溯
-              subResult.push(col);
-              fn([...subResult], row+1);
-              subResult.pop();
-          }
-      }
-  }
-  fn([],0);
-  return res;
-};
+//   const fn = (subResult, row) => {
+//       // 到了最底层
+//       if (row === n) {
+//           res++;
+//           return;
+//       }
+//       // 每一列
+//       for (let col = 0; col < n; col++) {
+//           // 判断下方，右下，左下
+//           if (!subResult.some((j, k) => j === col || j - col === row - k || j - col === k - row)){
+//               // 回溯
+//               subResult.push(col);
+//               fn([...subResult], row+1);
+//               subResult.pop();
+//           }
+//       }
+//   }
+//   fn([],0);
+//   return res;
+// };
+
+/**
+ * @param {number[]} startTime
+ * @param {number[]} endTime
+ * @param {number} queryTime
+ * @return {number}
+ */
+// var busyStudent = function(startTime, endTime, queryTime) {
+//   let res = 0;
+
+//   for(let i = 0; i < startTime.length; i++){
+//       if(startTime[i]<=queryTime&&queryTime<=endTime[i]) res++
+//   }
+
+//   return res;
+// };

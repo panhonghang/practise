@@ -7259,58 +7259,86 @@
  * @param {number} target
  * @return {number}
  */
-var findBestValue = function(arr, target) {
-  if(arr.length==1) return target;
-  if(arr.length>Math.pow(10,4)) return 0;
+// var findBestValue = function(arr, target) {
+//   if(arr.length==1) return target;
+//   if(arr.length>Math.pow(10,4)) return 0;
 
-  // 排序
-  arr.sort((a,b)=>a-b);
+//   // 排序
+//   arr.sort((a,b)=>a-b);
 
-  let len = arr.length,
-      min = 0,
-      max = arr[len-1],
-      mid = Math.floor((min+max)/2),
-      res = mid,
-      minsum = len*arr[0],
-      maxsum = 0,
-      total = minsum,
-      temp = 0;
-  arr.forEach(item=>maxsum+=item)
+//   let len = arr.length,
+//       min = 0,
+//       max = arr[len-1],
+//       mid = Math.floor((min+max)/2),
+//       res = mid,
+//       minsum = len*arr[0],
+//       maxsum = 0,
+//       total = minsum,
+//       temp = 0;
+//   arr.forEach(item=>maxsum+=item)
   
 
-  while(Math.abs(max-min)>1){
-      arr.forEach(item=>{
-        if(item>mid){
-          temp += mid;
-        } else{
-          temp += item;
-        }
-      })
-      // 更加靠近
-      if(Math.abs(target-temp)<Math.abs(target-total)){
-          total = temp;
-          res = mid;
-      } else if(Math.abs(target-temp)==Math.abs(target-total)&&mid<res){
-          res = mid;
-      }
+//   while(Math.abs(max-min)>1){
+//       arr.forEach(item=>{
+//         if(item>mid){
+//           temp += mid;
+//         } else{
+//           temp += item;
+//         }
+//       })
+//       // 更加靠近
+//       if(Math.abs(target-temp)<Math.abs(target-total)){
+//           total = temp;
+//           res = mid;
+//       } else if(Math.abs(target-temp)==Math.abs(target-total)&&mid<res){
+//           res = mid;
+//       }
 
-      if(target-temp<0){
-          max = mid;
+//       if(target-temp<0){
+//           max = mid;
+//       } else{
+//           min = mid;
+//       }
+//       mid = Math.floor((min+max)/2);
+
+//       temp = 0;
+//   }
+
+//   if(Math.abs(target-total)>Math.abs(target-minsum)){
+//     return arr[0];
+//   } else if(Math.abs(target-total)>Math.abs(target-maxsum)){
+//     return arr[len-1]
+//   }
+
+//   if(res==1) return 0;
+
+//   return res;
+// };
+
+var findBestValue = function (arr, target) {
+  let sum = 0,
+      temp = Infinity,
+      value = 0;
+
+  while(1){
+      sum = 0;
+      // 求和
+      for (let i = 0; i < arr.length; i++) {
+          if (arr[i] > value){
+              sum += value;
+          } else{
+              sum += arr[i];
+          }
+      }
+      // 不断逼近，当超过最接近之后，返回上一个
+      if(temp > Math.abs(target - sum)){
+          temp = Math.abs(target - sum);
       } else{
-          min = mid;
+          return value-1;            
       }
-      mid = Math.floor((min+max)/2);
 
-      temp = 0;
+      value++;
   }
-
-  if(Math.abs(target-total)>Math.abs(target-minsum)){
-    return arr[0];
-  } else if(Math.abs(target-total)>Math.abs(target-maxsum)){
-    return arr[len-1]
-  }
-
-  if(res==1) return 0;
-
-  return res;
 };
+
+console.log(findBestValue([2,3,5],10))

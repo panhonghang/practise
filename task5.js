@@ -7342,3 +7342,20 @@
 // };
 
 // console.log(findBestValue([2,3,5],10))
+
+var exchange = function(nums) {
+  let pre = 0,
+      next = nums.length-1;
+  while(pre<next){
+      while(nums[pre]%2==1&&pre<next){
+          pre++;
+      }
+      while(nums[next]%2==0&&pre<next){
+          next--;
+      }
+      [nums[pre],nums[next]] = [nums[next],nums[pre]];
+  }
+  return nums;
+};
+
+console.log(exchange([1,2,3,4]))

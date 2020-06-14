@@ -7343,19 +7343,55 @@
 
 // console.log(findBestValue([2,3,5],10))
 
-var exchange = function(nums) {
-  let pre = 0,
-      next = nums.length-1;
-  while(pre<next){
-      while(nums[pre]%2==1&&pre<next){
-          pre++;
-      }
-      while(nums[next]%2==0&&pre<next){
-          next--;
-      }
-      [nums[pre],nums[next]] = [nums[next],nums[pre]];
-  }
-  return nums;
-};
+// var exchange = function(nums) {
+//   let pre = 0,
+//       next = nums.length-1;
+//   while(pre<next){
+//       while(nums[pre]%2==1&&pre<next){
+//           pre++;
+//       }
+//       while(nums[next]%2==0&&pre<next){
+//           next--;
+//       }
+//       [nums[pre],nums[next]] = [nums[next],nums[pre]];
+//   }
+//   return nums;
+// };
 
-console.log(exchange([1,2,3,4]))
+// console.log(exchange([1,2,3,4]))
+
+/**
+ * @param {number[]} arr
+ * @param {number} d
+ * @return {number}
+ */
+/**
+ * @param {number[]} arr
+ * @param {number} d
+ * @return {number}
+ */
+// var maxJumps = function(arr, d) {
+//   // 记忆化数组
+//   const cache = new Array(arr.length).fill(0);
+
+//   const fn = function(cur) {
+//       // 判断是否访问
+//       if(cache[cur] === 0) {
+//           let max = 0;
+//           // 向右遍历
+//           for (let i = cur + 1; i <= cur + d && i < arr.length && arr[i] < arr[cur]; ++i) {
+//               max = Math.max(fn(i), max);
+//           }
+//           // 向左遍历
+//           for (let i = cur - 1; i >= cur - d && i >= 0 && arr[i] < arr[cur]; --i) {
+//               max = Math.max(fn(i), max);
+//           }
+//           cache[cur] = 1 + max;
+//       }
+//       return cache[cur];
+//   }
+//   // 取最大值
+//   return Math.max(...arr.map((v, i) => fn(i)));
+// };
+
+// console.log(maxJumps([6,4,14,6,8,13,9,7,10,6,12],2))

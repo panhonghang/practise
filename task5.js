@@ -7315,30 +7315,30 @@
 //   return res;
 // };
 
-var findBestValue = function (arr, target) {
-  let sum = 0,
-      temp = Infinity,
-      value = 0;
+// var findBestValue = function (arr, target) {
+//   let sum = 0,
+//       temp = Infinity,
+//       value = 0;
 
-  while(1){
-      sum = 0;
-      // 求和
-      for (let i = 0; i < arr.length; i++) {
-          if (arr[i] > value){
-              sum += value;
-          } else{
-              sum += arr[i];
-          }
-      }
-      // 不断逼近，当超过最接近之后，返回上一个
-      if(temp > Math.abs(target - sum)){
-          temp = Math.abs(target - sum);
-      } else{
-          return value-1;            
-      }
+//   while(1){
+//       sum = 0;
+//       // 求和
+//       for (let i = 0; i < arr.length; i++) {
+//           if (arr[i] > value){
+//               sum += value;
+//           } else{
+//               sum += arr[i];
+//           }
+//       }
+//       // 不断逼近，当超过最接近之后，返回上一个
+//       if(temp > Math.abs(target - sum)){
+//           temp = Math.abs(target - sum);
+//       } else{
+//           return value-1;            
+//       }
 
-      value++;
-  }
-};
+//       value++;
+//   }
+// };
 
-console.log(findBestValue([2,3,5],10))
+// console.log(findBestValue([2,3,5],10))

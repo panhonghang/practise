@@ -7395,3 +7395,25 @@
 // };
 
 // console.log(maxJumps([6,4,14,6,8,13,9,7,10,6,12],2))
+
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
+// var longestCommonPrefix = function(strs) {
+//   if(strs.length==0) return "";
+//   let len = strs[0].length,
+//       res = '';
+  
+//   for(let i = 0; i < len; i++){
+//     if(strs.every(item=>item[i]==strs[0][i])){
+//       res += strs[0][i]
+//     } else{
+//       break;
+//     }
+//   }
+
+//   return res;
+// };
+
+// console.log(longestCommonPrefix(["flower","flow","flight"]))

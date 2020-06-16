@@ -7482,3 +7482,23 @@
 * Your functions will be called as such:
 * deserialize(serialize(root));
 */
+
+/**
+ * @param {number[]} A
+ * @return {number}
+ */
+var maxScoreSightseeingPair = function(A) {
+    let max = A[0],
+        res = -Infinity;
+
+    for(let j = 1; j < A.length; j++) {
+        // 求max+A[j]-j的最大值
+        res = Math.max(res,max+ A[j] - j);
+        // 保存A[i] + i的最大值
+        max = Math.max(max, A[j] + j);
+    }
+
+    return res;
+};
+
+console.log(maxScoreSightseeingPair([8,1,5,2,6]))

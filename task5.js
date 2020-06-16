@@ -7417,3 +7417,68 @@
 // };
 
 // console.log(longestCommonPrefix(["flower","flow","flight"]))
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+
+/**
+ * Encodes a tree to a single string.
+ *
+ * @param {TreeNode} root
+ * @return {string}
+ */
+// var serialize = function(root) {
+//   if(!root) return 'null';
+//   let arr = [],
+//       temp = [root];
+
+//   while(temp.length>0){
+//       let node = temp.shift();
+//       if(node){
+//           arr.push(node.val);
+//           temp.push(node.left);
+//           temp.push(node.right);
+//       } else{
+//           arr.push('null')
+//       }
+//   }
+//   return arr.join(",");
+// };
+
+// /**
+// * Decodes your encoded data to tree.
+// *
+// * @param {string} data
+// * @return {TreeNode}
+// */
+// var deserialize = function(data) {
+//   if(data=='null') return null;    
+//   let arr = data.split(","),
+//       root = new TreeNode(arr.shift()),
+//       temp = [root];
+
+//       while(temp.length>0){
+//           let node = temp.shift();
+
+//           if(node){
+//               let left = arr.shift(),
+//                   right = arr.shift();
+//               node.left = left==='null'?null:new TreeNode(left);
+//               temp.push(node.left);
+//               node.right = right==='null'?null:new TreeNode(right);
+//               temp.push(node.right);
+//           }
+//       }
+
+//   return root;
+// };
+
+/**
+* Your functions will be called as such:
+* deserialize(serialize(root));
+*/

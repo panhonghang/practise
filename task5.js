@@ -7487,18 +7487,85 @@
  * @param {number[]} A
  * @return {number}
  */
-var maxScoreSightseeingPair = function(A) {
-    let max = A[0],
-        res = -Infinity;
+// var maxScoreSightseeingPair = function(A) {
+//     let max = A[0],
+//         res = -Infinity;
 
-    for(let j = 1; j < A.length; j++) {
-        // 求max+A[j]-j的最大值
-        res = Math.max(res,max+ A[j] - j);
-        // 保存A[i] + i的最大值
-        max = Math.max(max, A[j] + j);
-    }
+//     for(let j = 1; j < A.length; j++) {
+//         // 求max+A[j]-j的最大值
+//         res = Math.max(res,max+ A[j] - j);
+//         // 保存A[i] + i的最大值
+//         max = Math.max(max, A[j] + j);
+//     }
 
-    return res;
+//     return res;
+// };
+
+// console.log(maxScoreSightseeingPair([8,1,5,2,6]))
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+
+function TreeNode(val) {
+    this.val = val;
+    this.left = this.right = null;
+}
+/**
+ * @param {string} S
+ * @return {TreeNode}
+ */
+var recoverFromPreorder = function(S) {
+  if(S.length==0) return null;
+
+  let root = 1,
+      len = S.length-1;
+  while(S[root]!=='-'&&root<S.length){
+    root++;
+  }
+  root = new TreeNode(S.slice(0,root))
+  //str字符串, node节点， count层数
+  const fn = function(str,node,count){
+      let temp = '';
+      for(let i = 0; i < count; i++){
+          temp += '-';
+      }
+      let leftIndex = str.search(new RegExp(`\\d${temp}\\d`)),
+          rightIndex =  str.slice(leftIndex+count+1).search(new RegExp(`\\d${temp}\\d`));
+
+      // 左节点存在
+      if(leftIndex!==-1){
+          leftIndex = leftIndex+count+1;
+          let end = leftIndex+1;
+
+          while(str[end]!=="-"&&end<str.length){
+            end++;
+          }
+
+          node.left = new TreeNode(str.slice(leftIndex,end));
+          fn(str.slice(end-1,rightIndex==-1?str.length:rightIndex+leftIndex+count+1),node.left,count+1);
+      }
+      // 右节点存在
+      if(rightIndex!==-1){
+          rightIndex = rightIndex+leftIndex+count+1;
+          let end = rightIndex+1;
+          while(str[end]!=="-"&&end<str.length){
+            end++;
+          }
+          node.right = new TreeNode(str.slice(rightIndex,end));
+          fn(str.slice(end-1),node.right,count+1);
+      }
+            
+      return node;
+  }
+
+  fn(S,root,1);
+
+  return root;
 };
 
-console.log(maxScoreSightseeingPair([8,1,5,2,6]))
+recoverFromPreorder("100-401--349---90--88")

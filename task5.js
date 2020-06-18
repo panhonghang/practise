@@ -7519,74 +7519,124 @@ function TreeNode(val) {
  * @param {string} S
  * @return {TreeNode}
  */
-var recoverFromPreorder = function(S) {
-  if(S.length==0) return null;
+// var recoverFromPreorder = function(S) {
+//   if(S.length==0) return null;
 
-  let root = 1,
-      len = S.length-1;
-  while(S[root]!=='-'&&root<S.length){
-    root++;
-  }
-  root = new TreeNode(S.slice(0,root))
-  //str字符串, node节点， count层数
-  const fn = function(str,node,count){
-      let temp = '';
-      for(let i = 0; i < count; i++){
-          temp += '-';
-      }
-      let leftIndex = str.search(new RegExp(`\\d${temp}\\d`)),
-          rightIndex =  str.slice(leftIndex+count+1).search(new RegExp(`\\d${temp}\\d`));
+//   let root = 1,
+//       len = S.length-1;
+//   while(S[root]!=='-'&&root<S.length){
+//     root++;
+//   }
+//   root = new TreeNode(S.slice(0,root))
+//   //str字符串, node节点， count层数
+//   const fn = function(str,node,count){
+//       let temp = '';
+//       for(let i = 0; i < count; i++){
+//           temp += '-';
+//       }
+//       let leftIndex = str.search(new RegExp(`\\d${temp}\\d`)),
+//           rightIndex =  str.slice(leftIndex+count+1).search(new RegExp(`\\d${temp}\\d`));
 
-      // 左节点存在
-      if(leftIndex!==-1){
-          leftIndex = leftIndex+count+1;
-          let end = leftIndex+1;
+//       // 左节点存在
+//       if(leftIndex!==-1){
+//           leftIndex = leftIndex+count+1;
+//           let end = leftIndex+1;
 
-          while(str[end]!=="-"&&end<str.length){
-            end++;
-          }
+//           while(str[end]!=="-"&&end<str.length){
+//             end++;
+//           }
 
-          node.left = new TreeNode(str.slice(leftIndex,end));
-          fn(str.slice(end-1,rightIndex==-1?str.length:rightIndex+leftIndex+count+1),node.left,count+1);
-      }
-      // 右节点存在
-      if(rightIndex!==-1){
-          rightIndex = rightIndex+leftIndex+count+1;
-          let end = rightIndex+1;
-          while(str[end]!=="-"&&end<str.length){
-            end++;
-          }
-          node.right = new TreeNode(str.slice(rightIndex,end));
-          fn(str.slice(end-1),node.right,count+1);
-      }
+//           node.left = new TreeNode(str.slice(leftIndex,end));
+//           fn(str.slice(end-1,rightIndex==-1?str.length:rightIndex+leftIndex+count+1),node.left,count+1);
+//       }
+//       // 右节点存在
+//       if(rightIndex!==-1){
+//           rightIndex = rightIndex+leftIndex+count+1;
+//           let end = rightIndex+1;
+//           while(str[end]!=="-"&&end<str.length){
+//             end++;
+//           }
+//           node.right = new TreeNode(str.slice(rightIndex,end));
+//           fn(str.slice(end-1),node.right,count+1);
+//       }
             
-      return node;
-  }
+//       return node;
+//   }
 
-  fn(S,root,1);
+//   fn(S,root,1);
 
-  return root;
-};
+//   return root;
+// };
 
-var recoverFromPreorder = function(S) {
-  const parentStack = [new TreeNode(0)];
-  for (let i = 0, curDepth = 0, num = '', len = S.length; i < len; ++i) {
-    if (S[i] === '-') {
-      ++curDepth
-    } else {
-      while(i < len && S[i] !== '-') num += S[i++];
-      while (parentStack.length - curDepth !== 1) parentStack.pop();
-      const parent = parentStack[parentStack.length - 1];
-      const node = new TreeNode(num);
-      if (!parent.left) parent.left = node
-      else parent.right = node
-      parentStack.push(node);
-      num = '';
-      curDepth = 1;
+// var recoverFromPreorder = function(S) {
+//   const parentStack = [new TreeNode(0)];
+//   for (let i = 0, curDepth = 0, num = '', len = S.length; i < len; ++i) {
+//     if (S[i] === '-') {
+//       ++curDepth
+//     } else {
+//       while(i < len && S[i] !== '-') num += S[i++];
+//       while (parentStack.length - curDepth !== 1) parentStack.pop();
+//       const parent = parentStack[parentStack.length - 1];
+//       const node = new TreeNode(num);
+//       if (!parent.left) parent.left = node
+//       else parent.right = node
+//       parentStack.push(node);
+//       num = '';
+//       curDepth = 1;
+//     }
+//   }
+//   return parentStack[0].left;
+// };
+
+
+// recoverFromPreorder("100-401--349---90--88")
+
+/**
+ * @param {number} n
+ * @param {number} k
+ * @return {number[][]}
+ */
+var combine = function(n, k){
+  let res = [];
+
+  const fn = function(count,resArr){
+    if(resArr.length>=k){
+      res.push([...resArr])
+      return;
+    }
+
+    for(let i = count; i < n; i++){
+      fn(i+1,[...resArr,i+1])
     }
   }
-  return parentStack[0].left;
+  
+  fn(0,[]);
+
+  return res;
 };
 
+/**
+ * @param {number} n
+ * @param {number} k
+ * @return {number[][]}
+ */
+var combine = function(n, k) {
+  var result = [];
+  var subresult = [];
+  function combineSub(start, subresult){
+      if(subresult.length === k){
+          result.push(subresult.slice(0));
+          return;
+      }
+      var len = subresult.length;
+      for(var i = start; i <= n - (k - len) + 1; i++){
+          subresult.push(i);
+          combineSub(i + 1, subresult);
+          subresult.pop();            
+      }   
+  }
+  combineSub(1, subresult);
+  return result;
+};
 
-recoverFromPreorder("100-401--349---90--88")
+console.log(combine(4,2))

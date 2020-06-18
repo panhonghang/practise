@@ -7511,10 +7511,10 @@
  * }
  */
 
-function TreeNode(val) {
-    this.val = val;
-    this.left = this.right = null;
-}
+// function TreeNode(val) {
+//     this.val = val;
+//     this.left = this.right = null;
+// }
 /**
  * @param {string} S
  * @return {TreeNode}
@@ -7596,47 +7596,64 @@ function TreeNode(val) {
  * @param {number} k
  * @return {number[][]}
  */
-var combine = function(n, k){
-  let res = [];
+// var combine = function(n, k){
+//   let res = [];
 
-  const fn = function(count,resArr){
-    if(resArr.length>=k){
-      res.push([...resArr])
-      return;
-    }
+//   const fn = function(count,resArr){
+//     if(resArr.length>=k){
+//       res.push([...resArr])
+//       return;
+//     }
 
-    for(let i = count; i < n; i++){
-      fn(i+1,[...resArr,i+1])
-    }
-  }
+//     for(let i = count; i < n; i++){
+//       fn(i+1,[...resArr,i+1])
+//     }
+//   }
   
-  fn(0,[]);
+//   fn(0,[]);
 
-  return res;
-};
+//   return res;
+// };
 
 /**
  * @param {number} n
  * @param {number} k
  * @return {number[][]}
  */
-var combine = function(n, k) {
-  var result = [];
-  var subresult = [];
-  function combineSub(start, subresult){
-      if(subresult.length === k){
-          result.push(subresult.slice(0));
-          return;
-      }
-      var len = subresult.length;
-      for(var i = start; i <= n - (k - len) + 1; i++){
-          subresult.push(i);
-          combineSub(i + 1, subresult);
-          subresult.pop();            
-      }   
+// var combine = function(n, k) {
+//   var result = [];
+//   var subresult = [];
+//   function combineSub(start, subresult){
+//       if(subresult.length === k){
+//           result.push(subresult.slice(0));
+//           return;
+//       }
+//       var len = subresult.length;
+//       for(var i = start; i <= n - (k - len) + 1; i++){
+//           subresult.push(i);
+//           combineSub(i + 1, subresult);
+//           subresult.pop();            
+//       }   
+//   }
+//   combineSub(1, subresult);
+//   return result;
+// };
+
+// console.log(combine(4,2))
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var subsets = function(nums) {
+  let res = [[nums[0]]];
+  
+  for(let i = 1; i < nums.length; i++){
+    let temp = res.map(k=>[...k,nums[i]]);
+    res = [...temp,...res,[nums[i]]]
   }
-  combineSub(1, subresult);
-  return result;
+  res.push([])
+  return res;
 };
 
-console.log(combine(4,2))
+console.log(subsets([1,2,3]))

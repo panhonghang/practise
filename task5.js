@@ -7645,15 +7645,68 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-var subsets = function(nums) {
-  let res = [[nums[0]]];
+// var subsets = function(nums) {
+//   let res = [[nums[0]]];
   
-  for(let i = 1; i < nums.length; i++){
-    let temp = res.map(k=>[...k,nums[i]]);
-    res = [...temp,...res,[nums[i]]]
+//   for(let i = 1; i < nums.length; i++){
+//     let temp = res.map(k=>[...k,nums[i]]);
+//     res = [...temp,...res,[nums[i]]]
+//   }
+//   res.push([])
+//   return res;
+// };
+
+// console.log(subsets([1,2,3]))
+
+// p[j] == s[i]:dp[i][j] = dp[i-1][j-1]
+
+// p[j] == ".":dp[i][j] = dp[i-1][j-1]
+
+// p[j] =="*":
+
+// 3.1 p[j-1] != s[i]:dp[i][j] = dp[i][j-2]
+
+// 3.2 p[i-1] == s[i] or p[j-1] == ".":
+
+// dp[i][j] = dp[i-1][j] // 多个字符匹配的情况
+
+// or dp[i][j] = dp[i][j-1] // 单个字符匹配的情况
+
+// or dp[i][j] = dp[i][j-2] // 没有匹配的情况
+
+/**
+ * @param {string} s
+ * @param {string} p
+ * @return {boolean}
+ */
+var isMatch = function(s, p) {
+  let slen = s.length,
+      plen = p.length,
+      dp = new Array(slen+1).fill(0),
+      temp = new Array(plen+1).fill(false);
+  if(plen==0) return slen==0;
+
+  for(let i = 0; i <=slen; i++){
+    dp[i] = [...temp];
   }
-  res.push([])
-  return res;
+
+  dp[0][0] = true;
+
+  for(let i = 1; i <= slen; i++){
+    for(let j = 1; j <= plen; j++){
+      if(s[i-1]==p[j-1]||p[j-1]=='.'){
+        dp[i][j] = dp[i-1][j-1];
+      } else if(p[j-1]=="*"){
+        if(p[j-2]=="."&&p[j-1]==s[i-2]){
+          dp[i][j] = dp[i-1][j]||dp[i][j-1]||dp[i][j-2]
+        } else{
+          dp[i][j] = dp[i][j-2];
+        }
+      }
+    }
+  }
+  
+  console.log(dp);
 };
 
-console.log(subsets([1,2,3]))
+console.log(isMatch("aab","c*a*b"))

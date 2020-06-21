@@ -7716,87 +7716,87 @@
  * @param {string} value
  * @return {boolean}
  */
-var patternMatching = function(pattern, value) {
-  if(pattern=='') return value=='';
-  if(value==''){
-    if(pattern.length==1) return true;
+// var patternMatching = function(pattern, value) {
+//   if(pattern=='') return value=='';
+//   if(value==''){
+//     if(pattern.length==1) return true;
     
-    let num = 1;
-    for(let i = 0; i < pattern.length; i++){
-        num = num^pattern[i]
-    }
-    return num==0;
-  };
+//     let num = 1;
+//     for(let i = 0; i < pattern.length; i++){
+//         num = num^pattern[i]
+//     }
+//     return num==0;
+//   };
 
-  let aNum = 0,
-      bNum = 0,
-      plen = pattern.length,
-      vlen = value.length,
-      bItem = 0,
-      aItem = 0;
+//   let aNum = 0,
+//       bNum = 0,
+//       plen = pattern.length,
+//       vlen = value.length,
+//       bItem = 0,
+//       aItem = 0;
 
-  for(let i = 0; i < plen; i++){
-    if(pattern[i]=='a'){
-      aNum++;
-    } else{
-      bNum++;
-    }
-  }
-  // 其中一个为0
-  if(bNum==0||aNum==0){
-    if(bNum==0){
-      aItem = vlen/aNum;
-      if(Number.isInteger(aItem)){
-          let str = '';
+//   for(let i = 0; i < plen; i++){
+//     if(pattern[i]=='a'){
+//       aNum++;
+//     } else{
+//       bNum++;
+//     }
+//   }
+//   // 其中一个为0
+//   if(bNum==0||aNum==0){
+//     if(bNum==0){
+//       aItem = vlen/aNum;
+//       if(Number.isInteger(aItem)){
+//           let str = '';
 
-          aItem = value.slice(0,aItem);
-          for(let i = 0; i < plen; i++){
-                str += aItem;
-          }
-          return str === value;
-      } 
-    } else{
-      bItem = vlen/bNum;
-      if(Number.isInteger(bItem)){
-          let str = '';
+//           aItem = value.slice(0,aItem);
+//           for(let i = 0; i < plen; i++){
+//                 str += aItem;
+//           }
+//           return str === value;
+//       } 
+//     } else{
+//       bItem = vlen/bNum;
+//       if(Number.isInteger(bItem)){
+//           let str = '';
 
-          bItem = value.slice(0,bItem);
-          for(let i = 0; i < plen; i++){
-                str += bItem;
-          }
-          return str === value;
-      }
-    }
-    return false;
-  }
+//           bItem = value.slice(0,bItem);
+//           for(let i = 0; i < plen; i++){
+//                 str += bItem;
+//           }
+//           return str === value;
+//       }
+//     }
+//     return false;
+//   }
   
 
-  for(let i = 0; i <= vlen; i++){
-    let str = '',
-        aStart = 0,
-        bStart = 0;
+//   for(let i = 0; i <= vlen; i++){
+//     let str = '',
+//         aStart = 0,
+//         bStart = 0;
 
-    bItem = (vlen-aNum*i)/bNum;
-    if(!Number.isInteger(bItem)) continue;
-    aItem = (vlen-bNum*bItem)/aNum;
-    if(!Number.isInteger(aItem)) continue;
-    aStart = pattern.indexOf('a')*bItem;
-    bStart = pattern.indexOf('b')*aItem;
+//     bItem = (vlen-aNum*i)/bNum;
+//     if(!Number.isInteger(bItem)) continue;
+//     aItem = (vlen-bNum*bItem)/aNum;
+//     if(!Number.isInteger(aItem)) continue;
+//     aStart = pattern.indexOf('a')*bItem;
+//     bStart = pattern.indexOf('b')*aItem;
 
-    aItem = value.slice(aStart,aItem+aStart);
-    bItem = value.slice(bStart,bStart+bItem);
+//     aItem = value.slice(aStart,aItem+aStart);
+//     bItem = value.slice(bStart,bStart+bItem);
 
-    for(let i = 0; i < plen; i++){
-      if(pattern[i]=='a'){
-        str += aItem;
-      } else{
-        str += bItem;
-      }
-    }
+//     for(let i = 0; i < plen; i++){
+//       if(pattern[i]=='a'){
+//         str += aItem;
+//       } else{
+//         str += bItem;
+//       }
+//     }
 
-    if(str === value) return true;
-  }
-  return false;
-};
+//     if(str === value) return true;
+//   }
+//   return false;
+// };
 
-console.log(patternMatching("bbbbbbbbabbbbbbbbbbbabbbbbbba","zezezezezezezezezkxzezezezezezezezezezezezkxzezezezezezezezkx"))
+// console.log(patternMatching("bbbbbbbbabbbbbbbbbbbabbbbbbba","zezezezezezezezezkxzezezezezezezezezezezezkxzezezezezezezezkx"))

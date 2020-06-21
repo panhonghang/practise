@@ -7679,34 +7679,34 @@
  * @param {string} p
  * @return {boolean}
  */
-var isMatch = function(s, p) {
-  let slen = s.length,
-      plen = p.length,
-      dp = new Array(slen+1).fill(0),
-      temp = new Array(plen+1).fill(false);
-  if(plen==0) return slen==0;
+// var isMatch = function(s, p) {
+//   let slen = s.length,
+//       plen = p.length,
+//       dp = new Array(slen+1).fill(0),
+//       temp = new Array(plen+1).fill(false);
+//   if(plen==0) return slen==0;
 
-  for(let i = 0; i <=slen; i++){
-    dp[i] = [...temp];
-  }
+//   for(let i = 0; i <=slen; i++){
+//     dp[i] = [...temp];
+//   }
 
-  dp[0][0] = true;
+//   dp[0][0] = true;
 
-  for(let i = 1; i <= slen; i++){
-    for(let j = 1; j <= plen; j++){
-      if(s[i-1]==p[j-1]||p[j-1]=='.'){
-        dp[i][j] = dp[i-1][j-1];
-      } else if(p[j-1]=="*"){
-        if(p[j-2]=="."&&p[j-1]==s[i-2]){
-          dp[i][j] = dp[i-1][j]||dp[i][j-1]||dp[i][j-2]
-        } else{
-          dp[i][j] = dp[i][j-2];
-        }
-      }
-    }
-  }
+//   for(let i = 1; i <= slen; i++){
+//     for(let j = 1; j <= plen; j++){
+//       if(s[i-1]==p[j-1]||p[j-1]=='.'){
+//         dp[i][j] = dp[i-1][j-1];
+//       } else if(p[j-1]=="*"){
+//         if(p[j-2]=="."&&p[j-1]==s[i-2]){
+//           dp[i][j] = dp[i-1][j]||dp[i][j-1]||dp[i][j-2]
+//         } else{
+//           dp[i][j] = dp[i][j-2];
+//         }
+//       }
+//     }
+//   }
   
-  console.log(dp);
-};
+//   console.log(dp);
+// };
 
-console.log(isMatch("aab","c*a*b"))
+// console.log(isMatch("aab","c*a*b"))

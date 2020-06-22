@@ -7811,21 +7811,21 @@
 //   return res.toString(2);
 // };
 
-var addBinary = function(a, b) {
-  let alen = a.length,
-      blen = b.length,
-      res = '',
-      temp1 = 0,
-      temp2 = 0;
+// var addBinary = function(a, b) {
+//   let alen = a.length,
+//       blen = b.length,
+//       res = '',
+//       temp1 = 0,
+//       temp2 = 0;
 
-  if(alen==0) return b;
-  if(blen==0) return a;
+//   if(alen==0) return b;
+//   if(blen==0) return a;
   
-  while(alen>0||blen>0){
-    temp1 = Number(a[alen-1]||0)+Number(b[blen-1]||0);
-    res += temp1%2;
-    temp2 = parseInt(temp1/2);
-  }
+//   while(alen>0||blen>0){
+//     temp1 = Number(a[alen-1]||0)+Number(b[blen-1]||0);
+//     res += temp1%2;
+//     temp2 = parseInt(temp1/2);
+//   }
 
-  return res;
-};
+//   return res;
+// };

@@ -7800,3 +7800,13 @@
 // };
 
 // console.log(patternMatching("bbbbbbbbabbbbbbbbbbbabbbbbbba","zezezezezezezezezkxzezezezezezezezezezezezkxzezezezezezezezkx"))
+
+/**
+ * @param {string} a
+ * @param {string} b
+ * @return {string}
+ */
+var addBinary = function(a, b) {
+  let res = parseInt(a,2)+parseInt(b,2);
+  return res.toString(2);
+};

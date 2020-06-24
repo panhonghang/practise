@@ -7829,3 +7829,37 @@
 
 //   return res;
 // };
+
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var threeSumClosest = function(nums, target) {
+  nums.sort((a,b)=>a-b);
+  
+  let res = nums[0]+nums[1]+nums[2],
+      result = 0;
+
+  for(let i = 1; i < nums.length-1; i++){
+      let start = 0,
+          end = nums.length-1;
+          
+      while(start<i&&end>i){
+          result = nums[start]+nums[end]+nums[i];
+          
+          if(Math.abs(target-result)<Math.abs(target-res)) res=result;
+
+          if(result<target){
+              start++;
+          } else if(result>target){
+              end--;
+          } else{
+              return result;
+          }
+      }
+  }
+
+  return res;
+};

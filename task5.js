@@ -7863,3 +7863,34 @@
 
 //   return res;
 // };
+
+/**
+ * @param {string} s
+ * @param {string[]} wordDict
+ * @return {boolean}
+ */
+/**
+ * @param {string} s
+ * @param {string[]} wordDict
+ * @return {boolean}
+ */
+var wordBreak = function(s, wordDict) {
+  let len = s.length,
+      dp = new Array(len+1).fill(0),
+      map = new Set(wordDict);
+
+  dp[0] = true;
+  
+  for(let i = 1; i <= len; i++){
+      for(let j = 0; j <= i; j++){
+          if(dp[j]&&map.has(s.substr(j, i-j))){
+              dp[i] = true;
+              break;
+          }
+      }
+  }
+  
+  return dp[len];
+};
+
+wordBreak("leetcode",["leet","code"])

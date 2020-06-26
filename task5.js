@@ -7889,3 +7889,36 @@
 // };
 
 // wordBreak("leetcode",["leet","code"])
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+// var removeDuplicateNodes = function(head) {
+//   if(!head) return head;
+//   let start = head,
+//       end = null,
+//       temp = null;
+//   while(start!==null){
+//       end = start.next;
+//       temp = start;
+//       while(end!==null){
+//           if(start.val==end.val){
+//               temp.next = end.next;
+//               end = end.next;
+//               continue;
+//           }
+//           end = end.next;
+//           temp = temp.next;
+//       }
+//       start = start.next;
+//   }
+//   return head;
+// };

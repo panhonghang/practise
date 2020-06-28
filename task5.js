@@ -7948,21 +7948,21 @@
  * @param {number[]} nums
  * @return {number}
  */
-var minSubArrayLen = function(s, nums) {
-  let res = Infinity,
-      pre = 0,
-      next = 0,
-      sum = 0;
+// var minSubArrayLen = function(s, nums) {
+//   let res = Infinity,
+//       pre = 0,
+//       next = 0,
+//       sum = 0;
 
-  while(next<nums.length){  
-      sum += nums[next];
-      while(sum>=s){     
-          res = Math.min(res, next-pre+1);
-          sum -= nums[pre];
-          pre++;
-      }
-      next++;
-  }
+//   while(next<nums.length){  
+//       sum += nums[next];
+//       while(sum>=s){     
+//           res = Math.min(res, next-pre+1);
+//           sum -= nums[pre];
+//           pre++;
+//       }
+//       next++;
+//   }
 
-return res === Infinity?0:res;
-};
+//   return res === Infinity?0:res;
+// };

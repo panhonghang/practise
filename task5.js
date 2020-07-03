@@ -8010,21 +8010,21 @@
  * @param {number[]} B
  * @return {number}
  */
-var findLength = function(A, B) {
-    let len1 = A.length;
-    let len2 = B.length;
-    let dp = new Array(len1 + 2).fill(0).map(()=>new Array(len2+2).fill(0)); 
-    let res = 0;
+// var findLength = function(A, B) {
+//     let len1 = A.length;
+//     let len2 = B.length;
+//     let dp = new Array(len1 + 2).fill(0).map(()=>new Array(len2+2).fill(0)); 
+//     let res = 0;
 
-    for(let i=2;i<=len1+1;i++){
-        dp[i][0]=A[i-2];
-        for(let j=2;j<=len2+1;j++){
-            dp[0][j]=B[j-2];
-            if(A[i-2]==B[j-2]){
-                dp[i][j] = dp[i-1][j-1] + 1;
-                res = Math.max(res,dp[i][j]);
-            }
-        }
-    }
-    return res;
-};;
+//     for(let i=2;i<=len1+1;i++){
+//         dp[i][0]=A[i-2];
+//         for(let j=2;j<=len2+1;j++){
+//             dp[0][j]=B[j-2];
+//             if(A[i-2]==B[j-2]){
+//                 dp[i][j] = dp[i-1][j-1] + 1;
+//                 res = Math.max(res,dp[i][j]);
+//             }
+//         }
+//     }
+//     return res;
+// };;

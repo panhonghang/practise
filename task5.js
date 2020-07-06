@@ -8089,3 +8089,26 @@ var isMatch = function(s, p) {
   }
   return dp[s.length][p.length];
 };
+/**
+ * @param {number[][]} obstacleGrid
+ * @return {number}
+ */
+var uniquePathsWithObstacles = function(obstacleGrid) {
+  let res = 0,
+      col = obstacleGrid[0].length,
+      row = obstacleGrid.length;
+
+  const fn = function(i,j){
+      if(i>=row||j>=col||obstacleGrid[i][j]==1) return;
+      if(i==row-1&&j==col-1&&obstacleGrid[i][j]==0) {
+          res++;
+          return
+      }
+      fn(i+1,j)
+      fn(i,j+1)
+  }
+
+  fn(0,0)
+
+  return res;
+};

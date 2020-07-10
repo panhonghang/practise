@@ -8205,3 +8205,24 @@
 //     }
 //     return dp[sentence.length]
 // };
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {
+    //如果天数小于一天，没有卖出时机，收益最大为0
+    if(prices.length<=1){
+          return 0;
+    }
+    let dp = [];
+    dp.push([0,-prices[0]]);
+    dp.push([Math.max(prices[1]-prices[0],0),Math.max(-prices[1],-prices[0])]);
+    for(let i=2;i<prices.length;i++){
+        let res = [];
+        res[0] = Math.max(dp[i-1][1]+prices[i],dp[i-1][0])
+        res[1] = Math.max(dp[i-2][0]-prices[i],dp[i-1][1])
+        dp.push(res);
+    }
+    return dp[prices.length-1][0];
+};

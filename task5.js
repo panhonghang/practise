@@ -8210,19 +8210,51 @@
  * @param {number[]} prices
  * @return {number}
  */
-var maxProfit = function(prices) {
-    //如果天数小于一天，没有卖出时机，收益最大为0
-    if(prices.length<=1){
-          return 0;
-    }
-    let dp = [];
-    dp.push([0,-prices[0]]);
-    dp.push([Math.max(prices[1]-prices[0],0),Math.max(-prices[1],-prices[0])]);
-    for(let i=2;i<prices.length;i++){
-        let res = [];
-        res[0] = Math.max(dp[i-1][1]+prices[i],dp[i-1][0])
-        res[1] = Math.max(dp[i-2][0]-prices[i],dp[i-1][1])
-        dp.push(res);
-    }
-    return dp[prices.length-1][0];
-};
+// var maxProfit = function(prices) {
+//     //如果天数小于一天，没有卖出时机，收益最大为0
+//     if(prices.length<=1){
+//           return 0;
+//     }
+//     let dp = [];
+//     dp.push([0,-prices[0]]);
+//     dp.push([Math.max(prices[1]-prices[0],0),Math.max(-prices[1],-prices[0])]);
+//     for(let i=2;i<prices.length;i++){
+//         let res = [];
+//         res[0] = Math.max(dp[i-1][1]+prices[i],dp[i-1][0])
+//         res[1] = Math.max(dp[i-2][0]-prices[i],dp[i-1][1])
+//         dp.push(res);
+//     }
+//     return dp[prices.length-1][0];
+// };
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+// const countSmaller = (nums) => {
+//     const len = nums.length;
+//     if (len == 0) return nums;
+//     const counts = new Array(len);
+//     const sorted = [];
+//     for (let i = len - 1; i >= 0; i--) {
+//       const index = findIndex(sorted, nums[i]); // 当前数字理应出现在右边排序后的位置，也即是有index个右边元素比它小
+//       sorted.splice(index, 0, nums[i]); // 将nums[i]插入到sorted数组的index处
+//       counts[i] = index; // 将index存到counts数组的索引i处
+//     }
+//     return counts;
+//   };
+  
+//   const findIndex = (arr, target) => {
+//     let lo = 0;
+//     let hi = arr.length - 1;
+//     while (lo < hi) {
+//       const mid = (lo + hi) >>> 1;
+//       if (arr[mid] < target) {// 目标值比mid元素大，mid不是想要的
+//         lo = mid + 1;         // 移到mid+1，lo是我最后想返回的
+//       } else {                // 目标值小于等于mid元素 
+//         hi = mid;             // mid可能是想要的，hi不能移到mid-1
+//       }
+//     }
+//     if (arr[lo] < target) return lo + 1; // 目标值比lo元素大，lo还需+1
+//     return lo;    // 否则 返回lo
+//   };

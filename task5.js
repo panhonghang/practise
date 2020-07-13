@@ -8282,3 +8282,18 @@
 //     }
 //     return dp[0][0];
 // };
+
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var intersect = function(nums1, nums2) {
+    return nums1.filter(item => {
+        let index = nums2.indexOf(item);
+        if(index !== -1){
+            nums2.splice(index,1);
+            return true
+        }
+    });
+};

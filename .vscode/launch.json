@@ -1,22 +1,12 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
-    "configurations": [    
+    "configurations": [
         {
-            "name": "Launch localhost",
             "type": "chrome",
             "request": "launch",
-            "url": "C:/Users/黎曦/Desktop/开发工具/平时练习/暑假平时练习/index.html",
-            "webRoot": "${workspaceFolder}/wwwroot"
-        },
-        {
-            "name": "Launch index.html",
-            "type": "chrome",
-            "request": "launch",
-            "file": "${workspaceFolder}/index.html"
-        },
- 
+            "name": "启动一个独立的 Chrome 以调试 frontend",
+            "url": "http://localhost:8091/frontend",
+            "webRoot": "${workspaceRoot}/frontend"
+        }
     ]
 }

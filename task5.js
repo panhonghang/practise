@@ -8315,39 +8315,59 @@
  * @param {number} n
  * @return {number}
  */
-var numTrees = function(n) {
-    const dp = new Array(n+1).fill(0);
-    dp[0] = 1;
-    dp[1] = 1;
+// var numTrees = function(n) {
+//     const dp = new Array(n+1).fill(0);
+//     dp[0] = 1;
+//     dp[1] = 1;
 
-    for(let i = 2; i < n; i++) {
-        for(let j = 1; j <= i; j++){
-            dp[i] += dp[j-1] * dp[i-j]
-        }
-    }
+//     for(let i = 2; i < n; i++) {
+//         for(let j = 1; j <= i; j++){
+//             dp[i] += dp[j-1] * dp[i-j]
+//         }
+//     }
 
-    return dp[n];
-};
+//     return dp[n];
+// };
 
-/**
- * @param {number} n
- * @return {number}
- */
-var numTrees = function(n) {
-    if(n<=1) return 1;
-    if(n==2) return 2;
+// /**
+//  * @param {number} n
+//  * @return {number}
+//  */
+// var numTrees = function(n) {
+//     if(n<=1) return 1;
+//     if(n==2) return 2;
 
-    let dp = new Array(n+1);
-        dp.fill(0);
-    dp[0] = 1;
-    dp[1] = 1;
-    dp[2] = 2;
-    dp[3] = 5;
+//     let dp = new Array(n+1);
+//         dp.fill(0);
+//     dp[0] = 1;
+//     dp[1] = 1;
+//     dp[2] = 2;
+//     dp[3] = 5;
 
-    for(let i = 4; i <= n; i++){
-        for(let j = 0; j < i; j++){
-            dp[i] += dp[j]*dp[i-j-1]
-        }
-    }
-    return dp[n]
-};
+//     for(let i = 4; i <= n; i++){
+//         for(let j = 0; j < i; j++){
+//             dp[i] += dp[j]*dp[i-j-1]
+//         }
+//     }
+//     return dp[n]
+// };
+
+// /**
+//  * @param {number[][]} graph
+//  * @return {boolean}
+//  */
+// var isBipartite = function (graph) {
+//     /* dfs + 染色法 */
+//     const colors = new Array(graph.length).fill(0); // 用于存储染色信息的数组，0 表示未染色，1 表示染成红色，2 表示染成绿色
+//     return colors.every((value, index) => value === 0 ? dfs(index, graph, colors, 1) : true); // 如果已经被染色就不必在递归了
+//   };
+  
+//   const dfs = (i, graph, colors, color) => {
+//     if (colors[i]) { // 递归出口，如果已被染色，则判断是否与要被染色的颜色一致
+//       if (colors[i] !== color) return false; // 不一致 return false
+//       return true; // 一致 return true
+//     }
+//     colors[i] = color; // 未被染色，则将其染色
+//     return graph[i].every(value => dfs(value, graph, colors, color === 1 ? 2 : 1));
+//   };
+  

@@ -8371,3 +8371,18 @@
 //     return graph[i].every(value => dfs(value, graph, colors, color === 1 ? 2 : 1));
 //   };
   
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var searchInsert = function(nums, target) {
+    let res = 0;
+
+    for(let i = 0; i < nums.length; i++) {
+        if(nums[i] < target) res = i + 1;
+        if(nums[i] == target) res = i;
+    }
+
+    return res;
+};

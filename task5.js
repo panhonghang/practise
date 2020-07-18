@@ -8376,13 +8376,30 @@
  * @param {number} target
  * @return {number}
  */
-var searchInsert = function(nums, target) {
-    let res = 0;
+// var searchInsert = function(nums, target) {
+//     let res = 0;
 
-    for(let i = 0; i < nums.length; i++) {
-        if(nums[i] < target) res = i + 1;
-        if(nums[i] == target) res = i;
-    }
+//     for(let i = 0; i < nums.length; i++) {
+//         if(nums[i] < target) res = i + 1;
+//         if(nums[i] == target) res = i;
+//     }
 
-    return res;
-};
+//     return res;
+// };
+
+const isInterleave = (s1, s2, s3) => {
+    if (s1.length + s2.length != s3.length) return false;
+    const check = (i, j, k) => {             // 检查ijk开始的子串是否满足题目条件
+      if (k == s3.length) return true;       // k越过边界，s3扫描完了，返回true
+      let isValid = false;                   // 默认 false
+      if (i < s1.length && s1[i] == s3[k]) { // i没有越界，且s1[i]和s3[k]相同
+        isValid = check(i + 1, j, k + 1);    // i k 移动1，递归考察
+      }
+      if (j < s2.length && s2[j] == s3[k]) { // j没有越界，且s2[i]和s3[k]相同
+        isValid = isValid || check(i, j + 1, k + 1); 
+      }
+      return isValid;      // 如果整个遍历过程都没有返回true，则返回默认的false
+    };
+    return check(0, 0, 0); // 递归入口
+  };
+  

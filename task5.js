@@ -8493,19 +8493,45 @@
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function (numbers, target) {
-    let left = 0,
-      right = numbers.length - 1
-    while (left < right) {
-      // 当两个指针对应的元素和等于 target直接返回
-      if (numbers[left] + numbers[right] === target) {
-        return [left + 1, right + 1]
-      } else if (numbers[left] + numbers[right] > target) {
-        // 当和大于target，则右侧减小(较大的值减小)
-        right--
-      } else {
-        // 当和小于target，则左侧增大(较小的值增大)
-        left++
+// var twoSum = function (numbers, target) {
+//     let left = 0,
+//       right = numbers.length - 1
+//     while (left < right) {
+//       // 当两个指针对应的元素和等于 target直接返回
+//       if (numbers[left] + numbers[right] === target) {
+//         return [left + 1, right + 1]
+//       } else if (numbers[left] + numbers[right] > target) {
+//         // 当和大于target，则右侧减小(较大的值减小)
+//         right--
+//       } else {
+//         // 当和小于target，则左侧增大(较小的值增大)
+//         left++
+//       }
+//     }
+//   }
+
+var generateTrees = function(n) {
+  let results = new Array(n+1).fill(undefined).map(()=>[]);
+  if(n===0) return [];
+  results[0].push(null);
+  for(let i=1; i<n+1; i++){  //求i个节点的所有组合
+      for(let j=1; j<i+1; j++){  //其中第j个节点作为根节点
+          results[j-1].forEach(left =>{  //左子树的所有组合
+              results[i-j].forEach(right =>{  //右子树的所有组合
+                  let root = new TreeNode(j);
+                  root.left = left;
+                  root.right = cloneTree(right, j);  //右子树偏移j
+                  results[i].push(root);
+              })
+          })
       }
-    }
   }
+  return results[n];
+  function cloneTree(root, offset){
+      if(!root) return null;
+      let newRoot = new TreeNode(root.val+offset);
+      newRoot.left = cloneTree(root.left, offset);
+      newRoot.right = cloneTree(root.right, offset);
+      return newRoot;
+  }
+};

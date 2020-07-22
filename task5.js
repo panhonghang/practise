@@ -8510,28 +8510,48 @@
 //     }
 //   }
 
-var generateTrees = function(n) {
-  let results = new Array(n+1).fill(undefined).map(()=>[]);
-  if(n===0) return [];
-  results[0].push(null);
-  for(let i=1; i<n+1; i++){  //求i个节点的所有组合
-      for(let j=1; j<i+1; j++){  //其中第j个节点作为根节点
-          results[j-1].forEach(left =>{  //左子树的所有组合
-              results[i-j].forEach(right =>{  //右子树的所有组合
-                  let root = new TreeNode(j);
-                  root.left = left;
-                  root.right = cloneTree(right, j);  //右子树偏移j
-                  results[i].push(root);
-              })
-          })
-      }
-  }
-  return results[n];
-  function cloneTree(root, offset){
-      if(!root) return null;
-      let newRoot = new TreeNode(root.val+offset);
-      newRoot.left = cloneTree(root.left, offset);
-      newRoot.right = cloneTree(root.right, offset);
-      return newRoot;
-  }
+// var generateTrees = function(n) {
+//   let results = new Array(n+1).fill(undefined).map(()=>[]);
+//   if(n===0) return [];
+//   results[0].push(null);
+//   for(let i=1; i<n+1; i++){  //求i个节点的所有组合
+//       for(let j=1; j<i+1; j++){  //其中第j个节点作为根节点
+//           results[j-1].forEach(left =>{  //左子树的所有组合
+//               results[i-j].forEach(right =>{  //右子树的所有组合
+//                   let root = new TreeNode(j);
+//                   root.left = left;
+//                   root.right = cloneTree(right, j);  //右子树偏移j
+//                   results[i].push(root);
+//               })
+//           })
+//       }
+//   }
+//   return results[n];
+//   function cloneTree(root, offset){
+//       if(!root) return null;
+//       let newRoot = new TreeNode(root.val+offset);
+//       newRoot.left = cloneTree(root.left, offset);
+//       newRoot.right = cloneTree(root.right, offset);
+//       return newRoot;
+//   }
+// };
+
+/**
+ * @param {number[]} numbers
+ * @return {number}
+ */
+var minArray = function(numbers) {
+    let pre = 0,
+        next = 1;
+    if(numbers.length < 2) return numbers[0];
+
+    for(let i = 0; i < numbers.length -1; i++) {
+        if(numbers[pre] > numbers[next]) break;
+        pre++;
+        next++;
+    }
+
+    if(next >= numbers.length) next = 0;
+
+    return numbers[next];
 };

@@ -8540,18 +8540,39 @@
  * @param {number[]} numbers
  * @return {number}
  */
-var minArray = function(numbers) {
-    let pre = 0,
-        next = 1;
-    if(numbers.length < 2) return numbers[0];
+// var minArray = function(numbers) {
+//     let pre = 0,
+//         next = 1;
+//     if(numbers.length < 2) return numbers[0];
 
-    for(let i = 0; i < numbers.length -1; i++) {
-        if(numbers[pre] > numbers[next]) break;
-        pre++;
-        next++;
-    }
+//     for(let i = 0; i < numbers.length -1; i++) {
+//         if(numbers[pre] > numbers[next]) break;
+//         pre++;
+//         next++;
+//     }
 
-    if(next >= numbers.length) next = 0;
+//     if(next >= numbers.length) next = 0;
 
-    return numbers[next];
-};
+//     return numbers[next];
+// };
+
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+// var minPathSum = function(grid) {
+//     if(grid.length === 0) return 0;
+//     let row = grid[0].length -1,
+//         col = grid.length - 1;
+    
+//     for(let i = 1; i <= row; i++) grid[0][i] += grid[0][i-1];
+//     for(let i = 1; i <= col; i++) grid[i][0] += grid[i-1][0];
+
+//     for(let i = 1; i <= col; i++) {
+//         for(let j = 1; j <= row; j++) {
+//             grid[i][j] += Math.min(grid[i-1][j], grid[i][j-1]) 
+//         }
+//     }
+
+//     return grid[col][row]
+// };

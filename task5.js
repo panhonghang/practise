@@ -8616,36 +8616,77 @@
  * @param {number[][]} matrix
  * @return {number}
  */
-var longestIncreasingPath = function(matrix) {
-    if(matrix.length === 0) return 0;
+// var longestIncreasingPath = function(matrix) {
+//     if(matrix.length === 0) return 0;
+
+//     let res = 1,
+//         row = matrix.length,
+//         col = matrix[0].length;
     
-    let res = 1,
-        row = matrix.length,
-        col = matrix[0].length;
+//     for(let i = 0; i < row; i++) {
+//         for(let j = 0; j < col; j++) {
+//             dfs(i, j);
+//         }
+//     }
+
+//     function dfs(r, c) {
+//         if(r < 0 || c < 0 || r >= row || c >= col) return 0;
+
+//         let max = 1;
+//         //上
+//         if(r-1>= 0 && matrix[r-1][c] > matrix[r][c]) max = Math.max(max, dfs(r-1, c) + 1)
+//         //下
+//         if(r+1 < row && matrix[r+1][c] > matrix[r][c]) max = Math.max(max, dfs(r+1, c)+1)
+//         //左
+//         if (c-1 >= 0 && matrix[r][c-1] > matrix[r][c]) max = Math.max(max, dfs(r, c-1)+1)
+//         //右
+//         if (c+1 < col && matrix[r][c+1] > matrix[r][c]) max = Math.max(max, dfs(r, c+1)+1)
+
+//         res = Math.max(res, max);
+
+//         return max;
+//     }
+
+//     return res;
+// };
+
+// /**
+//  * @param {number[][]} matrix
+//  * @return {number}
+//  */
+// var longestIncreasingPath = function(matrix) {
+//     if(matrix.length === 0 || matrix[0].length === 0) return 0;
+//     let res = 1,
+//         row = matrix.length,
+//         col = matrix[0].length,
+//         dp = Array.from(new Array(row), () => new Array(col).fill(0));
     
-    for(let i = 0; i < row; i++) {
-        for(let j = 0; j < col; j++) {
-            dfs(i, j);
-        }
-    }
+//     for(let i = 0; i < row; i++) {
+//         for(let j = 0; j < col; j++) {
+//             dfs(i, j);
+//         }
+//     }
 
-    function dfs(r, c) {
-        if(r < 0 || c < 0 || r >= row || c >= col) return 0;
+//     function dfs(r, c) {
+//         if(r < 0 || c < 0 || r >= row || c >= col) return 0;
+        
+//         if (dp[r][c]) return dp[r][c];
 
-        let max = 1;
-        //上
-        if(r-1>= 0 && matrix[r-1][c] > matrix[r][c]) max = Math.max(max, dfs(r-1, c) + 1)
-        //下
-        if(r+1 < row && matrix[r+1][c] > matrix[r][c]) max = Math.max(max, dfs(r+1, c)+1)
-        //左
-        if (c-1 >= 0 && matrix[r][c-1] > matrix[r][c]) max = Math.max(max, dfs(r, c-1)+1)
-        //右
-        if (c+1 < col && matrix[r][c+1] > matrix[r][c]) max = Math.max(max, dfs(r, c+1)+1)
+//         // 以其自身做起点 默认节点数1
+//         dp[r][c] = 1;
+//         //上
+//         if(r-1>= 0 && matrix[r-1][c] > matrix[r][c]) dp[r][c] = Math.max(dp[r][c], dfs(r-1, c) + 1)
+//         //下
+//         if(r+1 < row && matrix[r+1][c] > matrix[r][c]) dp[r][c] = Math.max(dp[r][c], dfs(r+1, c)+1)
+//         //左
+//         if (c-1 >= 0 && matrix[r][c-1] > matrix[r][c]) dp[r][c] = Math.max(dp[r][c], dfs(r, c-1)+1)
+//         //右
+//         if (c+1 < col && matrix[r][c+1] > matrix[r][c]) dp[r][c] = Math.max(dp[r][c], dfs(r, c+1)+1)
 
-        res = Math.max(res, max);
+//         res = Math.max(res, dp[r][c]);
 
-        return max;
-    }
+//         return dp[r][c];
+//     }
 
-    return res;
-};
+//     return res;
+// };

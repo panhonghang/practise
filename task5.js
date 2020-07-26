@@ -8592,22 +8592,60 @@
  * @param {number} m
  * @return {number}
  */
-var splitArray = function(nums, m) {
-    let n = nums.length,
-        dp = Array.from(new Array(n + 1), ()=> new Array(m + 1).fill(Number.MAX_SAFE_INTEGER)),
-        sub = new Array(n +1).fill(0);
+// var splitArray = function(nums, m) {
+//     let n = nums.length,
+//         dp = Array.from(new Array(n + 1), ()=> new Array(m + 1).fill(Number.MAX_SAFE_INTEGER)),
+//         sub = new Array(n +1).fill(0);
     
-    for(let i = 0; i < n; i++) sub[i+1] = sub[i] + nums[i];
+//     for(let i = 0; i < n; i++) sub[i+1] = sub[i] + nums[i];
 
-    dp[0][0] = 0;
+//     dp[0][0] = 0;
 
-    for(let i = 1; i <= n; i++) {
-        for(let j = 1; j <= m; j++) {
-            for(let k = 0; k < i; k++) {
-                dp[i][j] = Math.min(dp[i][j], Math.max(dp[k][j-1], sub[i] - sub[k]))
-            }
+//     for(let i = 1; i <= n; i++) {
+//         for(let j = 1; j <= m; j++) {
+//             for(let k = 0; k < i; k++) {
+//                 dp[i][j] = Math.min(dp[i][j], Math.max(dp[k][j-1], sub[i] - sub[k]))
+//             }
+//         }
+//     }
+
+//     return dp[n][m]
+// };
+
+/**
+ * @param {number[][]} matrix
+ * @return {number}
+ */
+var longestIncreasingPath = function(matrix) {
+    if(matrix.length === 0) return 0;
+    
+    let res = 1,
+        row = matrix.length,
+        col = matrix[0].length;
+    
+    for(let i = 0; i < row; i++) {
+        for(let j = 0; j < col; j++) {
+            dfs(i, j);
         }
     }
 
-    return dp[n][m]
+    function dfs(r, c) {
+        if(r < 0 || c < 0 || r >= row || c >= col) return 0;
+
+        let max = 1;
+        //上
+        if(r-1>= 0 && matrix[r-1][c] > matrix[r][c]) max = Math.max(max, dfs(r-1, c) + 1)
+        //下
+        if(r+1 < row && matrix[r+1][c] > matrix[r][c]) max = Math.max(max, dfs(r+1, c)+1)
+        //左
+        if (c-1 >= 0 && matrix[r][c-1] > matrix[r][c]) max = Math.max(max, dfs(r, c-1)+1)
+        //右
+        if (c+1 < col && matrix[r][c+1] > matrix[r][c]) max = Math.max(max, dfs(r, c+1)+1)
+
+        res = Math.max(res, max);
+
+        return max;
+    }
+
+    return res;
 };

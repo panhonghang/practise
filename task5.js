@@ -8690,3 +8690,49 @@
 
 //     return res;
 // };
+
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+// var isSubsequence = function(s, t) {
+//     let map = new Map(),
+//         count = s.length;
+
+//     for(let i = 0; i < count; i++) {
+//         if(map.has(s[i])) {
+//             map.set(s[i], map.get(s[i] + 1))
+//         } else {
+//             map.set(s[i], 1)
+//         }
+//     }
+
+//     for(let i = 0; i < t.length; i++) {
+//         if(map.has(t[i]) && map.get(t[i]) > 0) {
+//             count--;
+//             map.set(t[i], map.get(t[i])-1)
+//         }
+//     }
+
+//     return count === 0
+// };
+
+// /**
+//  * @param {string} s
+//  * @param {string} t
+//  * @return {boolean}
+//  */
+// var isSubsequence = function(s, t) {
+//     if(s.length === 0) return true;
+
+//     let pre = 0,
+//         next = 0;
+    
+//     while(next < t.length) {
+//         if(s[pre] === t[next]) pre++;
+//         next++;
+//     }
+
+//     return s.length === pre;
+// };

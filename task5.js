@@ -8736,3 +8736,34 @@
 
 //     return s.length === pre;
 // };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+// var maxDepth = function(root) {
+//     if(!root) return 0;
+//     let max = 0;
+
+//     const dfs = function(node, count) {
+//         if(!node) {
+//             max = Math.max(max, count);
+//             return
+//         }
+
+//         dfs(node.left, count+1);
+//         dfs(node.right, count+1);
+//     }
+
+//     dfs(root, 0);
+
+//     return max;
+// };
+

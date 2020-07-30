@@ -6691,7 +6691,7 @@
 // //   return ans;
 // // };
 
-// // findSubstring("pjzkrkevzztxductzzxmxsvwjkxpvukmfjywwetvfnujhweiybwvvsrfequzkhossmootkmyxgjgfordrpapjuunmqnxxdrqrfgkrsjqbszgiqlcfnrpjlcwdrvbumtotzylshdvccdmsqoadfrpsvnwpizlwszrtyclhgilklydbmfhuywotjmktnwrfvizvnmfvvqfiokkdprznnnjycttprkxpuykhmpchiksyucbmtabiqkisgbhxngmhezrrqvayfsxauampdpxtafniiwfvdufhtwajrbkxtjzqjnfocdhekumttuqwovfjrgulhekcpjszyynadxhnttgmnxkduqmmyhzfnjhducesctufqbumxbamalqudeibljgbspeotkgvddcwgxidaiqcvgwykhbysjzlzfbupkqunuqtraxrlptivshhbihtsigtpipguhbhctcvubnhqipncyxfjebdnjyetnlnvmuxhzsdahkrscewabejifmxombiamxvauuitoltyymsarqcuuoezcbqpdaprxmsrickwpgwpsoplhugbikbkotzrtqkscekkgwjycfnvwfgdzogjzjvpcvixnsqsxacfwndzvrwrycwxrcismdhqapoojegggkocyrdtkzmiekhxoppctytvphjynrhtcvxcobxbcjjivtfjiwmduhzjokkbctweqtigwfhzorjlkpuuliaipbtfldinyetoybvugevwvhhhweejogrghllsouipabfafcxnhukcbtmxzshoyyufjhzadhrelweszbfgwpkzlwxkogyogutscvuhcllphshivnoteztpxsaoaacgxyaztuixhunrowzljqfqrahosheukhahhbiaxqzfmmwcjxountkevsvpbzjnilwpoermxrtlfroqoclexxisrdhvfsindffslyekrzwzqkpeocilatftymodgztjgybtyheqgcpwogdcjlnlesefgvimwbxcbzvaibspdjnrpqtyeilkcspknyylbwndvkffmzuriilxagyerjptbgeqgebiaqnvdubrtxibhvakcyotkfonmseszhczapxdlauexehhaireihxsplgdgmxfvaevrbadbwjbdrkfbbjjkgcztkcbwagtcnrtqryuqixtzhaakjlurnumzyovawrcjiwabuwretmdamfkxrgqgcdgbrdbnugzecbgyxxdqmisaqcyjkqrntxqmdrczxbebemcblftxplafnyoxqimkhcykwamvdsxjezkpgdpvopddptdfbprjustquhlazkjfluxrzopqdstulybnqvyknrchbphcarknnhhovweaqawdyxsqsqahkepluypwrzjegqtdoxfgzdkydeoxvrfhxusrujnmjzqrrlxglcmkiykldbiasnhrjbjekystzilrwkzhontwmehrfsrzfaqrbbxncphbzuuxeteshyrveamjsfiaharkcqxefghgceeixkdgkuboupxnwhnfigpkwnqdvzlydpidcljmflbccarbiegsmweklwngvygbqpescpeichmfidgsjmkvkofvkuehsmkkbocgejoiqcnafvuokelwuqsgkyoekaroptuvekfvmtxtqshcwsztkrzwrpabqrrhnlerxjojemcxel",["dhvf","sind","ffsl","yekr","zwzq","kpeo","cila","tfty","modg","ztjg","ybty","heqg","cpwo","gdcj","lnle","sefg","vimw","bxcb"])
+// // findSubstring("pjzkrkevzztxductzzxmxsvwjkxpvukmfjywwetvfnujhweiybwvvsrfequzkhossmootkmyxgjgfordrpapjuunmqnxxdrqrfgkrsjqbszgiqlcfnrpjlcwdrvbumtotzylshdvccdmsqoadfrpsvnwpizlwszrtyclhgilklydbmfhuywotjmktnwrfvizvnmfvvqfiokkdprznnnjycttprkxpuykhmpchiksyucbmtabiqkisgbhxngmhezrrqvayfstartXauampdpxtafniiwfvdufhtwajrbkxtjzqjnfocdhekumttuqwovfjrgulhekcpjszyynadxhnttgmnxkduqmmyhzfnjhducesctufqbumxbamalqudeibljgbspeotkgvddcwgxidaiqcvgwykhbysjzlzfbupkqunuqtraxrlptivshhbihtsigtpipguhbhctcvubnhqipncyxfjebdnjyetnlnvmuxhzsdahkrscewabejifmxombiamxvauuitoltyymsarqcuuoezcbqpdaprxmsrickwpgwpsoplhugbikbkotzrtqkscekkgwjycfnvwfgdzogjzjvpcvixnsqsxacfwndzvrwrycwxrcismdhqapoojegggkocyrdtkzmiekhxoppctytvphjynrhtcvxcobxbcjjivtfjiwmduhzjokkbctweqtigwfhzorjlkpuuliaipbtfldinyetoybvugevwvhhhweejogrghllsouipabfafcxnhukcbtmxzshoyyufjhzadhrelweszbfgwpkzlwxkogyogutscvuhcllphshivnoteztpxsaoaacgxyaztuixhunrowzljqfqrahosheukhahhbiaxqzfmmwcjxountkevsvpbzjnilwpoermxrtlfroqoclexxisrdhvfsindffslyekrzwzqkpeocilatftymodgztjgybtyheqgcpwogdcjlnlesefgvimwbxcbzvaibspdjnrpqtyeilkcspknyylbwndvkffmzuriilxagyerjptbgeqgebiaqnvdubrtxibhvakcyotkfonmseszhczapxdlauexehhaireihxsplgdgmxfvaevrbadbwjbdrkfbbjjkgcztkcbwagtcnrtqryuqixtzhaakjlurnumzyovawrcjiwabuwretmdamfkxrgqgcdgbrdbnugzecbgyxxdqmisaqcyjkqrntxqmdrczxbebemcblftxplafnyoxqimkhcykwamvdsxjezkpgdpvopddptdfbprjustquhlazkjfluxrzopqdstulybnqvyknrchbphcarknnhhovweaqawdyxsqsqahkepluypwrzjegqtdoxfgzdkydeoxvrfhxusrujnmjzqrrlxglcmkiykldbiasnhrjbjekystzilrwkzhontwmehrfsrzfaqrbbxncphbzuuxeteshyrveamjsfiaharkcqxefghgceeixkdgkuboupxnwhnfigpkwnqdvzlydpidcljmflbccarbiegsmweklwngvygbqpescpeichmfidgsjmkvkofvkuehsmkkbocgejoiqcnafvuokelwuqsgkyoekaroptuvekfvmtxtqshcwsztkrzwrpabqrrhnlerxjojemcxel",["dhvf","sind","ffsl","yekr","zwzq","kpeo","cila","tfty","modg","ztjg","ybty","heqg","cpwo","gdcj","lnle","sefg","vimw","bxcb"])
 
 
 // /**
@@ -8767,3 +8767,385 @@
 //     return max;
 // };
 
+// 太难了
+// var minimalSteps = function(maze) {
+//     const dx = [1, -1, 0, 0]
+//     const dy = [0, 0, 1, -1]
+
+//     let n = maze.length
+//     let m = maze[0].length
+
+//     // 机关&石头
+//     const buttons = []
+//     const stones = []
+
+//     // 起点&终点
+//     let startX = -1, startY = -1, endX = -1, endY = -1
+
+//     for(let i = 0; i < n; i++) {
+//         for(let j = 0; j < m; j++) {
+//             if(maze[i][j] === 'M') {
+//                 buttons.push([i, j])
+//             }
+//             if(maze[i][j] === 'O') {
+//                 stones.push([i, j])
+//             }
+//             if(maze[i][j] === 'S') {
+//                 startX = i, startY = j
+//             }
+//             if(maze[i][j] === 'T') {
+//                 endX = i, endY = j
+//             }
+//         }
+//     }
+
+//     // 机关&石头的数量
+//     let nb = buttons.length, ns = stones.length
+
+//     // 判断边界
+//     function inBound(x, y) {
+//         return x >= 0 && x < n && y >= 0 && y < m;
+//     }
+
+//     // bfs
+//     function bfs(x, y, maze) {
+//         let ret = Array.from(Array(n), () => Array(m).fill(-1))
+//         ret[x][y] = 0
+//         const queue = new Array()
+//         queue.push([x, y])
+//         while(queue.length) {
+//             let p = queue.shift()
+//             let curx = p[0], cury = p[1]
+//             for(let k = 0; k < 4; k++) {
+//                 let nx = curx + dx[k], ny = cury + dy[k];
+//                 if(inBound(nx, ny) && maze[nx][ny] !== '#' && ret[nx][ny] == -1) {
+//                     ret[nx][ny] = ret[curx][cury] + 1;
+//                     queue.push([nx, ny])
+//                 }
+//             }
+//         }
+//         return ret
+//     }
+
+//     let startDist = bfs(startX, startY, maze)
+
+//     // 边界情况：没有机关
+//     if (nb == 0) {
+//         return startDist[startX][startY]
+//     }
+
+//     // 从某个机关到其他机关 / 起点与终点的最短距离。
+//     const dist = Array.from(Array(nb), () => Array(nb + 2).fill(-1))
+
+//     // 中间结果
+//     const dd = new Array(nb)
+//     for(let i = 0; i < nb; i++) {
+//         let d = bfs(buttons[i][0], buttons[i][1], maze)
+//         dd[i] = d
+//         dist[i][nb + 1] = d[startX][startY]
+//     }
+//     for(let i = 0; i < nb; i++) {
+//         let tmp = -1
+//         for(let k = 0; k < ns; k++) {
+//             let midX = stones[k][0], midY = stones[k][1]
+//             if(dd[i][midX][midY] != -1 && startDist[midX][midY] != -1) {
+//                 if(tmp == -1 || tmp > dd[i][midX][midY] + startDist[midX][midY]) {
+//                     tmp = dd[i][midX][midY] + startDist[midX][midY]
+//                 }
+//             }
+//         }
+//         dist[i][nb] = tmp
+//         for (let j = i + 1; j < nb; j++) {
+//             let mn = -1
+//             for (let k = 0; k < ns; k++) {
+//                 let midX = stones[k][0], midY = stones[k][1]
+//                 if (dd[i][midX][midY] != -1 && dd[j][midX][midY] != -1) {
+//                     if (mn == -1 || mn > dd[i][midX][midY] + dd[j][midX][midY]) {
+//                         mn = dd[i][midX][midY] + dd[j][midX][midY]
+//                     }
+//                 }
+//             }
+//             dist[i][j] = mn
+//             dist[j][i] = mn
+//         }
+//     }
+
+//     // 无法达成的情形
+//      for (let i = 0; i < nb; i++) {
+//         if (dist[i][nb] == -1 || dist[i][nb + 1] == -1) {
+//             return -1
+//         }
+//     }
+
+//     // dp 数组， -1 代表没有遍历到
+//     const dp = Array.from(Array(1 << nb), () => Array(nb).fill(-1))
+//     for(let i = 0; i < nb; i++) {
+//         dp[1 << i][i] = dist[i][nb]
+//     }
+
+//     // 由于更新的状态都比未更新的大，所以直接从小到大遍历即可
+//     for(let mask = 1; mask < (1 << nb); mask++) {
+//         for(let i = 0; i < nb; i++) {
+//             // 当前 dp 是合法的
+//             if((mask & (1 << i)) != 0) {
+//                 for(let j = 0; j < nb; j++) {
+//                     // j 不在 mask 里
+//                     if((mask & (1 << j)) == 0) {
+//                         let next = mask | (1 << j)
+//                         if(dp[next][j] == -1 || dp[next][j] > dp[mask][i] + dist[i][j]) {
+//                             dp[next][j] = dp[mask][i] + dist[i][j]
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     let ret = -1
+//     let finalMask = (1 << nb) - 1
+
+//     for(let i = 0; i < nb; i++) {
+//         if(ret == -1 || ret > dp[finalMask][i] + dist[i][nb + 1]) {
+//             ret = dp[finalMask][i] + dist[i][nb + 1]
+//         }
+//     }
+
+//     return ret
+// }
+
+// function minimalSteps(maze: string[]): number {
+//     // #region 声明变量
+//     const H = maze.length;
+//     const W = maze[0].length;
+//     const MS: number[] = []; // 机关 可到达点
+//     const OS: number[] = []; // 石堆 可到达点
+//     const O2S: number[] = []; // O -> S 的所有距离，用于过渡
+//     const M2S: number[] = []; // M -> S 的所有距离
+//     const M2T: number[] = []; // M -> T 的所有距离
+//     const MO: number[][] = []; // M <-> O 直接的距离矩阵 MO[i][j] 表示 第 i 个 M 到第 j 个 O 的距离
+//     const M2M: number[][] = []; // M 到每一个 M 的最短距离
+  
+//     let tmp: any; // 公用临时变量
+//     let start: number = 0; // 起始点位置
+//     let end: number = 0; // 终点位置
+//     let mCount = 0; // 机关总数
+//     // #endregion
+  
+//     // #region 找到 start 和 end 位置 & 计算 M 总数
+//     for (let h = 0; h < H; ++h) {
+//       for (let w = 0; w < W; ++w) {
+//         const v = maze[h][w];
+  
+//         if (v === "S") {
+//           start = h * W + w;
+//         } else if (v === "T") {
+//           end = h * W + w;
+//         } else if (v === "M") {
+//           mCount++;
+//         }
+//       }
+//     }
+//     // #endregion
+  
+//     // #region 确定是否能到达终点 & 计算 MS 和 OS
+//     tmp = false; // 是否能到达终点
+//     bfs(start, (v, h, w, level) => {
+//       const mv = maze[h][w];
+//       if (mv === "M") {
+//         MS.push(v);
+//       } else if (mv === "O") {
+//         OS.push(v);
+//         O2S.push(level);
+//       } else if (mv === "T") {
+//         tmp = level;
+//       }
+//     });
+//     // #endregion
+  
+//     // #region 如果不能到达终点 或者 部分 M 无法到达，直接 return -1
+//     if (tmp === false || MS.length !== mCount) {
+//       return -1;
+//     } else if (MS.length === 0) {
+//       return tmp;
+//     } else if (OS.length === 0) {
+//       return -1;
+//     }
+//     // #endregion
+  
+//     // #region 计算 M2T
+//     tmp = MS.length; // 还需找到 M 的个数
+//     bfs(end, (v, h, w, level) => {
+//       if (maze[h][w] === "M") {
+//         M2T[MS.indexOf(v)] = level;
+  
+//         if (!--tmp) {
+//           return true;
+//         }
+//       }
+//     });
+//     // #endregion
+  
+//     // #region 计算 MO
+//     for (let i = 0; i < MS.length; ++i) {
+//       const result: number[] = [];
+//       let count = OS.length;
+  
+//       bfs(MS[i], (v, h, w, level) => {
+//         if (maze[h][w] === "O") {
+//           result[OS.indexOf(v)] = level;
+  
+//           if (!--count) {
+//             return true;
+//           }
+//         }
+//       });
+  
+//       MO.push(result);
+//     }
+//     // #endregion
+  
+//     // #region 计算 M2S
+//     for (let i = 0; i < MS.length; ++i) {
+//       let min = Infinity;
+//       for (let j = 0; j < OS.length; ++j) {
+//         min = Math.min(min, O2S[j] + MO[i][j]);
+//       }
+//       M2S[i] = min;
+//     }
+//     // #endregion
+  
+//     // #region 计算 M2M
+//     for (let i = 0; i < MS.length; ++i) {
+//       const result: number[] = [];
+//       for (let j = 0; j < MS.length; ++j) {
+//         if (i === j) {
+//           result.push(0);
+//         } else {
+//           let min = Infinity;
+//           for (let k = 0; k < OS.length; ++k) {
+//             min = Math.min(min, MO[i][k] + MO[j][k]);
+//           }
+//           result.push(min);
+//         }
+//       }
+//       M2M.push(result);
+//     }
+//     // #endregion
+  
+//     // 需要用的只有 M2S, M2T, M2M
+//     const ml = MS.length;
+//     const cache: number[][] = new Array(ml).fill(0).map(() => []);
+//     const f = (v: number, i: number): number => {
+//       if (v === 1 << i) {
+//         return M2S[i];
+//       }
+  
+//       if (cache[i][v] !== undefined) {
+//         return cache[i][v];
+//       }
+  
+//       let k = v - (1 << i);
+//       let nowM = Infinity;
+//       for (let j = 0; j < ml; ++j) {
+//         if (k & (1 << j)) {
+//           nowM = Math.min(nowM, f(k, j) + M2M[j][i]);
+//         }
+//       }
+  
+//       return (cache[i][v] = nowM);
+//     };
+  
+//     let min = Infinity;
+//     // 枚举最后一个
+//     for (let i = 0; i < ml; ++i) {
+//       min = Math.min(min, f((1 << ml) - 1, i) + M2T[i]);
+//     }
+  
+//     function bfs(
+//       start: number,
+//       cb: (v: number, h: number, w: number, level: number) => true | void
+//     ) {
+//       const used = new Set([start]);
+//       let task = [start];
+//       let level = 0;
+  
+//       while (task.length) {
+//         const newTask: number[] = [];
+  
+//         for (let i = 0, l = task.length; i < l; ++i) {
+//           const v = task[i];
+//           const h = ~~(v / W);
+//           const w = v % W;
+  
+//           // 为 true 表示停止
+//           if (cb(v, h, w, level) === true) {
+//             return;
+//           }
+  
+//           // Up
+//           if (h > 0 && !used.has((h - 1) * W + w)) {
+//             if (maze[h - 1][w] !== "#") {
+//               newTask.push((h - 1) * W + w);
+//             }
+//             used.add((h - 1) * W + w);
+//           }
+//           // Down
+//           if (h < H - 1 && !used.has((h + 1) * W + w)) {
+//             if (maze[h + 1][w] !== "#") {
+//               newTask.push((h + 1) * W + w);
+//             }
+//             used.add((h + 1) * W + w);
+//           }
+//           // Left
+//           if (w > 0 && !used.has(h * W + w - 1)) {
+//             if (maze[h][w - 1] !== "#") {
+//               newTask.push(h * W + w - 1);
+//             }
+//             used.add(h * W + w - 1);
+//           }
+//           // Right
+//           if (w < W - 1 && !used.has(h * W + w + 1)) {
+//             if (maze[h][w + 1] !== "#") {
+//               newTask.push(h * W + w + 1);
+//             }
+//             used.add(h * W + w + 1);
+//           }
+//         }
+  
+//         level++;
+//         task = newTask;
+//       }
+//     }
+  
+//     return min;
+//   }
+
+/**
+ * @param {number} n
+ * @return {number}
+ */
+
+const integerBreak = (n) => {
+    const memo = new Array(n + 1);
+    const dfs = (n) => {
+      if (memo[n]) return memo[n];
+      let res = 0;
+      for (let i = 1; i <= n - 1; i++) {
+        res = Math.max(res, i * (n - i), i * dfs(n - i));
+      }
+      return memo[n] = res;
+    };
+    return dfs(n);
+};
+
+const integerBreak = (n) => {
+    const dp = new Array(n + 1);
+    dp[1] = 1;  
+    dp[2] = 1; 
+    for (let i = 3; i <= n; i++) {
+      dp[i] = 0;
+      for (let j = 1; j <= i - j; j++) {
+        dp[i] = Math.max(dp[i], j * (i - j), j * dp[i - j]);
+      }
+    }
+    return dp[n];
+};

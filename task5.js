@@ -9149,3 +9149,17 @@
 //     }
 //     return dp[n];
 // };
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMagicIndex = function(nums) {
+    let index = -1;
+
+    for (let i = 0; i < nums.length; i++) {
+        if(i === nums[i]) return i
+    }
+
+    return index;
+};

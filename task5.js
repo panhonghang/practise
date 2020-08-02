@@ -9193,3 +9193,33 @@ var smallestRange = function(nums) {
     }
     return [minStart,minStart + minLen - 1];
 };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {void} Do not return anything, modify root in-place instead.
+ */
+var flatten = function(root) {
+    if(!root) return null;
+
+    let arr = [];
+    const fn = function(node) {
+        if(!node) return;
+        arr.push(node);
+        fn(node.left);
+        fn(node.right);
+    }
+    fn(root);
+
+    for(let i = 0; i < arr.length -1; i++) {
+        arr[i].left = null;
+        arr[i].right = arr[i+1];
+    }
+};

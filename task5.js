@@ -9206,20 +9206,44 @@ var smallestRange = function(nums) {
  * @param {TreeNode} root
  * @return {void} Do not return anything, modify root in-place instead.
  */
-var flatten = function(root) {
-    if(!root) return null;
+// var flatten = function(root) {
+//     if(!root) return null;
 
-    let arr = [];
-    const fn = function(node) {
-        if(!node) return;
-        arr.push(node);
-        fn(node.left);
-        fn(node.right);
-    }
-    fn(root);
+//     let arr = [];
+//     const fn = function(node) {
+//         if(!node) return;
+//         arr.push(node);
+//         fn(node.left);
+//         fn(node.right);
+//     }
+//     fn(root);
 
-    for(let i = 0; i < arr.length -1; i++) {
-        arr[i].left = null;
-        arr[i].right = arr[i+1];
-    }
-};
+//     for(let i = 0; i < arr.length -1; i++) {
+//         arr[i].left = null;
+//         arr[i].right = arr[i+1];
+//     }
+// };
+/**
+ * @param {string} num1
+ * @param {string} num2
+ * @return {string}
+ */
+// var addStrings = function(num1, num2) {
+//     let pre = num1.length - 1,
+//         next = num2.length -1,
+//         temp = 0,
+//         result = '';
+
+//     while(pre >= 0 || next >= 0) {
+//         temp += Number(num1[pre] || 0) + Number(num2[next] || 0);
+//         result = String(temp % 10) + result;
+//         temp = Math.floor(temp/10);
+
+//         pre--;
+//         next--;
+//     }
+
+//     if(temp !== 0) result = String(temp) + result;
+
+//     return result;
+// };

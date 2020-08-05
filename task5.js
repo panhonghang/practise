@@ -9291,3 +9291,24 @@
 //     }
 //     return numCourses === 0
 // }
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var rob = function(root) {
+    if (root == null) return 0;
+    let robIncludeRoot = root.val; 
+    if (root.left) robIncludeRoot += rob(root.left.left) + rob(root.left.right);
+    if (root.right) robIncludeRoot += rob(root.right.left) + rob(root.right.right);
+    
+    const robExcludeRoot = rob(root.left) + rob(root.right); 
+
+    return Math.max(robIncludeRoot, robExcludeRoot);
+};

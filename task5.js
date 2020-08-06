@@ -9302,13 +9302,59 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var rob = function(root) {
-    if (root == null) return 0;
-    let robIncludeRoot = root.val; 
-    if (root.left) robIncludeRoot += rob(root.left.left) + rob(root.left.right);
-    if (root.right) robIncludeRoot += rob(root.right.left) + rob(root.right.right);
+// var rob = function(root) {
+//     if (root == null) return 0;
+//     let robIncludeRoot = root.val; 
+//     if (root.left) robIncludeRoot += rob(root.left.left) + rob(root.left.right);
+//     if (root.right) robIncludeRoot += rob(root.right.left) + rob(root.right.right);
     
-    const robExcludeRoot = rob(root.left) + rob(root.right); 
+//     const robExcludeRoot = rob(root.left) + rob(root.right); 
 
-    return Math.max(robIncludeRoot, robExcludeRoot);
-};
+//     return Math.max(robIncludeRoot, robExcludeRoot);
+// };
+
+// /**
+//  * @param {string[]} words
+//  * @return {number[][]}
+//  */
+// var palindromePairs = function (words) {
+//     const map = new Map()
+//     const set = new Set()
+    
+//     words.forEach((word, i) => {
+//         map.set(word.split('').reverse().join(''), i)
+//     })
+
+//     for (let i = 0; i < words.length; i++) {
+//         const word = words[i]
+//         for (let j = 0; j <= word.length; j++) {
+//             const left = word.slice(0, j), right = word.slice(j)
+//             if (isPalindrom(left)) {
+//                 if (map.has(right) && map.get(right) !== i) {
+//                     const temp = `${map.get(right)},${i}`
+//                     set.add(temp)
+//                 }
+//             }
+//             if (isPalindrom(right)) {
+//                 if (map.has(left) && map.get(left) !== i) {
+//                     const temp = `${i},${map.get(left)}`
+//                     set.add(temp)
+//                 }
+//             }
+//         }
+//     }
+//     const ans = [...set].map(v => v.split(','))
+//     return ans
+// }
+// // 判断是否是回文字符串
+// function isPalindrom(str) {
+//     let i = 0, j = str.length - 1
+//     while (i < j) {
+//         if (str[i] !== str[j]) {
+//             return false
+//         }
+//         i++
+//         j--
+//     }
+//     return true
+// }

@@ -9385,3 +9385,36 @@
 
 //     return fn(p, q);
 // };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {void} Do not return anything, modify root in-place instead.
+ */
+// var recoverTree = function(root) {
+//     let prevNode = new TreeNode(-Infinity),
+//         pre,
+//         next;
+  
+//     const inOrder = function (root) {            
+//       if (!root) return;
+//       inOrder(root.left);
+      
+//       if (prevNode.val >= root.val && pre == null) pre = prevNode;           
+//       if (prevNode.val >= root.val && pre != null) next = root;               
+      
+//       prevNode = root;                                   
+//       inOrder(root.right);
+//     };
+  
+//     inOrder(root);
+  
+//     [pre.val, next.val] = [next.val, pre.val];
+//   };

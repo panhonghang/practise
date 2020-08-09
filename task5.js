@@ -9418,3 +9418,27 @@
   
 //     [pre.val, next.val] = [next.val, pre.val];
 //   };
+
+/**
+ * @param {string} s
+ * @return {string[]}
+ */
+// var restoreIpAddresses = function(s) {
+//     let arr = [];
+// // 字符串， 。的个数， 现在的位置
+//     const fn = function(str, count, index) {
+//         if(count >= 4) {
+//             if(index === s.length) arr.push(str);
+//             return
+//         }
+//         for(let i = 1; i <= 3; i++) {
+//             let num = s.substr(index, i),
+//                 temp = index === 0 ? (str + num) : (str + '.' + num);
+
+//             if(String(+num) === num && Number(num) <= 255) fn(temp, count+1, index+i)
+//         }
+//     }
+    
+//     fn("", 0, 0)
+//     return arr;
+// };

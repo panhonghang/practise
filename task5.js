@@ -9442,3 +9442,31 @@
 //     fn("", 0, 0)
 //     return arr;
 // };
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var countBinarySubstrings = function(s) {
+    if(s==='')return 0
+    let arr = []
+    let conte=1
+    for(let i=1;i<s.length;i++){
+        if(s[i]===s[i-1]){
+            conte++
+        }else{
+            arr.push(conte)
+            conte=1
+        }
+    }
+    arr.push(conte)
+    let result =0
+    for(let i=1;i<arr.length;i++){
+        result += Math.min(arr[i],arr[i-1])
+    }
+    return result
+};

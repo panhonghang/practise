@@ -9451,22 +9451,66 @@
  * @param {string} s
  * @return {number}
  */
-var countBinarySubstrings = function(s) {
-    if(s==='')return 0
-    let arr = []
-    let conte=1
-    for(let i=1;i<s.length;i++){
-        if(s[i]===s[i-1]){
-            conte++
-        }else{
-            arr.push(conte)
-            conte=1
-        }
-    }
-    arr.push(conte)
-    let result =0
-    for(let i=1;i<arr.length;i++){
-        result += Math.min(arr[i],arr[i-1])
-    }
-    return result
-};
+// var countBinarySubstrings = function(s) {
+//     if(s==='')return 0
+//     let arr = []
+//     let conte=1
+//     for(let i=1;i<s.length;i++){
+//         if(s[i]===s[i-1]){
+//             conte++
+//         }else{
+//             arr.push(conte)
+//             conte=1
+//         }
+//     }
+//     arr.push(conte)
+//     let result =0
+//     for(let i=1;i<arr.length;i++){
+//         result += Math.min(arr[i],arr[i-1])
+//     }
+//     return result
+// };
+
+/**
+ * @param {character[][]} board
+ * @return {void} Do not return anything, modify board in-place instead.
+ */
+/**
+ * @param {character[][]} board
+ * @return {void} Do not return anything, modify board in-place instead.
+ */
+// var solve = function(board) {
+//     let m = board.length;
+//     if(m == 0) return;
+//     let n = board[0].length,
+//         cache = {};
+
+//     const dfs = function(i, j) {
+//         if(i < 0 || j < 0 || i === m || j === n || board[i][j] != 'O' || cache[i+'-'+j]){
+//             return;
+//         }
+//         cache[i+'-'+j] = true;
+
+//         dfs(i-1, j)
+//         dfs(i, j-1)
+//         dfs(i+1, j)
+//         dfs(i, j+1)
+//     }
+
+//    for(let i = 0;i < m;i++){
+//         for(let j = 0;j < n;j++){
+//             // 从边缘O出发寻找其相连点都标示为不可替换
+//             if((i == 0 || j == 0 || i == m-1 || j == n-1) && board[i][j] == 'O'){
+//                 dfs(i,j);
+//             }
+//         }
+//     }
+
+//     for (let i = 1; i < m-1; i++) {
+//         for (let j = 1; j < n-1; j++) {
+//             if(!cache[i+'-'+j]&&board[i][j] === 'O'){
+//                 board[i][j] = 'X'
+//             }
+//         }
+//     }
+// };

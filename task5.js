@@ -9514,3 +9514,36 @@
 //         }
 //     }
 // };
+
+/**
+ * // Definition for a Node.
+ * function Node(val, neighbors) {
+ *    this.val = val === undefined ? 0 : val;
+ *    this.neighbors = neighbors === undefined ? [] : neighbors;
+ * };
+ */
+
+/**
+ * @param {Node} node
+ * @return {Node}
+ */
+// var cloneGraph = function(node) {
+//     let map = new Map();
+
+//     const clone = function(node) {
+//         if(!node) return null;
+//         if(map.has(node.val)) return map.get(node.val);
+
+//         const cloneNode = new Node(node.val, []);
+//         map.set(cloneNode.val, cloneNode);
+
+//         for(let neighbor of node.neighbors) {
+//             let cloneNeighborNode = clone(neighbor);
+//             cloneNode.neighbors.push(cloneNeighborNode);
+//         }
+//         return cloneNode;
+//     } 
+
+//     return clone(node)
+// };
+  

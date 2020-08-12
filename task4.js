@@ -1202,52 +1202,52 @@ var minimumDeleteSum = function(s1, s2) {
   [ 'o', 0, 1, 1, 1, 1, 1, 2, 3, 4, 4 ],
   [ 'n', 0, 1, 1, 1, 1, 1, 2, 3, 4, 5 ] ]
   */
- var minDistance = function(word1, word2) {
-    let len1 = word1.length,
-        len2 = word2.length,
-        dp = new Array(len1 + 2).fill(0).map(()=>new Array(len2+2).fill(0));
-    for(let i=2;i<=len1+1;i++){
-        // 留下第二行和第二列的数为0
-        dp[i][0]=word1[i-2];
-        for(let j=2;j<=len2+1;j++){
-            dp[0][j]=word2[j-2];
-            if(word1[i-2]==word2[j-2]){
-                dp[i][j] = dp[i-1][j-1] + 1;
-            } else {
-                dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1]);
-            }
-        }
-    }
-    return len1 + len2 - 2*dp[len1+2,len2+2];
-};
+//  var minDistance = function(word1, word2) {
+//     let len1 = word1.length,
+//         len2 = word2.length,
+//         dp = new Array(len1 + 2).fill(0).map(()=>new Array(len2+2).fill(0));
+//     for(let i=2;i<=len1+1;i++){
+//         // 留下第二行和第二列的数为0
+//         dp[i][0]=word1[i-2];
+//         for(let j=2;j<=len2+1;j++){
+//             dp[0][j]=word2[j-2];
+//             if(word1[i-2]==word2[j-2]){
+//                 dp[i][j] = dp[i-1][j-1] + 1;
+//             } else {
+//                 dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1]);
+//             }
+//         }
+//     }
+//     return len1 + len2 - 2*dp[len1+2,len2+2];
+// };
 
-// leetcode里面JavaScript的最优解
+// // leetcode里面JavaScript的最优解
 
-var minDistance = function(word1, word2) {
-    let m = word1.length, 
-        n = word2.length;
+// var minDistance = function(word1, word2) {
+//     let m = word1.length, 
+//         n = word2.length;
     
-    if (m * n == 0) return m + n;
+//     if (m * n == 0) return m + n;
 
-    let states = new Array(m + 1)
+//     let states = new Array(m + 1)
 
-    for (let i = 0; i < m + 1; i++) {
-        states[i] = new Array(n + 1)
-    }
+//     for (let i = 0; i < m + 1; i++) {
+//         states[i] = new Array(n + 1)
+//     }
 
-    for (let i = 0; i < m + 1; i++) {
-        states[i][0] = i
-    }
-    for (let j = 0; j < n + 1; j++) {
-        states[0][j] = j
-    }
+//     for (let i = 0; i < m + 1; i++) {
+//         states[i][0] = i
+//     }
+//     for (let j = 0; j < n + 1; j++) {
+//         states[0][j] = j
+//     }
 
-    for (let i = 1; i < m + 1; i++) {
-        for (let j = 1; j < n + 1; j++) {
-            // 三目运算符简化了if else
-            states[i][j] = word1[i - 1] == word2[j - 1] ? states[i - 1][j - 1] :1 + Math.min(states[i - 1][j], states[i][j - 1])
-        }
-    }
+//     for (let i = 1; i < m + 1; i++) {
+//         for (let j = 1; j < n + 1; j++) {
+//             // 三目运算符简化了if else
+//             states[i][j] = word1[i - 1] == word2[j - 1] ? states[i - 1][j - 1] :1 + Math.min(states[i - 1][j], states[i][j - 1])
+//         }
+//     }
 
-    return states[m][n]
-};
+//     return states[m][n]
+// };

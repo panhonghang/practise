@@ -9547,3 +9547,27 @@
 //     return clone(node)
 // };
   
+
+/**
+ * @param {string} num1
+ * @param {string} num2
+ * @return {string}
+ */
+// var multiply = function(num1, num2) {
+//   if (num1 === '0' || num2 === '0') return '0';
+
+//   let n = num1.length,
+//       m = num2.length,
+//       dp = new Array(n + m).fill(0);
+
+//   for (let i = n - 1; i >= 0; i--) {
+//     for (let j = m - 1; j >= 0; j--) {
+//       let sum = dp[i + j + 1] + Number(num1[i]) * Number(num2[j]);
+
+//       dp[i + j + 1] = sum % 10;
+//       dp[i + j] = dp[i + j] + Math.floor(sum / 10);
+//     }
+//   }
+
+//   return dp.join('').replace(/^0*/, '')
+// };

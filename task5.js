@@ -13338,3 +13338,31 @@ const div2 = (x) => x / 2
 
 //   return stack.length === 0;
 // };
+
+/**
+ * @param {number[]} boxes
+ * @return {number}
+ */
+// var removeBoxes = function(boxes) {
+//   const dp = [];
+
+//   function points (l, r, k) {
+//       if (l > r) return 0
+//       // 三维数组代替法
+//       dp[l] = dp[l] || []
+//       dp[l][r] = dp[l][r] || []
+
+//       if (dp[l][r][k]) return dp[l][r][k]
+//       while (r > l && boxes[r] === boxes[r - 1]) r-- && k++;
+//       dp[l][r] = dp[l][r] || [];
+
+//       dp[l][r][k] = points(l, r - 1, 0) + (k + 1) ** 2;
+
+//       for (let i = l; i < r; ++i) {
+//           if (boxes[i] === boxes[r]) dp[l][r][k] = Math.max(dp[l][r][k], points(l, i, k + 1) + points(i + 1, r - 1, 0))
+//       }
+
+//       return dp[l][r][k]
+//   }
+//   return points(0, boxes.length - 1, 0);
+// };

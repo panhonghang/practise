@@ -13366,3 +13366,29 @@ const div2 = (x) => x / 2
 //   }
 //   return points(0, boxes.length - 1, 0);
 // };
+/**
+ * @param {number[][]} image
+ * @param {number} sr
+ * @param {number} sc
+ * @param {number} newColor
+ * @return {number[][]}
+ */
+// var floodFill = function(image, sr, sc, newColor) {
+//   if(image[sr][sc] === newColor){
+//       return image;
+//   }
+//   const oldColor = image[sr][sc];
+//   let dfs = (sr, sc) => {
+//       if(sr < 0 || sr >= image.length || sc < 0 ||
+//       sc >= image[0].length || image[sr][sc] !== oldColor){
+//           return;
+//       }
+//       image[sr][sc] = newColor;
+//       dfs(sr + 1, sc);
+//       dfs(sr - 1, sc);
+//       dfs(sr, sc + 1);
+//       dfs(sr, sc - 1);
+//   }
+//   dfs(sr, sc);
+//   return image;
+// };

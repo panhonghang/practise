@@ -13397,14 +13397,14 @@ const div2 = (x) => x / 2
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isBalanced = function(root) {
-  if (!root) return true;
+// var isBalanced = function(root) {
+//   if (!root) return true;
 
-  const fn = (root) => {
-    if (!root) return 0
-    return Math.max(fn(root.left), fn(root.right)) + 1
-  }
+//   const fn = (root) => {
+//     if (!root) return 0
+//     return Math.max(fn(root.left), fn(root.right)) + 1
+//   }
 
-  if (Math.abs(fn(root.left) - fn(root.right)) > 1) return false
-  return isBalanced(root.left) && isBalanced(root.right)
-};
+//   if (Math.abs(fn(root.left) - fn(root.right)) > 1) return false
+//   return isBalanced(root.left) && isBalanced(root.right)
+// };

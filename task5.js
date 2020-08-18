@@ -13408,3 +13408,40 @@ const div2 = (x) => x / 2
 //   if (Math.abs(fn(root.left) - fn(root.right)) > 1) return false
 //   return isBalanced(root.left) && isBalanced(root.right)
 // };
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {TreeNode}
+ */
+// var sortedListToBST = function(head) {
+//   const arr=[];
+//   while(head){
+//       arr.push(head.val)
+//       head=head.next
+//   }
+//   const resTree=function(left, right){
+//       if(left>right) return null
+//       const median=Math.floor(left+(right-left)/2); //中位数
+//       const res=new TreeNode(arr[median]);
+//       res.left=resTree(left, median-1);
+//       res.right=resTree(median+1,right);
+//       return res
+//   }
+//   return resTree(0, arr.length-1)
+  
+// };

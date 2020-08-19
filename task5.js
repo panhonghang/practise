@@ -13445,3 +13445,21 @@ const div2 = (x) => x / 2
 //   return resTree(0, arr.length-1)
   
 // };
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+// var countSubstrings = function(s) {
+//   let m = s.length;
+//   let res = 0;
+//   for(let i=0;i<2*m-1;i++){ //i的范围，上面题解已给出思路
+//       let l = i>>>1,r = l + i%2; //中心点的范围（可能为奇数或者偶数），上面题解已给出思路
+//       while(l>=0&&r<m&&s[l]==s[r]){ //限定起始下标和终止下标的范围
+//           l--;
+//           r++;
+//           res++;
+//       }
+//   }
+//   return res;
+// };

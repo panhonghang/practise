@@ -13511,3 +13511,28 @@ const div2 = (x) => x / 2
 //   }
 //   return board;
 // };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+// var minDepth = function(root) {
+//   if(!root) return 0;
+
+//   let getMinHeight = r =>{
+//       if(!r) return Number.MAX_VALUE; 
+//       if(!r.left&&!r.right) return 1;
+//       let left = getMinHeight(r.left);
+//       let right = getMinHeight(r.right); 
+//       return Math.min(left,right) + 1;
+//   }
+  
+//   return getMinHeight(root);
+// };

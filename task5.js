@@ -13573,3 +13573,16 @@ const div2 = (x) => x / 2
 //   }
 //   return false; // 遍历结束，始终没有返回真，那就返回false
 // };
+
+/**
+ * @param {number} m
+ * @param {number} n
+ * @return {number}
+ */
+// var rangeBitwiseAnd = function(m, n) {
+//   while (m < n) {
+//       // 抹去最右边的 1
+//       n = n & (n - 1);
+//   }
+//   return n;
+// };

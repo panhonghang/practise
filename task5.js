@@ -13586,3 +13586,13 @@ const div2 = (x) => x / 2
 //   }
 //   return n;
 // };
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+// var repeatedSubstringPattern = function(s) {
+//   let sDouble = s+s
+//   let sDouble1 = sDouble.slice(1,-1)
+//   return sDouble1.indexOf(s)!=-1
+// };

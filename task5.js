@@ -13623,3 +13623,38 @@ const div2 = (x) => x / 2
 //   dfs(0, []);
 //   return res;
 // };
+
+/**
+ * @param {string} digits
+ * @return {string[]}
+ */
+// var letterCombinations = function(digits) {
+//   let resArr = [],
+//       len = digits.length,
+//       map = new Map();
+//     map.set('2', "abc");
+//     map.set('3', "def");
+//     map.set('4', "ghi");
+//     map.set('5', "jkl");
+//     map.set('6', "mno");
+//     map.set('7', "pqrs");
+//     map.set('8', "tuv");
+//     map.set('9', "wxyz");
+
+//   if(digits.length === 0) return [];
+
+//   const fn = function(res, index) {
+//     if(index >= len) {
+//       resArr.push(res);
+//       return
+//     }
+//     let str = map.get(digits[index]);
+//     for(let i = 0; i < str.length; i++) {
+//       fn(res+str[i], index+1);
+//     }
+//   }
+
+//   fn('', 0)
+
+//   return resArr;
+// };

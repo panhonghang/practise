@@ -13684,3 +13684,24 @@ const div2 = (x) => x / 2
 //   }
 //   return x===0&&y===0; // 加减后为原点的话 返回true
 // };
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+// var shortestPalindrome = function(s) {
+//     let str = ''; // 用于判断回文字符串的正向存储
+//     let restr = ''; // 用于判断回文字符串的反向存储
+//     let cylen = 0; // 回文字符串的长度
+//     for(let i=0;i<s.length;i++){ // 判断回文字符串
+//         str += s[i];
+//         restr = s[i] + restr;
+//         if(str == restr) cylen = cylen < str.length ? str.length : cylen;
+//     }
+//     let reverse = s;
+//     // 拼接字符串，从cylen开始
+//     for(let i=cylen;i<s.length;i++){
+//         reverse = s[i] + reverse;
+//     }
+//     return reverse
+// };

@@ -13705,3 +13705,10 @@ const div2 = (x) => x / 2
 //     }
 //     return reverse
 // };
+/**
+ * @param {string} s
+ * @return {string}
+ */
+// var reverseWords = function(s) {
+//   return s.split(' ').map(key=>key.split('').reverse().join('')).join(' ');
+// };

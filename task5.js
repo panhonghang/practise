@@ -13836,3 +13836,32 @@ const div2 = (x) => x / 2
 
 //   return result;
 // };
+/**
+ * @param {TreeNode} root
+ * @return {string[]}
+ */
+// var binaryTreePaths = function(root) {
+//   let res = []
+//   let cur = []
+//   preOrder(root)
+//   return res
+
+//   function preOrder(root) {
+//     if (!root) {
+//       return
+//     }
+
+//     cur.push(root.val)
+//     if (!root.left && !root.right) {
+//       res.push(cur.join('->'))
+//       cur.pop()
+//       return
+//     }
+
+//     preOrder(root.left)
+//     preOrder(root.right)
+
+//     // 回溯
+//     cur.pop()
+//   }
+// }

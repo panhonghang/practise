@@ -13865,3 +13865,68 @@ const div2 = (x) => x / 2
 //     cur.pop()
 //   }
 // }
+/**
+ * @param {number} n
+ * @param {number} k
+ * @return {string}
+ */
+// var getPermutation = function(n, k) {
+//   let res = [],
+//       Narr = [];
+
+//   for(let i = 1; i <= n; i++) {
+//       Narr.push(i)
+//   }
+
+//   const fn = function(str, restArr){
+//       if(restArr.length <= 0) {
+//           res.push(str)
+//           return
+//       }
+
+//       for(let i = 0; i < restArr.length; i++) {
+//           const temp = restArr.shift();
+//           fn(str+temp, [...restArr])
+//           restArr.push(temp);
+//       }
+//   }
+
+//   fn('', Narr);
+//   res.sort((a, b)=>a>b?1:-1);
+
+//   return res[k-1]
+// };
+
+// const getPermutation = (n, k) => {
+//   const used = new Set();
+
+//   let factorial = 1;    // 阶乘
+//   for (let i = 1; i <= n; i++) {
+//     factorial = factorial * i;
+//   }
+  
+//   const helper = (temp) => {      // temp是当前已选的数字数组
+//     const progress = temp.length; // progress表示当前已选了几个数字
+
+//     if (progress == n) { // 因为是空降到正确的组，选够了n个即可返回
+//       return temp.join('');
+//     }
+
+//     const groupNum = factorial / (n - progress); // 一个分组有多少个排列
+//     factorial = groupNum;                        // 更新一下阶乘
+
+//     for (let i = 1; i <= n; i++) {
+//       if (used.has(i)) continue;
+
+//       if (k > groupNum) { // k大于一组的个数
+//         k = k - groupNum; // 更新k，
+//         continue;         // 跳过这一组，即跳过当前的数字i
+//       }
+//       temp.push(i);       // 选择i
+//       used.add(i);        // 记录选择
+//       return helper(temp);// 继续选
+//     }
+//   };
+
+//   return helper([]);
+// };

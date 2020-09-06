@@ -13930,3 +13930,39 @@ const div2 = (x) => x / 2
 
 //   return helper([]);
 // };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+// var levelOrderBottom = function(root) {
+//   let res = [];
+//   if(!root) return res;
+  
+//   const bfs = function(arr) {
+//       let temp = [],
+//           resArr = [];
+
+//       if(arr.length === 0) return;
+
+//       for(let i = 0; i < arr.length; i++) {            
+//           resArr.push(arr[i].val);
+//           if(arr[i].left) temp.push(arr[i].left);
+//           if(arr[i].right) temp.push(arr[i].right);
+//       }
+
+//       bfs([...temp]);
+//       res.push([...resArr])
+//   }
+  
+//   bfs([root]);
+
+//   return res;
+// };

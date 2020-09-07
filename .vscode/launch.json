@@ -1,12 +1,11 @@
 {
     "version": "0.2.0",
     "configurations": [
-        
         {
             "type": "chrome",
             "request": "launch",
-            "name": "启动一个独立的 Chrome 以调试 frontend",
-            "url": "http://localhost:8091/frontend",
+            "name": "调试js",
+            "url": "file:///C:/Users/%E9%BB%8E%E6%9B%A6/Desktop/%E6%9C%80%E8%BF%91%E5%AD%A6%E4%B9%A0/practise/index.html",
             "webRoot": "${workspaceRoot}/frontend"
         }
     ]

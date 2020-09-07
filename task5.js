@@ -13990,3 +13990,33 @@ const div2 = (x) => x / 2
 // };
 
 // console.log(topKFrequent([1,1,1,2,2,3], 2))
+
+/**
+ * @param {number[]} A
+ * @param {number} K
+ * @return {number}
+ */
+// var shortestSubarray = function(A, K) {
+//   let len = Number.MAX_SAFE_INTEGER,
+//       sum = 0,
+//       pre = 0,
+//       next = 0;
+  
+//   if(A[0] === K) return 1; 
+
+//   while(pre < A.length - 1) {
+//     if(A[pre] === K) return 1;
+//     next = pre;
+//     sum = 0;
+
+//     while(sum < K && next < A.length) {
+//       sum += A[next];
+//       if(sum < K) next++;
+//     }
+//     if(sum >= K) len = Math.min(len, next - pre + 1);
+
+//     pre++;
+//   }
+
+//   return len === Number.MAX_SAFE_INTEGER ? -1 : len;
+// };

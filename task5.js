@@ -14058,3 +14058,27 @@ const div2 = (x) => x / 2
 
 //   return len === Number.MAX_SAFE_INTEGER ? -1 : len;
 // };
+
+/**
+ * @param {number} n
+ * @param {number} k
+ * @return {number[][]}
+ */
+// var combine = function(n, k) {
+//   var result = [];
+
+//   const fn = function (start, arr){
+//       if(arr.length === k){
+//           result.push([...arr]);
+//           return;
+//       }
+
+//       const len = n - k + arr.length + 1;
+
+//       for(let i = start; i <= len; i++) fn(i + 1, [...arr, i]);            
+//   }
+
+//   fn(1, []);
+
+//   return result;
+// };

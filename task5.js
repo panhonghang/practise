@@ -14082,3 +14082,25 @@ const div2 = (x) => x / 2
 
 //   return result;
 // };
+
+/**
+ * @param {number[]} candidates
+ * @param {number} target
+ * @return {number[][]}
+ */
+// var combinationSum = function(candidates, target) {
+//   const res = [];
+
+//   const dfs = (start, temp, sum) => {
+//     if (sum >= target) {
+//       if (sum == target) res.push([...temp]); 
+//       return;
+//     }
+    
+//     for (let i = start; i < candidates.length; i++) dfs(i, [...temp, candidates[i]], sum + candidates[i]); 
+//   };
+
+//   dfs(0, [], 0);
+
+//   return res;
+// };

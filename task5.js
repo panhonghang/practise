@@ -14104,3 +14104,32 @@ const div2 = (x) => x / 2
 
 //   return res;
 // };
+
+/**
+ * @param {number[]} candidates
+ * @param {number} target
+ * @return {number[][]}
+ */
+// var combinationSum2 = function(candidates, target) {
+//   const res = [],
+//         len = candidates.length;
+  
+//   candidates.sort((a, b)=> a-b);
+
+//   const fn = function(start, arr, sum) {
+//       if(sum >= target) {
+//           if(sum === target) res.push([...arr]);
+//           return;
+//       }
+
+//       for(let i = start; i < len; i++) {
+//           if (candidates[i] === candidates[i-1] && start < i) continue;
+
+//           fn(i+1, [...arr, candidates[i]], sum+candidates[i])
+//       }
+//   }
+
+//   fn(0, [], 0)
+
+//   return res;
+// };

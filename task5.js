@@ -14155,3 +14155,72 @@ const div2 = (x) => x / 2
 
 //     return res;
 // };
+/**
+ * @param {string} n
+ * @return {string}
+ */
+// var nearestPalindromic = function(n) {
+//   let r = [],
+//       len = n.length,
+//       min = '',
+//       c = 13; // 截取中间的位数
+
+//   if(len < c) {
+//       let [r1, r2] = getR(n);
+//       getMin(r1,r2,n)
+//       return min;
+//   } else {
+//       let m = reverse(n,len-c).slice(len-c,c),
+//           l = reverse(n,len-c).slice(0,len-c),
+//           r = reverse(n,len-c).slice(c,len);
+//       let [r1, r2] = getR(m);
+//       getMin(r1,r2,m);
+//       return l+min+r;
+//   }
+  
+//   // 获取最小值，也是最终返回的结果
+//   function getMin(r1,r2,n) {
+//       if(Math.abs(r1-n) < Math.abs(r2-n)) {
+//           min= r1;
+//       } else if(Math.abs(r1-n) == Math.abs(r2-n)) {
+//           min= Math.min(r1,r2)+''
+//       } else {
+//           min= r2;
+//       }
+//   }
+
+//   // 获取距离n最近的两个回文数的数组r
+//   function getR(n) {
+//       // 寻找第一个不是0的数
+//       let str = ( n[0] == '0' ? n.slice(1,n.length-1) : n );
+//       str = Number(str);
+//       for(let i=1;; i++) {
+//           if(isReverse(str+i)){
+//               r.push(`${str+i}`);
+//           }
+//           if(isReverse(str-i)) {
+//               r.push(`${str-i}`);
+//           };
+//           if(r.length >= 2) break;
+//       }
+//       r = r.map(i=>n[0] == '0' ? i = '0' + i + '0' : i)
+//       return r;
+//   }
+  
+//   // 判断是否是回文数
+//   function isReverse(s) {
+//       s.split('').reverse().join('') === s;
+//   }
+
+//   // 反转回文数
+//   function reverse(s,l) {
+//       s += '';
+//       let p1 = 0,
+//           p2 = len -1,
+//           arr=s.split('');
+//       for(let i=0;i<l;i++) {
+//           if(arr[p1+i] != arr[p2-i]) arr[p2-i] = arr[p1+i];
+//       } 
+//       return arr.join('');
+//   }
+// };

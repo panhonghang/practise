@@ -14133,3 +14133,25 @@ const div2 = (x) => x / 2
 
 //   return res;
 // };
+
+/**
+ * @param {number} k
+ * @param {number} n
+ * @return {number[][]}
+ */
+// var combinationSum3 = function(k, n) {
+//     let res = [];
+
+//     const fn = function(start, arr, sum) {
+//         if(sum >= n || start > 9) {
+//             if(arr.length === k && sum === n) res.push([...arr]);
+//             return
+//         }
+
+//         for(let i = start; i < 10; i++) fn(i+1, [...arr, i], sum+i) 
+//     }
+
+//     fn(1, [], 0)
+
+//     return res;
+// };

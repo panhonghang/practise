@@ -14224,3 +14224,36 @@ const div2 = (x) => x / 2
 //       return arr.join('');
 //   }
 // };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+// var averageOfLevels = function(root) {
+//   let _result = [],
+//       queue = [];
+//   if (root == null) return [];
+
+//   queue.push(root);
+
+//   while (queue.length) {
+//     let len = queue.length,
+//         levelSum = 0;
+//     for (let i = 0; i < len; i++) {
+//       let node = queue.shift();
+//       levelSum = levelSum+node.val;
+
+//       if (node.left) queue.push(node.left);
+//       if (node.right) queue.push(node.right);
+//     }
+//     _result.push(levelSum/len);
+//   }
+//   return _result;
+// };

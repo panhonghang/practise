@@ -14256,44 +14256,44 @@ const div2 = (x) => x / 2
  * @param {string} word
  * @return {boolean}
  */
-var exist = function(board, word) {
-  let res = false;
+// var exist = function(board, word) {
+//   let res = false;
 
-  const fn = function(row, col) {
-      if(res === true) return;
-      const board1 = [];
+//   const fn = function(row, col) {
+//       if(res === true) return;
+//       const board1 = [];
       
-      for(let i=0;i<board.length;i++){
-          board1.push([...board[i]]);
-      }
+//       for(let i=0;i<board.length;i++){
+//           board1.push([...board[i]]);
+//       }
 
-      let count = 0;
+//       let count = 0;
 
-      while(count < word.length - 1) {
-          if(board1[row][col] !== word[count]) break;
-          board1[row][col] = 'over';
+//       while(count < word.length - 1) {
+//           if(board1[row][col] !== word[count]) break;
+//           board1[row][col] = 'over';
 
-          if(row > 0 && board1[row-1][col] === word[count+1]) {
-              row--;
-          } else if(col < 0 && board1[row][col-1] === word[count+1]) {
-              col--;
-          } else if(row < board1.length - 1 && board1[row+1][col] === word[count+1]) {
-              row++
-          } else if(col < board1[0].length - 1 && board1[row][col+1] === word[count+1]) {
-              col++;
-          }
+//           if(row > 0 && board1[row-1][col] === word[count+1]) {
+//               row--;
+//           } else if(col < 0 && board1[row][col-1] === word[count+1]) {
+//               col--;
+//           } else if(row < board1.length - 1 && board1[row+1][col] === word[count+1]) {
+//               row++
+//           } else if(col < board1[0].length - 1 && board1[row][col+1] === word[count+1]) {
+//               col++;
+//           }
 
-          count++;
-          console.log( row, col, board1[row][col], word[count])
-          if(count === word.length-1 && board1[row][col] === word[count]) res = true;
-      }
-  }
+//           count++;
+//           console.log( row, col, board1[row][col], word[count])
+//           if(count === word.length-1 && board1[row][col] === word[count]) res = true;
+//       }
+//   }
 
-  for(let i = 0; i < board.length; i++) {
-      for(let j = 0; j < board[0].length; j++) {
-          if(board[i][j] === word[0]) fn(i, j)
-      }
-  }
+//   for(let i = 0; i < board.length; i++) {
+//       for(let j = 0; j < board[0].length; j++) {
+//           if(board[i][j] === word[0]) fn(i, j)
+//       }
+//   }
 
-  return res;
-};
+//   return res;
+// };

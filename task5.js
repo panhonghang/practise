@@ -14297,3 +14297,29 @@ const div2 = (x) => x / 2
 
 //   return res;
 // };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+// var inorderTraversal = function(root) {
+//     const res = [];
+//     if(!root) return [];
+
+//     const fn = function(node) {
+//         if(!node) return;
+//         if(node.left) fn(node.left);
+//         res.push(node.val);
+//         if(node.right) fn(node.right);
+//     }
+
+//     fn(root)
+//     return res;
+// };

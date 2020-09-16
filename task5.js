@@ -14366,3 +14366,27 @@ const div2 = (x) => x / 2
 
 //   return board;
 // };
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+// const invertTree = (root) => {
+//   if (root == null) {
+//       return root;
+//   }
+//   // swap
+//   const temp = root.left;
+//   root.left = root.right;
+//   root.right = temp;
+//   // 内部的翻转交给递归
+//   invertTree(root.left);
+//   invertTree(root.right);
+//   return root;
+// };

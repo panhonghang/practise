@@ -14422,3 +14422,42 @@ const div2 = (x) => x / 2
 //     if (typeof dfs(edges[i][1], edges[i][1]) === 'number') return edges[i];
 //   }
 // };
+
+// var permuteUnique = function(nums) {
+//   nums.sort((pre,next)=> pre - next);
+//   let result = [];
+//   /**
+//    * @description: change element's index
+//    * @param {type} {number[]} nextArr {number} pre next
+//    * @return: null
+//    */
+//   let swep = function(nextArr,pre,next){
+//       let temp = nextArr[pre];
+//       nextArr[pre] = nextArr[next];
+//       nextArr[next] = temp;
+//   }
+//   /**
+//    * @description: add element to result
+//    * @param {type} {number[]} arr {number} start
+//    * @return: 
+//    */
+//   let fn = function(arr,start){
+//       if(start === arr.length - 1) return result.push(arr);
+
+//       let len = arr.length;
+//       let map = new Map();
+
+//       for(let i = start; i < len; i++){
+//           // 解决重复问题
+//           if(!map.get(arr[i])){
+//               map.set(arr[i],true);
+//               swep(arr,start,i);
+//               let newA = [...arr];
+//               fn(newA,start+1);
+//           }
+//       }
+//   }
+//   fn(nums,0);
+
+//   return result;
+// };

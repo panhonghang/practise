@@ -14461,3 +14461,45 @@ const div2 = (x) => x / 2
 
 //   return result;
 // };
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+// var subsets = function(nums) {
+//   let res = [[nums[0]]];
+  
+//   for(let i = 1; i < nums.length; i++){
+//     let temp = res.map(k=>[...k,nums[i]]);
+//     res = [...temp,...res,[nums[i]]]
+//   }
+//   res.push([])
+//   return res;
+// };
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+// var convertBST = function(root) {
+//   let sum = 0;
+
+//   const inOrder = (root) => {
+//    if (!root) return;
+//    if (root.right) inOrder(root.right);
+
+//    sum += root.val;   
+//    root.val = sum; 
+   
+//    if (root.left) inOrder(root.left);
+//  };
+
+//  inOrder(root); 
+
+//  return root;
+// };

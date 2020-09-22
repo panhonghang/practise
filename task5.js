@@ -14503,3 +14503,38 @@ const div2 = (x) => x / 2
 
 //  return root;
 // };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+// var minCameraCover = function(root) {
+//   let _result = 0
+//   // 递归到二叉树根节点如果其不能被子树的X监控需要在增加一个X
+//   if (dfs(root) === 'Z') _result = _result + 1
+
+//   function dfs(node) {
+//     // 默认叶子节点不放置X，让其受其他节点监控
+//     if (node == null) return 'Y'
+//     let left = dfs(node.left),
+//       right = dfs(node.right)
+//     // 1. 如果左右节点都是Y，则根节点只能放置X
+//     if (left == 'Y' && right == 'Y') return 'Z'
+//     // 2. 如果左右节点中有1个或者2个X，那么根节点自动变成Y（注意此时左右节点不能有未受其他节点影响的子节点）
+//     if (left !== 'Z' && right !== 'Z' && (left === 'X' || right === 'X')) {
+//       return 'Y'
+//     }
+//     // 3. 如果左右节点均为查询到安装X和被监控Y，则在根节点放置X
+//     _result++
+//     return 'X'
+//   }
+
+//   return _result
+// }

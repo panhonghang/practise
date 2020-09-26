@@ -14596,3 +14596,35 @@ const div2 = (x) => x / 2
     
 //     return root;
 // };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} sum
+ * @return {number[][]}
+ */
+// var pathSum = function(root, sum) {
+//     if(!root) return [];
+//     let resArr = [];
+    
+//     const fn = function(node, num, arr) {
+//         if(!node) return;
+
+//         num += node.val;
+
+//         if(node.left) fn(node.left, num, [...arr, node.val]);
+//         if(node.right) fn(node.right, num, [...arr, node.val]);
+        
+//         if(!node.left && !node.right && num === sum) resArr.push([...arr, node.val]);
+//     }
+
+//     fn(root, 0, [])
+
+//     return resArr;
+// };

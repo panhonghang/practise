@@ -14647,3 +14647,27 @@ const div2 = (x) => x / 2
 //     if (p.val < root.val && q.val < root.val) return lowestCommonAncestor(root.left, p, q);
 //     return root;
 // };
+/**
+ * // Definition for a Node.
+ * function Node(val, left, right, next) {
+ *    this.val = val === undefined ? null : val;
+ *    this.left = left === undefined ? null : left;
+ *    this.right = right === undefined ? null : right;
+ *    this.next = next === undefined ? null : next;
+ * };
+ */
+
+/**
+ * @param {Node} root
+ * @return {Node}
+ */
+// var connect = function(root) {
+//   var r = [], dfs = (node, i) => {
+//       !r[i] && (r[i] = [])
+//       node.next = r[i][0] || null
+//       r[i].unshift(node)
+//       node.right && dfs(node.right, i + 1)
+//       node.left && dfs(node.left, i + 1)
+//   }
+//   return root && dfs(root, 0) || root
+// };

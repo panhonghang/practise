@@ -1,5 +1,11 @@
-import { sum } from '../leetcode';
+import { 
+  shortestSubarray
+} from '../leetcode';
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
+test('和至少为 K 的最短子数组', () => {
+  expect(shortestSubarray([1], 1)).toBe(1);
+});
+
+test('和至少为 K 的最短子数组', () => {
+  expect(shortestSubarray([1, 2], 4)).toBe(-1);
 });

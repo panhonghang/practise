@@ -36,6 +36,62 @@ var shortestSubarray = function(A: number[], K:number):number {
     return len === Number.MAX_SAFE_INTEGER ? -1 : len;
 };
 
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+// function postorderTraversal(root: TreeNode | null): number[] {
+//     let resArr:number[] = [];
+
+//     const fn= function(node: TreeNode | null): void {
+//         if(!node) return;
+
+//         if(node.left) fn(node.left);
+//         if(node.right) fn(node.right);
+//         resArr.push(node.val);
+//     }
+
+//     fn(root)
+
+//     return resArr;
+// };
+
+class TreeNode {
+     val: number
+     left: TreeNode | null
+     right: TreeNode | null
+     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+         this.val = (val===undefined ? 0 : val)
+         this.left = (left===undefined ? null : left)
+         this.right = (right===undefined ? null : right)
+     }
+ }
+
+function postorderTraversal(root: TreeNode | null): number[] {
+  if(!root) return [];
+  
+  let resArr:number[] = [];
+  let queue = [ root ];
+
+  while( queue.length ) {
+      let node = queue.shift() || new TreeNode()
+      if( node.left ) queue.unshift( node.left )
+      if( node.right ) queue.unshift( node.right )
+      resArr.unshift( node.val )
+  }
+
+  return resArr;
+};
 export {
-    shortestSubarray
+    // shortestSubarray
 }

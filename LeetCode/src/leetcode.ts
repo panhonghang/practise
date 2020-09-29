@@ -75,7 +75,7 @@ class TreeNode {
          this.left = (left===undefined ? null : left)
          this.right = (right===undefined ? null : right)
      }
- }
+}
 
 function postorderTraversal(root: TreeNode | null): number[] {
   if(!root) return [];
@@ -93,5 +93,6 @@ function postorderTraversal(root: TreeNode | null): number[] {
   return resArr;
 };
 export {
-    // shortestSubarray
+    shortestSubarray,
+    postorderTraversal
 }

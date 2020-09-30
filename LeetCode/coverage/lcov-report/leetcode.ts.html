@@ -22,30 +22,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">76.47% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>33/44</span>
+                <span class='fraction'>39/51</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">46.67% </span>
+                <span class="strong">52.94% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>14/30</span>
+                <span class='fraction'>18/34</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">81.08% </span>
+                <span class="strong">81.4% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>30/37</span>
+                <span class='fraction'>35/43</span>
             </div>
         
             
@@ -154,7 +154,19 @@
 <a name='L96'></a><a href='#L96'>96</a>
 <a name='L97'></a><a href='#L97'>97</a>
 <a name='L98'></a><a href='#L98'>98</a>
-<a name='L99'></a><a href='#L99'>99</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -227,9 +239,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -249,6 +261,18 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -324,10 +348,10 @@ class TreeNode {
      val: number
      left: TreeNode | null
      right: TreeNode | null
-<span class="fstat-no" title="function not covered" >     constructor(v</span>al?: number, left?: TreeNode | null, right?: TreeNode | null) {
-<span class="cstat-no" title="statement not covered" >         this.val = (val===undefined ? 0 : val)</span>
-<span class="cstat-no" title="statement not covered" >         this.left = (left===undefined ? null : left)</span>
-<span class="cstat-no" title="statement not covered" >         this.right = (right===undefined ? null : right)</span>
+     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+         this.val = (val===undefined ? <span class="branch-0 cbranch-no" title="branch not covered" >0 </span>: val)
+         this.left = (left===undefined ? null : <span class="branch-1 cbranch-no" title="branch not covered" >left)</span>
+         this.right = (right===undefined ? null : <span class="branch-1 cbranch-no" title="branch not covered" >right)</span>
      }
 }
 &nbsp;
@@ -346,9 +370,21 @@ function postorderTraversal(root: TreeNode | null): number[] {
 &nbsp;
   return resArr;
 };
+&nbsp;
+function insertIntoBST(root:TreeNode, val:number):TreeNode {
+  <span class="missing-if-branch" title="else path not taken" >E</span>if(!root) return new TreeNode(val);
+<span class="cstat-no" title="statement not covered" >  if(root.val &gt; val) {</span>
+<span class="cstat-no" title="statement not covered" >     root.left = insertIntoBST(root.left,val);</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >      root.right = insertIntoBST(root.right,val);</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return root;</span>
+};
+&nbsp;
 export {
     shortestSubarray,
-    postorderTraversal
+    postorderTraversal,
+    insertIntoBST
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -357,7 +393,7 @@ export {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Sep 29 2020 16:40:36 GMT+0800 (GMT+08:00)
+                at Wed Sep 30 2020 12:48:53 GMT+0800 (GMT+08:00)
             </div>
         </div>
         <script src="prettify.js"></script>

@@ -92,7 +92,19 @@ function postorderTraversal(root: TreeNode | null): number[] {
 
   return resArr;
 };
+
+function insertIntoBST(root:TreeNode, val:number):TreeNode {
+  if(!root) return new TreeNode(val);
+  if(root.val > val) {
+     root.left = insertIntoBST(root.left,val);
+  } else {
+      root.right = insertIntoBST(root.right,val);
+  }
+  return root;
+};
+
 export {
     shortestSubarray,
-    postorderTraversal
+    postorderTraversal,
+    insertIntoBST
 }

@@ -1,6 +1,7 @@
 import { 
   shortestSubarray,
-  postorderTraversal
+  postorderTraversal,
+  insertIntoBST
 } from '../leetcode';
 
 test('和至少为 K 的最短子数组', () => {
@@ -23,4 +24,8 @@ function TreeNode(val, left, right) {
 
 test('后续遍历', () => {
   expect(postorderTraversal(new TreeNode(1))).toEqual([1]);
+});
+
+test('插入二叉树', () => {
+  expect(insertIntoBST(null, 1)).toEqual(new TreeNode(1));
 });

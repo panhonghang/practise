@@ -2,7 +2,8 @@ import {
   shortestSubarray,
   postorderTraversal,
   insertIntoBST,
-  minimumOperations
+  minimumOperations,
+  numJewelsInStones
 } from '../leetcode';
 
 test('和至少为 K 的最短子数组', () => {
@@ -33,4 +34,8 @@ test('插入二叉树', () => {
 
 test('秋叶搜集', () => {
   expect(minimumOperations("rrryyyrryyyrr")).toBe(2);
+});
+
+test('宝石与石头', () => {
+  expect(numJewelsInStones("aA", "aAAbbbb")).toBe(3);
 });

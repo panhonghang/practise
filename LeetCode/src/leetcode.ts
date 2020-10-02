@@ -119,9 +119,23 @@ function minimumOperations(leaves: string): number {
 
   return dp[2];
 };
+
+function numJewelsInStones(J: string, S: string): number {
+  let res:number = 0,
+      len:number = S.length;
+  
+  for(let i = 0; i < len; i++){
+      let re = new RegExp(S[i]);
+      if(re.test(J)) res++;
+  }
+
+  return res
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
     insertIntoBST,
-    minimumOperations
+    minimumOperations,
+    numJewelsInStones
 }

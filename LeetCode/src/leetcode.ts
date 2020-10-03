@@ -132,10 +132,26 @@ function numJewelsInStones(J: string, S: string): number {
   return res
 };
 
+function twoSum(nums: number[], target: number): number[] {
+  let resArr:number[] = [];
+
+  for(let i = 0; i < nums.length - 1; i++) {
+      for(let j = i + 1; j < nums.length; j++) {
+          if(nums[i] + nums[j] === target) {
+              resArr = [i, j];
+              break;
+          }
+      }
+  }
+
+  return resArr;
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
     insertIntoBST,
     minimumOperations,
-    numJewelsInStones
+    numJewelsInStones,
+    twoSum
 }

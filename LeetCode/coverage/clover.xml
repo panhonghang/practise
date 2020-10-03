@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1601649729554" clover="3.2.0">
-  <project timestamp="1601649729555" name="All files">
-    <metrics statements="57" coveredstatements="49" conditionals="44" coveredconditionals="27" methods="7" coveredmethods="7" elements="108" coveredelements="83" complexity="0" loc="57" ncloc="57" packages="1" files="1" classes="1"/>
+<coverage generated="1601711640643" clover="3.2.0">
+  <project timestamp="1601711640643" name="All files">
+    <metrics statements="65" coveredstatements="57" conditionals="46" coveredconditionals="29" methods="8" coveredmethods="8" elements="119" coveredelements="94" complexity="0" loc="65" ncloc="65" packages="1" files="1" classes="1"/>
     <file name="leetcode.ts" path="C:\Users\黎曦\Desktop\最近学习\practise\LeetCode\src\leetcode.ts">
-      <metrics statements="57" coveredstatements="49" conditionals="44" coveredconditionals="27" methods="7" coveredmethods="7"/>
+      <metrics statements="65" coveredstatements="57" conditionals="46" coveredconditionals="29" methods="8" coveredmethods="8"/>
       <line num="6" count="1" type="stmt"/>
       <line num="7" count="2" type="stmt"/>
       <line num="8" count="2" type="stmt"/>
@@ -57,10 +57,18 @@
       <line num="129" count="7" type="cond" truecount="2" falsecount="0"/>
       <line num="132" count="1" type="stmt"/>
       <line num="136" count="1" type="stmt"/>
-      <line num="137" count="1" type="stmt"/>
       <line num="138" count="1" type="stmt"/>
-      <line num="139" count="1" type="stmt"/>
-      <line num="140" count="1" type="stmt"/>
+      <line num="139" count="3" type="stmt"/>
+      <line num="140" count="5" type="cond" truecount="2" falsecount="0"/>
+      <line num="141" count="2" type="stmt"/>
+      <line num="142" count="2" type="stmt"/>
+      <line num="147" count="1" type="stmt"/>
+      <line num="151" count="1" type="stmt"/>
+      <line num="152" count="1" type="stmt"/>
+      <line num="153" count="1" type="stmt"/>
+      <line num="154" count="1" type="stmt"/>
+      <line num="155" count="1" type="stmt"/>
+      <line num="156" count="1" type="stmt"/>
     </file>
   </project>
 </coverage>

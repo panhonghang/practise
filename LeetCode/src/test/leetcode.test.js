@@ -3,7 +3,8 @@ import {
   postorderTraversal,
   insertIntoBST,
   minimumOperations,
-  numJewelsInStones
+  numJewelsInStones,
+  twoSum
 } from '../leetcode';
 
 test('和至少为 K 的最短子数组', () => {
@@ -38,4 +39,8 @@ test('秋叶搜集', () => {
 
 test('宝石与石头', () => {
   expect(numJewelsInStones("aA", "aAAbbbb")).toBe(3);
+});
+
+test('两数之和', () => {
+  expect(twoSum([1, 2, 3, 4], 5)).toEqual([1, 2]);
 });

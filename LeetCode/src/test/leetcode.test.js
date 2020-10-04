@@ -4,7 +4,8 @@ import {
   insertIntoBST,
   minimumOperations,
   numJewelsInStones,
-  twoSum
+  twoSum,
+  addTwoNumbers
 } from '../leetcode';
 
 test('和至少为 K 的最短子数组', () => {
@@ -25,6 +26,11 @@ function TreeNode(val, left, right) {
   this.right = (right===undefined ? null : right)
 }
 
+function ListNode(val, next){
+  this.val = (val===undefined ? 0 : val)
+  this.next = (next===undefined ? null : next)
+}
+
 test('后续遍历', () => {
   expect(postorderTraversal(new TreeNode(1))).toEqual([1]);
 });
@@ -43,4 +49,19 @@ test('宝石与石头', () => {
 
 test('两数之和', () => {
   expect(twoSum([1, 2, 3, 4], 5)).toEqual([1, 2]);
+});
+
+test('两数相加', () => {
+  expect(addTwoNumbers(null, null)).toEqual(null);
+});
+
+test('两数相加', () => {
+  expect(addTwoNumbers(null, new ListNode(1))).toEqual(new ListNode(1));
+});
+
+test('两数相加', () => {
+  let res = new ListNode(0);
+  res.next = new ListNode(1);
+
+  expect(addTwoNumbers(new ListNode(9), new ListNode(1))).toEqual(res);
 });

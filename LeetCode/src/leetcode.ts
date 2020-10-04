@@ -147,11 +147,50 @@ function twoSum(nums: number[], target: number): number[] {
   return resArr;
 };
 
+class ListNode {
+    val: number
+    next: ListNode | null
+    constructor(val?: number, next?: ListNode | null) {
+        this.val = (val===undefined ? 0 : val)
+        this.next = (next===undefined ? null : next)
+    }
+}
+
+function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
+  let temp:number = 0,
+      pre:ListNode | null = l1,
+      next:ListNode | null = l2,
+      res:ListNode | null = new ListNode(),
+      head:ListNode | null = res;
+
+      if(pre === null && next === null) return null;
+  
+  while(pre || next) {
+      res.val = ((pre && pre.val || 0) + (next && next.val || 0) + temp) % 10;
+      temp = ((pre && pre.val || 0) + (next && next.val || 0) + temp) / 10;
+
+      temp = Math.floor(temp);
+
+      pre = pre && pre.next || null;
+      next = next && next.next || null;
+
+      if(pre === null && next === null) break;
+
+      res.next = new ListNode();
+      res = res.next;
+  }
+
+  if(temp !== 0) res.next = new ListNode(temp);
+  
+  return head
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
     insertIntoBST,
     minimumOperations,
     numJewelsInStones,
-    twoSum
+    twoSum,
+    addTwoNumbers
 }

@@ -150,6 +150,44 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
   return head
 };
 
+function fourSum(nums:number[], target:number):number[][] {
+  
+  nums.sort((a,b)=>a-b);
+
+  let res:number[][] = [],
+      left:number = 0,
+      right:number = nums.length-1,
+      sum:number = 0;
+
+  for(let i = 0; i < nums.length-3; i++){
+    while(nums[i]==nums[i-1]&&i!==0) i++;
+
+    for(let j = i+1; j < nums.length-2; j++){
+      while(nums[j]==nums[j-1]&&j!==i+1) j++;
+
+      left = j+1;
+      right = nums.length-1;
+      
+      while(left<right){
+        sum = nums[i]+nums[j]+nums[left]+nums[right];
+        if(sum==target){
+          res.push([nums[i],nums[j],nums[left],nums[right]]);
+          right--;
+          left++;
+
+          while(nums[right]==nums[right+1]) right--;
+          while(nums[left]==nums[left-1]) left++;
+        } else if(target<sum){
+          right--;
+        } else{
+          left++;
+        }
+      }
+    }
+  }
+  return res
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
@@ -157,5 +195,6 @@ export {
     minimumOperations,
     numJewelsInStones,
     twoSum,
-    addTwoNumbers
+    addTwoNumbers,
+    fourSum
 }

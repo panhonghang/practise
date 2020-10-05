@@ -5,7 +5,8 @@ import {
   minimumOperations,
   numJewelsInStones,
   twoSum,
-  addTwoNumbers
+  addTwoNumbers,
+  fourSum
 } from '../leetcode';
 
 test('和至少为 K 的最短子数组', () => {
@@ -64,4 +65,8 @@ test('两数相加', () => {
   res.next = new ListNode(1);
 
   expect(addTwoNumbers(new ListNode(9), new ListNode(1))).toEqual(res);
+});
+
+test('四数之和', () => {
+  expect(fourSum([1,0,-1,0,-2,2], 0)).toEqual([[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]);
 });

@@ -188,6 +188,46 @@ function fourSum(nums:number[], target:number):number[][] {
   return res
 };
 
+const sumOfDistancesInTree = function(N:number, edges:number[][]):number[] {
+  const graph:number[][] = new Array(N);
+  for (let i = 0; i < graph.length; i++) graph[i] = [];
+
+  for (const edge of edges) {
+    const [from, to] = edge;
+    graph[from].push(to);
+    graph[to].push(from);
+  }
+
+  const distSum = new Array(N).fill(0);
+  const nodeNum = new Array(N).fill(1);
+
+  const postOrder = (root:number, parent:number) => {
+    const neighbors = graph[root]; 
+    for (const neighbor of neighbors) {
+      if (neighbor == parent) continue;      
+      postOrder(neighbor, root);
+      nodeNum[root] += nodeNum[neighbor];
+      distSum[root] += nodeNum[neighbor] + distSum[neighbor];
+    }
+  };
+
+  const preOrder = (root:number, parent:number) => {
+    const neighbors = graph[root];
+    for (const neighbor of neighbors) {
+      if (neighbor == parent) {
+        continue;
+      }
+      distSum[neighbor] = distSum[root] - nodeNum[neighbor] + (N - nodeNum[neighbor]);
+      preOrder(neighbor, root);
+    }
+  };
+
+  postOrder(0, -1); 
+  preOrder(0, -1);
+
+  return distSum;
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
@@ -196,5 +236,6 @@ export {
     numJewelsInStones,
     twoSum,
     addTwoNumbers,
-    fourSum
+    fourSum,
+    sumOfDistancesInTree
 }

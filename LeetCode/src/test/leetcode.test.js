@@ -7,7 +7,8 @@ import {
   twoSum,
   addTwoNumbers,
   fourSum,
-  sumOfDistancesInTree
+  sumOfDistancesInTree,
+  sortColors
 } from '../leetcode';
 
 test('和至少为 K 的最短子数组', () => {
@@ -74,4 +75,12 @@ test('四数之和', () => {
 
 test('树中距离之和', () => {
   expect(sumOfDistancesInTree(6, [[0,1],[0,2],[2,3],[2,4],[2,5]])).toEqual([8,12,6,10,10,10]);
+});
+
+test('颜色分类', () => {
+  expect(sortColors([2,0,2,1,1,0])).toEqual([0,0,1,1,2,2]);
+});
+
+test('颜色分类', () => {
+  expect(sortColors([2,0,1])).toEqual([0,1,2]);
 });

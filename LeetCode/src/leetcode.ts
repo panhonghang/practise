@@ -228,6 +228,27 @@ const sumOfDistancesInTree = function(N:number, edges:number[][]):number[] {
   return distSum;
 };
 
+/**
+ Do not return anything, modify nums in-place instead.
+ */
+function sortColors(nums: number[]): void | number[] {
+  let pre:number = 0,
+      next:number = nums.length - 1;
+  
+  for(let i = 0; i <= next; i++) {
+      if(nums[i] === 0) {
+          [nums[i], nums[pre]] = [nums[pre], nums[i]];
+          pre++;
+      } else if(nums[i] === 2) {
+          [nums[i], nums[next]] = [nums[next], nums[i]];
+          next--;
+          i--
+      }
+  }
+  //测试使用
+  return nums
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
@@ -237,5 +258,6 @@ export {
     twoSum,
     addTwoNumbers,
     fourSum,
-    sumOfDistancesInTree
+    sumOfDistancesInTree,
+    sortColors
 }

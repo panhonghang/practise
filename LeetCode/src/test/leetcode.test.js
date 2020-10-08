@@ -9,7 +9,8 @@ import {
   fourSum,
   sumOfDistancesInTree,
   sortColors,
-  reverseString
+  reverseString,
+  hasCycle
 } from '../leetcode';
 
 test('和至少为 K 的最短子数组', () => {
@@ -92,4 +93,8 @@ test('反转字符串', () => {
 
 test('反转字符串', () => {
   expect(reverseString(["h","e","l","l","o"])).toEqual(["o","l","l","e","h"]);
+});
+
+test('环形链表', () => {
+  expect(hasCycle()).toBeFalsy();
 });

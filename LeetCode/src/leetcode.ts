@@ -266,6 +266,35 @@ function reverseString(s: string[]): void | string[] {
   //测试使用
   return s
 };
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+function hasCycle (head:ListNode | null):boolean {
+  if(!head) return false;
+
+  let pre:ListNode | null= head,
+      next:ListNode | null = head;
+
+  while(next) {
+      pre = pre.next;
+      next = next.next && next.next.next || null;
+      
+      if(next && next === pre) return true;
+  }
+
+  return false;
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
@@ -277,5 +306,6 @@ export {
     fourSum,
     sumOfDistancesInTree,
     sortColors,
-    reverseString
+    reverseString,
+    hasCycle
 }

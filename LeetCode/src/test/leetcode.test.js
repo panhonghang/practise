@@ -8,7 +8,8 @@ import {
   addTwoNumbers,
   fourSum,
   sumOfDistancesInTree,
-  sortColors
+  sortColors,
+  reverseString
 } from '../leetcode';
 
 test('和至少为 K 的最短子数组', () => {
@@ -83,4 +84,12 @@ test('颜色分类', () => {
 
 test('颜色分类', () => {
   expect(sortColors([2,0,1])).toEqual([0,1,2]);
+});
+
+test('反转字符串', () => {
+  expect(reverseString(['a','b','c'])).toEqual(['c','b','a']);
+});
+
+test('反转字符串', () => {
+  expect(reverseString(["h","e","l","l","o"])).toEqual(["o","l","l","e","h"]);
 });

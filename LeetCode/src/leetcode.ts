@@ -249,6 +249,23 @@ function sortColors(nums: number[]): void | number[] {
   return nums
 };
 
+/**
+ Do not return anything, modify s in-place instead.
+ */
+function reverseString(s: string[]): void | string[] {
+  let pre:number = 0,
+      next:number = s.length - 1;
+
+  while(pre <= next) {
+      [s[pre], s[next]] = [s[next], s[pre]];
+      
+      pre++;
+      next--;
+  }
+
+  //测试使用
+  return s
+};
 export {
     shortestSubarray,
     postorderTraversal,
@@ -259,5 +276,6 @@ export {
     addTwoNumbers,
     fourSum,
     sumOfDistancesInTree,
-    sortColors
+    sortColors,
+    reverseString
 }

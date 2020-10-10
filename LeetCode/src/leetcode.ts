@@ -295,6 +295,41 @@ function hasCycle (head:ListNode | null):boolean {
   return false;
 };
 
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function detectCycle(head: ListNode | null): ListNode | null {
+  if(!head) return null;
+
+  let pre:ListNode | null = head,
+      next:ListNode | null = head;
+
+  do {
+      pre = pre && pre.next || null;
+      next = next && next.next && next.next.next || null
+  } while(next && pre !== next)
+
+  if(next === null) return null;
+
+  pre = head;
+
+  while(true) {
+      if(pre === next) return next;
+      pre = pre && pre.next || null;
+      next = next && next.next || null;
+  }
+
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
@@ -307,5 +342,6 @@ export {
     sumOfDistancesInTree,
     sortColors,
     reverseString,
-    hasCycle
+    hasCycle,
+    detectCycle
 }

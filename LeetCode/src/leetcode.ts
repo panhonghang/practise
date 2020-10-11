@@ -330,6 +330,43 @@ function detectCycle(head: ListNode | null): ListNode | null {
 
 };
 
+function canPartition(nums: number[]): boolean {
+  const n:number = nums.length;
+  let sum:number = 0, 
+      maxNum:number = 0;
+  if (n < 2) return false;
+
+  for (const num of nums) {
+      sum += num;
+      maxNum = maxNum > num ? maxNum : num;
+  }
+
+  if (sum & 1) return false;
+
+  const target = Math.floor(sum / 2);
+
+  if (maxNum > target) return false;
+
+  const dp:boolean[][] = new Array(n).fill(false).map(v => new Array(target + 1).fill(false));
+
+  for (let i = 0; i < n; i++) {
+      dp[i][0] = true;
+  }
+
+  dp[0][nums[0]] = true;
+  for (let i = 1; i < n; i++) {
+      const num = nums[i];
+      for (let j = 1; j <= target; j++) {
+          if (j >= num) {
+              dp[i][j] = dp[i - 1][j] || dp[i - 1][j - num];
+          } else {
+              dp[i][j] = dp[i - 1][j];
+          }
+      }
+  }
+  return dp[n - 1][target];
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
@@ -343,5 +380,6 @@ export {
     sortColors,
     reverseString,
     hasCycle,
-    detectCycle
+    detectCycle,
+    canPartition
 }

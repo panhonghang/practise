@@ -11,7 +11,8 @@ import {
   sortColors,
   reverseString,
   hasCycle,
-  detectCycle
+  detectCycle,
+  canPartition
 } from '../leetcode';
 
 test('和至少为 K 的最短子数组', () => {
@@ -102,4 +103,9 @@ test('环形链表', () => {
 
 test('环形链表2', () => {
   expect(detectCycle()).toBeNull;
+});
+
+
+test('分割等和子集', () => {
+  expect(canPartition([1,5,11,5])).toBe(true);
 });

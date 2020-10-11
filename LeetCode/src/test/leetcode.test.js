@@ -12,7 +12,8 @@ import {
   reverseString,
   hasCycle,
   detectCycle,
-  canPartition
+  canPartition,
+  getMinimumDifference
 } from '../leetcode';
 
 test('和至少为 K 的最短子数组', () => {
@@ -108,4 +109,8 @@ test('环形链表2', () => {
 
 test('分割等和子集', () => {
   expect(canPartition([1,5,11,5])).toBe(true);
+});
+
+test('二叉搜索树的最小绝对差', () => {
+  expect(getMinimumDifference(null)).toBe(0);
 });

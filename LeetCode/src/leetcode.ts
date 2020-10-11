@@ -367,6 +367,40 @@ function canPartition(nums: number[]): boolean {
   return dp[n - 1][target];
 };
 
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+function getMinimumDifference(root: TreeNode | null): number {
+  let arr:number[] = [],
+      min:number = Number.MAX_SAFE_INTEGER;
+  if(!root) return 0;
+
+  const fn = function(node:TreeNode | null) {
+      if(node) {
+          node.left&&fn(node.left)
+          arr.push(node.val)
+          node.right&&fn(node.right)
+      }
+  }
+
+  fn(root)
+
+  for(let i = 0; i < arr.length - 1; i++) min = Math.min(arr[i+1] - arr[i], min)
+
+  return min
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
@@ -381,5 +415,6 @@ export {
     reverseString,
     hasCycle,
     detectCycle,
-    canPartition
+    canPartition,
+    getMinimumDifference
 }

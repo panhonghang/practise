@@ -13,7 +13,8 @@ import {
   hasCycle,
   detectCycle,
   canPartition,
-  getMinimumDifference
+  getMinimumDifference,
+  swapPairs
 } from '../leetcode';
 
 test('和至少为 K 的最短子数组', () => {
@@ -113,4 +114,18 @@ test('分割等和子集', () => {
 
 test('二叉搜索树的最小绝对差', () => {
   expect(getMinimumDifference(null)).toBe(0);
+});
+
+test('两两交换链表中的节点', () => {
+  expect(swapPairs(null)).toBeNull
+});
+
+test('两两交换链表中的节点', () => {
+  let input = new ListNode(1);
+  input.next = new ListNode(2);
+
+  let output = new ListNode(2);
+  output.next = new ListNode(1);
+
+  expect(swapPairs(input)).toEqual(output)
 });

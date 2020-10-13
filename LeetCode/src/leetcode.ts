@@ -401,6 +401,42 @@ function getMinimumDifference(root: TreeNode | null): number {
   return min
 };
 
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function swapPairs(head: ListNode | null): ListNode | null {
+  let pre1: ListNode | null = null,
+      pre: ListNode | null = null,
+      next: ListNode | null = null;
+
+  if(!(head&&head.next)) return head
+
+  pre = head;
+  next = head.next;
+  head = head.next;
+
+  while(pre && next) {
+      if(pre1) pre1.next = next;
+      pre.next = next.next;
+      next.next = pre;
+      
+      pre1 = pre;
+      pre = pre.next;
+      next = pre && pre.next || null;
+  }
+
+  return head
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
@@ -416,5 +452,6 @@ export {
     hasCycle,
     detectCycle,
     canPartition,
-    getMinimumDifference
+    getMinimumDifference,
+    swapPairs
 }

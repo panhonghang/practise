@@ -14671,3 +14671,27 @@ const div2 = (x) => x / 2
 //   }
 //   return root && dfs(root, 0) || root
 // };
+
+// 筛选出html文件
+// const fs = require('fs')
+// const path = require('path')
+
+// const folderPath = 'C:/Users/黎曦/Desktop/设计模式之美 (2)',
+//       outputfolderPath = 'C:/Users/黎曦/Desktop/设计模式之美',
+//       fileNameArr = fs.readdirSync(folderPath),
+//       reg = /.html/;
+
+// for (let index = 0; index < fileNameArr.length; index++) {
+//     const element = fileNameArr[index];
+    
+//     if(reg.test(element)) {
+//         fs.rename(
+//             folderPath +'/' + element,
+//             outputfolderPath +'/' + element,
+//             function (err) {
+//                 if (err) throw err;
+//                 console.log('renamed complete');
+//             }
+//         );
+//     }
+// }

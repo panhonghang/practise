@@ -437,6 +437,21 @@ function swapPairs(head: ListNode | null): ListNode | null {
   return head
 };
 
+function commonChars(A: string[]): string[] {
+  let ans: string[] = [], 
+      word: string = A[0], 
+      slen: number = word.length;
+
+  for(let s of word){
+      if(A.every(m => m.includes(s))) {
+          A = A.map(m => m.replace(s, ''))
+          ans.push(s)
+      }
+  }
+  
+  return ans
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
@@ -453,5 +468,6 @@ export {
     detectCycle,
     canPartition,
     getMinimumDifference,
-    swapPairs
+    swapPairs,
+    commonChars
 }

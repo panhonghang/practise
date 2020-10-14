@@ -14,7 +14,8 @@ import {
   detectCycle,
   canPartition,
   getMinimumDifference,
-  swapPairs
+  swapPairs,
+  commonChars
 } from '../leetcode';
 
 test('和至少为 K 的最短子数组', () => {
@@ -128,4 +129,12 @@ test('两两交换链表中的节点', () => {
   output.next = new ListNode(1);
 
   expect(swapPairs(input)).toEqual(output)
+});
+
+test('查找常用字符', () => {
+  expect(commonChars(["bella","label","roller"])).toEqual(["e","l","l"])
+});
+
+test('查找常用字符', () => {
+  expect(commonChars(["cool","lock","cook"])).toEqual(["c","o"])
 });

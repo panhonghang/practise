@@ -452,6 +452,38 @@ function commonChars(A: string[]): string[] {
   return ans
 };
 
+interface Node {
+  val: number
+  left: Node | null
+  right: Node | null
+  next: Node | null
+}
+
+function connect(root: Node | null): Node | null {
+  if(!root) return root;
+  let arr:Node[][] = [],
+      tempArr:Node[] = [root];
+
+  while(tempArr.length > 0) {
+      arr.push([...tempArr])
+
+      let temp:Node[] = [];
+
+      tempArr.forEach(item => {
+          if(item.left) temp.push(item.left);
+          if(item.right) temp.push(item.right);
+      })
+
+      tempArr = [...temp]
+  }
+
+  arr.forEach(item => {
+      for(let i = 0; i < item.length; i++) item[i].next = item[i+1] || null 
+  })
+  
+  return root
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
@@ -469,5 +501,6 @@ export {
     canPartition,
     getMinimumDifference,
     swapPairs,
-    commonChars
+    commonChars,
+    connect
 }

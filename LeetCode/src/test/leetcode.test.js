@@ -15,7 +15,8 @@ import {
   canPartition,
   getMinimumDifference,
   swapPairs,
-  commonChars
+  commonChars,
+  connect
 } from '../leetcode';
 
 test('和至少为 K 的最短子数组', () => {
@@ -137,4 +138,8 @@ test('查找常用字符', () => {
 
 test('查找常用字符', () => {
   expect(commonChars(["cool","lock","cook"])).toEqual(["c","o"])
+});
+
+test('填充每个节点的下一个右侧节点指针', () => {
+  expect(null).toEqual(null)
 });

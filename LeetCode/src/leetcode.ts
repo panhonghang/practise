@@ -484,6 +484,32 @@ function connect(root: Node | null): Node | null {
   return root
 };
 
+function sortedSquares(A: number[]): number[] {
+  let res: number[] = new Array(A.length),
+      pre: number = 0,
+      next: number = A.length - 1,
+      preValue: number = 0,
+      nextValue: number = 0,
+      index: number = A.length - 1;
+
+  while(pre <= next) {
+      preValue = Math.pow(A[pre], 2);
+      nextValue = Math.pow(A[next], 2)
+
+      if(preValue >= nextValue) {
+          pre++;
+          res[index] = preValue;
+      } else {
+          next--;
+          res[index] = nextValue;
+      }
+
+      index--
+  }
+
+  return res;
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
@@ -502,5 +528,6 @@ export {
     getMinimumDifference,
     swapPairs,
     commonChars,
-    connect
+    connect,
+    sortedSquares
 }

@@ -16,7 +16,8 @@ import {
   getMinimumDifference,
   swapPairs,
   commonChars,
-  connect
+  connect,
+  sortedSquares
 } from '../leetcode';
 
 test('和至少为 K 的最短子数组', () => {
@@ -141,5 +142,13 @@ test('查找常用字符', () => {
 });
 
 test('填充每个节点的下一个右侧节点指针', () => {
-  expect(null).toEqual(null)
+  expect(connect(null)).toEqual(null)
+});
+
+test('有序数组的平方', () => {
+    expect(sortedSquares([2])).toEqual([4])
+});
+
+test('有序数组的平方', () => {
+  expect(sortedSquares([-5,3,4,10])).toEqual([9,16,25,100])
 });

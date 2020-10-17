@@ -510,6 +510,27 @@ function sortedSquares(A: number[]): number[] {
   return res;
 };
 
+function totalNQueens(n: number): number {
+  let res: number = 0;
+
+  const dfs = function(arr:number[], level: number): void {
+      if(level === n) {
+          res++;
+          return
+      }
+
+      for(let i = 0; i < n; i++) {
+          if(!arr.some((row, k) => row === i || Math.abs(row -  i) === Math.abs(k - level))) {
+              dfs([...arr, i], level+1)
+          }
+      }
+  }
+
+  dfs([], 0)
+
+  return res;
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
@@ -529,5 +550,6 @@ export {
     swapPairs,
     commonChars,
     connect,
-    sortedSquares
+    sortedSquares,
+    totalNQueens
 }

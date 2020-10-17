@@ -17,7 +17,8 @@ import {
   swapPairs,
   commonChars,
   connect,
-  sortedSquares
+  sortedSquares,
+  totalNQueens
 } from '../leetcode';
 
 test('和至少为 K 的最短子数组', () => {
@@ -151,4 +152,12 @@ test('有序数组的平方', () => {
 
 test('有序数组的平方', () => {
   expect(sortedSquares([-5,3,4,10])).toEqual([9,16,25,100])
+});
+
+test('N皇后 II', () => {
+  expect(totalNQueens(4)).toEqual(2)
+});
+
+test('N皇后 II', () => {
+  expect(totalNQueens(10)).toEqual(724)
 });

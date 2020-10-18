@@ -531,6 +531,45 @@ function totalNQueens(n: number): number {
   return res;
 };
 
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
+  let num: number = n,
+      next: ListNode | null = head,
+      pre: ListNode | null = head;
+  
+  if(!head || !(head && head.next)) return null;
+
+  while(n>0){
+      next = next && next.next || null;
+      n--;
+  }
+
+  while(next){
+      if(num==1 && !(pre && pre.next && pre.next.next)) {
+          pre ? pre.next = null : null;
+          return head;
+      }
+      next = next && next.next;
+      pre = pre && pre.next;
+  }
+
+  if(pre && pre.next) pre.val =  pre.next.val;
+  if(pre && pre.next) pre.next = pre.next.next;
+
+  return head;
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
@@ -551,5 +590,6 @@ export {
     commonChars,
     connect,
     sortedSquares,
-    totalNQueens
+    totalNQueens,
+    removeNthFromEnd
 }

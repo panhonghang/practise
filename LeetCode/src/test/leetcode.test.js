@@ -18,7 +18,8 @@ import {
   commonChars,
   connect,
   sortedSquares,
-  totalNQueens
+  totalNQueens,
+  removeNthFromEnd
 } from '../leetcode';
 
 test('和至少为 K 的最短子数组', () => {
@@ -160,4 +161,8 @@ test('N皇后 II', () => {
 
 test('N皇后 II', () => {
   expect(totalNQueens(10)).toEqual(724)
+});
+
+test('删除链表的倒数第N个节点', () => {
+  expect(removeNthFromEnd(null)).toBe(null)
 });

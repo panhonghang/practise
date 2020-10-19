@@ -19,7 +19,8 @@ import {
   connect,
   sortedSquares,
   totalNQueens,
-  removeNthFromEnd
+  removeNthFromEnd,
+  backspaceCompare
 } from '../leetcode';
 
 test('和至少为 K 的最短子数组', () => {
@@ -165,4 +166,8 @@ test('N皇后 II', () => {
 
 test('删除链表的倒数第N个节点', () => {
   expect(removeNthFromEnd(null)).toBe(null)
+});
+
+test('比较含退格的字符串', () => {
+  expect(backspaceCompare("ab#c", "ad#c")).toBe(true)
 });

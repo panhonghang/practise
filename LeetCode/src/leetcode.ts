@@ -570,6 +570,22 @@ function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
   return head;
 };
 
+function backspaceCompare(S: string, T: string): boolean {
+  const fn = function(S:string, arr: string[]) : string {
+      for(let i = 0; i < S.length; i++) {
+          if(S[i] === '#') {
+              if(arr.length > 0) arr.pop()
+          } else {
+              arr.push(S[i])
+          }
+      }
+
+      return arr.join('')
+  }
+  
+  return fn(S, []) === fn(T, [])
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
@@ -591,5 +607,6 @@ export {
     connect,
     sortedSquares,
     totalNQueens,
-    removeNthFromEnd
+    removeNthFromEnd,
+    backspaceCompare
 }

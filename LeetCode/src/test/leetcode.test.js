@@ -20,7 +20,8 @@ import {
   sortedSquares,
   totalNQueens,
   removeNthFromEnd,
-  backspaceCompare
+  backspaceCompare,
+  reorderList
 } from '../leetcode';
 
 test('和至少为 K 的最短子数组', () => {
@@ -170,4 +171,30 @@ test('删除链表的倒数第N个节点', () => {
 
 test('比较含退格的字符串', () => {
   expect(backspaceCompare("ab#c", "ad#c")).toBe(true)
+});
+
+test('重排链表', () => {
+  let ListNode1 = new ListNode(1);
+  ListNode1.next = new ListNode(2);
+  ListNode1.next.next = new ListNode(3);
+  ListNode1.next.next.next = new ListNode(4);
+
+  let ListNode2 = new ListNode(1);
+  ListNode2.next = new ListNode(4);
+  ListNode2.next.next = new ListNode(2);
+  ListNode2.next.next.next = new ListNode(3);
+
+  expect(reorderList(ListNode1)).toEqual(ListNode2)
+});
+
+test('重排链表', () => {
+  let ListNode1 = new ListNode(1);
+  ListNode1.next = new ListNode(2);
+  ListNode1.next.next = new ListNode(3);
+
+  let ListNode2 = new ListNode(1);
+  ListNode2.next = new ListNode(3);
+  ListNode2.next.next = new ListNode(2);
+
+  expect(reorderList(ListNode1)).toEqual(ListNode2)
 });

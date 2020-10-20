@@ -586,6 +586,40 @@ function backspaceCompare(S: string, T: string): boolean {
   return fn(S, []) === fn(T, [])
 };
 
+function reorderList(head: ListNode | null): void | ListNode {
+  let node:ListNode | null = head,
+      nodeArr:ListNode[] = [],
+      pre:number = 1,
+      next:number = 0,
+      res:ListNode | null = head;
+
+  if(!head) return;
+
+  while(node) {
+      nodeArr.push(new ListNode(node.val));
+      node = node.next;
+  }
+  
+  next = nodeArr.length - 1;
+
+  while(pre <= next){
+      head.next = nodeArr[next] || null;
+      head = head.next;
+      next--;
+      if(head) {
+          head.next = nodeArr[pre] || head;
+          head = head.next; 
+          pre++;
+      }
+  }
+
+  if(head) head.next = null;
+
+  //方便测试
+
+  return res
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
@@ -608,5 +642,6 @@ export {
     sortedSquares,
     totalNQueens,
     removeNthFromEnd,
-    backspaceCompare
+    backspaceCompare,
+    reorderList
 }

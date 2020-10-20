@@ -711,6 +711,21 @@ function lengthOfLIS(nums: number[]): number {
   return Math.max(...dp);
 };
 
+function maxSatisfaction(satisfaction: number[]): number {
+  satisfaction.sort((a,b) => b - a);
+
+  let sum: number = 0,
+      res: number = 0;
+  // 逆序和+贪心
+  for(let i = 0; i < satisfaction.length; i++) {
+      sum += satisfaction[i];
+      if (sum < 0) break;
+      res += sum;
+  }
+
+  return res
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
@@ -738,4 +753,5 @@ export {
     reorderList2,
     solveNQueens,
     lengthOfLIS,
+    maxSatisfaction,
 }

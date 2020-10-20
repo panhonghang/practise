@@ -25,7 +25,12 @@ import {
   reorderList2,
   solveNQueens,
   lengthOfLIS,
+  maxSatisfaction,
 } from '../leetcode';
+
+test('做菜顺序', () => {
+  expect(maxSatisfaction([-1,-8,0,5,-7])).toBe(14);
+})
 
 test('和至少为 K 的最短子数组', () => {
   expect(shortestSubarray([1], 1)).toBe(1);

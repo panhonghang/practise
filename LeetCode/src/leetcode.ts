@@ -586,7 +586,8 @@ function backspaceCompare(S: string, T: string): boolean {
   return fn(S, []) === fn(T, [])
 };
 
-function reorderList(head: ListNode | null): void | ListNode {
+/* 额外数组解决 */
+function reorderList1(head: ListNode | null): void | ListNode {
   let node:ListNode | null = head,
       nodeArr:ListNode[] = [],
       pre:number = 1,
@@ -619,6 +620,56 @@ function reorderList(head: ListNode | null): void | ListNode {
 
   return res
 };
+/* 双指针解决 */
+function reorderList2(head: ListNode | null): void | ListNode{
+  let pre:ListNode | null = head,
+      next:ListNode | null = head && head.next,
+      res: ListNode | null = head;
+
+  if(!head) return;
+
+  while(next && next.next) {
+      pre = pre && pre.next;
+      next = next && next.next && next.next.next;
+  }
+  
+  next = pre && pre.next;
+  if(pre) pre.next = null;
+  pre = head;
+
+  const rervseListNode = function(node: ListNode | null): ListNode | null {
+      let pre: ListNode | null = null,
+          next: ListNode | null = node,
+          temp: ListNode | null = null;
+      
+      while(next) {
+          temp = next && next.next;
+          next.next = pre;
+
+          pre = next;
+          next = temp;
+      }
+
+      return pre;
+  }
+
+  next = rervseListNode(next);
+  pre = pre && pre.next;
+
+  while(pre || next) {
+      if(head) head.next = next;
+      next = next && next.next;       
+      head = head && head.next;
+
+      if(head) head.next = pre;
+      pre = pre && pre.next;
+      head = head && head.next;
+  }
+
+   //方便测试
+
+  return res
+};
 
 export {
     shortestSubarray,
@@ -643,5 +694,6 @@ export {
     totalNQueens,
     removeNthFromEnd,
     backspaceCompare,
-    reorderList
+    reorderList1,
+    reorderList2,
 }

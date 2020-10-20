@@ -671,6 +671,32 @@ function reorderList2(head: ListNode | null): void | ListNode{
   return res
 };
 
+function solveNQueens(n: number): string[][] {
+  let resArr:string[][] = [],
+      temp: string[] = new Array(n).fill('.');
+
+  const dfs = function(level: number, arr: number[]): void {
+      if(level === n) {
+              resArr.push(arr.map((i,j) => {
+                  let arr:string[] = [...temp];
+                  arr[i] = 'Q';
+                  return arr.join('')
+              })
+          )
+          return
+      }
+
+      for(let i = 0; i < n; i++) {
+          if(!arr.some((k, j) => k === i || Math.abs(i - k) === Math.abs(level - j))) 
+              dfs(level + 1, [...arr, i])
+      }
+  }
+
+  dfs(0, []);
+
+  return resArr;
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
@@ -696,4 +722,5 @@ export {
     backspaceCompare,
     reorderList1,
     reorderList2,
+    solveNQueens,
 }

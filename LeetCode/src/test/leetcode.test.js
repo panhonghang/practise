@@ -23,6 +23,7 @@ import {
   backspaceCompare,
   reorderList1,
   reorderList2,
+  solveNQueens,
 } from '../leetcode';
 
 test('和至少为 K 的最短子数组', () => {
@@ -225,3 +226,7 @@ test('重排链表 双指针解法', () => {
 
   expect(reorderList2(ListNode1)).toEqual(ListNode2)
 });
+
+test('八皇后', () => {
+  expect(solveNQueens(4)).toEqual([[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]])
+})

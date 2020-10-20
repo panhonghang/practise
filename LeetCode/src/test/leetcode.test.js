@@ -24,6 +24,7 @@ import {
   reorderList1,
   reorderList2,
   solveNQueens,
+  lengthOfLIS,
 } from '../leetcode';
 
 test('和至少为 K 的最短子数组', () => {
@@ -229,4 +230,12 @@ test('重排链表 双指针解法', () => {
 
 test('八皇后', () => {
   expect(solveNQueens(4)).toEqual([[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]])
+})
+
+test('最长上升子序列', () => {
+  expect(lengthOfLIS([1,3,6,7,9,4,10,5,6])).toEqual(6)
+})
+
+test('最长上升子序列', () => {
+  expect(lengthOfLIS([])).toEqual(0)
 })

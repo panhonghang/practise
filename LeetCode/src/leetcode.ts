@@ -697,6 +697,20 @@ function solveNQueens(n: number): string[][] {
   return resArr;
 };
 
+function lengthOfLIS(nums: number[]): number {
+  let len = nums.length,
+      dp:number[] = new Array(len).fill(1);
+  if(len <= 1) return len;
+
+  for(let i = 1; i < len; i++){
+      for(let j = 0; j < i; j++){
+          if(nums[i] > nums[j]) dp[i] = Math.max(dp[j] + 1, dp[i])
+      }
+  }
+
+  return Math.max(...dp);
+};
+
 export {
     shortestSubarray,
     postorderTraversal,
@@ -723,4 +737,5 @@ export {
     reorderList1,
     reorderList2,
     solveNQueens,
+    lengthOfLIS,
 }

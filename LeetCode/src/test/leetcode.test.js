@@ -28,7 +28,16 @@ import {
   maxSatisfaction,
   isLongPressedName,
   uniquePathsIII,
+  findTargetSumWays,
 } from '../leetcode';
+
+test('查找目标和', () => {
+  expect(findTargetSumWays([1,1,1], 3)).toBe(1)
+})
+
+test('查找目标和', () => {
+  expect(findTargetSumWays([1,1,1,1,1], 3)).toBe(5)
+})
 
 test('不同路径 III', () => {
   expect(uniquePathsIII([[1,0,0,0],[0,0,0,0],[0,0,2,-1]])).toBe(2);

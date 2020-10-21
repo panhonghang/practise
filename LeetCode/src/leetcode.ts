@@ -787,7 +787,25 @@ function uniquePathsIII(grid: number[][]): number {
   return res;
 };
 
+function findTargetSumWays(nums: number[], S: number): number {
+  let res:number = 0;
+
+  const dfs = function(sum:number ,index:number):void {
+      if(index === nums.length) {
+          if(sum === S) res++;
+          return;
+      }
+      dfs(sum+nums[index], index + 1);
+      dfs(sum-nums[index], index + 1);
+  }
+
+  dfs(0, 0)
+
+  return res;
+};
+
 export {
+    findTargetSumWays,
     uniquePathsIII,
     isLongPressedName,
     shortestSubarray,

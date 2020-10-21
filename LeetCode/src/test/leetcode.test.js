@@ -26,7 +26,16 @@ import {
   solveNQueens,
   lengthOfLIS,
   maxSatisfaction,
+  isLongPressedName,
 } from '../leetcode';
+
+test('长按键入', () => {
+  expect(isLongPressedName('','')).toBe(true);
+})
+
+test('长按键入', () => {
+  expect(isLongPressedName("alex", "alexxr")).toBe(false);
+})
 
 test('做菜顺序', () => {
   expect(maxSatisfaction([-1,-8,0,5,-7])).toBe(14);

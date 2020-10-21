@@ -726,7 +726,29 @@ function maxSatisfaction(satisfaction: number[]): number {
   return res
 };
 
+function isLongPressedName(name: string, typed: string): boolean {
+  let i:number = 0,
+      j:number = 0,
+      nameArr:string[] = name.split(''),
+      typedArr:string[] = typed.split('');
+
+  while(i < name.length || j < typed.length) {
+      if(name[i] === typed[j]) {
+          i++;
+          j++;
+      } else {
+          if(name[i-1] === typed[j]){
+              j++;
+          } else {
+              return false;
+          }
+      }
+  }
+  return true;
+};
+
 export {
+    isLongPressedName,
     shortestSubarray,
     postorderTraversal,
     insertIntoBST,

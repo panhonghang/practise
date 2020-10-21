@@ -30,10 +30,6 @@ import {
 } from '../leetcode';
 
 test('长按键入', () => {
-  expect(isLongPressedName('','')).toBe(true);
-})
-
-test('长按键入', () => {
   expect(isLongPressedName("alex", "alexxr")).toBe(false);
 })
 

@@ -29,7 +29,12 @@ import {
   isLongPressedName,
   uniquePathsIII,
   findTargetSumWays,
+  search,
 } from '../leetcode';
+
+test('二分查找', () => {
+  expect(search([-1,1,2], 1)).toBe(1)
+})
 
 test('查找目标和', () => {
   expect(findTargetSumWays([1,1,1], 3)).toBe(1)

@@ -804,7 +804,28 @@ function findTargetSumWays(nums: number[], S: number): number {
   return res;
 };
 
+function search(nums: number[], target: number): number {
+  let mid:number = 0, 
+      left:number = 0, 
+      right:number = nums.length-1;
+
+  while (left <= right) {
+      mid = left + Math.floor((right - left) / 2);
+
+      if(nums[mid] == target) return mid;
+
+      if(target < nums[mid]) {
+          right = mid - 1;
+      } else {
+          left = mid + 1;
+      }
+  }
+  
+  return -1;
+};
+
 export {
+    search,
     findTargetSumWays,
     uniquePathsIII,
     isLongPressedName,

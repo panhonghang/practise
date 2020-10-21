@@ -728,9 +728,7 @@ function maxSatisfaction(satisfaction: number[]): number {
 
 function isLongPressedName(name: string, typed: string): boolean {
   let i:number = 0,
-      j:number = 0,
-      nameArr:string[] = name.split(''),
-      typedArr:string[] = typed.split('');
+      j:number = 0;
 
   while(i < name.length || j < typed.length) {
       if(name[i] === typed[j]) {
@@ -747,7 +745,50 @@ function isLongPressedName(name: string, typed: string): boolean {
   return true;
 };
 
+function uniquePathsIII(grid: number[][]): number {
+  let res:number = 0,
+      stepNum:number = 1,
+      x:number = 0,
+      y:number = 0;
+  
+  grid.forEach((arr, row) => arr.forEach((item, col) => {
+          if(item === 1) {
+              x = row;
+              y = col;
+          } 
+          if(item === 0) stepNum++;
+      })
+  )
+
+  const dfs = function(x:number, y:number, count:number, arr: number[][]): void {
+      if(x === grid.length 
+          || x === -1 
+          || y === grid[0].length 
+          || y === -1 
+          || grid[x][y] === -1) return
+
+      if(grid[x][y] === 2) {
+          if(count === 0) res++
+          return;
+      }
+      
+      arr[x][y] = -1;
+
+      dfs(x+1, y, count-1, arr);
+      dfs(x-1, y, count-1, arr);
+      dfs(x, y+1, count-1, arr);
+      dfs(x, y-1, count-1, arr);
+      
+      arr[x][y] = 0;
+  }
+
+  dfs(x, y, stepNum, grid);
+
+  return res;
+};
+
 export {
+    uniquePathsIII,
     isLongPressedName,
     shortestSubarray,
     postorderTraversal,

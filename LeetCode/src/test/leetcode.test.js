@@ -27,7 +27,16 @@ import {
   lengthOfLIS,
   maxSatisfaction,
   isLongPressedName,
+  uniquePathsIII,
 } from '../leetcode';
+
+test('不同路径 III', () => {
+  expect(uniquePathsIII([[1,0,0,0],[0,0,0,0],[0,0,2,-1]])).toBe(2);
+})
+
+test('不同路径 III', () => {
+  expect(uniquePathsIII([[1,0,0,0],[0,0,0,0],[0,0,0,2]])).toBe(4);
+})
 
 test('长按键入', () => {
   expect(isLongPressedName("alex", "alexxr")).toBe(false);

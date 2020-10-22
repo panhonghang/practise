@@ -30,7 +30,12 @@ import {
   uniquePathsIII,
   findTargetSumWays,
   search,
+  partitionLabels,
 } from '../leetcode';
+
+test('划分字母区间', () => {
+  expect(partitionLabels("ababcbacadefegdehijhklij")).toEqual([9,7,8])
+})
 
 test('二分查找', () => {
   expect(search([-1,1,2], 1)).toBe(1)

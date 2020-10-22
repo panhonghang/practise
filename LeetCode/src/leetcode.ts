@@ -824,7 +824,28 @@ function search(nums: number[], target: number): number {
   return -1;
 };
 
+function partitionLabels(S: string): number[] {
+    let pre: number = 0,
+        next: number = 0,
+        temp: number = 0,
+        resArr: number[] = [];
+
+    for(let i = 0; i < S.length; i++) {
+        temp = S.lastIndexOf(S[i])
+        
+        if(temp >= next) next = temp;
+
+        if(i === next) {
+            resArr.push(next - pre + 1);
+            pre = i + 1;
+        }
+    }
+
+    return resArr;
+};
+
 export {
+    partitionLabels,
     search,
     findTargetSumWays,
     uniquePathsIII,

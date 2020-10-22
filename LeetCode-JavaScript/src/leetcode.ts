@@ -844,7 +844,50 @@ function partitionLabels(S: string): number[] {
     return resArr;
 };
 
+function isPalindrome(head: ListNode | null): boolean {
+    let pre:ListNode | null = head,
+        next:ListNode | null = head && head.next;
+
+    if(!head) return true;
+
+    while(next && next.next) {
+        pre = pre && pre.next;
+        next = next && next.next && next.next.next;
+    }
+    
+    next = pre && pre.next;
+    if(pre) pre.next = null;
+    pre = head;
+
+    const rervseListNode = function(node: ListNode | null): ListNode | null {
+      let pre: ListNode | null = null,
+          next: ListNode | null = node,
+          temp: ListNode | null = null;
+      
+      while(next) {
+          temp = next && next.next;
+          next.next = pre;
+
+          pre = next;
+          next = temp;
+      }
+
+      return pre;
+    }
+
+    next = rervseListNode(next);
+
+    while(next && pre) {
+        if(pre.val != next.val) return false;
+        pre = pre && pre.next;
+        next = next && next.next;
+    }
+
+    return true
+};
+
 export {
+    isPalindrome,
     partitionLabels,
     search,
     findTargetSumWays,

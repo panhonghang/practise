@@ -31,7 +31,12 @@ import {
   findTargetSumWays,
   search,
   partitionLabels,
+  isPalindrome,
 } from '../leetcode';
+
+test('回文链表', () => {
+  expect(isPalindrome()).toBe(true)
+})
 
 test('划分字母区间', () => {
   expect(partitionLabels("ababcbacadefegdehijhklij")).toEqual([9,7,8])

@@ -122,12 +122,14 @@ import java.util.HashMap;
 class Solution {
     public int minFallingPathSum(int[][] arr) {
         int[] dp = arr[0];
-    
+        int[] temp = dp.clone();
+        int min = 0;
+        
         for(int i = 1; i < arr.length; i++) {
-            int[] temp = dp.clone();
+            temp = dp.clone();
             Arrays.sort(temp);
             for(int j = 0; j < dp.length; j++) {
-                int min = temp[0];
+                min = temp[0];
                 if(dp[j] == temp[0]) min = temp[1];
                 dp[j] = min + arr[i][j];
             }        

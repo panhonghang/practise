@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+import java.util.*;
 import java.util.HashMap;
 // class Solution {
 //     public List<Integer> partitionLabels(String S) {
@@ -72,47 +74,67 @@ import java.util.HashMap;
 //     }
 // }
 
-class Solution {
-    private int res = 0;
-    String[] words;
-    int[] score;
+// class Solution {
+//     private int res = 0;
+//     String[] words;
+//     int[] score;
 
-    public int maxScoreWords(String[] words, char[] letters, int[] score) {
-        this.words = words;
-        this.score = score;
-        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+//     public int maxScoreWords(String[] words, char[] letters, int[] score) {
+//         this.words = words;
+//         this.score = score;
+//         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
         
-        for(int i = 0; i < letters.length; i++) {
-            if(map.containsKey(letters[i])) {
-                map.put(letters[i], map.get(letters[i]) + 1);
-            } else {
-                map.put(letters[i], 1);
-            }
-        };
+//         for(int i = 0; i < letters.length; i++) {
+//             if(map.containsKey(letters[i])) {
+//                 map.put(letters[i], map.get(letters[i]) + 1);
+//             } else {
+//                 map.put(letters[i], 1);
+//             }
+//         };
 
-        HashMap<Character, Integer> clone = (HashMap<Character, Integer>) map.clone();
-        bfs(0, 0, clone);
+//         HashMap<Character, Integer> clone = (HashMap<Character, Integer>) map.clone();
+//         bfs(0, 0, clone);
 
-        return res;
-    }
+//         return res;
+//     }
 
-    public void bfs(int index, int sum, HashMap<Character, Integer> map) {
-        if(index >= words.length) {
-            res = Math.max(sum, res);
-            return;
-        }
+//     public void bfs(int index, int sum, HashMap<Character, Integer> map) {
+//         if(index >= words.length) {
+//             res = Math.max(sum, res);
+//             return;
+//         }
 
-        bfs(index + 1, sum, (HashMap<Character, Integer>)map.clone());
+//         bfs(index + 1, sum, (HashMap<Character, Integer>)map.clone());
 
-        int temp = 0;
+//         int temp = 0;
 
-        for (char c : words[index].toCharArray()) {
-            if(!map.containsKey(c) || map.get(c) == 0) return;
+//         for (char c : words[index].toCharArray()) {
+//             if(!map.containsKey(c) || map.get(c) == 0) return;
             
-            map.put(c, map.get(c) - 1);
-            temp += score[c - 'a'];
+//             map.put(c, map.get(c) - 1);
+//             temp += score[c - 'a'];
+//         }
+
+//         bfs(index + 1, sum + temp, (HashMap<Character, Integer>)map.clone());
+//     }
+// }
+
+class Solution {
+    public int minFallingPathSum(int[][] arr) {
+        int[] dp = arr[0];
+    
+        for(int i = 1; i < arr.length; i++) {
+            int[] temp = dp.clone();
+            Arrays.sort(temp);
+            for(int j = 0; j < dp.length; j++) {
+                int min = temp[0];
+                if(dp[j] == temp[0]) min = temp[1];
+                dp[j] = min + arr[i][j];
+            }        
         }
 
-        bfs(index + 1, sum + temp, (HashMap<Character, Integer>)map.clone());
+        Arrays.sort(dp);
+
+        return dp[0];
     }
 }

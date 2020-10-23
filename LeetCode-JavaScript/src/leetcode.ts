@@ -923,7 +923,21 @@ function maxScoreWords(words: string[], letters: string[], score: number[]): num
     return res;
 };
 
+function minFallingPathSum(arr: number[][]): number {
+    let dp:number[] = [...arr[0]];
+    
+    for(let i = 1; i < arr.length; i++) {
+        let temp:number[] = [...dp];
+        for(let j = 0; j < dp.length; j++) {
+            dp[j] = Math.min(...temp.slice(0,j), ...temp.slice(j+1)) + arr[i][j]
+        }        
+    }
+
+    return Math.min(...dp);
+};
+
 export {
+    minFallingPathSum,
     maxScoreWords,
     isPalindrome,
     partitionLabels,

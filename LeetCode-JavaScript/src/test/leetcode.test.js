@@ -32,8 +32,14 @@ import {
   search,
   partitionLabels,
   isPalindrome,
-  maxScoreWords
+  maxScoreWords,
+  minFallingPathSum,
 } from '../leetcode';
+
+test('', () => {
+  expect(minFallingPathSum([[1,2,3],[4,5,6],[7,8,9]])).toBe(13)
+})
+
 test('', () => {
   expect(maxScoreWords(["dog","cat","dad","good"],
   ["a","a","c","d","d","d","g","o","o"],

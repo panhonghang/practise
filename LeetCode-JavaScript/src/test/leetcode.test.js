@@ -32,7 +32,13 @@ import {
   search,
   partitionLabels,
   isPalindrome,
+  maxScoreWords
 } from '../leetcode';
+test('', () => {
+  expect(maxScoreWords(["dog","cat","dad","good"],
+  ["a","a","c","d","d","d","g","o","o"],
+  [1,0,9,5,0,0,3,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0])).toBe(23)
+})
 
 test('回文链表', () => {
   expect(isPalindrome()).toBe(true)

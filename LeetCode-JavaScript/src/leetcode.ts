@@ -886,7 +886,45 @@ function isPalindrome(head: ListNode | null): boolean {
     return true
 };
 
+function maxScoreWords(words: string[], letters: string[], score: number[]): number {
+    let res:number = 0,
+        map:Map<string, number> = new Map();
+    
+    letters.forEach(item => {
+        if(map.has(item)) {
+            map.set(item, (map.get(item) || 0) + 1)
+        } else {
+            map.set(item, 1)
+        }
+    })
+
+    const bfs = function(index: number, sum: number, map: Map<string, number>) {
+        if(index >= words.length) {
+            res = Math.max(sum, res);
+            return
+        }
+
+        bfs(index + 1, sum, new Map(map));
+
+        let word = words[index];
+
+        for(let i = 0; i < word.length; i++) {
+            if(!map.has(word.charAt(i)) || map.get(word.charAt(i)) === 0) return;
+            
+            map.set(word.charAt(i), (map.get(word.charAt(i)) || 0) - 1);
+            sum += score[word.charCodeAt(i) - 97];
+        }
+
+        bfs(index + 1, sum, new Map(map));
+    }
+
+    bfs(0, 0, new Map(map))
+
+    return res;
+};
+
 export {
+    maxScoreWords,
     isPalindrome,
     partitionLabels,
     search,

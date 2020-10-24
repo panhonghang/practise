@@ -936,7 +936,36 @@ function minFallingPathSum(arr: number[][]): number {
     return Math.min(...dp);
 };
 
+function videoStitching(clips: number[][], T: number): number {
+    clips.sort((a,b)=>a[0]-b[0]);
+
+    let min:number = clips[0][0],
+        max:number = clips[clips.length-1][1];
+
+    if(min>0 || max<T) return -1;
+
+    let end:number = 0,
+        next:number = 0,
+        num:number = 0;
+
+    while(end < T && clips[next]){  
+      let nextEnd = end;  
+      while(clips[next] && clips[next][0]<=end){
+          if(clips[next][1] > nextEnd){
+              nextEnd = clips[next][1];
+              if(nextEnd === T) return num+1;
+          }
+          next++;
+      }
+      num++;
+      if(nextEnd === end) return -1;
+      end = nextEnd;
+    }
+    return num;
+};
+
 export {
+    videoStitching,
     minFallingPathSum,
     maxScoreWords,
     isPalindrome,

@@ -964,7 +964,27 @@ function videoStitching(clips: number[][], T: number): number {
     return num;
 };
 
+function longestMountain(A: number[]): number {
+    let height:number = 0;
+
+    for(let i = 1; i < A.length - 1; i++) {
+        let pre:number = i,
+            next:number = i;
+        //i to pre
+        while(pre > 0 && A[pre] > A[pre - 1]) pre--;
+        //i to next
+        while(next < A.length - 1 && A[next] > A[next+1]) next++;
+
+        if(pre != i && next != i) height = Math.max(height, next - pre + 1);
+
+        i = next;
+    }
+
+    return height < 3 ? 0 : height;
+};
+
 export {
+    longestMountain,
     videoStitching,
     minFallingPathSum,
     maxScoreWords,

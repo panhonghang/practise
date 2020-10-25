@@ -191,6 +191,10 @@ class Solution {
         int height = 0;
 
         for(int i = 1; i < A.length - 1; i++) {
+            while(A[i] < A[i+1]) {
+                i++;
+                if(i + 1 == A.length) break;
+            }
             int pre = i,
                 next = i;
             //i to pre

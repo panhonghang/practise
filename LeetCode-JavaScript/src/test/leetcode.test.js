@@ -36,7 +36,12 @@ import {
   minFallingPathSum,
   videoStitching,
   longestMountain,
+  smallerNumbersThanCurrent,
 } from '../leetcode';
+
+test('有多少小于当前数字的数字', () => {
+  expect(smallerNumbersThanCurrent([8,1,2,2,3])).toEqual([4,0,1,1,3])
+})
 
 test('数组中的最长山脉', () => {
   expect(longestMountain([2,1,4,7,3,2,5])).toBe(5)

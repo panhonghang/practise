@@ -987,7 +987,76 @@ function longestMountain(A: number[]): number {
     return height < 3 ? 0 : height;
 };
 
+/**
+ * @param {number[][]} board
+ * @return {number}
+ */
+var slidingPuzzle = function(board) {
+    let target = [[1,2,3],[4,5,0]].join(''),
+        min = Number.MAX_SAFE_INTEGER,
+        x = 0,
+        y = 0;
+
+    board.forEach((item, i) => {
+        item.forEach((key, j) => {
+            if(key == 0) {
+                x = i;
+                y = j;
+            }
+        })
+    })
+
+    const bfs = function(arr, num, x, y, map) {
+        let str = arr.join('');
+        if(x<0 || x>1 || y<0 || y>2) return;
+        if(str === target) {
+            min = Math.min(min, num);
+            return
+        }
+
+        if(map.has(str)) {
+            return;
+        } else {
+            map.set(str, 1);
+        }
+
+        if(x+1 === 1) {
+            [arr[x][y], arr[x+1][y]] = [arr[x+1][y], arr[x][y]];
+            bfs(arr.slice(), num+1, x+1, y, new Map(map));
+            [arr[x][y], arr[x+1][y]] = [arr[x+1][y], arr[x][y]];
+        } else {
+            [arr[x][y], arr[x-1][y]] = [arr[x-1][y], arr[x][y]];
+            bfs(arr.slice(), num+1, x-1, y, new Map(map));
+            [arr[x][y], arr[x-1][y]] = [arr[x-1][y], arr[x][y]];
+        }
+
+        if(y+1 < 3) {
+            [arr[x][y], arr[x][y+1]] = [arr[x][y+1], arr[x][y]];
+            bfs(arr.slice(), num+1, x, y+1, new Map(map));
+            [arr[x][y], arr[x][y+1]] = [arr[x][y+1], arr[x][y]];
+        }
+        if(y-1 > -1) {
+            [arr[x][y], arr[x][y-1]] = [arr[x][y-1], arr[x][y]];
+            bfs(arr.slice(), num+1, x, y-1, new Map(map));
+            [arr[x][y], arr[x][y-1]] = [arr[x][y-1], arr[x][y]];
+        };
+    }
+
+    bfs(board.slice(), 0, x, y, new Map())
+
+    return min === Number.MAX_SAFE_INTEGER ? -1 : min;
+};
+
+function smallerNumbersThanCurrent(nums: number[]): number[] {
+    const res=nums.slice();
+
+    nums.sort((a,b)=>a-b);
+
+    return res.map(item=>nums.indexOf(item));
+};
+
 export {
+    smallerNumbersThanCurrent,
     longestMountain,
     videoStitching,
     minFallingPathSum,

@@ -1,6 +1,4 @@
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.HashMap;
 // class Solution {
 //     public List<Integer> partitionLabels(String S) {
 //         int pre = 0,
@@ -211,6 +209,18 @@ import java.util.HashMap;
 //     }
 // }
 
+public class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode() {}
+    TreeNode(int val) { this.val = val; }
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
 class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<Integer>();

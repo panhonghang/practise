@@ -186,27 +186,42 @@ import java.util.HashMap;
 //     }
 // }
 
+// class Solution {
+//     public int longestMountain(int[] A) {
+//         int height = 0;
+
+//         for(int i = 1; i < A.length - 1; i++) {
+//             while(A[i] < A[i+1]) {
+//                 i++;
+//                 if(i + 1 == A.length) break;
+//             }
+//             int pre = i,
+//                 next = i;
+//             //i to pre
+//             while(pre > 0 && A[pre] > A[pre - 1]) pre--;
+//             //i to next
+//             while(next < A.length - 1 && A[next] > A[next+1]) next++;
+
+//             if(pre != i && next != i) height = Math.max(height, next - pre + 1);
+
+//             i = next;
+//         }
+
+//         return height < 3 ? 0 : height;
+//     }
+// }
+
 class Solution {
-    public int longestMountain(int[] A) {
-        int height = 0;
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<Integer>();
+        preorder(root, res);
+        return res;
+    }
 
-        for(int i = 1; i < A.length - 1; i++) {
-            while(A[i] < A[i+1]) {
-                i++;
-                if(i + 1 == A.length) break;
-            }
-            int pre = i,
-                next = i;
-            //i to pre
-            while(pre > 0 && A[pre] > A[pre - 1]) pre--;
-            //i to next
-            while(next < A.length - 1 && A[next] > A[next+1]) next++;
-
-            if(pre != i && next != i) height = Math.max(height, next - pre + 1);
-
-            i = next;
-        }
-
-        return height < 3 ? 0 : height;
+    public void preorder(TreeNode node, List<Integer> res) {
+        if(node == null) return;
+        res.add(node.val);
+        preorder(node.left, res);
+        preorder(node.right, res);
     }
 }

@@ -38,7 +38,12 @@ import {
   longestMountain,
   smallerNumbersThanCurrent,
   RestoreTreeStructure,
+  preorderTraversal,
 } from '../leetcode';
+
+test("前序遍历", ()=>{
+  expect(preorderTraversal(null)).toEqual([])
+})
 
 test('转换数组1', () => {
   const data = [

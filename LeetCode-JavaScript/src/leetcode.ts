@@ -1068,27 +1068,44 @@ interface MapItem {
     children?: MapItem[]
 }
 
-const RestoreTreeStructure = function(data: CategoryItem []) {
+const RestoreTreeStructure = (data: CategoryItem[]): MapItem[] => {
     const map: Map<string, MapItem[]> = new Map();
-    
+
     data.forEach(item => {
-        if(map.has(item.parentId)) {
-            map.set(item.parentId, [...map.get(item.parentId), {label: item.label, value: item.value}])
+        if (map.has(item.parentId)) {
+            map.set(item.parentId, [...map.get(item.parentId), { label: item.label, value: item.value }]);
         } else {
-            map.set(item.parentId, [{label: item.label, value: item.value}])
+            map.set(item.parentId, [{ label: item.label, value: item.value }]);
         }
-    })
+    });
 
     map.forEach(item => {
         item.map(obj => {
-           if(map.has(obj.value)) obj.children = map.get(obj.value);
-        })
-    })
+            if (map.has(obj.value))
+                obj.children = map.get(obj.value);
+        });
+    });
 
     return map.get('-1') || [];
 }
 
+function preorderTraversal(root: TreeNode | null): number[] {
+    const res: number[] = [];
+
+    const dfs =  (node: TreeNode | null): void => {
+        if(node === null) return;
+        res.push(node.val);
+        dfs(node.left);
+        dfs(node.right);
+    }
+
+    dfs(root);
+
+    return res;
+};
+
 export {
+    preorderTraversal,
     RestoreTreeStructure,
     smallerNumbersThanCurrent,
     longestMountain,

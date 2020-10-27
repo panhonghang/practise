@@ -37,7 +37,128 @@ import {
   videoStitching,
   longestMountain,
   smallerNumbersThanCurrent,
+  RestoreTreeStructure,
 } from '../leetcode';
+
+test('转换数组1', () => {
+  const data = [
+    {
+        label: '第一级',
+        value: '1',
+        level: 1,
+        parentId: '-1',
+    },
+    {
+        label: '第二级',
+        value: '2',
+        level: 1,
+        parentId: '-1',
+    },
+    {
+        label: '第一级第一项',
+        value: '1-1',
+        level: 2,
+        parentId: '1',
+    },
+    {
+        label: '第一级第二项',
+        value: '1-2',
+        level: 2,
+        parentId: '1',
+    },
+    {
+        label: '第二级第一项',
+        value: '2-1',
+        level: 2,
+        parentId: '2',
+    },
+    {
+        label: '第二级第二项',
+        value: '2-2',
+        level: 2,
+        parentId: '2',
+    },
+    {
+        label: '第三级第一项',
+        value: '3-1',
+        level: 3,
+        parentId: '1-1',
+    },
+    {
+        label: '第三级第二项',
+        value: '3-1',
+        level: 3,
+        parentId: '1-2',
+    },
+  ]
+  
+  const resArr = [
+    {
+        label: '第一级',
+        value: '1',
+        children: [
+          {
+            label: '第一级第一项',
+            value: '1-1',
+            children: [
+              {
+                label: '第三级第一项',
+                value: '3-1',
+              },
+            ]
+          },
+          {
+              label: '第一级第二项',
+              value: '1-2',
+              children: [
+                {
+                  label: '第三级第二项',
+                  value: '3-1',
+                },
+              ]
+          },
+        ]
+    },
+    {
+        label: '第二级',
+        value: '2',
+        children: [
+          {
+            label: '第二级第一项',
+            value: '2-1',
+        },
+        {
+            label: '第二级第二项',
+            value: '2-2',
+        },
+        ]
+    },
+  ]
+  expect(RestoreTreeStructure(data)).toEqual(resArr)
+})
+
+test('转换数组2', () => {  
+  expect(RestoreTreeStructure([])).toEqual([])
+})
+
+test('转换数组3', () => {
+  const data = [
+    {
+        label: '第一级',
+        value: '1',
+        level: 1,
+        parentId: '-1',
+    },
+  ]
+  
+  const resArr = [
+    {
+        label: '第一级',
+        value: '1',
+    },
+  ]
+  expect(RestoreTreeStructure(data)).toEqual(resArr)
+})
 
 test('有多少小于当前数字的数字', () => {
   expect(smallerNumbersThanCurrent([8,1,2,2,3])).toEqual([4,0,1,1,3])

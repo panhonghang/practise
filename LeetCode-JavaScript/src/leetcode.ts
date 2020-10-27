@@ -1055,7 +1055,41 @@ function smallerNumbersThanCurrent(nums: number[]): number[] {
     return res.map(item=>nums.indexOf(item));
 };
 
+interface CategoryItem {
+    label: string,
+    value: string,
+    level: string,
+    parentId: string
+}
+
+interface MapItem {
+    label: string,
+    value: string,
+    children?: MapItem[]
+}
+
+const RestoreTreeStructure = function(data: CategoryItem []) {
+    const map: Map<string, MapItem[]> = new Map();
+    
+    data.forEach(item => {
+        if(map.has(item.parentId)) {
+            map.set(item.parentId, [...map.get(item.parentId), {label: item.label, value: item.value}])
+        } else {
+            map.set(item.parentId, [{label: item.label, value: item.value}])
+        }
+    })
+
+    map.forEach(item => {
+        item.map(obj => {
+           if(map.has(obj.value)) obj.children = map.get(obj.value);
+        })
+    })
+
+    return map.get('-1') || [];
+}
+
 export {
+    RestoreTreeStructure,
     smallerNumbersThanCurrent,
     longestMountain,
     videoStitching,

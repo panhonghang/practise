@@ -209,29 +209,47 @@ import java.util.*;
 //     }
 // }
 
-public class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode() {}
-    TreeNode(int val) { this.val = val; }
-    TreeNode(int val, TreeNode left, TreeNode right) {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }
-}
-class Solution {
-    public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<Integer>();
-        preorder(root, res);
-        return res;
-    }
+// public class TreeNode {
+//     int val;
+//     TreeNode left;
+//     TreeNode right;
+//     TreeNode() {}
+//     TreeNode(int val) { this.val = val; }
+//     TreeNode(int val, TreeNode left, TreeNode right) {
+//         this.val = val;
+//         this.left = left;
+//         this.right = right;
+//     }
+// }
+// class Solution {
+//     public List<Integer> preorderTraversal(TreeNode root) {
+//         List<Integer> res = new ArrayList<Integer>();
+//         preorder(root, res);
+//         return res;
+//     }
 
-    public void preorder(TreeNode node, List<Integer> res) {
-        if(node == null) return;
-        res.add(node.val);
-        preorder(node.left, res);
-        preorder(node.right, res);
+//     public void preorder(TreeNode node, List<Integer> res) {
+//         if(node == null) return;
+//         res.add(node.val);
+//         preorder(node.left, res);
+//         preorder(node.right, res);
+//     }
+// }
+
+class Solution {
+    public boolean uniqueOccurrences(int[] arr) {
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for(int i = 0; i < arr.length; i++) {
+            if(map.containsKey(arr[i])) {
+                map.put(arr[i], map.get(arr[i]) + 1);
+            } else {
+                map.put(arr[i], 1);
+            }
+        }   
+        Set<Integer> times = new HashSet<Integer>();
+        for (Map.Entry<Integer, Integer> x : map.entrySet()) {
+            times.add(x.getValue());
+        }
+        return times.size() == map.size();
     }
 }

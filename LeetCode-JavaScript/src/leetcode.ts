@@ -1104,7 +1104,22 @@ function preorderTraversal(root: TreeNode | null): number[] {
     return res;
 };
 
+function uniqueOccurrences(arr: number[]): boolean {
+    const map: Map<number, number> = new Map();
+        for(let i = 0; i < arr.length; i++) {
+            if(map.has(arr[i])) {
+                map.set(arr[i], (map.get(arr[i]) || 0) + 1);
+            } else {
+                map.set(arr[i], 1);
+            }
+        }   
+    const times: Set<number> = new Set(map.values());
+    
+    return times.size === map.size;
+};
+
 export {
+    uniqueOccurrences,
     preorderTraversal,
     RestoreTreeStructure,
     smallerNumbersThanCurrent,

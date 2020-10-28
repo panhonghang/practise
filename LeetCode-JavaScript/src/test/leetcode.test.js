@@ -39,7 +39,12 @@ import {
   smallerNumbersThanCurrent,
   RestoreTreeStructure,
   preorderTraversal,
+  uniqueOccurrences,
 } from '../leetcode';
+
+test("独一无二的出现次数", ()=>{
+  expect(uniqueOccurrences([1,2,2,1,1,3])).toBe(true)
+})
 
 test("前序遍历", ()=>{
   expect(preorderTraversal(null)).toEqual([])

@@ -40,7 +40,12 @@ import {
   RestoreTreeStructure,
   preorderTraversal,
   uniqueOccurrences,
+  sumNumbers,
 } from '../leetcode';
+
+test('求根到叶子节点数字之和', ()=>{
+  expect(sumNumbers(null)).toBe(0);
+})
 
 test("独一无二的出现次数", ()=>{
   expect(uniqueOccurrences([1,2,2,1,1,3])).toBe(true)

@@ -1118,7 +1118,20 @@ function uniqueOccurrences(arr: number[]): boolean {
     return times.size === map.size;
 };
 
+function sumNumbers(root: TreeNode | null): number {
+    if(!root) return 0;
+    if(!(root.left || root.right)) return root.val;
+    if(root.left){
+       root.left.val = root.val*10+root.left.val
+    }
+    if(root.right){
+       root.right.val = root.val*10+root.right.val
+    }
+    return sumNumbers(root.left) + sumNumbers(root.right)
+};
+
 export {
+    sumNumbers,
     uniqueOccurrences,
     preorderTraversal,
     RestoreTreeStructure,

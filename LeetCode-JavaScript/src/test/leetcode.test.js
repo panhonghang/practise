@@ -41,7 +41,12 @@ import {
   preorderTraversal,
   uniqueOccurrences,
   sumNumbers,
+  islandPerimeter,
 } from '../leetcode';
+
+test('岛屿的周长', ()=>{
+  expect(islandPerimeter([[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]])).toBe(16);
+})
 
 test('求根到叶子节点数字之和', ()=>{
   expect(sumNumbers(null)).toBe(0);

@@ -42,7 +42,12 @@ import {
   uniqueOccurrences,
   sumNumbers,
   islandPerimeter,
+  wordBreak,
 } from '../leetcode';
+
+test('单词拆分', ()=> {
+  expect(wordBreak("catsanddog", ["cat","cats","and","sand","dog"])).toEqual(["cat sand dog","cats and dog"])
+})
 
 test('岛屿的周长', ()=>{
   expect(islandPerimeter([[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]])).toBe(16);

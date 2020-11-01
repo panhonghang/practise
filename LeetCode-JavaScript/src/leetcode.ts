@@ -1146,42 +1146,65 @@ function islandPerimeter(grid: number[][]): number {
     return result
 };
 
-class RandomizedCollection {
-    d: Map<number, Set<number>>
-    v: number[]
-    constructor() {
-        this.d = new Map()
-        this.v = []
-    }
+// class RandomizedCollection {
+//     d: Map<number, Set<number>>
+//     v: number[]
+//     constructor() {
+//         this.d = new Map()
+//         this.v = []
+//     }
 
-    insert(val: number): boolean {
-        !this.d.has(val) && this.d.set(val, new Set())
-        this.d.get(val)?.add(this.v.length)
-        this.v.push(val)
-        return this.d.get(val)?.size === 1
-    }
+//     insert(val: number): boolean {
+//         !this.d.has(val) && this.d.set(val, new Set())
+//         this.d.get(val)?.add(this.v.length)
+//         this.v.push(val)
+//         return this.d.get(val)?.size === 1
+//     }
 
-    remove(val: number): boolean {
-        if (!this.d.has(val)) {
-            return false
+//     remove(val: number): boolean {
+//         if (!this.d.has(val)) {
+//             return false
+//         }
+//         let i: number = this.d.get(val)?.keys().next().value
+//         this.d.get(val)?.delete(i)
+//         this.v[i] = this.v[this.v.length - 1]
+//         this.v.pop()
+//         this.d.get(this.v[i])?.delete(this.v.length)
+//         i < this.v.length && this.d.get(this.v[i])?.add(i)
+//         !this.d.get(val)?.size && this.d.delete(val)
+//         return true
+//     }
+
+//     getRandom(): number {
+//         return this.v[Math.floor(Math.random() * this.v.length)]
+//     }
+// }
+
+function wordBreak(s: string, wordDict: string[]): string[] {
+    const d = new Set(wordDict), 
+          n = s.length,
+          v: string[][][] = Array(n).concat([[[]]]);
+    
+    const dfs = (i: number) => {
+            if (v[i]) return v[i];
+            v[i] = []
+            for (let j = i + 1; j <= n; ++j) {
+                let w = s.slice(i, j)
+                if(d.has(w)) {
+                    for(const ws of dfs(j)) {
+                        v[i].push([w].concat(ws))
+                    }
+                }
+            }
+            return v[i]
         }
-        let i: number = this.d.get(val)?.keys().next().value
-        this.d.get(val)?.delete(i)
-        this.v[i] = this.v[this.v.length - 1]
-        this.v.pop()
-        this.d.get(this.v[i])?.delete(this.v.length)
-        i < this.v.length && this.d.get(this.v[i])?.add(i)
-        !this.d.get(val)?.size && this.d.delete(val)
-        return true
-    }
 
-    getRandom(): number {
-        return this.v[Math.floor(Math.random() * this.v.length)]
-    }
-}
+    return dfs(0).map(ws => ws.join(' '))
+};
 
 export {
-    RandomizedCollection,
+    wordBreak,
+    // RandomizedCollection,
     islandPerimeter,
     sumNumbers,
     uniqueOccurrences,

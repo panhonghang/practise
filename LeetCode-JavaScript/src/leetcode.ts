@@ -1202,7 +1202,20 @@ function wordBreak(s: string, wordDict: string[]): string[] {
     return dfs(0).map(ws => ws.join(' '))
 };
 
+function intersection(nums1: number[], nums2: number[]): number[] {
+    let res:number[] = [],
+        set1:Set<number> = new Set(nums1),
+        set2:Set<number> = new Set(nums2);
+
+    set1.forEach(item => {
+        if(set2.has(item)) res.push(item)
+    })
+
+    return res;
+};
+
 export {
+    intersection,
     wordBreak,
     // RandomizedCollection,
     islandPerimeter,

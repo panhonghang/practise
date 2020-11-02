@@ -43,7 +43,12 @@ import {
   sumNumbers,
   islandPerimeter,
   wordBreak,
+  intersection,
 } from '../leetcode';
+
+test('数组并集', ()=> {
+  expect(intersection([1,2,3,4,5], [2,7,8,9])).toEqual([2])
+})
 
 test('单词拆分', ()=> {
   expect(wordBreak("catsanddog", ["cat","cats","and","sand","dog"])).toEqual(["cat sand dog","cats and dog"])

@@ -1214,7 +1214,21 @@ function intersection(nums1: number[], nums2: number[]): number[] {
     return res;
 };
 
+function validMountainArray(A: number[]): boolean {
+    const n = A.length;
+    let i = 0,
+        j = n - 1;
+
+    while (i + 1 < n && A[i] < A[i + 1]) i++;
+    while (j - 1 >= 0 && A[j - 1] > A[j]) j--;
+    
+    if (i != 0 && i == j && j != n - 1) return true;
+
+    return false;
+};
+
 export {
+    validMountainArray,
     intersection,
     wordBreak,
     // RandomizedCollection,

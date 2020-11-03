@@ -44,7 +44,12 @@ import {
   islandPerimeter,
   wordBreak,
   intersection,
+  validMountainArray,
 } from '../leetcode';
+
+test('有效的山脉数组', ()=> {
+  expect(validMountainArray([2,1])).toBe(false)
+})
 
 test('数组并集', ()=> {
   expect(intersection([1,2,3,4,5], [2,7,8,9])).toEqual([2])

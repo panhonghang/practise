@@ -45,7 +45,12 @@ import {
   wordBreak,
   intersection,
   validMountainArray,
+  insert,
 } from '../leetcode';
+
+test('插入区间', ()=> {
+  expect(insert([[1,3],[6,9]], [2,5])).toEqual([[1,5],[6,9]])
+})
 
 test('有效的山脉数组', ()=> {
   expect(validMountainArray([2,1])).toBe(false)

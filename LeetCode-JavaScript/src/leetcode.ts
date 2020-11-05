@@ -1254,7 +1254,87 @@ function insert(intervals: number[][], newInterval: number[]): number[][] {
     return res;
 };
 
+// function ladderLength1(beginWord: string, endWord: string, wordList: string[]): number {
+//     let len = wordList.length + 1,
+//         res: number = len + 1,
+//         map: Map<string, Array<string>> = new Map();
+    
+//     if(wordList.indexOf(endWord) === -1) return 0;
+//     if(beginWord === endWord) return 1;
+
+//     if(wordList.indexOf(beginWord) == -1) wordList.push(beginWord);
+
+//     const fn = function(str1:string, str2:string) : boolean {
+//         let res:number = 0,
+//             i:number = 0;
+
+//         while(i < str1.length) {
+//             if(str1[i] != str2[i]) res++;
+//             i++
+//         }
+//         return res === 1
+//     }
+
+//     for(let i = 0; i < wordList.length + 1; i++) {
+//         for(let j = i + 1; j < wordList.length; j++) { 
+//             if(fn(wordList[i], wordList[j])) {
+//                 if(map.has(wordList[i])) {
+//                     map.set(wordList[i], [...map.get(wordList[i])||[], wordList[j]])
+//                 } else {
+//                     map.set(wordList[i], [wordList[j]])
+//                 }
+
+//                 if(map.has(wordList[j])) {
+//                     map.set(wordList[j], [...map.get(wordList[j])||[], wordList[i]])
+//                 } else {
+//                     map.set(wordList[j], [wordList[i]])
+//                 }
+//             }
+//         }
+//     }
+
+//     const dfs = function(str: string, num:number) {
+//         if(num === len) return;
+//         if([...map.get(str) || []].indexOf(endWord) != -1) res = Math.min(num+1, res);
+//         [...map.get(str) || []].forEach(item=>{
+//             dfs(item, num+1)
+//         })
+
+//         return;
+//     }
+
+//     dfs(beginWord, 1)
+
+//     return res === len + 1 ? 0 : res;
+// };
+
+const ladderLength = (beginWord:string, endWord:string, wordList:string[]) => {
+    type Arr = [string, number];
+    const wordSet:Set<string> = new Set(wordList);
+    const queue: Array<Arr> = [];
+    queue.push([beginWord, 1]);
+  
+    while (queue.length) {
+      const [word, level] = queue.shift() || ['', 0];  // 当前出列的单词
+      if (word == endWord) {
+        return level;
+      }
+
+      for (let i = 0; i < word.length; i++) { // 遍历当前单词的所有字符
+        for (let c = 97; c <= 122; c++) { // 对应26个字母
+          const newWord = word.slice(0, i) + String.fromCharCode(c) + word.slice(i + 1); // 形成新词
+          if (wordSet.has(newWord)) { // 单词表里有这个新词
+            queue.push([newWord, level + 1]); // 作为下一层的词入列
+            wordSet.delete(newWord);  // 避免该词重复入列
+          }
+        }
+      }
+    }
+    return 0; // bfs结束，始终没有遇到终点
+  };
+
 export {
+    ladderLength,
     insert,
     validMountainArray,
     intersection,

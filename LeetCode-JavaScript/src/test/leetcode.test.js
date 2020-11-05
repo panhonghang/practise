@@ -46,7 +46,14 @@ import {
   intersection,
   validMountainArray,
   insert,
+  ladderLength
 } from '../leetcode';
+
+test('单词接龙', ()=>{
+  expect(ladderLength("qa"
+  ,"sq"
+  ,["si","go","se","cm","so","ph","mt","db","mb","sb","kr","ln","tm","le","av","sm","ar","ci","ca","br","ti","ba","to","ra","fa","yo","ow","sn","ya","cr","po","fe","ho","ma","re","or","rn","au","ur","rh","sr","tc","lt","lo","as","fr","nb","yb","if","pb","ge","th","pm","rb","sh","co","ga","li","ha","hz","no","bi","di","hi","qa","pi","os","uh","wm","an","me","mo","na","la","st","er","sc","ne","mn","mi","am","ex","pt","io","be","fm","ta","tb","ni","mr","pa","he","lr","sq","ye"])).toBe(5)
+})
 
 test('插入区间', ()=> {
   expect(insert([[1,3],[6,9]], [2,5])).toEqual([[1,5],[6,9]])

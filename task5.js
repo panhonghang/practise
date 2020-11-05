@@ -14695,3 +14695,43 @@ const div2 = (x) => x / 2
 //         );
 //     }
 // }
+
+// const change = function(str) {
+//   let arr = str.split('');
+
+//   for(let i = 0; i < arr.length; i++) {
+//     if(new RegExp(/[A-Z]/).test(arr[i])) {
+//         arr[i] = i > 0 ? "_" + arr[i].toLowerCase() : arr[i].toLowerCase()
+//     } 
+//   }
+
+//   return arr.join('');
+// }
+
+// const toSnakeCase = function(obj) {
+//   if(!obj) return {};
+//   const res = {}
+  
+//   const dfs = function(tempObj) {
+//       Object.keys(tempObj).map(item => {
+//           if(tempObj[`${item}`].constructor === Object) {
+//             res[`${change(item)}`] = toSnakeCase(tempObj[`${item}`])
+//           } else {
+//             res[`${change(item)}`] = tempObj[`${item}`]
+//           }
+//       })
+//   }
+//   dfs(obj)
+  
+//   return res
+// }
+
+// console.log(toSnakeCase({
+//   UserName: 'toutiao',
+//   Group: {
+//       groupName: 'douyin',
+//       User: {
+//            Name: 'xxx'
+//        }
+//   }        
+// }))

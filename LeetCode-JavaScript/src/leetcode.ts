@@ -1333,7 +1333,25 @@ const ladderLength = (beginWord:string, endWord:string, wordList:string[]) => {
     return 0; // bfs结束，始终没有遇到终点
   };
 
+function sortByBits(arr: number[]): number[] {
+    const count1 = function(num:number) : number {
+        let res: number = 0,
+            str: string = num.toString(2);
+
+        for(let i = 0; i < str.length; i++) {
+            if(str[i] === '1') res++;
+        }
+
+        return res;
+    }
+
+    arr.sort((a, b) => count1(a) - count1(b) || a-b)
+
+    return arr;
+};
+
 export {
+    sortByBits,
     ladderLength,
     insert,
     validMountainArray,

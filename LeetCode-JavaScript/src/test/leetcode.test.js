@@ -46,8 +46,13 @@ import {
   intersection,
   validMountainArray,
   insert,
-  ladderLength
+  ladderLength,
+  sortByBits,
 } from '../leetcode';
+
+test('根据数字二进制下 1 的数目排序', ()=> {
+  expect(sortByBits([0,1,2,3,4,5,6,7,8])).toEqual([0,1,2,4,8,3,5,6,7])
+})
 
 test('单词接龙', ()=>{
   expect(ladderLength("qa"

@@ -1350,7 +1350,24 @@ function sortByBits(arr: number[]): number[] {
     return arr;
 };
 
+function countRangeSum(nums: number[], lower: number, upper: number): number {
+    if(nums.length === 0) return 0;
+
+    let result:number = 0;
+
+    for(let i = 0; i < nums.length;i++) {
+        let sum = 0;
+        for(let j = i; j < nums.length; j++) {
+            sum += nums[j];
+            if(lower <= sum && upper >= sum) result++;
+        }
+    }
+
+    return result; 
+};
+
 export {
+    countRangeSum,
     sortByBits,
     ladderLength,
     insert,

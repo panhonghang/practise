@@ -48,7 +48,12 @@ import {
   insert,
   ladderLength,
   sortByBits,
+  countRangeSum,
 } from '../leetcode';
+
+test('区间和的个数', ()=> {
+  expect(countRangeSum([-2,5,-1], -2, 2)).toBe(3)
+})
 
 test('根据数字二进制下 1 的数目排序', ()=> {
   expect(sortByBits([0,1,2,3,4,5,6,7,8])).toEqual([0,1,2,4,8,3,5,6,7])

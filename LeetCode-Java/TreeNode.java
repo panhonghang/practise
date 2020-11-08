@@ -236,20 +236,32 @@ import java.util.*;
 //     }
 // }
 
+// class Solution {
+//     public boolean uniqueOccurrences(int[] arr) {
+//         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+//         for(int i = 0; i < arr.length; i++) {
+//             if(map.containsKey(arr[i])) {
+//                 map.put(arr[i], map.get(arr[i]) + 1);
+//             } else {
+//                 map.put(arr[i], 1);
+//             }
+//         }   
+//         Set<Integer> times = new HashSet<Integer>();
+//         for (Map.Entry<Integer, Integer> x : map.entrySet()) {
+//             times.add(x.getValue());
+//         }
+//         return times.size() == map.size();
+//     }
+// }
+
 class Solution {
-    public boolean uniqueOccurrences(int[] arr) {
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        for(int i = 0; i < arr.length; i++) {
-            if(map.containsKey(arr[i])) {
-                map.put(arr[i], map.get(arr[i]) + 1);
-            } else {
-                map.put(arr[i], 1);
-            }
-        }   
-        Set<Integer> times = new HashSet<Integer>();
-        for (Map.Entry<Integer, Integer> x : map.entrySet()) {
-            times.add(x.getValue());
+    public int maxProfit(int[] prices) {
+        int res = 0;
+
+        for(int i = 0; i < prices.length - 1; i++) {
+            if(prices[i+1] - prices[i] > 0) res += prices[i+1] - prices[i];
         }
-        return times.size() == map.size();
+
+        return res;
     }
 }

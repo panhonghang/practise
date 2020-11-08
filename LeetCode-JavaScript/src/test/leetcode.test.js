@@ -49,7 +49,12 @@ import {
   ladderLength,
   sortByBits,
   countRangeSum,
+  maxProfit,
 } from '../leetcode';
+
+test('买卖股票的最好时间', ()=> {
+  expect(maxProfit([7,1,5,3,6,4])).toBe(7)
+})
 
 test('区间和的个数', ()=> {
   expect(countRangeSum([-2,5,-1], -2, 2)).toBe(3)

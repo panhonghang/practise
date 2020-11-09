@@ -1376,7 +1376,16 @@ function maxProfit(prices: number[]): number {
     return res;
 };
 
+function kClosest(points: number[][], K: number): number[][] {
+    const list: number[][] = points.sort((a, b)=> (
+      Math.sqrt( Math.pow(Math.abs(a[0] - 0), 2) + Math.pow(Math.abs(a[1] - 0), 2)) -  
+      Math.sqrt( Math.pow(Math.abs(b[0] - 0), 2) + Math.pow(Math.abs(b[1] - 0), 2))
+    ))
+    return list.splice(0, K)
+   
+  };
 export {
+    kClosest,
     maxProfit,
     countRangeSum,
     sortByBits,

@@ -50,7 +50,12 @@ import {
   sortByBits,
   countRangeSum,
   maxProfit,
+  kClosest
 } from '../leetcode';
+
+test('最接近原点的 K 个点', ()=> {
+  expect(kClosest([[1,3],[-2,2]], 1).toEqual([[-2,2]])
+})
 
 test('买卖股票的最好时间', ()=> {
   expect(maxProfit([7,1,5,3,6,4])).toBe(7)

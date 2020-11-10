@@ -1382,8 +1382,28 @@ function kClosest(points: number[][], K: number): number[][] {
       Math.sqrt( Math.pow(Math.abs(b[0] - 0), 2) + Math.pow(Math.abs(b[1] - 0), 2))
     ))
     return list.splice(0, K)
-   
-  };
+};
+/**
+ Do not return anything, modify nums in-place instead.
+ */
+function nextPermutation(nums: number[]): void {
+    let i:number = nums.length - 2; 
+    while (i >= 0 && nums[i] >= nums[i + 1]) i--;
+    if (i >= 0) { 
+        let j:number = nums.length - 1; 
+        while (j >= 0 && nums[j] <= nums[i]) j--;
+        [nums[i], nums[j]] = [nums[j], nums[i]]; 
+    }
+
+    let l:number = i + 1,
+        r:number = nums.length - 1;
+    while (l < r) {
+        [nums[l], nums[r]] = [nums[r], nums[l]];
+        l++;
+        r--;
+    }
+}
+
 export {
     kClosest,
     maxProfit,

@@ -1403,6 +1403,41 @@ function nextPermutation(nums: number[]): void {
         r--;
     }
 }
+function findRotateSteps(ring: string, key: string): number {
+    let prevDp = [], 
+        curDp = [],
+        temp = { sum: Infinity, index: 0 };
+
+    for (let i = 0; i < key.length; i++) {
+        prevDp = [...curDp];
+        curDp = [];
+        for (let j = 0; j < ring.length; j++) {
+        if (key[i] === ring[j]) {
+            if (i === 0) {
+            curDp.push({ sum: Math.min(j, ring.length - j) + 1, index: j });
+            continue;
+            }
+            temp = { sum: Infinity, index: j };
+            prevDp.forEach(element => {
+            temp.sum = Math.min(
+                temp.sum,
+                element.sum +
+                Math.min(
+                Math.abs(element.index - j),
+                ring.length - Math.abs(element.index - j)
+                ) +
+                1
+            );
+        });
+        curDp.push(temp);
+      }
+    }
+  }
+  curDp.sort((a,b)=>{
+    return a.sum-b.sum
+  })
+  return curDp[0].sum;
+}
 
 export {
     kClosest,

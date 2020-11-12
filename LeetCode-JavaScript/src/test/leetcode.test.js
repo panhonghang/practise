@@ -50,11 +50,16 @@ import {
   sortByBits,
   countRangeSum,
   maxProfit,
-  kClosest
+  kClosest,
+  sortArrayByParityII,
 } from '../leetcode';
 
+test('按奇偶排序数组 II', ()=> {
+  expect(sortArrayByParityII([4,5,2,1])).toEqual([4,5,2,1])
+})
+
 test('最接近原点的 K 个点', ()=> {
-  expect(kClosest([[1,3],[-2,2]], 1).toEqual([[-2,2]])
+  expect(kClosest([[1,3],[-2,2]], 1)).toEqual([[-2,2]])
 })
 
 test('买卖股票的最好时间', ()=> {

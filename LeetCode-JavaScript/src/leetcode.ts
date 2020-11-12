@@ -1439,7 +1439,24 @@ function findRotateSteps(ring: string, key: string): number {
   return curDp[0].sum;
 }
 
+function sortArrayByParityII(A: number[]): number[] {
+    let i:number = 0;
+
+    while(i < A.length) {
+        if(!(i % 2 === A[i] % 2)) {
+            let j:number = i;
+            while(!(i % 2 === A[j] % 2)) {
+                j++;
+            }
+            [A[i], A[j]] = [A[j], A[i]]
+        }
+        i++;
+    }
+    return A;
+};
+
 export {
+    sortArrayByParityII,
     kClosest,
     maxProfit,
     countRangeSum,

@@ -254,14 +254,36 @@ import java.util.*;
 //     }
 // }
 
+// class Solution {
+//     public int maxProfit(int[] prices) {
+//         int res = 0;
+
+//         for(int i = 0; i < prices.length - 1; i++) {
+//             if(prices[i+1] - prices[i] > 0) res += prices[i+1] - prices[i];
+//         }
+
+//         return res;
+//     }
+// }
+
 class Solution {
-    public int maxProfit(int[] prices) {
-        int res = 0;
-
-        for(int i = 0; i < prices.length - 1; i++) {
-            if(prices[i+1] - prices[i] > 0) res += prices[i+1] - prices[i];
+    public int[] sortArrayByParityII(int[] A) {
+        int j =1 ;
+        for (int i = 0; i < A.length; i+=2) {
+            if (A[i]%2==1){
+                while (A[j]%2==1){
+                    j+=2;
+                }
+                /**
+                 * swap A[i] A[j]
+                 */
+                int temp = A[i];
+                A[i]=A[j];
+                A[j]=temp;
+            }
+            
         }
+        return A;
 
-        return res;
     }
 }

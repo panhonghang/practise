@@ -1455,6 +1455,24 @@ function sortArrayByParityII(A: number[]): number[] {
     return A;
 };
 
+function oddEvenList(head: ListNode | null): ListNode | null {
+    let pre: ListNode | null = head,
+        next: ListNode | null = head && head.next,
+        temp: ListNode | null = next;
+
+    while(pre && next) {
+        pre.next = next.next;
+        next.next =  pre.next && pre.next.next;
+
+        if(pre.next) pre = pre.next;
+        next = next.next;
+    }
+
+    if(pre) pre.next = temp;
+
+    return head;
+};
+
 export {
     sortArrayByParityII,
     kClosest,

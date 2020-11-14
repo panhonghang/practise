@@ -1473,7 +1473,23 @@ function oddEvenList(head: ListNode | null): ListNode | null {
     return head;
 };
 
+function relativeSortArray(arr1: number[], arr2: number[]): number[] {
+    let newArr:number[] = [];
+
+    let otherNum:number[] = arr1.filter(n => arr2.indexOf(n) === -1).sort((a,b) => a - b);
+
+    arr2.forEach(n => {
+        arr1.forEach(item => {
+            if(item == n) newArr.push(item)
+        })
+    })
+
+    newArr.push(...otherNum)
+    return newArr
+};
+
 export {
+    relativeSortArray,
     sortArrayByParityII,
     kClosest,
     maxProfit,

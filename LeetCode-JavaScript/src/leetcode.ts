@@ -1488,7 +1488,28 @@ function relativeSortArray(arr1: number[], arr2: number[]): number[] {
     return newArr
 };
 
+function removeKdigits(num: string, k: number): string {
+    let n = num.length,
+        stack: string[] = [];
+
+    if (n <= k) return '0'
+
+    for (let i = 0; i < n; i++) {
+        while ( k && stack.length && num[i] < stack[stack.length - 1] ) {
+            k--
+            stack.pop()
+        }
+        if ( stack.length || num[i] !== '0' ) {
+            stack.push(num[i])
+        }
+    }
+    while(k--) stack.pop()
+    
+    return stack.join('') || '0'
+};
+
 export {
+    removeKdigits,
     relativeSortArray,
     sortArrayByParityII,
     kClosest,

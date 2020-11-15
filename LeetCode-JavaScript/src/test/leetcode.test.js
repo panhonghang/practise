@@ -53,7 +53,12 @@ import {
   kClosest,
   sortArrayByParityII,
   relativeSortArray,
+  removeKdigits,
 } from '../leetcode';
+
+test('移掉K位数字', () => {
+  expect(removeKdigits("1432219", 3)).toBe("1219")
+})
 
 test('1122. 数组的相对排序', () => {
   expect(relativeSortArray([2,3,1,3,2,4,6,7,9,2,19], [2,1,4,3,9,6])).toEqual([2,2,2,1,4,3,3,9,6,7,19])

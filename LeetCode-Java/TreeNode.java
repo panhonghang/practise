@@ -266,24 +266,54 @@ import java.util.*;
 //     }
 // }
 
-class Solution {
-    public int[] sortArrayByParityII(int[] A) {
-        int j =1 ;
-        for (int i = 0; i < A.length; i+=2) {
-            if (A[i]%2==1){
-                while (A[j]%2==1){
-                    j+=2;
-                }
-                /**
-                 * swap A[i] A[j]
-                 */
-                int temp = A[i];
-                A[i]=A[j];
-                A[j]=temp;
-            }
+// class Solution {
+//     public int[] sortArrayByParityII(int[] A) {
+//         int j =1 ;
+//         for (int i = 0; i < A.length; i+=2) {
+//             if (A[i]%2==1){
+//                 while (A[j]%2==1){
+//                     j+=2;
+//                 }
+//                 /**
+//                  * swap A[i] A[j]
+//                  */
+//                 int temp = A[i];
+//                 A[i]=A[j];
+//                 A[j]=temp;
+//             }
             
-        }
-        return A;
+//         }
+//         return A;
 
+//     }
+// }
+
+class Solution {
+    public String removeKdigits(String num, int k) {
+        Stack<Character> stack = new Stack<>();
+        for (char ch : num.toCharArray()) {
+            while (!stack.isEmpty() && ch < stack.peek() && k > 0) {
+                stack.pop();
+                k--;
+            }
+            stack.push(ch);
+        }
+        
+        while (k > 0 && !stack.isEmpty()) {
+            stack.pop();
+            k--;
+        }
+        
+        StringBuilder ans = new StringBuilder();
+
+        boolean leadingZero = true;
+        for (char ch : stack) {
+            if (leadingZero && ch == '0') {
+                continue;
+            }
+            leadingZero = false;
+            ans.append(ch);
+        }
+        return ans.length() == 0 ? "0" : ans.toString();
     }
 }

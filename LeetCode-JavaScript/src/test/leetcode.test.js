@@ -54,7 +54,17 @@ import {
   sortArrayByParityII,
   relativeSortArray,
   removeKdigits,
+  reconstructQueue,
+  slidingPuzzle,
 } from '../leetcode';
+
+test('滑动谜题', () => {
+  expect(slidingPuzzle([[4,1,2], [5,0,3]])).toBe(5)
+})
+
+test('根据身高重建队列', () => {
+  expect(reconstructQueue([[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]])).toEqual([[5,0], [7,0], [5,2], [6,1], [4,4], [7,1]])
+})
 
 test('移掉K位数字', () => {
   expect(removeKdigits("1432219", 3)).toBe("1219")

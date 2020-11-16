@@ -991,61 +991,61 @@ function longestMountain(A: number[]): number {
  * @param {number[][]} board
  * @return {number}
  */
-var slidingPuzzle = function(board) {
-    let target = [[1,2,3],[4,5,0]].join(''),
-        min = Number.MAX_SAFE_INTEGER,
-        x = 0,
-        y = 0;
+// var slidingPuzzle = function(board) {
+//     let target = [[1,2,3],[4,5,0]].join(''),
+//         min = Number.MAX_SAFE_INTEGER,
+//         x = 0,
+//         y = 0;
 
-    board.forEach((item, i) => {
-        item.forEach((key, j) => {
-            if(key == 0) {
-                x = i;
-                y = j;
-            }
-        })
-    })
+//     board.forEach((item, i) => {
+//         item.forEach((key, j) => {
+//             if(key == 0) {
+//                 x = i;
+//                 y = j;
+//             }
+//         })
+//     })
 
-    const bfs = function(arr, num, x, y, map) {
-        let str = arr.join('');
-        if(x<0 || x>1 || y<0 || y>2) return;
-        if(str === target) {
-            min = Math.min(min, num);
-            return
-        }
+//     const bfs = function(arr, num, x, y, map) {
+//         let str = arr.join('');
+//         if(x<0 || x>1 || y<0 || y>2) return;
+//         if(str === target) {
+//             min = Math.min(min, num);
+//             return
+//         }
 
-        if(map.has(str)) {
-            return;
-        } else {
-            map.set(str, 1);
-        }
+//         if(map.has(str)) {
+//             return;
+//         } else {
+//             map.set(str, 1);
+//         }
 
-        if(x+1 === 1) {
-            [arr[x][y], arr[x+1][y]] = [arr[x+1][y], arr[x][y]];
-            bfs(arr.slice(), num+1, x+1, y, new Map(map));
-            [arr[x][y], arr[x+1][y]] = [arr[x+1][y], arr[x][y]];
-        } else {
-            [arr[x][y], arr[x-1][y]] = [arr[x-1][y], arr[x][y]];
-            bfs(arr.slice(), num+1, x-1, y, new Map(map));
-            [arr[x][y], arr[x-1][y]] = [arr[x-1][y], arr[x][y]];
-        }
+//         if(x+1 === 1) {
+//             [arr[x][y], arr[x+1][y]] = [arr[x+1][y], arr[x][y]];
+//             bfs(arr.slice(), num+1, x+1, y, new Map(map));
+//             [arr[x][y], arr[x+1][y]] = [arr[x+1][y], arr[x][y]];
+//         } else {
+//             [arr[x][y], arr[x-1][y]] = [arr[x-1][y], arr[x][y]];
+//             bfs(arr.slice(), num+1, x-1, y, new Map(map));
+//             [arr[x][y], arr[x-1][y]] = [arr[x-1][y], arr[x][y]];
+//         }
 
-        if(y+1 < 3) {
-            [arr[x][y], arr[x][y+1]] = [arr[x][y+1], arr[x][y]];
-            bfs(arr.slice(), num+1, x, y+1, new Map(map));
-            [arr[x][y], arr[x][y+1]] = [arr[x][y+1], arr[x][y]];
-        }
-        if(y-1 > -1) {
-            [arr[x][y], arr[x][y-1]] = [arr[x][y-1], arr[x][y]];
-            bfs(arr.slice(), num+1, x, y-1, new Map(map));
-            [arr[x][y], arr[x][y-1]] = [arr[x][y-1], arr[x][y]];
-        };
-    }
+//         if(y+1 < 3) {
+//             [arr[x][y], arr[x][y+1]] = [arr[x][y+1], arr[x][y]];
+//             bfs(arr.slice(), num+1, x, y+1, new Map(map));
+//             [arr[x][y], arr[x][y+1]] = [arr[x][y+1], arr[x][y]];
+//         }
+//         if(y-1 > -1) {
+//             [arr[x][y], arr[x][y-1]] = [arr[x][y-1], arr[x][y]];
+//             bfs(arr.slice(), num+1, x, y-1, new Map(map));
+//             [arr[x][y], arr[x][y-1]] = [arr[x][y-1], arr[x][y]];
+//         };
+//     }
 
-    bfs(board.slice(), 0, x, y, new Map())
+//     bfs(board.slice(), 0, x, y, new Map())
 
-    return min === Number.MAX_SAFE_INTEGER ? -1 : min;
-};
+//     return min === Number.MAX_SAFE_INTEGER ? -1 : min;
+// };
 
 function smallerNumbersThanCurrent(nums: number[]): number[] {
     const res=nums.slice();
@@ -1518,7 +1518,48 @@ function reconstructQueue(people: number[][]): number[][] {
     return a;
 };
 
+function slidingPuzzle(board: number[][]): number {
+    let start:string = board[0].concat(board[1]).join(''),
+        queue:string[] = [start],
+        visited:Set<string> = new Set(queue),
+        step:number = 0;
+    
+    const target:string = '123450',
+          neighborMap:number[][] = [[1, 3], [0, 2, 4], [1, 5], [0, 4], [1, 3, 5], [2, 4]]
+
+    while (queue.length) {
+        let len = queue.length
+        for (let i = 0; i < len; i++){
+            let curBoard:string = queue.shift()
+            if (curBoard === target) return step
+            
+            let zeroIndex:number = curBoard && curBoard.indexOf('0') || 0;
+            
+            let neighbor = neighborMap[zeroIndex]
+            neighbor.forEach(neighborPos => {
+                let newBoard:string = swap(curBoard || '', zeroIndex, neighborPos)
+
+                if (visited && !visited.has(newBoard)) {
+                    queue.push(newBoard)
+                    visited.add(newBoard)
+                }
+            })
+
+        }
+        step++
+    }
+    return -1
+};
+
+function swap (str:string, i:number, j:number): string {
+  let str1:string[] = str.split('');
+  [str1[i], str1[j]] = [str1[j], str1[i]]
+  return str1.join('')
+}
+
 export {
+    slidingPuzzle,
+    reconstructQueue,
     removeKdigits,
     relativeSortArray,
     sortArrayByParityII,

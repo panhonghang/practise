@@ -288,32 +288,45 @@ import java.util.*;
 //     }
 // }
 
-class Solution {
-    public String removeKdigits(String num, int k) {
-        Stack<Character> stack = new Stack<>();
-        for (char ch : num.toCharArray()) {
-            while (!stack.isEmpty() && ch < stack.peek() && k > 0) {
-                stack.pop();
-                k--;
-            }
-            stack.push(ch);
-        }
+// class Solution {
+//     public String removeKdigits(String num, int k) {
+//         Stack<Character> stack = new Stack<>();
+//         for (char ch : num.toCharArray()) {
+//             while (!stack.isEmpty() && ch < stack.peek() && k > 0) {
+//                 stack.pop();
+//                 k--;
+//             }
+//             stack.push(ch);
+//         }
         
-        while (k > 0 && !stack.isEmpty()) {
-            stack.pop();
-            k--;
-        }
+//         while (k > 0 && !stack.isEmpty()) {
+//             stack.pop();
+//             k--;
+//         }
         
-        StringBuilder ans = new StringBuilder();
+//         StringBuilder ans = new StringBuilder();
 
-        boolean leadingZero = true;
-        for (char ch : stack) {
-            if (leadingZero && ch == '0') {
-                continue;
-            }
-            leadingZero = false;
-            ans.append(ch);
+//         boolean leadingZero = true;
+//         for (char ch : stack) {
+//             if (leadingZero && ch == '0') {
+//                 continue;
+//             }
+//             leadingZero = false;
+//             ans.append(ch);
+//         }
+//         return ans.length() == 0 ? "0" : ans.toString();
+//     }
+// }
+
+class Solution {
+    public int[][] reconstructQueue(int[][] people) {
+        Arrays.sort(people, (o1, o2) -> o1[0] == o2[0] ? o1[1] - o2[1] : o2[0] - o1[0]);
+
+        LinkedList<int[]> list = new LinkedList<>();
+        for (int[] i : people) {
+            list.add(i[1], i);
         }
-        return ans.length() == 0 ? "0" : ans.toString();
+
+        return list.toArray(new int[list.size()][2]);
     }
 }

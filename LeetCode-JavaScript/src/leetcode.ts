@@ -1508,6 +1508,16 @@ function removeKdigits(num: string, k: number): string {
     return stack.join('') || '0'
 };
 
+function reconstructQueue(people: number[][]): number[][] {
+    let a:number[][] = [];
+    
+    people.sort((a,b)=>a[0]==b[0] ? a[1]-b[1] : b[0]-a[0])
+    
+    for(let i of people) a.splice(i[1],0,i)
+
+    return a;
+};
+
 export {
     removeKdigits,
     relativeSortArray,

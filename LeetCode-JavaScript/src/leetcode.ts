@@ -60,10 +60,10 @@ function postorderTraversal(root: TreeNode | null): number[] {
 
 function insertIntoBST(root:TreeNode, val:number):TreeNode {
   if(!root) return new TreeNode(val);
-  if(root.val > val) {
+  if(root.val > val && root.left) {
      root.left = insertIntoBST(root.left,val);
   } else {
-      root.right = insertIntoBST(root.right,val);
+      root.right = root.right && insertIntoBST(root.right,val);
   }
   return root;
 };
@@ -286,7 +286,7 @@ function hasCycle (head:ListNode | null):boolean {
       next:ListNode | null = head;
 
   while(next) {
-      pre = pre.next;
+      pre = pre && pre.next;
       next = next.next && next.next.next || null;
       
       if(next && next === pre) return true;
@@ -587,14 +587,14 @@ function backspaceCompare(S: string, T: string): boolean {
 };
 
 /* 额外数组解决 */
-function reorderList1(head: ListNode | null): void | ListNode {
+function reorderList1(head: ListNode | null): null | ListNode {
   let node:ListNode | null = head,
       nodeArr:ListNode[] = [],
       pre:number = 1,
       next:number = 0,
       res:ListNode | null = head;
 
-  if(!head) return;
+  if(!head) return null;
 
   while(node) {
       nodeArr.push(new ListNode(node.val));
@@ -621,12 +621,12 @@ function reorderList1(head: ListNode | null): void | ListNode {
   return res
 };
 /* 双指针解决 */
-function reorderList2(head: ListNode | null): void | ListNode{
+function reorderList2(head: ListNode | null): null | ListNode{
   let pre:ListNode | null = head,
       next:ListNode | null = head && head.next,
       res: ListNode | null = head;
 
-  if(!head) return;
+  if(!head) return null;
 
   while(next && next.next) {
       pre = pre && pre.next;
@@ -1073,7 +1073,7 @@ const RestoreTreeStructure = (data: CategoryItem[]): MapItem[] => {
 
     data.forEach(item => {
         if (map.has(item.parentId)) {
-            map.set(item.parentId, [...map.get(item.parentId), { label: item.label, value: item.value }]);
+            map.set(item.parentId, [...(map.get(item.parentId)||[]), { label: item.label, value: item.value }]);
         } else {
             map.set(item.parentId, [{ label: item.label, value: item.value }]);
         }
@@ -1530,7 +1530,7 @@ function slidingPuzzle(board: number[][]): number {
     while (queue.length) {
         let len = queue.length
         for (let i = 0; i < len; i++){
-            let curBoard:string = queue.shift()
+            let curBoard:string | undefined = queue.shift()
             if (curBoard === target) return step
             
             let zeroIndex:number = curBoard && curBoard.indexOf('0') || 0;
@@ -1557,7 +1557,30 @@ function swap (str:string, i:number, j:number): string {
   return str1.join('')
 }
 
+function allCellsDistOrder(R: number, C: number, r0: number, c0: number): number[][] {
+    let res:number[][] = [],
+        map:Map<number, number[][]> = new Map();
+    
+    for(let i = 0; i < R; i++) {
+        for(let j = 0; j < C; j++) {
+            let num = Math.abs(i-r0) + Math.abs(j-c0);
+            if(map.has(num)) {
+                map.set(num, [...(map.get(num)||[]),[i, j]])
+            } else {
+                map.set(num, [[i, j]])
+            }
+        }
+    }
+
+    for(let item of [...map.entries()].sort((a,b)=>a[0]-b[0])) {
+        res.push(...item[1])
+    }
+
+    return res;
+};
+
 export {
+    allCellsDistOrder,
     slidingPuzzle,
     reconstructQueue,
     removeKdigits,

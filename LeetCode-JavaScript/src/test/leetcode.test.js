@@ -56,7 +56,12 @@ import {
   removeKdigits,
   reconstructQueue,
   slidingPuzzle,
+  allCellsDistOrder,
 } from '../leetcode';
+
+test('滑动谜题', () => {
+  expect(allCellsDistOrder(3, 5, 2, 3)).toEqual([[2,3],[1,3],[2,2],[2,4],[0,3],[1,2],[1,4],[2,1],[0,2],[0,4],[1,1],[2,0],[0,1],[1,0],[0,0]])
+})
 
 test('滑动谜题', () => {
   expect(slidingPuzzle([[4,1,2], [5,0,3]])).toBe(5)

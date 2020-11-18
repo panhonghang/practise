@@ -1579,7 +1579,33 @@ function allCellsDistOrder(R: number, C: number, r0: number, c0: number): number
     return res;
 };
 
+function canCompleteCircuit(gas: number[], cost: number[]): number {
+    const sum = (arr: number[]) => arr.reduce((prev, current) => prev+current);
+
+    const run = function(start:number): boolean {
+        let sum:number = 0,
+            len = gas.length;
+
+        for(let i = 0; i < len; i++) {
+            let index:number = i+start >= len ? i+start-len : i+start;
+            
+            sum += gas[index] - cost[index]
+            if(sum < 0) return false
+        }
+        return true;
+    }
+    // gas小于cost的时候直接返回-1
+    if(sum(gas) < sum(cost)) return -1;
+
+    for(let i = 0, len = gas.length; i < len; i++) {
+        if(gas[i] >= cost[i] && run(i)) return i;
+    }
+
+    return -1;
+};
+
 export {
+    canCompleteCircuit,
     allCellsDistOrder,
     slidingPuzzle,
     reconstructQueue,

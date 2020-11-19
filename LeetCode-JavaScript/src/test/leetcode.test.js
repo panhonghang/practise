@@ -58,7 +58,16 @@ import {
   slidingPuzzle,
   allCellsDistOrder,
   canCompleteCircuit,
+  moveZeroes,
 } from '../leetcode';
+
+test("移动零", () => {
+  expect(moveZeroes([0])).toEqual([0])
+})
+
+test("移动零", () => {
+  expect(moveZeroes([0, 1, 0, 2, 0, 3, 4])).toEqual([1, 2, 3, 4, 0, 0, 0])
+})
 
 test('加油站', () => {
   expect(canCompleteCircuit([1,2,3,4,5], [3,4,5,1,2])).toBe(3)

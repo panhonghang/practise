@@ -1604,7 +1604,31 @@ function canCompleteCircuit(gas: number[], cost: number[]): number {
     return -1;
 };
 
+function moveZeroes(nums: number[]): void | number[] {
+    let pre:number = 0,
+        next:number = 0;
+    while(next < nums.length) {
+        if(nums[pre] == 0) {
+            while(nums[next] == 0) {
+                next++;
+                if(next >= nums.length) break;
+            }
+        
+            if(next >= nums.length) break;                
+            
+            let temp:number = nums[pre];
+            nums[pre] = nums[next];
+            nums[next] = temp;
+        } 
+        
+        pre++;
+        next++;
+    }
+    return nums;
+};
+
 export {
+    moveZeroes,
     canCompleteCircuit,
     allCellsDistOrder,
     slidingPuzzle,

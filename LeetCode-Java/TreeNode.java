@@ -331,25 +331,49 @@ import java.util.*;
 //     }
 // }
 
+// class Solution {
+//     public int canCompleteCircuit(int[] gas, int[] cost) {
+//         int sum = 0,
+//             start = 0;
+
+//         if(sum(gas) < sum(cost)) return -1;
+
+//         for(int i = 0; i < gas.length; i++){
+//             sum += gas[i] - cost[i];
+//             if (sum < 0) {
+//                 start = i + 1;
+//                 sum = 0;
+//             }
+//         }
+
+//         return start;
+//     }
+
+//     public int sum(int[] arr) {
+//         return Arrays.stream(arr).reduce(0, (acc, n) -> acc + n);
+//     }
+// }
+
 class Solution {
-    public int canCompleteCircuit(int[] gas, int[] cost) {
-        int sum = 0,
-            start = 0;
-
-        if(sum(gas) < sum(cost)) return -1;
-
-        for(int i = 0; i < gas.length; i++){
-            sum += gas[i] - cost[i];
-            if (sum < 0) {
-                start = i + 1;
-                sum = 0;
-            }
+    public void moveZeroes(int[] nums) {
+        int pre = 0,
+            next = 0;
+        while(next < nums.length) {
+            if(nums[pre] == 0) {
+                while(nums[next] == 0) {
+                    next++;
+                    if(next >= nums.length) break;
+                }
+            
+                if(next >= nums.length) break;                
+                
+                int temp = nums[pre];
+                nums[pre] = nums[next];
+                nums[next] = temp;
+            } 
+            
+            pre++;
+            next++;
         }
-
-        return start;
-    }
-
-    public int sum(int[] arr) {
-        return Arrays.stream(arr).reduce(0, (acc, n) -> acc + n);
     }
 }

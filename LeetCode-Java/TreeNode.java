@@ -354,26 +354,52 @@ import java.util.*;
 //     }
 // }
 
-class Solution {
-    public void moveZeroes(int[] nums) {
-        int pre = 0,
-            next = 0;
-        while(next < nums.length) {
-            if(nums[pre] == 0) {
-                while(nums[next] == 0) {
-                    next++;
-                    if(next >= nums.length) break;
-                }
+// class Solution {
+//     public void moveZeroes(int[] nums) {
+//         int pre = 0,
+//             next = 0;
+//         while(next < nums.length) {
+//             if(nums[pre] == 0) {
+//                 while(nums[next] == 0) {
+//                     next++;
+//                     if(next >= nums.length) break;
+//                 }
             
-                if(next >= nums.length) break;                
+//                 if(next >= nums.length) break;                
                 
-                int temp = nums[pre];
-                nums[pre] = nums[next];
-                nums[next] = temp;
-            } 
+//                 int temp = nums[pre];
+//                 nums[pre] = nums[next];
+//                 nums[next] = temp;
+//             } 
             
-            pre++;
-            next++;
+//             pre++;
+//             next++;
+//         }
+//     }
+// }
+
+class Solution {
+    public ListNode insertionSortList(ListNode head) {
+        if(head == null || head.next == null) return head;
+        ListNode dummyHead = new ListNode(-1);
+        dummyHead.next = head;
+        ListNode prev = head;
+        ListNode node = head.next;
+        while(node != null){
+            if(prev.val > node.val){
+                ListNode temp = dummyHead;
+                while(temp.next.val < node.val){
+                    temp = temp.next;
+                }
+                prev.next = node.next;
+                node.next = temp.next;
+                temp.next = node;
+                node = prev.next;
+            }else{
+                prev = prev.next;
+                node = node.next;
+            }
         }
+        return dummyHead.next;
     }
 }

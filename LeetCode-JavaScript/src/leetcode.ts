@@ -1627,7 +1627,40 @@ function moveZeroes(nums: number[]): void | number[] {
     return nums;
 };
 
+function insertionSortList(head: ListNode | null): ListNode | null {
+    let pre:ListNode | null = head,
+        current:ListNode | null = head && head.next;
+
+    while(current !== null) {
+        let pre1:ListNode|null = null,
+            current1:ListNode|null = head;
+        
+        while(current1 !== current && current1 !== null) {
+            if(current1.val > current.val) {
+                if(head == current1) head = current;
+                if(pre1 !== null) pre1.next = current;
+                if(pre !== null) pre.next = current.next;
+                current.next = current1;
+                break;
+            } else {
+                pre1 = current1;
+                current1 = current1.next;
+            }
+        }
+
+        if(pre && current !== pre.next) {
+            current = pre.next;
+        } else {
+            pre = current;
+            current = current.next;
+        }
+    }
+
+    return head;
+};
+
 export {
+    insertionSortList,
     moveZeroes,
     canCompleteCircuit,
     allCellsDistOrder,

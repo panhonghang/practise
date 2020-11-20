@@ -59,7 +59,12 @@ import {
   allCellsDistOrder,
   canCompleteCircuit,
   moveZeroes,
+  insertionSortList,
 } from '../leetcode';
+
+test("插入链表", () => {
+  expect(insertionSortList(null)).toEqual(null)
+})
 
 test("移动零", () => {
   expect(moveZeroes([0])).toEqual([0])

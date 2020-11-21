@@ -1659,7 +1659,21 @@ function insertionSortList(head: ListNode | null): ListNode | null {
     return head;
 };
 
+function sortList(head: ListNode | null): ListNode | null {
+    if (!head) return null;
+    let r:ListNode[] = [];
+    while (head) {
+        r.push(head)
+        let tmp:ListNode | null = head.next
+        head.next = null
+        head = tmp
+    }
+    r.sort((a, b) => a.val - b.val).reduce((p, v) => p.next = v)
+    return r[0]
+};
+
 export {
+    sortList,
     insertionSortList,
     moveZeroes,
     canCompleteCircuit,

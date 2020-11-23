@@ -1680,7 +1680,27 @@ function isAnagram(s: string, t: string): boolean {
 function sortString(s: string) {
   return s.split('').sort().join('')
 }
+
+function findMinArrowShots(points: number[][]): number {
+    if(points.length === 0) return 0;
+
+    points.sort((a, b)=> a[0] - b[0]);
+    
+    let posEnd:number = points[0][1],
+        res:number = 1;
+    for (let point of points) {
+        if (point[0] <= posEnd) {
+            posEnd = Math.min(point[1], posEnd)
+        } else {
+            res ++;
+            posEnd = point[1]
+        }
+    }
+    return res;
+};
+
 export {
+    findMinArrowShots,
     isAnagram,
     sortList,
     insertionSortList,

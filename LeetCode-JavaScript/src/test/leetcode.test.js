@@ -60,7 +60,12 @@ import {
   canCompleteCircuit,
   moveZeroes,
   insertionSortList,
+  findMinArrowShots,
 } from '../leetcode';
+
+test("射气球", () => {
+  expect(findMinArrowShots([[10,16],[2,8],[1,6],[7,12]])).toBe(2)
+})
 
 test("插入链表", () => {
   expect(insertionSortList(null)).toEqual(null)

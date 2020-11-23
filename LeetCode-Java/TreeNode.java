@@ -378,34 +378,56 @@ import java.util.*;
 //     }
 // }
 
-class Solution {
-    public class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) { val = x; }
-    }
+// class Solution {
+//     public class ListNode {
+//         int val;
+//         ListNode next;
+//         ListNode(int x) { val = x; }
+//     }
     
-    public ListNode insertionSortList(ListNode head) {
-        if(head == null || head.next == null) return head;
-        ListNode dummyHead = new ListNode(-1);
-        dummyHead.next = head;
-        ListNode prev = head;
-        ListNode node = head.next;
-        while(node != null){
-            if(prev.val > node.val){
-                ListNode temp = dummyHead;
-                while(temp.next.val < node.val){
-                    temp = temp.next;
-                }
-                prev.next = node.next;
-                node.next = temp.next;
-                temp.next = node;
-                node = prev.next;
-            }else{
-                prev = prev.next;
-                node = node.next;
+//     public ListNode insertionSortList(ListNode head) {
+//         if(head == null || head.next == null) return head;
+//         ListNode dummyHead = new ListNode(-1);
+//         dummyHead.next = head;
+//         ListNode prev = head;
+//         ListNode node = head.next;
+//         while(node != null){
+//             if(prev.val > node.val){
+//                 ListNode temp = dummyHead;
+//                 while(temp.next.val < node.val){
+//                     temp = temp.next;
+//                 }
+//                 prev.next = node.next;
+//                 node.next = temp.next;
+//                 temp.next = node;
+//                 node = prev.next;
+//             }else{
+//                 prev = prev.next;
+//                 node = node.next;
+//             }
+//         }
+//         return dummyHead.next;
+//     }
+// }
+
+class Solution {
+    public int findMinArrowShots(int[][] points) {
+        if(points.length == 0) return 0;
+        int res = 1;
+        float end = 0;
+
+        Arrays.sort(points, (a, b)-> a[1] > b[1] ? 1 : -1);
+
+        end = points[0][1];
+        for(int i = 0, len = points.length; i < len; i++) {
+            if(end < points[i][0]) {
+                res++;
+                end = points[i][1];
+            } else {
+                end = Math.min(end, points[i][1]);
             }
         }
-        return dummyHead.next;
+
+        return res;
     }
 }

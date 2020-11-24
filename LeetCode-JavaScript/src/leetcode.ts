@@ -1698,7 +1698,27 @@ function findMinArrowShots(points: number[][]): number {
     }
     return res;
 };
+const getDepth = (node:TreeNode | null) =>{
+    let depth = 0;
+    while(node){
+        depth++;
+        node = node.left;        
+    }
+    return depth;
+}
 
+function countNodes(root: TreeNode | null): number {
+    if(!root){
+        return 0;
+    }
+    const left = getDepth(root.left);
+    const right = getDepth(root.right);
+    if(left === right){
+        return countNodes(root.right) + 2**left;
+    }else{
+        return countNodes(root.left) + 2**right;
+    }
+};
 export {
     findMinArrowShots,
     isAnagram,

@@ -1674,10 +1674,10 @@ function sortList(head: ListNode | null): ListNode | null {
 
 function isAnagram(s: string, t: string): boolean {
   if (s.length !== t.length) return false
-  return sortString(s) === sortString(t)
+  return sortStringFn(s) === sortStringFn(t)
 };
 
-function sortString(s: string) {
+function sortStringFn(s: string) {
   return s.split('').sort().join('')
 }
 
@@ -1719,7 +1719,35 @@ function countNodes(root: TreeNode | null): number {
         return countNodes(root.left) + 2**right;
     }
 };
+
+function sortString(s: string): string {
+    const hash:number[] = new Array(26).fill(0);
+    for (let i = 0; i < s.length; i++) hash[s.charCodeAt(i) - 97]++;
+
+    const res:string[] = [];
+    let rest:number = s.length;
+    while (rest > 0) {
+        for (let i = 0; i < 26; i++) {
+            if (hash[i] > 0) {
+                res.push(String.fromCharCode(i + 97));
+                hash[i]--;
+                rest--;
+            }
+        }
+        for (let i = 25; i >= 0; i--) {
+            if (hash[i] > 0) {
+                res.push(String.fromCharCode(i + 97));
+                hash[i]--;
+                rest--;
+            }
+        }
+    }
+    return res.join('');
+};
+
 export {
+    sortString,
+    countNodes,
     findMinArrowShots,
     isAnagram,
     sortList,

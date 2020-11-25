@@ -410,24 +410,49 @@ import java.util.*;
 //     }
 // }
 
+// class Solution {
+//     public int findMinArrowShots(int[][] points) {
+//         if(points.length == 0) return 0;
+//         int res = 1;
+//         float end = 0;
+
+//         Arrays.sort(points, (a, b)-> a[1] > b[1] ? 1 : -1);
+
+//         end = points[0][1];
+//         for(int i = 0, len = points.length; i < len; i++) {
+//             if(end < points[i][0]) {
+//                 res++;
+//                 end = points[i][1];
+//             } else {
+//                 end = Math.min(end, points[i][1]);
+//             }
+//         }
+
+//         return res;
+//     }
+// }
+
 class Solution {
-    public int findMinArrowShots(int[][] points) {
-        if(points.length == 0) return 0;
-        int res = 1;
-        float end = 0;
+    public String sortString(String s) {
+        int[] hash = new int[26];
+        for (int i = 0; i < s.length(); i++) hash[s.charAt(i) - 'a']++;
 
-        Arrays.sort(points, (a, b)-> a[1] > b[1] ? 1 : -1);
+        StringBuffer res = new StringBuffer();
 
-        end = points[0][1];
-        for(int i = 0, len = points.length; i < len; i++) {
-            if(end < points[i][0]) {
-                res++;
-                end = points[i][1];
-            } else {
-                end = Math.min(end, points[i][1]);
+        while (res.length() < s.length()) {
+            for (int i = 0; i < 26; i++) {
+                if (hash[i] > 0) {
+                    res.append((char) (i + 'a'));
+                    hash[i]--;
+                }
+            }
+            for (int i = 25; i >= 0; i--) {
+                if (hash[i] > 0) {
+                    res.append((char) (i + 'a'));
+                    hash[i]--;
+                }
             }
         }
-
-        return res;
+        return res.toString();
     }
 }

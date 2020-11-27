@@ -1779,6 +1779,27 @@ function maximumGap(nums: number[]): number {
     return ret;
 };
 
+function fourSumCount(A: number[], B: number[], C: number[], D: number[]): number {
+    let map:Map<number, number> = new Map(),
+        res:number = 0;
+    
+    A.forEach(a => B.forEach(b => {
+        let sum:number = a + b;
+        if (map.has(sum)) {
+            map.set(sum, (map.get(sum)||0)+1);
+        } else {
+            map.set(sum, 1);
+        }
+    }))
+
+    C.forEach(c => D.forEach(d => {
+        let sum:number = - (c + d);
+        if(map.has(sum)) res += map.get(sum) || 1;
+    }))
+
+    return res;
+};
+
 export {
     sortString,
     countNodes,

@@ -432,27 +432,65 @@ import java.util.*;
 //     }
 // }
 
+// class Solution {
+//     public String sortString(String s) {
+//         int[] hash = new int[26];
+//         for (int i = 0; i < s.length(); i++) hash[s.charAt(i) - 'a']++;
+
+//         StringBuffer res = new StringBuffer();
+
+//         while (res.length() < s.length()) {
+//             for (int i = 0; i < 26; i++) {
+//                 if (hash[i] > 0) {
+//                     res.append((char) (i + 'a'));
+//                     hash[i]--;
+//                 }
+//             }
+//             for (int i = 25; i >= 0; i--) {
+//                 if (hash[i] > 0) {
+//                     res.append((char) (i + 'a'));
+//                     hash[i]--;
+//                 }
+//             }
+//         }
+//         return res.toString();
+//     }
+// }
+
 class Solution {
-    public String sortString(String s) {
-        int[] hash = new int[26];
-        for (int i = 0; i < s.length(); i++) hash[s.charAt(i) - 'a']++;
+    public int maximumGap(int[] nums) {
+        if (nums.length < 2) return 0;
+        int len = nums.length;
 
-        StringBuffer res = new StringBuffer();
-
-        while (res.length() < s.length()) {
-            for (int i = 0; i < 26; i++) {
-                if (hash[i] > 0) {
-                    res.append((char) (i + 'a'));
-                    hash[i]--;
-                }
-            }
-            for (int i = 25; i >= 0; i--) {
-                if (hash[i] > 0) {
-                    res.append((char) (i + 'a'));
-                    hash[i]--;
-                }
-            }
+        int max = -1, min = Integer.MAX_VALUE;
+        for (int i  = 0; i < len; i++) {
+            max = Math.max(nums[i], max);
+            min = Math.min(nums[i], min);
         }
-        return res.toString();
+
+        if (max - min == 0) return 0;
+        int[] bucketMin = new int[len - 1];
+        int[] bucketMax = new int[len - 1];
+        Arrays.fill(bucketMax, -1);
+        Arrays.fill(bucketMin, Integer.MAX_VALUE);
+
+        int interval = (int)Math.ceil((double)(max - min) / (len - 1));
+        for (int i = 0; i < len; i++) {
+            int index = (nums[i] - min) / interval;
+            if (nums[i] == min || nums[i] == max) continue;
+
+            bucketMax[index] = Math.max(bucketMax[index], nums[i]);
+            bucketMin[index] = Math.min(bucketMin[index], nums[i]);
+        }
+
+        int maxGap = 0;
+        int preMax = min;
+        for (int i = 0; i < len - 1; i++) {
+            if (bucketMax[i] == -1) continue;
+            maxGap = Math.max(bucketMin[i] - preMax, maxGap);
+            preMax = bucketMax[i];
+        }
+        maxGap = Math.max(maxGap, max - preMax);
+        return maxGap;
     }
 }

@@ -4,6 +4,7 @@ import java.util.*;
 //         int pre = 0,
 //             next = 0,
 //             temp = 0;
+import java.util.stream.Stream;
             
 //         char[] chars = S.toCharArray();
 //         List<Integer> resArr = new ArrayList<>();
@@ -457,40 +458,61 @@ import java.util.*;
 //     }
 // }
 
+// class Solution {
+//     public int maximumGap(int[] nums) {
+//         if (nums.length < 2) return 0;
+//         int len = nums.length;
+
+//         int max = -1, min = Integer.MAX_VALUE;
+//         for (int i  = 0; i < len; i++) {
+//             max = Math.max(nums[i], max);
+//             min = Math.min(nums[i], min);
+//         }
+
+//         if (max - min == 0) return 0;
+//         int[] bucketMin = new int[len - 1];
+//         int[] bucketMax = new int[len - 1];
+//         Arrays.fill(bucketMax, -1);
+//         Arrays.fill(bucketMin, Integer.MAX_VALUE);
+
+//         int interval = (int)Math.ceil((double)(max - min) / (len - 1));
+//         for (int i = 0; i < len; i++) {
+//             int index = (nums[i] - min) / interval;
+//             if (nums[i] == min || nums[i] == max) continue;
+
+//             bucketMax[index] = Math.max(bucketMax[index], nums[i]);
+//             bucketMin[index] = Math.min(bucketMin[index], nums[i]);
+//         }
+
+//         int maxGap = 0;
+//         int preMax = min;
+//         for (int i = 0; i < len - 1; i++) {
+//             if (bucketMax[i] == -1) continue;
+//             maxGap = Math.max(bucketMin[i] - preMax, maxGap);
+//             preMax = bucketMax[i];
+//         }
+//         maxGap = Math.max(maxGap, max - preMax);
+//         return maxGap;
+//     }
+// }
+
 class Solution {
-    public int maximumGap(int[] nums) {
-        if (nums.length < 2) return 0;
-        int len = nums.length;
-
-        int max = -1, min = Integer.MAX_VALUE;
-        for (int i  = 0; i < len; i++) {
-            max = Math.max(nums[i], max);
-            min = Math.min(nums[i], min);
+    public int fourSumCount(int[] A, int[] B, int[] C, int[] D) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int a : A) {
+            for (int b : B) {
+                map.put(a + b, map.getOrDefault(a + b, 0) + 1);
+            }
         }
 
-        if (max - min == 0) return 0;
-        int[] bucketMin = new int[len - 1];
-        int[] bucketMax = new int[len - 1];
-        Arrays.fill(bucketMax, -1);
-        Arrays.fill(bucketMin, Integer.MAX_VALUE);
-
-        int interval = (int)Math.ceil((double)(max - min) / (len - 1));
-        for (int i = 0; i < len; i++) {
-            int index = (nums[i] - min) / interval;
-            if (nums[i] == min || nums[i] == max) continue;
-
-            bucketMax[index] = Math.max(bucketMax[index], nums[i]);
-            bucketMin[index] = Math.min(bucketMin[index], nums[i]);
+        int res = 0;
+        for (int c : C) {
+            for (int d : D) {
+                if (map.containsKey(0 - c - d)) {
+                    res += map.get(0 - c - d);
+                }
+            }
         }
-
-        int maxGap = 0;
-        int preMax = min;
-        for (int i = 0; i < len - 1; i++) {
-            if (bucketMax[i] == -1) continue;
-            maxGap = Math.max(bucketMin[i] - preMax, maxGap);
-            preMax = bucketMax[i];
-        }
-        maxGap = Math.max(maxGap, max - preMax);
-        return maxGap;
+        return res;
     }
 }

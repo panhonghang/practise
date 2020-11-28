@@ -1800,6 +1800,17 @@ function fourSumCount(A: number[], B: number[], C: number[], D: number[]): numbe
     return res;
 };
 
+function largestPerimeter(A: number[]): number {
+    A.sort((a, b)=> a > b ? 1 : -1);
+
+    for (let i = A.length-1; i > 1; i--) {
+        if (A[i] < A[i-1] + A[i-2]) {
+            return A[i] + A[i-1] + A[i-2]
+        }
+    }
+    return 0;
+};
+
 export {
     sortString,
     countNodes,

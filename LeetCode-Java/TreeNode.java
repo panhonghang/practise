@@ -517,60 +517,71 @@ import java.util.stream.Stream;
 //     }
 // }
 
+// class Solution {
+//     // 一个递增排列的数组，用于二分查找
+//     private ArrayList<Long> array;
+
+//     // 将value添加进有序数组array中
+//     private void add(long value) {
+//         int low = 0, high = array.size(), mid;
+//         long v;
+//         while (low < high) {
+//             mid = (low + high)>>1;
+//             v = array.get(mid);
+//             if(v > value) {
+//                 high = mid;
+//             } else if(v == value) {
+//                 low = mid;
+//                 break;
+//             } else {
+//                 low = mid + 1;
+//             }
+//         }
+//         array.add(low, value);
+//     }
+
+//     // 从有序数组array中找到比value小的元素个数
+//     private int getLt(int value) {
+//         int low =0, high = array.size(), mid;
+//         long v;
+//         while (low < high) {
+//             mid = (low + high)>>1;
+//             v = array.get(mid);
+//             if(v < value) {
+//                 low = mid + 1;
+//             } else if(v >= value){
+//                 high = mid;
+//             }
+//         }
+//         return low;
+//     }
+
+//     public int reversePairs(int[] nums) {
+//         int n = nums.length;
+//         if(n <= 1)return 0;
+
+//         int ans = 0;
+//         array = new ArrayList<>();
+//         // 一开始，将最后一个元素的2倍加入array
+//         array.add(((long)nums[n-1])<<1);
+
+//         for (int i = n-2; i >= 0; i--) {
+//             // 找到当前array中比nums[i]小的元素个数
+//             ans += getLt(nums[i]);
+//             // 将nums[i]的2倍添加进array
+//             add(((long)nums[i])<<1);
+//         }
+//         return ans;
+//     }
+// }
+
 class Solution {
-    // 一个递增排列的数组，用于二分查找
-    private ArrayList<Long> array;
+    public int largestPerimeter(int[] A) {
+        Arrays.sort(A);
 
-    // 将value添加进有序数组array中
-    private void add(long value) {
-        int low = 0, high = array.size(), mid;
-        long v;
-        while (low < high) {
-            mid = (low + high)>>1;
-            v = array.get(mid);
-            if(v > value) {
-                high = mid;
-            } else if(v == value) {
-                low = mid;
-                break;
-            } else {
-                low = mid + 1;
-            }
+        for (int i = A.length - 1; i > 0; i--) {
+            if(A[i] < A[i-1] + A[i-2]) return A[i] + A[i-1] + A[i-2];
         }
-        array.add(low, value);
-    }
-
-    // 从有序数组array中找到比value小的元素个数
-    private int getLt(int value) {
-        int low =0, high = array.size(), mid;
-        long v;
-        while (low < high) {
-            mid = (low + high)>>1;
-            v = array.get(mid);
-            if(v < value) {
-                low = mid + 1;
-            } else if(v >= value){
-                high = mid;
-            }
-        }
-        return low;
-    }
-
-    public int reversePairs(int[] nums) {
-        int n = nums.length;
-        if(n <= 1)return 0;
-
-        int ans = 0;
-        array = new ArrayList<>();
-        // 一开始，将最后一个元素的2倍加入array
-        array.add(((long)nums[n-1])<<1);
-
-        for (int i = n-2; i >= 0; i--) {
-            // 找到当前array中比nums[i]小的元素个数
-            ans += getLt(nums[i]);
-            // 将nums[i]的2倍添加进array
-            add(((long)nums[i])<<1);
-        }
-        return ans;
+        return 0;
     }
 }

@@ -575,13 +575,49 @@ import java.util.stream.Stream;
 //     }
 // }
 
-class Solution {
-    public int largestPerimeter(int[] A) {
-        Arrays.sort(A);
+// class Solution {
+//     public int largestPerimeter(int[] A) {
+//         Arrays.sort(A);
 
-        for (int i = A.length - 1; i > 0; i--) {
-            if(A[i] < A[i-1] + A[i-2]) return A[i] + A[i-1] + A[i-2];
+//         for (int i = A.length - 1; i > 0; i--) {
+//             if(A[i] < A[i-1] + A[i-2]) return A[i] + A[i-1] + A[i-2];
+//         }
+//         return 0;
+//     }
+// }
+
+class Solution {
+    public String reorganizeString(String S) {
+        char[] alphabetArr = S.toCharArray();
+        int[] alphabetCount = new int[26];
+        int length = S.length();
+        for (int i = 0; i < length; i++) {
+            alphabetCount[alphabetArr[i] - 'a']++;
         }
-        return 0;
+        int max = 0, alphabet = 0, threshold = (length + 1) >> 1;
+        for (int i = 0; i < alphabetCount.length; i++) {
+            if (alphabetCount[i] > max) {
+                max = alphabetCount[i];
+                alphabet = i;
+                if (max > threshold)
+                    return "";
+            }
+        }
+        char[] res = new char[length];
+        int index = 0;
+        while (alphabetCount[alphabet]-- > 0) {
+            res[index] = (char) (alphabet + 'a');
+            index += 2;
+        }
+        for (int i = 0; i < alphabetCount.length; i++) {
+            while (alphabetCount[i]-- > 0) {
+                if (index >= res.length) {
+                    index = 1;
+                }
+                res[index] = (char) (i + 'a');
+                index += 2;
+            }
+        }
+        return new String(res);
     }
 }

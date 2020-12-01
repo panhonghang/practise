@@ -1811,6 +1811,36 @@ function largestPerimeter(A: number[]): number {
     return 0;
 };
 
+function searchRange(nums: number[], target: number): number[] {
+    const binarySearch = function (nums:number[], target:number, flag: boolean):number {
+        let left:number = 0, 
+            right:number = nums.length - 1, 
+            ans:number = nums.length;
+
+        while (left <= right) {
+            const mid:number = Math.floor((left + right) / 2);
+            if (nums[mid] > target || (flag && nums[mid] >= target)) {
+                right = mid - 1;
+                ans = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return ans;
+    }
+
+    let ans:number[] = [-1, -1];
+    
+    const leftIdx = binarySearch(nums, target, true);
+    const rightIdx = binarySearch(nums, target, false) - 1;
+
+    if (leftIdx <= rightIdx && rightIdx < nums.length && nums[leftIdx] === target && nums[rightIdx] === target) {
+        ans = [leftIdx, rightIdx];
+    } 
+
+    return ans;
+};
+
 export {
     sortString,
     countNodes,

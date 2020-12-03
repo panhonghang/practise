@@ -1841,6 +1841,23 @@ function searchRange(nums: number[], target: number): number[] {
     return ans;
 };
 
+function countPrimes(n: number): number {
+    let h:boolean[] = Array(n).fill(true), 
+        r:number = 0;
+        
+    for(let i = 2; i * i < n; i++) {
+        if(h[i]) {
+            for(let j = i * i; j < n; j += i) h[j] = false;
+        }
+    }
+
+    for(let i = n; i-- > 2;) {
+        if(h[i]) r++;
+    }
+
+    return r;
+};
+
 export {
     sortString,
     countNodes,

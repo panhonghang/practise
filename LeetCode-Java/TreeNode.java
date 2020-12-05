@@ -680,30 +680,55 @@ import java.util.stream.Stream;
 //     }
 // }
 
+// class Solution {
+//     public boolean isPossible(int[] nums) {
+//         Map<Integer, PriorityQueue<Integer>> map = new HashMap<Integer, PriorityQueue<Integer>>();
+//         for (int x : nums) {
+//             if (!map.containsKey(x)) {
+//                 map.put(x, new PriorityQueue<Integer>());
+//             }
+//             if (map.containsKey(x - 1)) {
+//                 int prevLength = map.get(x - 1).poll();
+//                 if (map.get(x - 1).isEmpty()) {
+//                     map.remove(x - 1);
+//                 }
+//                 map.get(x).offer(prevLength + 1);
+//             } else {
+//                 map.get(x).offer(1);
+//             }
+//         }
+//         Set<Map.Entry<Integer, PriorityQueue<Integer>>> entrySet = map.entrySet();
+//         for (Map.Entry<Integer, PriorityQueue<Integer>> entry : entrySet) {
+//             PriorityQueue<Integer> queue = entry.getValue();
+//             if (queue.peek() < 3) {
+//                 return false;
+//             }
+//         }
+//         return true;
+//     }
+// }
+
 class Solution {
-    public boolean isPossible(int[] nums) {
-        Map<Integer, PriorityQueue<Integer>> map = new HashMap<Integer, PriorityQueue<Integer>>();
-        for (int x : nums) {
-            if (!map.containsKey(x)) {
-                map.put(x, new PriorityQueue<Integer>());
-            }
-            if (map.containsKey(x - 1)) {
-                int prevLength = map.get(x - 1).poll();
-                if (map.get(x - 1).isEmpty()) {
-                    map.remove(x - 1);
-                }
-                map.get(x).offer(prevLength + 1);
-            } else {
-                map.get(x).offer(1);
-            }
-        }
-        Set<Map.Entry<Integer, PriorityQueue<Integer>>> entrySet = map.entrySet();
-        for (Map.Entry<Integer, PriorityQueue<Integer>> entry : entrySet) {
-            PriorityQueue<Integer> queue = entry.getValue();
-            if (queue.peek() < 3) {
-                return false;
+    public int leastInterval(char[] tasks, int n) {
+        Map<Character, Integer> map = new HashMap<>();
+        int MaxElement = 0;       
+
+        for (char item : tasks) {
+            int temp =  map.getOrDefault(item, 0) + 1;
+            map.put(item, temp);
+            MaxElement = Math.max(temp, MaxElement);
+        };
+
+        int MaxCount = 0;
+        Set<Map.Entry<Character, Integer>> entrySet = map.entrySet();
+
+        for (Map.Entry<Character, Integer> entry : entrySet) {
+            int value = entry.getValue();
+            if (value == MaxElement) {
+                MaxCount++;
             }
         }
-        return true;
+
+        return Math.max(tasks.length, MaxCount + (MaxElement - 1) * (n + 1));
     }
 }

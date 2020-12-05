@@ -1858,6 +1858,22 @@ function countPrimes(n: number): number {
     return r;
 };
 
+function leastInterval(tasks: string[], n: number): number {
+    let map:Map<string, number> = new Map(),
+        MaxCount = 0,
+        MaxElement = 0;
+
+    tasks.forEach(item => map.set(item, (map.get(item) || 0) + 1))
+
+    MaxElement = Math.max(...map.values());
+
+    [...map.values()].forEach(item => {
+        if(item === MaxElement) MaxCount++
+    })
+
+    return Math.max(tasks.length, MaxCount + (n+1) * (MaxElement - 1))
+};
+
 export {
     sortString,
     countNodes,

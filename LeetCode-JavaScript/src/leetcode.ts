@@ -1874,6 +1874,27 @@ function leastInterval(tasks: string[], n: number): number {
     return Math.max(tasks.length, MaxCount + (n+1) * (MaxElement - 1))
 };
 
+function generate(numRows: number): number[][] {
+    if(numRows === 0) return [];
+    let res:number[][] = [[1]];
+
+    while(numRows > 1) {
+        numRows--;
+        let temp:number[] = res.pop() || [],
+            arr:number[] = new Array(temp.length+1).fill(1);
+        
+        res.push([...temp]);
+        
+        for (let i = 0; i < temp.length - 1; i++) {
+            arr[i+1] = temp[i]+temp[i+1];
+        }
+
+        res.push([...arr])
+    }
+
+    return res;
+};
+
 export {
     sortString,
     countNodes,

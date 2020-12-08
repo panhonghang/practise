@@ -1916,6 +1916,38 @@ function matrixScore(A: number[][]): number {
     return ret;
 };
 
+function splitIntoFibonacci(S: string): number[] {
+    const max:number = 2 ** 31 - 1;
+    let res:number[] = [];
+    let len:number = S.length;
+
+    const dfs = (start:number, S:string, res:number[]) => {
+            let size:number = res.length;
+            if (start == len) return size > 2;
+
+            let num:number = 0;
+
+            for (let i = start; i < len; i ++) {
+                num = 10 * num + Number(S.charAt(i));
+                if(num >= max || num < 0 ) return false;    //是否超出范围
+                if (size < 2 || num == res[size- 1] + res[size- 2]) {
+                    res.push(num);
+                    if (dfs(i + 1, S, res)) {
+                        return true;
+                    }
+                    res.pop();
+                }
+
+                if (Number(S.charAt(i)) == 0 && i == start) return false;
+                
+            }
+
+            return false;
+    }
+
+    return dfs(0, S, res) ? res : [];
+};
+
 export {
     sortString,
     countNodes,

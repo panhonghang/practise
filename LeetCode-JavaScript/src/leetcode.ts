@@ -1948,7 +1948,20 @@ function splitIntoFibonacci(S: string): number[] {
     return dfs(0, S, res) ? res : [];
 };
 
+function uniquePaths(m: number, n: number): number {
+    let dp:number[][] = new Array(m).fill(1).map(v => new Array(n).fill(1));
+    
+    for (let i = 1; i < m; i++) {
+        for (let j = 1; j < n; j++) {
+            dp[i][j] = dp[i-1][j] + dp[i][j-1];
+        }
+    }
+
+    return dp[m-1][n-1];
+};
+
 export {
+    uniquePaths,
     sortString,
     countNodes,
     findMinArrowShots,

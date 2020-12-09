@@ -61,7 +61,12 @@ import {
   moveZeroes,
   insertionSortList,
   findMinArrowShots,
+  uniquePaths,
 } from '../leetcode';
+
+test("不同路径", () => {
+  expect(uniquePaths(3, 7)).toBe(28)
+})
 
 test("射气球", () => {
   expect(findMinArrowShots([[10,16],[2,8],[1,6],[7,12]])).toBe(2)

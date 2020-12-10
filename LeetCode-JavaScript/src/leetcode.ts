@@ -1972,7 +1972,45 @@ function uniquePaths1(m:number, n:number): number {
     return memo[n-1];
 }
 
+function lemonadeChange(bills: number[]): boolean {
+    let map:Map<number, number> = new Map();
+
+    if(bills[0] === 5) {
+        map.set(5, 1);
+        map.set(10, 0);
+    } else {
+        return false;
+    }
+
+    for (let i = 1; i < bills.length; i++) {
+        switch (bills[i]) {
+            case 5:
+                map.set(5, (map.get(5) || 0) + 1);
+                break;
+            case 10:
+                map.set(5, (map.get(5) || 0) - 1);
+                map.set(10, (map.get(10) || 0) + 1);
+                break;
+            case 20:
+                if ((map.get(10) || 0) < 1) {
+                    map.set(5, (map.get(5) || 0) - 3);
+                } else {
+                    map.set(5, (map.get(5) || 0) - 1);
+                    map.set(10, (map.get(10) || 0) - 1);
+                }
+                break;
+            default: 
+                break;
+        }
+
+        if((map.get(10) || 0) < 0 || (map.get(5) || 0) < 0) return false;
+    }
+
+    return true;
+};
+
 export {
+    lemonadeChange,
     uniquePaths,
     sortString,
     countNodes,

@@ -2053,6 +2053,19 @@ function wiggleMaxLength(nums: number[]): number {
     }
     return Math.max(up[n - 1], down[n - 1]);
 };
+
+function containsDuplicate(nums: number[]): boolean {
+    const set:Set<number> = new Set();
+    
+    for (const x of nums) {
+        if (set.has(x)) {
+            return true;
+        }
+        set.add(x);
+    }
+
+    return false;
+};
 export {
     lemonadeChange,
     uniquePaths,

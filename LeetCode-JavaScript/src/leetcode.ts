@@ -2066,6 +2066,27 @@ function containsDuplicate(nums: number[]): boolean {
 
     return false;
 };
+
+function groupAnagrams(strs: string[]): string[][] {
+    let res:string[][] = [],
+        map:Map<string, number> = new Map(),//排序后的字符串，在res数组当中的位置
+        index:number = -1; //在res数组当中的位置
+    
+    for (let item of strs) {
+        let str = item.split('').sort((a,b)=> a > b ? 1 : -1).join('');
+        
+        if(!map.has(str)) {
+            index++;
+            map.set(str, index);
+            res.push([])
+        }
+        
+        res[map.get(str) || 0].push(item);
+    }
+
+    return res;
+};
+
 export {
     lemonadeChange,
     uniquePaths,

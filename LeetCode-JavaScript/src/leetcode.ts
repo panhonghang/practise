@@ -2111,7 +2111,23 @@ function groupAnagrams(strs: string[]): string[][] {
     return res;
 };
 
+function monotoneIncreasingDigits(N: number): number {
+    let strs:number[] = N.toString().split('').map(item => Number(item));
+
+    for (let i = strs.length - 1; i > 0; i--) {
+        if (strs[i] < strs[i-1]) {
+            strs[i-1] -= 1;
+            for (let j = i; j < strs.length; j++) {
+                strs[j] = 9;
+            }
+        }
+    }
+
+    return Number(strs.join(''));
+};
+
 export {
+    monotoneIncreasingDigits,
     matrixScore,
     leastInterval,
     searchRange,

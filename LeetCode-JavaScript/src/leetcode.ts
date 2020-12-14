@@ -2112,6 +2112,21 @@ function groupAnagrams(strs: string[]): string[][] {
 };
 
 export {
+    matrixScore,
+    leastInterval,
+    searchRange,
+    countPrimes,
+    largestPerimeter,
+    generate,
+    uniquePaths1,
+    fourSumCount,
+    splitIntoFibonacci,
+    predictPartyVictory,
+    wiggleMaxLength,
+    reorganizeString,
+    containsDuplicate,
+    groupAnagrams,
+    maximumGap,
     lemonadeChange,
     uniquePaths,
     sortString,

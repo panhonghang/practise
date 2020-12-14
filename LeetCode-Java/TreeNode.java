@@ -708,27 +708,54 @@ import java.util.stream.Stream;
 //     }
 // }
 
+// class Solution {
+//     public int leastInterval(char[] tasks, int n) {
+//         Map<Character, Integer> map = new HashMap<>();
+//         int MaxElement = 0;       
+
+//         for (char item : tasks) {
+//             int temp =  map.getOrDefault(item, 0) + 1;
+//             map.put(item, temp);
+//             MaxElement = Math.max(temp, MaxElement);
+//         };
+
+//         int MaxCount = 0;
+//         Set<Map.Entry<Character, Integer>> entrySet = map.entrySet();
+
+//         for (Map.Entry<Character, Integer> entry : entrySet) {
+//             int value = entry.getValue();
+//             if (value == MaxElement) {
+//                 MaxCount++;
+//             }
+//         }
+
+//         return Math.max(tasks.length, MaxCount + (MaxElement - 1) * (n + 1));
+//     }
+// }
+
 class Solution {
-    public int leastInterval(char[] tasks, int n) {
+    public String reorganizeString(String S) {
+        char[] strs = S.toCharArray();
         Map<Character, Integer> map = new HashMap<>();
-        int MaxElement = 0;       
-
-        for (char item : tasks) {
-            int temp =  map.getOrDefault(item, 0) + 1;
-            map.put(item, temp);
-            MaxElement = Math.max(temp, MaxElement);
-        };
-
-        int MaxCount = 0;
-        Set<Map.Entry<Character, Integer>> entrySet = map.entrySet();
-
-        for (Map.Entry<Character, Integer> entry : entrySet) {
-            int value = entry.getValue();
-            if (value == MaxElement) {
-                MaxCount++;
-            }
+        int odd = -1;
+        int even = -2;
+        
+        for(char item : strs) {
+            map.put(item, map.getOrDefault(item, 0) + 1);
         }
 
-        return Math.max(tasks.length, MaxCount + (MaxElement - 1) * (n + 1));
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            if(entry.getValue()*2 > S.length() + 1) return "";
+            // 判断最长的元素value值是否超过一半
+            int len = entry.getValue()*2,
+                value = entry.getValue();
+
+            while (value > 0) {
+                // 奇偶间隔赋值给数组
+                strs[(len <= S.length() && odd < S.length() - 2) ? (odd += 2) : (even += 2)] = entry.getKey();
+                value--;
+            }
+        } 
+        return new String(strs);
     }
 }

@@ -2033,6 +2033,7 @@ function predictPartyVictory(senate: string): string {
         }
     return radiant.length > 0 ? "Radiant" : "Dire";
 };
+
 function wiggleMaxLength(nums: number[]): number {
     const n:number = nums.length;
     if (n < 2) return n;
@@ -2065,6 +2066,29 @@ function containsDuplicate(nums: number[]): boolean {
     }
 
     return false;
+};
+
+function reorganizeString(S: string): string {
+    let strs:string[] = S.split(''),
+        map:Map<string, number> = new Map(),
+        odd:number = -1,
+        even:number = -2;
+    
+    strs.forEach((item) => map.set(item, (map.get(item) || 0) + 1))
+
+    for (let [key, value] of map) {
+        if(value*2 > S.length + 1) return "";
+        // 判断最长的元素value值是否超过一半
+        let len:number = value*2;
+
+        while (value > 0) {
+            // 奇偶间隔赋值给数组
+            strs[(len <= S.length && odd < S.length - 2) ? odd += 2 : even += 2] = key;
+            value--;
+        }
+    } 
+
+    return strs.join('');
 };
 
 function groupAnagrams(strs: string[]): string[][] {

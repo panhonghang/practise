@@ -761,60 +761,60 @@ import java.util.stream.Stream;
 //     }
 // }
 
-class Solution {
-	public boolean wordPattern(String pattern, String s) {
-			Map<String, String> mapStoPattern = new HashMap<>();
-			Map<String, String> mapPatterntoS = new HashMap<>();
-			String[] strs = s.split(" ");
-			String[] patterns = pattern.split("");
+// class Solution {
+// 	public boolean wordPattern(String pattern, String s) {
+// 			Map<String, String> mapStoPattern = new HashMap<>();
+// 			Map<String, String> mapPatterntoS = new HashMap<>();
+// 			String[] strs = s.split(" ");
+// 			String[] patterns = pattern.split("");
 
-			if(patterns.length != strs.length) return false;
+// 			if(patterns.length != strs.length) return false;
 
-			for (int i = 0, len = strs.length; i < len; i++) {
-					if (mapStoPattern.containsKey(patterns[i]) || 
-							mapPatterntoS.containsKey(strs[i])
-							) {
-							if( !mapStoPattern.containsKey(patterns[i]) ||
-									!mapPatterntoS.containsKey(strs[i]) || 
-									!mapStoPattern.get(patterns[i]).equals(strs[i]) || 
-									!mapPatterntoS.get(strs[i]).equals(patterns[i])
-								) return false;
-					} else {
-							mapStoPattern.put(patterns[i], strs[i]);
-							mapPatterntoS.put(strs[i], patterns[i]);
-					}
-			}
+// 			for (int i = 0, len = strs.length; i < len; i++) {
+// 					if (mapStoPattern.containsKey(patterns[i]) || 
+// 							mapPatterntoS.containsKey(strs[i])
+// 							) {
+// 							if( !mapStoPattern.containsKey(patterns[i]) ||
+// 									!mapPatterntoS.containsKey(strs[i]) || 
+// 									!mapStoPattern.get(patterns[i]).equals(strs[i]) || 
+// 									!mapPatterntoS.get(strs[i]).equals(patterns[i])
+// 								) return false;
+// 					} else {
+// 							mapStoPattern.put(patterns[i], strs[i]);
+// 							mapPatterntoS.put(strs[i], patterns[i]);
+// 					}
+// 			}
 
-			return true;
-	}
-}
+// 			return true;
+// 	}
+// }
 
 
-class TwoWayMap {
-	private Map<String, String> mapStoPattern = new HashMap<>();
-	private Map<String, String> mapPatterntoS = new HashMap<>();
+// class TwoWayMap {
+// 	private Map<String, String> mapStoPattern = new HashMap<>();
+// 	private Map<String, String> mapPatterntoS = new HashMap<>();
 
-	public boolean isEqual(String a, String b) {
-        if(!mapStoPattern.containsKey(a) ||
-            !mapPatterntoS.containsKey(b) || 
-            !mapStoPattern.get(a).equals(b) || 
-            !mapPatterntoS.get(b).equals(a)
-            ) return false;
-		return true;
-	}
+// 	public boolean isEqual(String a, String b) {
+//         if(!mapStoPattern.containsKey(a) ||
+//             !mapPatterntoS.containsKey(b) || 
+//             !mapStoPattern.get(a).equals(b) || 
+//             !mapPatterntoS.get(b).equals(a)
+//             ) return false;
+// 		return true;
+// 	}
 	
-	public void put(String a, String b) {
-        mapStoPattern.put(a, b);
-        mapPatterntoS.put(b, a);
-	}
+// 	public void put(String a, String b) {
+//         mapStoPattern.put(a, b);
+//         mapPatterntoS.put(b, a);
+// 	}
 
-    public boolean containsKey(String a) {
-        return mapPatterntoS.containsKey(a) || mapStoPattern.containsKey(a);
-    }
+//     public boolean containsKey(String a) {
+//         return mapPatterntoS.containsKey(a) || mapStoPattern.containsKey(a);
+//     }
 
-    public void list() {
-        for(Map.Entry<String, String> entry : mapPatterntoS.entrySet()) {
-            System.out.println(entry);
-        }
-    }
-}
+//     public void list() {
+//         for(Map.Entry<String, String> entry : mapPatterntoS.entrySet()) {
+//             System.out.println(entry);
+//         }
+//     }
+// }

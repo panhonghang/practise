@@ -2126,7 +2126,26 @@ function monotoneIncreasingDigits(N: number): number {
     return Number(strs.join(''));
 };
 
+function wordPattern(pattern: string, s: string): boolean {
+    let map:Map<string, string> = new Map(),
+        strs:string[] = s.split(' '),
+        patterns:string[] = pattern.split('');
+
+    if(patterns.length !== strs.length || new Set(strs).size !== new Set(patterns).size) return false;
+
+    for (let i = 0, len = strs.length; i < len; i++) {
+        if (map.has(patterns[i])) {
+            if(map.get(patterns[i]) != strs[i]) return false
+        } else {
+            map.set(patterns[i], strs[i]);
+        }
+    }
+
+    return true;
+};
+
 export {
+    wordPattern,
     monotoneIncreasingDigits,
     matrixScore,
     leastInterval,

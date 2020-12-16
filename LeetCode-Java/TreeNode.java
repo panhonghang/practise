@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.*;
 // class Solution {
 //     public List<Integer> partitionLabels(String S) {
@@ -733,29 +734,87 @@ import java.util.stream.Stream;
 //     }
 // }
 
-class Solution {
-    public String reorganizeString(String S) {
-        char[] strs = S.toCharArray();
-        Map<Character, Integer> map = new HashMap<>();
-        int odd = -1;
-        int even = -2;
+// class Solution {
+//     public String reorganizeString(String S) {
+//         char[] strs = S.toCharArray();
+//         Map<Character, Integer> map = new HashMap<>();
+//         int odd = -1;
+//         int even = -2;
         
-        for(char item : strs) {
-            map.put(item, map.getOrDefault(item, 0) + 1);
+//         for(char item : strs) {
+//             map.put(item, map.getOrDefault(item, 0) + 1);
+//         }
+
+//         for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+//             if(entry.getValue()*2 > S.length() + 1) return "";
+//             // 判断最长的元素value值是否超过一半
+//             int len = entry.getValue()*2,
+//                 value = entry.getValue();
+
+//             while (value > 0) {
+//                 // 奇偶间隔赋值给数组
+//                 strs[(len <= S.length() && odd < S.length() - 2) ? (odd += 2) : (even += 2)] = entry.getKey();
+//                 value--;
+//             }
+//         } 
+//         return new String(strs);
+//     }
+// }
+
+class Solution {
+	public boolean wordPattern(String pattern, String s) {
+			Map<String, String> mapStoPattern = new HashMap<>();
+			Map<String, String> mapPatterntoS = new HashMap<>();
+			String[] strs = s.split(" ");
+			String[] patterns = pattern.split("");
+
+			if(patterns.length != strs.length) return false;
+
+			for (int i = 0, len = strs.length; i < len; i++) {
+					if (mapStoPattern.containsKey(patterns[i]) || 
+							mapPatterntoS.containsKey(strs[i])
+							) {
+							if( !mapStoPattern.containsKey(patterns[i]) ||
+									!mapPatterntoS.containsKey(strs[i]) || 
+									!mapStoPattern.get(patterns[i]).equals(strs[i]) || 
+									!mapPatterntoS.get(strs[i]).equals(patterns[i])
+								) return false;
+					} else {
+							mapStoPattern.put(patterns[i], strs[i]);
+							mapPatterntoS.put(strs[i], patterns[i]);
+					}
+			}
+
+			return true;
+	}
+}
+
+
+class TwoWayMap {
+	private Map<String, String> mapStoPattern = new HashMap<>();
+	private Map<String, String> mapPatterntoS = new HashMap<>();
+
+	public boolean isEqual(String a, String b) {
+        if(!mapStoPattern.containsKey(a) ||
+            !mapPatterntoS.containsKey(b) || 
+            !mapStoPattern.get(a).equals(b) || 
+            !mapPatterntoS.get(b).equals(a)
+            ) return false;
+		return true;
+	}
+	
+	public void put(String a, String b) {
+        mapStoPattern.put(a, b);
+        mapPatterntoS.put(b, a);
+	}
+
+    public boolean containsKey(String a) {
+        return mapPatterntoS.containsKey(a) || mapStoPattern.containsKey(a);
+    }
+
+    public void list() {
+        for(Map.Entry<String, String> entry : mapPatterntoS.entrySet()) {
+            System.out.println(entry);
         }
-
-        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
-            if(entry.getValue()*2 > S.length() + 1) return "";
-            // 判断最长的元素value值是否超过一半
-            int len = entry.getValue()*2,
-                value = entry.getValue();
-
-            while (value > 0) {
-                // 奇偶间隔赋值给数组
-                strs[(len <= S.length() && odd < S.length() - 2) ? (odd += 2) : (even += 2)] = entry.getKey();
-                value--;
-            }
-        } 
-        return new String(strs);
     }
 }

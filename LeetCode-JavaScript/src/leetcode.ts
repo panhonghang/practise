@@ -2144,7 +2144,21 @@ function wordPattern(pattern: string, s: string): boolean {
     return true;
 };
 
+function maxProfit1(prices: number[], fee: number): number {
+    let dp:number[][] = new Array(prices.length).fill(new Array(2));
+
+    dp[0][0] = 0;
+    dp[0][1] = -prices[0];
+
+    for (let i = 1; i < prices.length; i++) {
+        dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i] - fee); 
+        dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i]);
+    }
+    return dp[prices.length - 1][0];
+};
+
 export {
+    maxProfit1,
     wordPattern,
     monotoneIncreasingDigits,
     matrixScore,

@@ -2157,7 +2157,20 @@ function maxProfit1(prices: number[], fee: number): number {
     return dp[prices.length - 1][0];
 };
 
+function maxProfit2(prices: number[], fee: number): number {
+    let cash:number = 0,
+        hold:number = - prices[0];
+
+    for (let i = 1, len = prices.length; i < len; i++) {
+        cash = Math.max(cash, hold + prices[i] - fee); 
+        hold = Math.max(hold, cash - prices[i]);
+    }
+
+    return cash;
+};
+
 export {
+    maxProfit2,
     maxProfit1,
     wordPattern,
     monotoneIncreasingDigits,

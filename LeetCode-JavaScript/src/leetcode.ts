@@ -2169,7 +2169,16 @@ function maxProfit2(prices: number[], fee: number): number {
     return cash;
 };
 
+function findTheDifference(s: string, t: string): string {
+    let code: number = 0;
+
+    for (let i = 0; i < t.length; i++) code ^= s.charCodeAt(i) ^ t.charCodeAt(i);
+  
+    return String.fromCharCode(code);
+};
+
 export {
+    findTheDifference,
     maxProfit2,
     maxProfit1,
     wordPattern,

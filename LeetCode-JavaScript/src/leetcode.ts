@@ -2194,6 +2194,23 @@ function rotate(matrix: number[][]): void {
     }
 };
 
+function removeDuplicateLetters(s: string): string {
+    let stack:string[] = []
+    for (var i = 0; i < s.length; i++) {
+        let char:string = s.charAt(i);
+        if (stack.indexOf(char) > -1) continue
+        // 使用indexOf(xx, i)取代 lastIndexOf(xx)减少遍历次数会更快
+        while (stack.length > 0 && 
+                stack[stack.length - 1] > char && 
+                s.indexOf(stack[stack.length - 1], i) > i
+              ) {
+            stack.pop()
+        }
+        stack.push(char)
+    }
+    return stack.join('')
+};
+
 export {
     rotate,
     findTheDifference,

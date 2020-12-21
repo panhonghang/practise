@@ -2221,6 +2221,46 @@ function minCostClimbingStairs(cost: number[]): number {
     return dp[cost.length];
 };
 
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+function zigzagLevelOrder(root: TreeNode | null): number[][] {
+    let res:number[][] = [];
+    if (root === null) return [];
+
+    const bfs = function(arr: TreeNode[], n:number): null {
+        if(arr.length === 0) return null;
+        let temp:TreeNode[] = [],
+            tempValue:number[] = [];
+        
+        while (arr.length > 0) {
+            let node:TreeNode = arr.shift();
+            tempValue.push(node.val);
+            if(node.left) temp.push(node.left);
+            if(node.right) temp.push(node.right);
+        }
+
+        if (n % 2 === 1) tempValue.reverse();
+        res.push([...tempValue]);
+        bfs([...temp], n + 1);
+    }
+
+    bfs([root], 0);
+
+    return res;
+};
+
 export {
     rotate,
     findTheDifference,

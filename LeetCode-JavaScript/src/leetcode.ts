@@ -2239,13 +2239,13 @@ function zigzagLevelOrder(root: TreeNode | null): number[][] {
     let res:number[][] = [];
     if (root === null) return [];
 
-    const bfs = function(arr: TreeNode[], n:number): null {
+    const bfs = function(arr: TreeNode[], n:number): void | null {
         if(arr.length === 0) return null;
         let temp:TreeNode[] = [],
             tempValue:number[] = [];
         
         while (arr.length > 0) {
-            let node:TreeNode = arr.shift();
+            let node:TreeNode = arr.shift()!;
             tempValue.push(node.val);
             if(node.left) temp.push(node.left);
             if(node.right) temp.push(node.right);

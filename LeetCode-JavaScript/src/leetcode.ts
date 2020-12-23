@@ -2261,6 +2261,13 @@ function zigzagLevelOrder(root: TreeNode | null): number[][] {
     return res;
 };
 
+function firstUniqChar(s: string): number {
+    for(let i = 0; i < s.length; i++) {
+        if(s.indexOf(s.charAt(i)) === s.lastIndexOf(s.charAt(i))) return i;
+    }
+    return -1;
+};
+
 export {
     rotate,
     findTheDifference,

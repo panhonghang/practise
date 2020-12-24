@@ -2268,6 +2268,27 @@ function firstUniqChar(s: string): number {
     return -1;
 };
 
+function candy(ratings: number[]): number {
+    let left:number[] = new Array(ratings.length).fill(1);
+
+    let right:number[] = new Array(ratings.length).fill(1);
+
+    for (let i = 1; i < ratings.length; i++) {
+        if(ratings[i] > ratings[i-1])
+            left[i] = left[i-1] + 1;
+    }
+
+    let count:number = left[ratings.length - 1];
+    
+    for (let j = ratings.length - 2; j >= 0; j-- ) {
+        if(ratings[j] > ratings[j+1]) {
+            right[j] = right[j+1] + 1;
+        }
+        count += Math.max(left[j], right[j])
+    }
+    return count;
+};
+
 export {
     rotate,
     findTheDifference,

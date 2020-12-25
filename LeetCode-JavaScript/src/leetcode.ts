@@ -2308,6 +2308,35 @@ function findContentChildren(g: number[], s: number[]): number {
     return res;
 };
 
+function maximalRectangle(matrix: string[][]): number {
+    if (matrix.length === 0) return 0;
+    let row:number = matrix.length, column:number = matrix[0].length;
+    const maxWidthArr:number[][] = new Array(row);
+    matrix.forEach((ele, index) => {
+        maxWidthArr[index] = new Array(column)
+        for (let j = 0; j < column; j++) {
+            if (j === 0) {
+                maxWidthArr[index][j] = ele[j] === "1" ? 1 : 0
+            } else {
+                maxWidthArr[index][j] = ele[j] === "1" ? maxWidthArr[index][j - 1] + 1 : 0
+            }
+        }
+    })
+    let maxArea:number = 0;
+    for (let i = 0; i < row; i++) {
+        for (let j = 0; j < column; j++) {
+            let minWidth:number = Number.MAX_SAFE_INTEGER, currentMaxArea = 0
+            for (let k = i ; k >= 0; k--) {
+                minWidth = Math.min(minWidth, maxWidthArr[k][j])
+                currentMaxArea = Math.max(currentMaxArea, minWidth * (i - k + 1))
+            }
+            maxArea = Math.max(maxArea, currentMaxArea)
+        }
+    }
+
+    return maxArea;
+};
+
 export {
     rotate,
     findTheDifference,

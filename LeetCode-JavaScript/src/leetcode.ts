@@ -2337,6 +2337,20 @@ function maximalRectangle(matrix: string[][]): number {
     return maxArea;
 };
 
+function isIsomorphic(s: string, t: string): boolean {
+    let map:Map<string, string> = new Map();
+
+    for (let i = 0; i < s.length; i++) {
+        if (map.has(s.charAt(i))) {
+            if (map.get(s.charAt(i)) !== t.charAt(i)) return false;
+        } else {
+            map.set(s.charAt(i), t.charAt(i))
+        }
+    }
+
+    return true;
+};
+
 export {
     rotate,
     findTheDifference,

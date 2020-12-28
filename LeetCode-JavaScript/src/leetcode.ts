@@ -2351,7 +2351,7 @@ function isIsomorphic(s: string, t: string): boolean {
     return true;
 };
 
-function maxProfit(k: number, prices: number[]): number {
+function maxProfitIV(k: number, prices: number[]): number {
     let n:number = prices.length;
     if (k > n / 2) {
         k = Math.floor(n/2);

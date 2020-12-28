@@ -2351,6 +2351,29 @@ function isIsomorphic(s: string, t: string): boolean {
     return true;
 };
 
+function maxProfit(k: number, prices: number[]): number {
+    let n:number = prices.length;
+    if (k > n / 2) {
+        k = Math.floor(n/2);
+    }
+    let profit: {profit_in:number, profit_out:number}[] = new Array(k);
+    //初始化买入卖出时的利润
+    for (let j = 0; j <= k; j++){
+        profit[j] = {
+            profit_in: -prices[0],
+            profit_out: 0
+        };
+    }
+    for (let i = 0; i < n; i++){
+        for (let j = 1; j <= k; j++){
+            profit[j] = {
+                profit_out: Math.max(profit[j].profit_out, profit[j].profit_in + prices[i]), 
+                profit_in: Math.max(profit[j].profit_in, profit[j-1].profit_out - prices[i])
+            }
+        }
+    }
+    return profit[k].profit_out;
+};
 export {
     rotate,
     findTheDifference,

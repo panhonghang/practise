@@ -2374,6 +2374,26 @@ function maxProfitIV(k: number, prices: number[]): number {
     }
     return profit[k].profit_out;
 };
+
+function minPatches(nums: number[], n: number): number {
+    let patches: number = 0,
+        x: number = 1,
+        index: number = 0;
+        
+    const length: number = nums.length;
+
+    while (x <= n) {
+        if (index < length && nums[index] <= x) {
+            x += nums[index];
+            index++;
+        } else {
+            x *= 2;
+            patches++;
+        }
+    }
+    return patches;
+};
+
 export {
     rotate,
     findTheDifference,

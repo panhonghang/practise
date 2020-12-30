@@ -2394,6 +2394,22 @@ function minPatches(nums: number[], n: number): number {
     return patches;
 };
 
+function lastStoneWeight(stones: number[]): number {
+    stones.sort((a, b) => a-b);
+    
+    while (stones.length > 1) {
+        let max:number = stones.pop()!,
+            secondMax:number = stones.pop() || 0,
+            temp:number = max - secondMax;
+        if (temp === 0) continue;
+        
+        stones.push(temp);
+        stones.sort((a, b) => a-b);        
+    }
+
+    return stones[0] || 0;
+};
+
 export {
     rotate,
     findTheDifference,

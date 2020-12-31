@@ -2410,6 +2410,23 @@ function lastStoneWeight(stones: number[]): number {
     return stones[0] || 0;
 };
 
+function eraseOverlapIntervals(intervals: number[][]): number {
+    if (intervals.length <= 1) return 0;
+    let count:number = 1,
+        end:number = 0;
+
+    intervals.sort((a, b) => a[1] - b[1]);
+
+    end = intervals[0][1];
+    for (let i = 1; i < intervals.length; i++) {
+        if (end > intervals[i][0]) continue;
+        end =  intervals[i][1];
+        count++;
+    }
+
+    return intervals.length - count;
+};
+
 export {
     rotate,
     findTheDifference,

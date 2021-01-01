@@ -62,7 +62,15 @@ import {
   insertionSortList,
   findMinArrowShots,
   uniquePaths,
+  canPlaceFlowers,
 } from '../leetcode';
+
+test("种花问题", () => {
+  expect(canPlaceFlowers([0], 0)).toEqual(true);
+  expect(canPlaceFlowers([0, 0], 1)).toEqual(true);
+  expect(canPlaceFlowers([0, 0, 0], 2)).toEqual(true);
+  expect(canPlaceFlowers([0, 1, 0], 2)).toEqual(false);
+})
 
 test("不同路径", () => {
   expect(uniquePaths(3, 7)).toBe(28)

@@ -2427,7 +2427,27 @@ function eraseOverlapIntervals(intervals: number[][]): number {
     return intervals.length - count;
 };
 
+function canPlaceFlowers(flowerbed: number[], n: number): boolean {
+    let len:number = flowerbed.length;
+
+    for (let i = 0; i < len; i++) {
+        // 提前终止
+        if (n === 0) return true;
+
+        let preIsZaro:boolean = flowerbed[i-1] ? flowerbed[i-1] === 0 : true;
+        let nextIsZaro:boolean = flowerbed[i+1] ? flowerbed[i+1] === 0 : true;
+
+        if (flowerbed[i] === 0 && preIsZaro && nextIsZaro) {
+            n--;
+            flowerbed[i] = 1;
+        }
+    }
+
+    return  n === 0;
+};
+
 export {
+    canPlaceFlowers,
     rotate,
     findTheDifference,
     maxProfit2,

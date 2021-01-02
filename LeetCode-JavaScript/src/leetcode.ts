@@ -2446,6 +2446,26 @@ function canPlaceFlowers(flowerbed: number[], n: number): boolean {
     return  n === 0;
 };
 
+function maxSlidingWindow(nums: number[], k: number): number[] {
+    if (!nums || !nums.length) return [];
+
+    const res:number[] = [], 
+          queue:number[] = [], 
+          pop:() => number = () => queue[queue.length - 1];
+    
+    let first:number = 1 - k;
+
+    for (let last = 0; last < nums.length; last++, first++) {
+        while (queue.length && pop() < nums[last] ) queue.pop()
+        queue.push(nums[last])
+        if (first < 0) continue;
+        res.push(queue[0])
+        if (nums[first] === queue[0]) queue.shift();
+    }
+
+    return res;
+}
+
 export {
     canPlaceFlowers,
     rotate,

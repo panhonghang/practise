@@ -2466,6 +2466,44 @@ function maxSlidingWindow(nums: number[], k: number): number[] {
     return res;
 }
 
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function partition(head: ListNode | null, x: number): ListNode | null {
+    let node:ListNode | null = head,
+        lessHead:ListNode | null = new ListNode(0), 
+        less:ListNode | null = lessHead,
+        moreHead:ListNode | null = new ListNode(0),
+        more:ListNode | null = moreHead;
+
+  while(node){
+    if(node.val < x){
+      less.next = new ListNode(node.val);
+      less = less.next;
+    } else {
+      more.next = new ListNode(node.val);
+      more = more.next
+    }
+    node = node.next
+  }
+
+  lessHead = lessHead.next;
+  moreHead = moreHead.next;
+  if(!lessHead) return moreHead
+  less.next = moreHead;
+
+  return lessHead;
+};
+
 export {
     canPlaceFlowers,
     rotate,

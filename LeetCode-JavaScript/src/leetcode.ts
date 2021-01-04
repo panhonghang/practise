@@ -2504,6 +2504,22 @@ function partition(head: ListNode | null, x: number): ListNode | null {
   return lessHead;
 };
 
+function fib(n: number): number {
+    if (n === 0) return 0;
+
+    let pre:number = 0,
+        next:number = 1,
+        res:number = pre + next;
+
+    for (let i = 2; i <= n; i++) {
+        res = pre + next;
+        pre = next;
+        next = res;
+    }
+
+    return res;
+};
+
 export {
     canPlaceFlowers,
     rotate,

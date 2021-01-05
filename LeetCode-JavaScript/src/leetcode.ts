@@ -2520,6 +2520,20 @@ function fib(n: number): number {
     return res;
 };
 
+function largeGroupPositions(s: string): number[][] {
+    let pre:number = 0,
+        res:number[][] = [];
+    for (let i = 0; i < s.length; i++) {
+        if (s.charAt(i) !== s.charAt(i-1) || undefined) {
+            if (i - pre > 2) res.push([pre, i - 1])
+            pre = i;
+        }
+    }
+
+    if (s.length - pre > 2) res.push([pre, s.length - 1])
+    return res;
+};
+
 export {
     canPlaceFlowers,
     rotate,

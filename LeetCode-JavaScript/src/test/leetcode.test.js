@@ -63,7 +63,22 @@ import {
   findMinArrowShots,
   uniquePaths,
   canPlaceFlowers,
+  calcEquation,
 } from '../leetcode';
+
+test("除法求值", () => {
+  expect(calcEquation(
+    [["a","b"],["b","c"]], 
+    [2.0,3.0], 
+    [["a","c"],["b","a"]]
+    )).toEqual([6.00000,0.50000])
+
+  expect(calcEquation(
+    [["a","b"],["b","c"],["bc","cd"]],
+    [1.5,2.5,5.0],
+    [["a","c"],["c","b"],["bc","cd"],["cd","bc"]]
+  )).toEqual([3.75000,0.40000,5.00000,0.20000])
+})
 
 test("种花问题", () => {
   expect(canPlaceFlowers([0], 0)).toEqual(true);

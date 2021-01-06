@@ -2534,7 +2534,67 @@ function largeGroupPositions(s: string): number[][] {
     return res;
 };
 
+function calcEquation(equations: string[][], values: number[], queries: string[][]): number[] {
+    let nvars = 0;
+    const variables:Map<string, number> = new Map();
+
+    const n = equations.length;
+    for (let i = 0; i < n; i++) {
+        if (!variables.has(equations[i][0])) {
+            variables.set(equations[i][0], nvars++);
+        }
+        if (!variables.has(equations[i][1])) {
+            variables.set(equations[i][1], nvars++);
+        }
+    }
+
+    // 对于每个点，存储其直接连接到的所有点及对应的权值
+    const edges: number[][][] = new Array(nvars).fill(0);
+    for (let i = 0; i < nvars; i++) {
+        edges[i] = [];
+    }
+    for (let i = 0; i < n; i++) {
+        const va:number = variables.get(equations[i][0])!, 
+              vb:number = variables.get(equations[i][1])!;
+        edges[va].push([vb, values[i]]);
+        edges[vb].push([va, 1.0 / values[i]]);
+    }
+
+    const queriesCount:number = queries.length;
+    const ret:number[] = [];
+    for (let i = 0; i < queriesCount; i++) {
+        const query:string[] = queries[i];
+        let result:number = -1.0;
+        if (variables.has(query[0]) && variables.has(query[1])) {
+            const ia:number = variables.get(query[0])!, 
+                  ib:number = variables.get(query[1])!;
+            if (ia === ib) {
+                result = 1.0;
+            } else {
+                const points:number[] = [];
+                points.push(ia);
+                const ratios = new Array(nvars).fill(-1.0);
+                ratios[ia] = 1.0;
+
+                while (points.length && ratios[ib] < 0) {
+                    const x:number = points.pop()!;
+                    for (const [y, val] of edges[x]) {
+                        if (ratios[y] < 0) {
+                            ratios[y] = ratios[x] * val;
+                            points.push(y);
+                        }
+                    }
+                }
+                result = ratios[ib];
+            }
+        }
+        ret[i] = result;
+    }
+    return ret;
+};
+
 export {
+    calcEquation,
     canPlaceFlowers,
     rotate,
     findTheDifference,

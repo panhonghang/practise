@@ -2538,8 +2538,7 @@ function calcEquation(equations: string[][], values: number[], queries: string[]
     let nvars = 0;
     const variables:Map<string, number> = new Map();
 
-    const n = equations.length;
-    for (let i = 0; i < n; i++) {
+    for (let i = 0; i < equations.length; i++) {
         if (!variables.has(equations[i][0])) {
             variables.set(equations[i][0], nvars++);
         }
@@ -2553,16 +2552,15 @@ function calcEquation(equations: string[][], values: number[], queries: string[]
     for (let i = 0; i < nvars; i++) {
         edges[i] = [];
     }
-    for (let i = 0; i < n; i++) {
+    for (let i = 0; i < equations.length; i++) {
         const va:number = variables.get(equations[i][0])!, 
               vb:number = variables.get(equations[i][1])!;
         edges[va].push([vb, values[i]]);
         edges[vb].push([va, 1.0 / values[i]]);
     }
-
-    const queriesCount:number = queries.length;
+    
     const ret:number[] = [];
-    for (let i = 0; i < queriesCount; i++) {
+    for (let i = 0; i < queries.length; i++) {
         const query:string[] = queries[i];
         let result:number = -1.0;
         if (variables.has(query[0]) && variables.has(query[1])) {
@@ -2591,6 +2589,32 @@ function calcEquation(equations: string[][], values: number[], queries: string[]
         ret[i] = result;
     }
     return ret;
+};
+
+function findCircleNum(isConnected: number[][]): number {
+    let res:number = 0,
+        arr:number[][] = isConnected.map(item => item.slice()),
+        citySet:Set<number> = new Set<number>();
+    
+    const dfs = (i:number) => {
+        if (citySet.has(i)) return;
+        citySet.add(i);
+        for (let j = 0; j < arr[i].length; j++) {
+            if (citySet.has(j)) continue;
+            if (arr[i][j] === 1) {
+                dfs(j);
+                citySet.add(j);
+            }
+        }
+    }
+
+    for (let i = 0; i < arr.length; i++) {
+        if (citySet.has(i)) continue;
+        res++;
+        dfs(i);
+    }
+
+    return res;
 };
 
 export {

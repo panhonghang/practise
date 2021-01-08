@@ -2617,6 +2617,25 @@ function findCircleNum(isConnected: number[][]): number {
     return res;
 };
 
+/**
+ Do not return anything, modify nums in-place instead.
+ */
+function rotate1(nums: number[], k: number): void {
+    k %= nums.length;
+
+    const reverse = (l:number, r:number, nums:number[]):void => {
+        while (l < r) {
+            [nums[l], nums[r]] = [nums[r], nums[l]]
+            r--;
+            l++;
+        }
+    }
+
+    reverse(0, nums.length-1, nums);
+    reverse(0, k-1, nums);
+    reverse(k, nums.length-1, nums);
+};
+
 export {
     calcEquation,
     canPlaceFlowers,

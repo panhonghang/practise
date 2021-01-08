@@ -2635,6 +2635,21 @@ function rotate1(nums: number[], k: number): void {
     reverse(0, k-1, nums);
     reverse(k, nums.length-1, nums);
 };
+function maxProfitIII(prices: number[]): number {
+    let profit_1_in = -prices[0], 
+        profit_1_out = 0,
+        profit_2_in = -prices[0], 
+        profit_2_out = 0,
+        n = prices.length;
+
+    for (let i = 1; i < n; i++){
+        profit_2_out = Math.max(profit_2_out, profit_2_in + prices[i]);
+        profit_2_in = Math.max(profit_2_in, profit_1_out - prices[i]);
+        profit_1_out = Math.max(profit_1_out, profit_1_in + prices[i]);
+        profit_1_in = Math.max(profit_1_in, -prices[i]);
+    }
+    return profit_2_out;
+};
 
 export {
     calcEquation,

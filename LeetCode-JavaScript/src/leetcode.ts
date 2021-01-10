@@ -2651,6 +2651,26 @@ function maxProfitIII(prices: number[]): number {
     return profit_2_out;
 };
 
+function summaryRanges(nums: number[]): string[] {
+    if (nums.length === 0) return [];
+    if (nums.length === 1) return [nums[0].toString()];
+
+    let res:string[] = [],
+        pre:number = 0,
+        next:number = 1;
+    
+    while (next <= nums.length) {
+        while (nums[next-1] + 1 === nums[next] && next < nums.length) next++;
+        
+        res.push(pre != next - 1 ? `${nums[pre]}->${nums[next-1]}` : `${nums[next-1]}`);
+
+        pre = next;
+        next++
+    }
+
+    return res;
+};
+
 export {
     calcEquation,
     canPlaceFlowers,

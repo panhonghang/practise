@@ -2728,26 +2728,52 @@ function smallestStringWithSwaps(s: string, pairs: number[][]): string {
   return res.join('')
 };
 
-const topSort = (deg: number[], graph: number[][], items: number[]) => {
-    const Q:number[] = [];
-    for (const item of items) {
-        if (deg[item] === 0) {
-            Q.push(item);
+// const topSort = (deg: number[], graph: number[][], items: number[]) => {
+//     const Q:number[] = [];
+//     for (const item of items) {
+//         if (deg[item] === 0) {
+//             Q.push(item);
+//         }
+//     }
+//     const res:number[] = [];
+//     while (Q.length > 0) {
+//         const u:number = Q.shift()!; 
+//         res.push(u);
+//         for (let i = 0; i < graph[u].length; ++i) {
+//             const v = graph[u][i];
+//             if (--deg[v] === 0) {
+//                 Q.push(v);
+//             }
+//         }
+//     }
+//     return res.length == items.length ? res : [];
+// }
+
+const topSort = (deg: number[], graph:number[][], len:number):number[] => {
+    const res:number[] = [],
+          queue:number[] = deg.filter(item => item === 0);
+    while (queue.length > 0) {
+        let zeroDegIndex:number = queue.pop()!;
+        res.push(zeroDegIndex);
+        for (let i of graph[zeroDegIndex]) {
+            deg[i]--;
+            if (deg[i] === 0) queue.push(i);
         }
     }
-    const res = [];
-    while (Q.length) {
-        const u:number = Q.shift()!; 
-        res.push(u);
-        for (let i = 0; i < graph[u].length; ++i) {
-            const v = graph[u][i];
-            if (--deg[v] === 0) {
-                Q.push(v);
-            }
-        }
-    }
-    return res.length == items.length ? res : [];
+    return res.length === len ? res : [];
 }
+
+/* 公司共有 n 个项目和  m 个小组，每个项目要不无人接手，要不就由 m 个小组之一负责。
+
+group[i] 表示第 i 个项目所属的小组，如果这个项目目前无人接手，那么 group[i] 就等于 -1。（项目和小组都是从零开始编号的）小组可能存在没有接手任何项目的情况。
+
+请你帮忙按要求安排这些项目的进度，并返回排序后的项目列表：
+
+同一小组的项目，排序后在列表中彼此相邻。
+项目之间存在一定的依赖关系，我们用一个列表 beforeItems 来表示，
+其中 beforeItems[i] 表示在进行第 i 个项目前（位于第 i 个项目左侧）应该完成的所有项目。
+如果存在多个解决方案，只需要返回其中任意一个即可。
+如果没有合适的解决方案，就请返回一个 空列表 。 */
 
 function sortItems(n: number, m: number, group: number[], beforeItems: number[][]): number[] {
     const groupItem:number[][] = new Array(n + m).fill(0).map(() => []);
@@ -2769,6 +2795,7 @@ function sortItems(n: number, m: number, group: number[], beforeItems: number[][
             group[i] = leftId;
             leftId += 1;
         }
+        // 形成一个映射，小组-->项目
         groupItem[group[i]].push(i);
     }
     // 依赖关系建图
@@ -2777,9 +2804,11 @@ function sortItems(n: number, m: number, group: number[], beforeItems: number[][
         for (const item of beforeItems[i]) {
             const beforeGroupId = group[item];
             if (beforeGroupId === curGroupId) {
+                // 组内依赖
                 itemDegree[i] += 1;
-                itemGraph[item].push(i);   
+                itemGraph[item].push(i);
             } else {
+                // 组间依赖
                 groupDegree[curGroupId] += 1;
                 groupGraph[beforeGroupId].push(curGroupId);
             }
@@ -2787,22 +2816,18 @@ function sortItems(n: number, m: number, group: number[], beforeItems: number[][
     }
 
     // 组间拓扑关系排序
-    const groupTopSort = topSort(groupDegree, groupGraph, id); 
+    const groupTopSort = topSort(groupDegree, groupGraph, n + m); 
 
-    if (groupTopSort.length == 0) {
-        return [];
-    } 
-    const ans = [];
+    if (groupTopSort.length == 0) return [];
+    const ans:number[] = [];
     // 组内拓扑关系排序
     for (const curGroupId of groupTopSort) {
         const size = groupItem[curGroupId].length;
-        if (size == 0) {
-            continue;
-        }
-        const res = topSort(itemDegree, itemGraph, groupItem[curGroupId]);
-        if (res.length === 0) {
-            return [];
-        }
+        if (size == 0) continue;
+        const res = topSort(itemDegree, itemGraph, size);
+
+        if (res.length === 0) return [];
+
         for (const item of res) {
             ans.push(item);
         }
@@ -2811,6 +2836,7 @@ function sortItems(n: number, m: number, group: number[], beforeItems: number[][
 };
 
 export {
+    sortItems,
     calcEquation,
     canPlaceFlowers,
     rotate,

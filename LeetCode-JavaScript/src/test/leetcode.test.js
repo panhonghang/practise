@@ -64,7 +64,17 @@ import {
   uniquePaths,
   canPlaceFlowers,
   calcEquation,
+  sortItems,
 } from '../leetcode';
+
+test("项目管理", () => {
+  expect(sortItems(
+      8,
+      2,
+      [-1,-1,1,0,0,1,0,-1], 
+      [[],[6],[5],[6],[3],[],[4],[]]
+  )).toEqual([]);
+})
 
 test("除法求值", () => {
   expect(calcEquation(
@@ -113,10 +123,6 @@ test('加油站', () => {
 
 test('距离顺序排列矩阵单元格', () => {
   expect(allCellsDistOrder(3, 5, 2, 3)).toEqual([[2,3],[1,3],[2,2],[2,4],[0,3],[1,2],[1,4],[2,1],[0,2],[0,4],[1,1],[2,0],[0,1],[1,0],[0,0]])
-})
-
-test('滑动谜题', () => {
-  expect(slidingPuzzle([[4,1,2], [5,0,3]])).toBe(5)
 })
 
 test('根据身高重建队列', () => {

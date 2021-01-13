@@ -2835,6 +2835,33 @@ function sortItems(n: number, m: number, group: number[], beforeItems: number[][
     return ans;
 };
 
+function findRedundantConnection(edges: number[][]): number[] {
+    const nodesCount:number = edges.length;
+    const parent:number[] = new Array(nodesCount + 1).fill(0).map((_v, i) => i);
+
+    for (let i = 0; i < nodesCount; i++) {
+        const node1 = edges[i][0], 
+              node2 = edges[i][1];
+
+        if (find(parent, node1) != find(parent, node2)) {
+            union(parent, node1, node2);
+        } else {
+            return edges[i];
+        }
+    }
+    
+    return [];
+};
+
+const union = (parent:number[], index1:number, index2:number):void => {
+    parent[find(parent, index1)] = find(parent, index2);
+}
+
+const find = (parent:number[], index:number):number => {
+    if (parent[index] !== index) parent[index] = find(parent, parent[index]);
+    return parent[index];
+}
+
 export {
     sortItems,
     calcEquation,

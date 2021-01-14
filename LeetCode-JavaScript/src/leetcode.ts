@@ -2862,6 +2862,17 @@ const find = (parent:number[], index:number):number => {
     return parent[index];
 }
 
+function prefixesDivBy5(A: number[]): boolean[] {
+    let res:boolean[] = [],
+        sum:number = 0;
+    for (let i = 0; i < A.length; i++) {
+        sum = ((sum << 1) + A[i]) % 5;
+        res.push(sum === 0)
+    }
+
+    return res;
+};
+
 export {
     sortItems,
     calcEquation,

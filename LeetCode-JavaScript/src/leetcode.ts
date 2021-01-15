@@ -2873,6 +2873,42 @@ function prefixesDivBy5(A: number[]): boolean[] {
     return res;
 };
 
+function removeStones(stones: number[][]): number {
+    class UnionFind {
+        public n:number;
+        private parents:Map<number, number>;
+    
+        public constructor(n:number) {
+            this.n = 0;
+            this.parents = new Map<number, number>();
+        }
+        
+        public union(x:number, y:number) {
+            const rootX:number = this.find(x), 
+                  rootY:number = this.find(y)
+            if (rootX !== rootY) {
+                if (x !== rootX) this.n-- // 有主人不是自己，主人数 -1
+                if (!this.parents.has(rootY)) { // 没遇到过的新主人
+                    this.parents.set(rootY, rootY) // 标记遇到过了
+                    this.n++ // 主人数 +1
+                }
+                this.parents.set(rootX, rootY)
+            }
+        }
+    
+        private find(x:number) {
+            while(this.parents.has(x) && x !== this.parents.get(x)) x = this.parents.get(x)!;
+            return x
+        }
+    }
+    
+    let n:number = stones.length, 
+        u:UnionFind = new UnionFind(n), 
+        i = -1;
+        
+    while (++i < n) u.union(stones[i][0], ~stones[i][1])
+    return n - u.n
+};
 export {
     sortItems,
     calcEquation,

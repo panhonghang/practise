@@ -2909,7 +2909,54 @@ function removeStones(stones: number[][]): number {
     while (++i < n) u.union(stones[i][0], ~stones[i][1])
     return n - u.n
 };
+
+function hitBricks(grid: number[][], hits: number[][]): number[] {
+        for (let hit of hits) {
+            grid[hit[0]][hit[1]]--;
+        }
+
+        for (let i = 0; i < grid[0].length; i++) {
+            dfs(0, i, grid);
+        }
+
+        let ans:number[] = new Array(hits.length).fill(0);
+
+        for (let i = hits.length - 1; i >= 0; i--) {
+            grid[hits[i][0]][hits[i][1]]++;
+            if (grid[hits[i][0]][hits[i][1]] == 1 && isConnectProof(hits[i][0], hits[i][1], grid)) {
+                ans[i] = dfs(hits[i][0], hits[i][1], grid) - 1;
+            }
+        }
+        return ans;
+}
+
+const dfs = (x:number, y:number, grid:number[][]):number => {
+    if (x < 0 || x >= grid.length || y < 0 || y >= grid[0].length || grid[x][y] != 1) {
+        return 0;
+    }
+
+    grid[x][y] = 2;
+    return dfs(x - 1, y, grid) + dfs(x + 1, y, grid) + dfs(x, y - 1, grid) + dfs(x, y + 1, grid) + 1;
+}
+
+const isConnectProof = (x:number, y:number, grid:number[][]):boolean => {
+    let dx:number[] = [0, 0, 1, -1];
+    let dy:number[] = [1, -1, 0, 0];
+    
+    if (x == 0) return true;
+
+    for (let i = 0; i < 4; i++) {
+        let nx:number = x + dx[i];
+        let ny:number = y + dy[i];
+        if (nx < 0 || nx >= grid.length || ny < 0 || ny >= grid[0].length || grid[nx][ny] != 2) {
+            continue;
+        }
+        return true;
+    }
+    return false;
+}
 export {
+    hitBricks,
     sortItems,
     calcEquation,
     canPlaceFlowers,

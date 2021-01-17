@@ -2955,6 +2955,22 @@ const isConnectProof = (x:number, y:number, grid:number[][]):boolean => {
     }
     return false;
 }
+
+function checkStraightLine(coordinates: number[][]): boolean {
+    coordinates.sort((a, b) => a[1] -b[1]);
+    let [x1, y1] = coordinates[0],
+        [x2, y2] = coordinates[1],
+        slope:string = ((y2-y1) / (x2-x1)).toFixed(10);
+    [x1, y1] = coordinates[1];
+
+    for (let i = 2; i < coordinates.length; i++) {
+        [x2, y2] = coordinates[i];
+        if (((y2-y1) / (x2-x1)).toFixed(10) !== slope) return false;
+        [x1, y1] = coordinates[i];
+    }
+
+    return true;
+};
 export {
     hitBricks,
     sortItems,

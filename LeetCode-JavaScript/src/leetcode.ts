@@ -3019,6 +3019,44 @@ function accountsMerge(accounts: string[][]): string[][] {
     return merged;
 };
 
+type Connect = {
+        point1: number,
+        point2: number,
+        dis: number
+    }
+function minCostConnectPoints(points: number[][]): number {
+    let n = points.length;
+    let unionFind = new UnionFind(n);
+    let distance = Array<Connect>();
+    for (let i = 0; i < n - 1; i++) {
+        for (let j = i + 1; j < n; j++) {
+            let val = Math.abs(points[i][0] - points[j][0]) + Math.abs(points[i][1] - points[j][1]);
+            distance.push({ point1: i, point2: j, dis: val });
+        }
+    }
+
+    distance.sort((x: Connect, y: Connect) => {
+        return x.dis - y.dis;
+    })
+
+    let count = n - 1;
+    let res = 0;
+    for (let { point1: x, point2: y, dis } of distance) {
+        let faX = unionFind.find(x), faY = unionFind.find(y);
+        if (faX === faY) continue;
+
+        unionFind.merge(x, y);
+        res += dis;
+        count -= 1;
+
+        if (count <= 0) {
+            break;
+        }
+    }
+
+    return res;
+};
+
 export {
     hitBricks,
     sortItems,

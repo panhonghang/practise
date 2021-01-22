@@ -3151,6 +3151,10 @@ class UnionFind3 {
     }
 }
 
+function addToArrayForm(A: number[], K: number): number[] {
+    return (BigInt(A.join("")) + BigInt(K)).toString().split("").map((k) => Number(k));
+};
+
 export {
     hitBricks,
     sortItems,

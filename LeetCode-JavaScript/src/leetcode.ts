@@ -3155,6 +3155,39 @@ function addToArrayForm(A: number[], K: number): number[] {
     return (BigInt(A.join("")) + BigInt(K)).toString().split("").map((k) => Number(k));
 };
 
+function makeConnected(n: number, connections: number[][]): number {
+    if (connections.length < n - 1) {
+        return -1;
+    }
+    const dfs = (u:number, used:boolean[], edges:Map<number, number[]>) => {
+        used[u] = true;
+        if (edges.get(u)) {
+            for (const v of edges.get(u)!) {
+                if (!used[v]) {
+                    dfs(v, used, edges);
+                }
+            }
+        }
+    }
+
+    const edges:Map<number, number[]> = new Map();
+    for (const [x, y] of connections) {
+        edges.get(x) ? edges.get(x)!.push(y) : edges.set(x, [y]);
+        edges.get(y) ? edges.get(y)!.push(x) : edges.set(y, [x]);
+    }
+
+    const used:boolean[] = new Array(n).fill(false);
+
+    let ans:number = 0;
+    for (let i = 0; i < n; i++) {
+        if (!used[i]) {
+            dfs(i, used, edges);
+            ans++;
+        }
+    }
+    return ans - 1;
+};
+
 export {
     hitBricks,
     sortItems,

@@ -3188,6 +3188,24 @@ function makeConnected(n: number, connections: number[][]): number {
     return ans - 1;
 };
 
+function findLengthOfLCIS(nums: number[]): number {
+    if (nums.length === 0) return 0;
+    let res:number = 0,
+        num:number = 1;
+
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i-1] < nums[i]) {
+            num++;
+        } else {
+            res = Math.max(res, num);
+            num = 1;
+        }
+    }
+    res = Math.max(res, num);
+    
+    return res;
+};
+
 export {
     hitBricks,
     sortItems,

@@ -3206,7 +3206,51 @@ function findLengthOfLCIS(nums: number[]): number {
     return res;
 };
 
+function regionsBySlashes(grid: string[]): number {
+    let len = grid.length,
+        res:number = 0,
+        regions:number[][] = new Array(len*3).fill(0).map(k => new Array(len*3).fill(0));
+
+    const dfs = (x:number, y:number, regions:number[][]) => {
+        if(x >= 0 && x < len*3 && y >= 0 && y < len*3 && regions[x][y] == 0){
+            regions[x][y] = 1;
+            dfs(x+1, y, regions);
+            dfs(x-1, y, regions);
+            dfs(x, y+1, regions);
+            dfs(x, y-1, regions);
+        }
+    }
+   
+
+    for(let i = 0; i < len; i++){
+        for(let j = 0; j < len; j++){
+            if(grid[i].charAt(j) == '\\'){
+                regions[i*3][j*3] = 1;
+                regions[i*3+1][j*3+1] = 1;
+                regions[i*3+2][j*3+2] = 1;
+            }
+            if(grid[i].charAt(j) == '/'){
+                regions[i*3][j*3+2] = 1;
+                regions[i*3+1][j*3+1] = 1;
+                regions[i*3+2][j*3] = 1;
+            }
+        }
+    }
+
+    for(let i = 0; i < len*3; i++){
+        for(let j = 0; j < len*3; j++){
+            if(regions[i][j] == 0){
+                dfs(i, j, regions);
+                res++;
+            }
+        }
+    }
+    
+    return res;
+};
+
 export {
+    regionsBySlashes,
     hitBricks,
     sortItems,
     calcEquation,

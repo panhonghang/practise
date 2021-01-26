@@ -3249,6 +3249,29 @@ function regionsBySlashes(grid: string[]): number {
     return res;
 };
 
+function numEquivDominoPairs(dominoes: number[][]): number {
+    let map:Map<string, number> = new Map(),
+        res:number = 0;
+    
+    for (let i = 0; i < dominoes.length; i++) {
+        const [k, v] = dominoes[i];
+        const kvStr:string = k.toString() + v.toString();
+        const vkStr:string = v.toString() + k.toString();
+
+        if (map.has(kvStr)) {
+            res += map.get(kvStr)!;
+            map.set(kvStr, map.get(kvStr)! + 1);
+        } else if (map.has(vkStr) && kvStr !== vkStr) {
+            res += map.get(vkStr)!;
+            map.set(vkStr, map.get(vkStr)! + 1);
+        } else {
+            map.set(kvStr, 1);
+        }
+    }
+
+    return res;
+};
+
 export {
     regionsBySlashes,
     hitBricks,

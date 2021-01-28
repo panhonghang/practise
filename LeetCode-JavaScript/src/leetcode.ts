@@ -3351,6 +3351,21 @@ function maxNumEdgesToRemove(n: number, edges: number[][]): number {
     return ans;
 };
 
+function pivotIndex(nums: number[]): number {
+    let res:number = -1,
+        LSum:number = 0,
+        RSum:number = nums.reduce((pre, cur) => pre + cur, 0);  
+
+    for (let i = 0; i < nums.length; i++) {
+         if (2 * LSum + nums[i] === RSum) {
+            return i;
+        }
+        LSum += nums[i];
+    }
+
+    return res;
+};
+
 export {
     regionsBySlashes,
     hitBricks,

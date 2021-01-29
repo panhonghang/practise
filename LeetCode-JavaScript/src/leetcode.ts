@@ -3366,6 +3366,62 @@ function pivotIndex(nums: number[]): number {
     return res;
 };
 
+function minimumEffortPath(heights: number[][]): number {
+    let n = heights.length,
+        m = heights[0].length,
+        dp:number[][] = new Array(n).fill(0).map(k => new Array(m));
+
+        for (let i=0; i<n; i++) {
+            for (let j=0; j<m; j++) {
+                dp[i][j] = Number.MAX_VALUE;
+            }
+        }
+        dp[0][0] = 0;
+        let isGo:boolean = true;
+
+    while (isGo) {
+        isGo = false;
+        for (let i=0; i<n; i++) {
+            for (let j=0; j<m; j++) {
+                if (i - 1 >= 0) {
+                    let x = Math.max(dp[i-1][j], Math.abs(heights[i][j] - heights[i-1][j]));
+                    if (x < dp[i][j]) {
+                        dp[i][j] = x;
+                        isGo = true;
+                    }
+                }
+                if (j - 1 >= 0) {
+                    let x = Math.max(dp[i][j-1], Math.abs(heights[i][j] - heights[i][j-1]));
+                    if (x < dp[i][j]) {
+                        dp[i][j] = x;
+                        isGo = true;
+                    }
+                }
+            }
+        }
+        for (let i=n-1; i>=0; i--) {
+            for (let j=m-1; j>=0; j--) {
+                if (i + 1 < n) {
+                    let x = Math.max(dp[i+1][j], Math.abs(heights[i][j] - heights[i+1][j]));
+                    if (x < dp[i][j]) {
+                        dp[i][j] = x;
+                        isGo = true;
+                    }
+                }
+                if (j + 1 < m) {
+                    let x = Math.max(dp[i][j+1], Math.abs(heights[i][j] - heights[i][j+1]));
+                    if (x < dp[i][j]) {
+                        dp[i][j] = x;
+                        isGo = true;
+                    }
+                }
+            }
+        }
+    }
+    return dp[n-1][m-1];
+};
+
+
 export {
     regionsBySlashes,
     hitBricks,

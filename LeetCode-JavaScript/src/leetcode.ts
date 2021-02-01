@@ -3504,6 +3504,19 @@ function numSimilarGroups(strs: string[]): number {
     }
 };
 
+function fairCandySwap(A: number[], B: number[]): number[] {
+    let sumA:number = A.reduce((pre:number, cur:number) => pre + cur, 0),
+        sumB:number = B.reduce((pre:number, cur:number) => pre + cur, 0),
+        dis:number = Math.floor((sumB - sumA)/2),
+        set:Set<number> = new Set(B);
+    
+    for (let i = 0; i < A.length; i++) {
+        let num:number = Math.floor(dis + A[i]);
+        if (set.has(num)) return [A[i], num];
+    }
+    return [];
+};
+
 export {
     regionsBySlashes,
     hitBricks,

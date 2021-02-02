@@ -3113,8 +3113,8 @@ function findCriticalAndPseudoCriticalEdges(n: number, edges: number[][]): numbe
 
 class UnionFind3 {
     private parent:number[];
-    private size;
-    public setCount;
+    private size:number[];
+    public setCount:number;
 
     constructor (n:number) {
         this.parent = new Array(n).fill(0).map((element, index) => index);
@@ -3517,7 +3517,31 @@ function fairCandySwap(A: number[], B: number[]): number[] {
     return [];
 };
 
+function characterReplacement(s: string, k: number): number {
+    let left:number = 0,
+        right:number = 0,
+        maxCount:number = 1,
+        map:Map<string, number> = new Map<string, number>(),
+        r:string = "",
+        l:string = "";
+    
+    while (right < s.length) {
+        r = s.charAt(right);
+        map.set(r, (map.get(r) || 0) + 1);
+        maxCount = Math.max(maxCount, map.get(r)!);
+        if (right - left + 1 - maxCount > k) {
+            l = s.charAt(left);
+            left++;
+            map.set(l, map.get(l)! - 1);
+        }
+        right++;
+    }
+
+    return right - left;
+};
+
 export {
+    characterReplacement,
     regionsBySlashes,
     hitBricks,
     sortItems,

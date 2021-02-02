@@ -65,7 +65,14 @@ import {
   canPlaceFlowers,
   calcEquation,
   sortItems,
+  characterReplacement,
 } from '../leetcode';
+
+test("替换后的最长字符串", () => {
+  expect(characterReplacement("ABAB", 2)).toBe(4);
+  expect(characterReplacement("AABABBA", 1)).toBe(4);
+  expect(characterReplacement("", 1)).toBe(0);
+})
 
 test("项目管理", () => {
   expect(sortItems(

@@ -3602,6 +3602,21 @@ function medianSlidingWindow(nums: number[], k: number): number[] {
     }
 };
 
+function findMaxAverage(nums: number[], k: number): number {
+    let l:number = 0,
+        r:number = nums.length - k + 1,
+        sum:number = nums.slice(0, k).reduce((pre, cur) => pre + cur, 0),
+        average:number = Number.MIN_SAFE_INTEGER;
+
+    while (l < r) {
+        average = Math.max(sum / k, average);
+        sum = sum + nums[l + k] - nums[l];
+        l++;
+    }
+
+    return average;
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

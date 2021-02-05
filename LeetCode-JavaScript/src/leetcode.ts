@@ -3617,6 +3617,36 @@ function findMaxAverage(nums: number[], k: number): number {
     return average;
 };
 
+function equalSubstring(s: string, t: string, maxCost: number): number {
+    let res:number = 0,
+        arr:number[] = [],
+        r:number = 0,
+        l:number = 0,
+        sum:number = 0;
+
+    for (let i = 0; i < s.length; i++) {
+        let sCode:number = s.charCodeAt(i),
+            tCode:number = t.charCodeAt(i);
+        arr.push(Math.abs(sCode - tCode));
+    }
+    
+    while (r < s.length) {
+        sum += arr[r];
+        if (sum <= maxCost && r === s.length - 1) {
+            res = Math.max(res, r-l+1);
+            break;
+        }
+
+        if (sum > maxCost) {
+            res = Math.max(res, r-l);
+            sum -= arr[l];
+            l++;
+        }
+        r++;
+    }
+    return res;
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

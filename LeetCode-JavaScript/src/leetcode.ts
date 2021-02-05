@@ -3617,34 +3617,51 @@ function findMaxAverage(nums: number[], k: number): number {
     return average;
 };
 
-function equalSubstring(s: string, t: string, maxCost: number): number {
-    let res:number = 0,
-        arr:number[] = [],
-        r:number = 0,
-        l:number = 0,
-        sum:number = 0;
+// function equalSubstring(s: string, t: string, maxCost: number): number {
+//     let res:number = 0,
+//         arr:number[] = [],
+//         r:number = 0,
+//         l:number = 0,
+//         sum:number = 0;
 
-    for (let i = 0; i < s.length; i++) {
-        let sCode:number = s.charCodeAt(i),
-            tCode:number = t.charCodeAt(i);
-        arr.push(Math.abs(sCode - tCode));
-    }
+//     for (let i = 0; i < s.length; i++) {
+//         let sCode:number = s.charCodeAt(i),
+//             tCode:number = t.charCodeAt(i);
+//         arr.push(Math.abs(sCode - tCode));
+//     }
     
-    while (r < s.length) {
-        sum += arr[r];
-        if (sum <= maxCost && r === s.length - 1) {
-            res = Math.max(res, r-l+1);
-            break;
-        }
+//     while (r < s.length) {
+//         sum += arr[r];
+//         if (sum <= maxCost && r === s.length - 1) {
+//             res = Math.max(res, r-l+1);
+//             break;
+//         }
 
-        if (sum > maxCost) {
-            res = Math.max(res, r-l);
-            sum -= arr[l];
-            l++;
+//         if (sum > maxCost) {
+//             res = Math.max(res, r-l);
+//             sum -= arr[l];
+//             l++;
+//         }
+//         r++;
+//     }
+//     return res;
+// };
+
+function equalSubstring(s: string, t: string, maxCost: number): number {
+    let l:number = 0,
+        res:number = 0,
+        cost:number = 0;
+
+        for (let i = 0; i < s.length; i++) {
+            cost += Math.abs(s.charCodeAt(i) - t.charCodeAt(i));
+            
+            while (cost > maxCost) {
+                cost -= Math.abs(s.charCodeAt(l) - t.charCodeAt(l));
+                l++;
+            }
+            res = Math.max(res, i-l+1);
         }
-        r++;
-    }
-    return res;
+        return res;
 };
 
 export {

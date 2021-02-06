@@ -3664,6 +3664,20 @@ function equalSubstring(s: string, t: string, maxCost: number): number {
         return res;
 };
 
+function maxScore(cardPoints: number[], k: number): number {
+    let maxValue:number = 0,
+        l:number = 0,
+        all:number = cardPoints.slice(0).reduce((pre, cur) => pre+cur, 0);
+        
+    while (k >= l) {
+        let sum:number = all - cardPoints.slice(l, cardPoints.length-k+l).reduce((pre, cur) => pre+cur, 0);
+        maxValue = Math.max(sum, maxValue);
+        l++;
+    }
+    
+    return maxValue;
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

@@ -3727,6 +3727,32 @@ function maxTurbulenceSize(arr: number[]): number {
     return maxLen;
 };
 
+// function maxTurbulenceSize(arr: number[]): number {
+//     let len: number = arr.length
+//     if (len <= 1) return len
+  
+//     // 定义两个 dp 数组 up, down
+//     const up: number[] = new Array(len).fill(1)
+//     const down: number[] = new Array(len).fill(1)
+  
+//     let ans: number = 1
+//     for (let i: number = 1; i < len; i++) {
+//       // 上升
+//       if (arr[i - 1] < arr[i]) {
+//         down[i] = up[i - 1] + 1
+//       }
+//       // 下降
+//       else if (arr[i - 1] > arr[i]) {
+//         up[i] = down[i - 1] + 1
+//       }
+//       // 平地 跳过
+//       else continue
+  
+//       ans = Math.max(ans, Math.max(up[i], down[i]))
+//     }
+  
+//     return ans
+// }
 export {
     characterReplacement,
     regionsBySlashes,

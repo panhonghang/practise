@@ -3698,6 +3698,35 @@ function checkPossibility(nums: number[]): boolean {
     return true;
 };
 
+function maxTurbulenceSize(arr: number[]): number {
+    let maxLen:number = 1,
+        pre:number = 0,
+        next:number = 0;
+    // 0 ==, 1 >, -1 <
+    const boolArr:number[] = arr.map((v, i, a)=>{
+        return v > (a[i+1] || 0) ? 1 : v == (a[i+1] || 0) ? 0 : -1
+    })
+
+    boolArr.pop();
+    if (boolArr.length === 1 && boolArr[0] !== 0) return 2;
+
+    while (next < boolArr.length - 1) {
+        if (boolArr[next+1] === 0) {
+            if (boolArr[next] != 0) maxLen = Math.max(maxLen, next - pre + 2);
+            pre = next + 2;
+            next++;
+        } else if (boolArr[next] != boolArr[next+1] && next + 1 == boolArr.length - 1) {
+            maxLen = Math.max(maxLen, next - pre + 3);
+        } else if (boolArr[next] === boolArr[next+1]) {
+            maxLen = Math.max(maxLen, next - pre + 2);
+            pre = next + 1;
+        }
+        next++;
+    }
+    
+    return maxLen;
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

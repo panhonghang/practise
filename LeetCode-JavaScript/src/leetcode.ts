@@ -3753,6 +3753,38 @@ function maxTurbulenceSize(arr: number[]): number {
   
 //     return ans
 // }
+
+function subarraysWithKDistinct(A: number[], K: number): number {
+    let count:number = 0,
+        pre:number = 0,
+        next:number = 0,
+        map:Map<number, number> = new Map<number, number>();
+
+    while (next < A.length) {
+        map.set(A[next], (map.get(A[next]) || 0) + 1);
+        // 滑动窗口满足K
+        while (map.size === K) {
+            // 保存当前右指针值
+            let right:number = next;
+            // 走到最右端
+            while (map.size === K) {
+                count++;
+                next++;
+                //map 不存在该值
+                if(!map.has(A[next])) break;
+            }
+            // 删除当前pre
+            map.set(A[pre], map.get(A[pre])! - 1);
+            if (map.has(A[pre]) && map.get(A[pre]) === 0) map.delete(A[pre]);
+            pre++;
+            // 回退
+            next = right;
+        }
+        next++;
+    }
+    return count;
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

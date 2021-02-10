@@ -3785,34 +3785,59 @@ function subarraysWithKDistinct(A: number[], K: number): number {
     return count;
 };
 
+// function checkInclusion(s1: string, s2: string): boolean {
+//     if (s1.length > s2.length) return false;
+//     let pre:number = 0,
+//         len:number = s1.length,
+//         map:Map<string, number> = new Map<string, number>();
+//     // 添加s1内字符进入map
+//     while (pre < len) {
+//         map.set(s1.charAt(pre), (map.get(s1.charAt(pre)) || 0) + 1);
+//         pre++;
+//     }
+
+//     pre = 0;
+//     // 遍历s2
+//     while (pre <= s2.length - len) {
+//         let map1:Map<string, number> = new Map<string, number>(map),
+//             i:number = pre;
+//         // 匹配
+//         while (i < pre + len) {
+//             if (!map1.has(s2.charAt(i))) break;
+//             map1.set(s2.charAt(i), map1.get(s2.charAt(i))! - 1);
+//             if (map1.get(s2.charAt(i)) === 0) map1.delete(s2.charAt(i))
+//             i++;
+//         }
+//         // 成功匹配
+//         if (i === pre + len && map1.size === 0) return true;
+//         pre++;
+//     }
+
+//     return false;
+// };
+
 function checkInclusion(s1: string, s2: string): boolean {
-    if (s1.length > s2.length) return false;
-    let pre:number = 0,
-        len:number = s1.length,
-        map:Map<string, number> = new Map<string, number>();
-    // 添加s1内字符进入map
-    while (pre < len) {
-        map.set(s1.charAt(pre), (map.get(s1.charAt(pre)) || 0) + 1);
-        pre++;
-    }
+    let arr = Array(26).fill(0),
+        aCode = 'a'.charCodeAt(0),
+        m = s1.length,
+        n = s2.length;
 
-    pre = 0;
-    // 遍历s2
-    while (pre <= s2.length - len) {
-        let map1:Map<string, number> = new Map<string, number>(map),
-            i:number = pre;
-        // 匹配
-        while (i < pre + len) {
-            if (!map1.has(s2.charAt(i))) break;
-            map1.set(s2.charAt(i), map1.get(s2.charAt(i)) - 1);
-            if (map1.get(s2.charAt(i)) === 0) map1.delete(s2.charAt(i))
-            i++;
+    for (let i = 0; i < m; i++) {
+        arr[s1.charCodeAt(i) - aCode]++;
+    }
+    
+    for (let i = 0; i < n; i++) {
+        if (i < m) {
+            arr[s2.charCodeAt(i) - aCode]--;
+            if (i == m - 1) {
+                if (arr.every(e => !e)) return true;
+            }
+        } else {
+            arr[s2.charCodeAt(i - m) - aCode]++;
+            arr[s2.charCodeAt(i) - aCode]--;
+            if (arr.every(e => !e)) return true;
         }
-        // 成功匹配
-        if (i === pre + len && map1.size === 0) return true;
-        pre++;
     }
-
     return false;
 };
 

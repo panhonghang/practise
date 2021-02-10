@@ -3785,6 +3785,37 @@ function subarraysWithKDistinct(A: number[], K: number): number {
     return count;
 };
 
+function checkInclusion(s1: string, s2: string): boolean {
+    if (s1.length > s2.length) return false;
+    let pre:number = 0,
+        len:number = s1.length,
+        map:Map<string, number> = new Map<string, number>();
+    // 添加s1内字符进入map
+    while (pre < len) {
+        map.set(s1.charAt(pre), (map.get(s1.charAt(pre)) || 0) + 1);
+        pre++;
+    }
+
+    pre = 0;
+    // 遍历s2
+    while (pre <= s2.length - len) {
+        let map1:Map<string, number> = new Map<string, number>(map),
+            i:number = pre;
+        // 匹配
+        while (i < pre + len) {
+            if (!map1.has(s2.charAt(i))) break;
+            map1.set(s2.charAt(i), map1.get(s2.charAt(i)) - 1);
+            if (map1.get(s2.charAt(i)) === 0) map1.delete(s2.charAt(i))
+            i++;
+        }
+        // 成功匹配
+        if (i === pre + len && map1.size === 0) return true;
+        pre++;
+    }
+
+    return false;
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

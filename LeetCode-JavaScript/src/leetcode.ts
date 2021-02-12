@@ -3947,11 +3947,33 @@ class MinHeap {
     }
 }
 
-/**
- * Your KthLargest object will be instantiated and called as such:
- * var obj = new KthLargest(k, nums)
- * var param_1 = obj.add(val)
- */
+// function getRow(rowIndex: number): number[] {
+//     const row = [1];
+//     for (let i = 1; i <= rowIndex; i++) {
+//         const length = row.length;
+//         for (let j=length; j >=0; j--) {
+//             row[j] = (row[j] ?? 0) + (row[j - 1] ?? 0);
+//         }
+//     }
+//     return row;
+// };
+
+function getRow(rowIndex: number): number[] {
+    if (rowIndex === 0) return [1];
+    if (rowIndex === 1) return [1, 1];
+    let rowArr:number[] = [1, 1];
+
+    while (rowIndex > 1) {
+        let tempArr:number[] = [1];
+        for (let i = 0; i < rowArr.length - 1; i++) {
+            tempArr.push(rowArr[i] + rowArr[i+1])
+        }
+        rowArr = tempArr.concat([1])
+        rowIndex--
+    }
+
+    return rowArr;
+};
 
 export {
     characterReplacement,

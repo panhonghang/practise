@@ -3975,6 +3975,21 @@ function getRow(rowIndex: number): number[] {
     return rowArr;
 };
 
+function findDisappearedNumbers(nums: number[]): number[] {
+    const n:number = nums.length;
+    for (const num of nums) {
+        const x = (num - 1) % n;
+        nums[x] += n;
+    }
+    const ret:number[] = [];
+    for (const [i, num] of nums.entries()) {
+        if (num <= n) {
+            ret.push(i + 1);
+        }
+    }
+    return ret;
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

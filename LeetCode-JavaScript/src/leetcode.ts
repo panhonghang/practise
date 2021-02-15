@@ -4032,6 +4032,28 @@ const add = (f:number[], x:number, y:number):void => {
     f[fx] = fy;
 };
 
+function findMaxConsecutiveOnes(nums: number[]): number {
+    let max:number = 0,
+        pre:number = 0,
+        next:number = 0;
+    
+    while (nums[next] !== 1 && next < nums.length) next++;
+    pre = next;
+
+    while (next < nums.length) {
+        if (nums[next] === 1) {
+            next++
+        } else {
+            max = Math.max(max, next - pre);
+            while (nums[next] !== 1 && next < nums.length) next++;
+            pre = next;
+        }
+        if (next === nums.length && nums[next-1] === 1) max = Math.max(max, next - pre);
+    }
+
+    return max;
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

@@ -4064,6 +4064,29 @@ function arrayPairSum(nums: number[]): number {
     return ans;
 };
 
+function matrixReshape(nums: number[][], r: number, c: number): number[][] {
+    // 不满足的话，直接返回
+    const nr = nums.length;
+    const nc = nums[0].length;
+    if(nr * nc !== r * c) return nums;
+    const res:number[][] = new Array(r).fill(0).map(v => new Array(c).fill(0));
+    let r1:number = 0, 
+        c1:number = 0;
+
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = 0; j < nums[0].length; j++) {
+            if (c1 >= c) {
+                r1++;
+                c1 = 0;
+            }
+            res[r1][c1] = nums[i][j];
+            c1++;
+        }
+    }
+
+    return res;
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

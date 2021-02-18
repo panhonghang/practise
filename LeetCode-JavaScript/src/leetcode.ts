@@ -4089,14 +4089,14 @@ function matrixReshape(nums: number[][], r: number, c: number): number[][] {
 
 function minKBitFlips(A: number[], K: number): number {
     let res:number = 0;
+    // 对列的长度代表翻转的次数，队列的元素代表从哪一个位置开始翻转
     const que:number[] = new Array<number>();
     for (let i = 0; i < A.length; i++) {
-        if (que.length > 0 && i > que[0] + K - 1) {
-            que.shift();
-        }
-        //1.本来是1，翻转奇数次变为0，所以需要再次翻转，放入队列
-        //2.本来是0，翻转偶数次还是0，所以需要再次翻转，放入队列
-        if (que.length % 2 == A[i]) {
+        // 判断是否超出 K 长度
+        if (i > (que[0] || 0) + K - 1) que.shift();
+        //1.本来是1，翻转奇数次变为0，所以需要再次翻转，放入队列。本来是0，翻转偶数次还是0，所以需要再次翻转，放入队列
+        if (que.length % 2 === A[i]) {
+            // 后面剩余的元素不到 K 个的时候，还需要翻转则不能成功
             if (i + K > A.length) return -1;
             que.push(i);
             res += 1;

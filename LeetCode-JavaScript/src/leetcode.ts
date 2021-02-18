@@ -4087,6 +4087,24 @@ function matrixReshape(nums: number[][], r: number, c: number): number[][] {
     return res;
 };
 
+function minKBitFlips(A: number[], K: number): number {
+    let res:number = 0;
+    const que:number[] = new Array<number>();
+    for (let i = 0; i < A.length; i++) {
+        if (que.length > 0 && i > que[0] + K - 1) {
+            que.shift();
+        }
+        //1.本来是1，翻转奇数次变为0，所以需要再次翻转，放入队列
+        //2.本来是0，翻转偶数次还是0，所以需要再次翻转，放入队列
+        if (que.length % 2 == A[i]) {
+            if (i + K > A.length) return -1;
+            que.push(i);
+            res += 1;
+        }
+    }
+    return res;
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

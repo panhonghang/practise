@@ -4105,6 +4105,25 @@ function minKBitFlips(A: number[], K: number): number {
     return res;
 };
 
+function longestOnes(A: number[], K: number): number {
+    const zeroArr:number[] = [];
+    let pre:number = 0,
+        res:number = 0;
+    A.forEach((v, i) => {if (v === 0) zeroArr.push(i)})
+    // 判断是否能全变为1
+    if (pre + K >= zeroArr.length) return A.length
+    // 开始时候从第一位开始计算
+    res = zeroArr[K];
+
+    while (pre < zeroArr.length - K) {
+        // 最长能连起来的1的长度 = 第 K+1 个0的前面一个1的位置
+        let len:number = (zeroArr[pre + K + 1] || A.length) - 1 - zeroArr[pre]
+        res = Math.max(res, len)
+        pre++;
+    }
+    return res;
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

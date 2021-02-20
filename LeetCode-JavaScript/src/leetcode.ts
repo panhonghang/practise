@@ -4154,6 +4154,32 @@ function findShortestSubArray(nums: number[]): number {
     return minLen;
 };
 
+// function findShortestSubArray(nums: number[]): number {
+//     const mapNumToStart:Map<number, number> = new Map<number, number>(),
+//           mapNumToDegree:Map<number, number> = new Map<number, number>();
+//     let maxCount:number = 0,
+//         minLen:number = 0;
+    
+//     nums.forEach((v, i) => {
+//         if (mapNumToStart.has(v)) {
+//             const degree:number = mapNumToDegree.get(nums[i])! + 1;
+//             mapNumToDegree.set(nums[i], degree);
+//             if (degree > maxCount) {
+//                 maxCount = degree;
+//                 minLen = i - mapNumToStart.get(nums[i]) + 1;
+//             } else if (degree === maxCount) {
+//                 minLen = Math.min(minLen, i - mapNumToStart.get(nums[i]) + 1);
+//             }
+//         } else {
+//             mapNumToStart.set(v, i);
+//             mapNumToDegree.set(v, 1);
+//             minLen = Math.max(1, minLen);
+//         }
+//     })
+
+//     return minLen;
+// };
+
 export {
     characterReplacement,
     regionsBySlashes,

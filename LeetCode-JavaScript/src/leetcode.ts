@@ -4124,6 +4124,36 @@ function longestOnes(A: number[], K: number): number {
     return res;
 };
 
+function findShortestSubArray(nums: number[]): number {
+    const map:Map<number, number> = new Map<number, number>(),
+          maxCountNumArr:number[] = [];
+    let maxCount:number = 0,
+        maxCountNum:number = 0,
+        minLen:number = nums.length;
+    
+    nums.forEach((v) => {
+        map.set(v, (map.get(v) || 0) + 1);
+        if (maxCount < map.get(v)!) {
+            maxCount = map.get(v)!;
+            maxCountNum = v;
+        }
+    })
+
+    map.forEach((v, k) => {
+        if (v === maxCount) maxCountNumArr.push(k)
+    })
+
+    for (let num of maxCountNumArr) {
+        let pre:number = 0,
+            next:number = nums.length - 1;
+        while (num != nums[pre]) pre++;
+        while (num != nums[next]) next--;
+        minLen = Math.min(next - pre + 1, minLen)
+    }
+
+    return minLen;
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

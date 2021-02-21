@@ -4180,6 +4180,33 @@ function findShortestSubArray(nums: number[]): number {
 //     return minLen;
 // };
 
+function longestSubarray(nums: number[], limit: number): number {
+    // maxQ为单调递减队列，头部为最大值；minQ为单调递增队列，头部为最小值。
+    let maxQ: number[] = [], minQ: number[] = [], start = 0, ans = 0;
+    for (let end = 0; end < nums.length; end++) {
+        // 新元素入队时，保持maxQ单调递减
+        while (maxQ.length > 0 && nums[end] > maxQ[maxQ.length - 1]) {
+            maxQ.pop();
+        }
+        maxQ.push(nums[end]);
+        // 新元素入队时，保持minQ单调递增
+        while (minQ.length > 0 && nums[end] < minQ[minQ.length - 1]) {
+            minQ.pop();
+        }
+        minQ.push(nums[end]);
+        // 比较队列的头部元素，大于limit时窗口需要右移
+        while (maxQ[0] - minQ[0] > limit) {
+            // 如果当前队列的头部元素被移出窗口，则出队
+            if (maxQ[0] === nums[start]) maxQ.shift();
+            if (minQ[0] === nums[start]) minQ.shift();
+            start++;
+        }
+        // 窗口移动之后，更新窗口的长度
+        ans = Math.max(ans, end - start + 1);
+    }
+    return ans;
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

@@ -4207,6 +4207,21 @@ function longestSubarray(nums: number[], limit: number): number {
     return ans;
 };
 
+function isToeplitzMatrix(matrix: number[][]): boolean {
+    for (let i = 1; i < matrix.length; i++) {
+        let c:number[] = matrix[i - 1]
+        for (let j = 1; j < matrix[i].length; j++) {
+            let x:number = j - 1
+            if (x >= 0 && x < c.length) {
+                if (c[x] !== matrix[i][j]) {
+                return false
+                }
+            }
+        }
+    }
+    return true;
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

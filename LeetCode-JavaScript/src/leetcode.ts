@@ -4222,6 +4222,24 @@ function isToeplitzMatrix(matrix: number[][]): boolean {
     return true;
 };
 
+function maxSatisfied(customers: number[], grumpy: number[], X: number): number {
+    let ret:number = 0, 
+        extra:number = 0, 
+        tmp:number = 0,
+        l:number = 0, 
+        r:number = 0;;
+    const n = customers.length;
+
+    while(r < n) {
+        ret += (1 - grumpy[r]) * customers[r];
+        
+        tmp += grumpy[r] * customers[r++];
+        extra = Math.max(extra, tmp);
+        if(r - l == X) tmp -= grumpy[l] * customers[l++];
+    }
+    return ret + extra;
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

@@ -4240,6 +4240,16 @@ function maxSatisfied(customers: number[], grumpy: number[], X: number): number 
     return ret + extra;
 };
 
+function flipAndInvertImage(A: number[][]): number[][] {
+    let row:number = A[0].length;
+    for (let i = 0; i < A.length; i++) {
+        for (let j = 0; j < row / 2; j++) {
+            [A[i][j], A[i][row - 1 - j]] = [1^A[i][row - 1 - j], 1^A[i][j]];
+        }
+    }
+    return A;
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

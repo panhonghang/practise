@@ -818,3 +818,31 @@ import java.util.stream.Stream;
 //         }
 //     }
 // }
+
+class Solution {
+    public List<Integer> findNumOfValidWords(String[] words, String[] puzzles) {
+        Map<Integer, Integer> map = new HashMap<>();
+        ArrayList<Integer> ans = new ArrayList<>(puzzles.length);
+        for (String word : words) {
+            map.merge(getMask(word), 1, Integer::sum);
+        }
+        for (String puzzle : puzzles) {
+            char key = puzzle.charAt(0);
+            int num = getMask(puzzle), can = 0;
+            for (int i = num; i > 0; i = (i - 1) & num) {
+                if (((1 << (key - 'a')) & i) != 0) can += map.getOrDefault(i, 0);
+            }
+            ans.add(can);
+        }
+        return ans;
+    }
+
+    // 计算指定字符串的掩码。
+    private int getMask(String string) {
+        int mask = 0;
+        for (char ch : string.toCharArray()) {
+            mask |= 1 << (ch - 'a');
+        }
+        return mask;
+    }
+}

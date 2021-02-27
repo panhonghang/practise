@@ -847,22 +847,22 @@ import java.util.stream.Stream;
 //     }
 // }
 
-class Solution {
-    public int longestSubstring(String s, int k) {
-        if (s.length() < k) return 0;
-        Map<Character, Integer> map = new HashMap<>();
-        for (char c : s.toCharArray()) map.put(c, map.getOrDefault(c, 0) + 1);
+// class Solution {
+//     public int longestSubstring(String s, int k) {
+//         if (s.length() < k) return 0;
+//         Map<Character, Integer> map = new HashMap<>();
+//         for (char c : s.toCharArray()) map.put(c, map.getOrDefault(c, 0) + 1);
         
-        for (Character c : map.keySet()) {
-            if(map.get(c) < k){  
-                int res = 0;
-                for (String s1 : s.split(String.valueOf(c))) {
-                    res = Math.max(res,longestSubstring(s1,k));
-                }
-                return res;
-            }
-        }
+//         for (Character c : map.keySet()) {
+//             if(map.get(c) < k){  
+//                 int res = 0;
+//                 for (String s1 : s.split(String.valueOf(c))) {
+//                     res = Math.max(res,longestSubstring(s1,k));
+//                 }
+//                 return res;
+//             }
+//         }
 
-        return s.length(); 
-    }
-}
+//         return s.length(); 
+//     }
+// }

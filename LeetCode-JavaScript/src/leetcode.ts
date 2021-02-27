@@ -4254,6 +4254,25 @@ function transpose(A: number[][]): number[][] {
     return Array.from({length: A[0].length}, (_, k) => A.map(row => row[k]));
 };
 
+function longestSubstring(s: string, k: number): number {
+    if (s.length < k) return 0;
+    const map:Map<string, number> = new Map<string, number>();
+    
+    for (let c of s) map.set(c, (map.get(c) || 0) + 1);
+    
+    for (let c of map.keys()) {
+        if(map.get(c)! < k){  
+            let res:number = 0;
+            for (let s1 of s.split(c)) {
+                res = Math.max(res,longestSubstring(s1,k));
+            }
+            return res;
+        }
+    }
+
+    return s.length;
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

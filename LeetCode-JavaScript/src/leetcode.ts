@@ -4273,6 +4273,13 @@ function longestSubstring(s: string, k: number): number {
     return s.length;
 };
 
+function isMonotonic(A: number[]): boolean {
+    function isSorted(arr: number[]): boolean {
+        return arr.slice(1).every((item, i) => arr[i] <= item)
+    }
+    return isSorted(A) || isSorted(A.reverse());
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

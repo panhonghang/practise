@@ -4280,6 +4280,26 @@ function isMonotonic(A: number[]): boolean {
     return isSorted(A) || isSorted(A.reverse());
 };
 
+class NumArray {
+    private dp: number[]
+    private constructor(nums: number[]) {
+        this.dp = [0];
+        for(let i = 0, len = nums.length; i < len; i++) {
+            this.dp.push(this.dp[i] + nums[i]);
+        }
+    }
+
+    public sumRange(i: number, j: number): number {
+        return this.dp[j + 1] - this.dp[i];
+    }
+}
+
+/**
+ * Your NumArray object will be instantiated and called as such:
+ * var obj = new NumArray(nums)
+ * var param_1 = obj.sumRange(i,j)
+ */
+
 export {
     characterReplacement,
     regionsBySlashes,

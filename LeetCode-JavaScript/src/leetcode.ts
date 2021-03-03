@@ -4322,7 +4322,15 @@ class NumMatrix {
  * var obj = new NumMatrix(matrix)
  * var param_1 = obj.sumRegion(row1,col1,row2,col2)
  */
- 
+function countBits(num: number): number[] {
+    const bits:number[] = new Array(num + 1);
+    bits[0] = 0;
+    for (let i = 1; i <= num; ++i) {
+        bits[i] = bits[i & (i - 1)] + 1;
+    }
+
+    return bits;
+};
 export {
     characterReplacement,
     regionsBySlashes,

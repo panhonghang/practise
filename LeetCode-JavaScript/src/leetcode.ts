@@ -4331,6 +4331,23 @@ function countBits(num: number): number[] {
 
     return bits;
 };
+
+function maxEnvelopes(envelopes: number[][]): number {
+    if (envelopes.length === 0) return 0;
+    envelopes.sort((a: number[], b: number[]) => a[0] === b[0] ? b[1] - a[1] : a[0] - b[0])
+
+    const heights:number[] = envelopes.map(envelope => envelope[1]),
+          len = envelopes.length,
+          dp:number[] = new Array(len).fill(1);
+
+    for(let i = 1; i < len; i++){
+        for(let j = 0; j < i; j++){
+            if(heights[i] > heights[j]) dp[i] = Math.max(dp[j] + 1, dp[i])
+        }
+    }
+
+    return Math.max(...dp);
+};
 export {
     characterReplacement,
     regionsBySlashes,

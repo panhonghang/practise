@@ -4348,6 +4348,39 @@ function maxEnvelopes(envelopes: number[][]): number {
 
     return Math.max(...dp);
 };
+class MyQueue {
+    private arr:number[];
+
+    constructor() {
+        this.arr = [];
+    }
+
+    public push(x: number): void {
+        this.arr.push(x);
+    }
+
+    public pop(): number | undefined {
+        return this.arr.shift();
+    }
+
+    public peek(): number {
+        return this.arr[0]
+    }
+
+    public empty(): boolean {
+        return this.arr.length === 0;
+    }
+}
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * var obj = new MyQueue()
+ * obj.push(x)
+ * var param_2 = obj.pop()
+ * var param_3 = obj.peek()
+ * var param_4 = obj.empty()
+ */
+
 export {
     characterReplacement,
     regionsBySlashes,

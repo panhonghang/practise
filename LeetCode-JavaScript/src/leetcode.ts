@@ -4381,6 +4381,20 @@ class MyQueue {
  * var param_4 = obj.empty()
  */
 
+function nextGreaterElements(nums: number[]): number[] {
+    const n:number = nums.length,
+          ret:number[] = new Array(n).fill(-1),
+          stk:number[] = [];
+    for (let i = 0; i < n * 2 - 1; i++) {
+        while (stk.length && nums[stk[stk.length - 1]] < nums[i % n]) {
+            ret[stk[stk.length - 1]] = nums[i % n];
+            stk.pop();
+        }
+        stk.push(i % n);
+    }
+    return ret;
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

@@ -4395,6 +4395,39 @@ function nextGreaterElements(nums: number[]): number[] {
     return ret;
 };
 
+function partitionII(s: string): string[][] {
+    const res:string[][] = [],
+          codeArr:number[] = s.split('').map((_v, i) => s.charCodeAt(i));
+
+    const isPalindrome = (start:number, end:number): boolean => {
+        for (let i = start, j = end; i < j; i++, j--) {
+            if (codeArr[i] != codeArr[j]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    const fn = (arr:string[], i:number) => {
+        if (i === s.length) return res.push([...arr]);
+        let num:number = 0,
+            str:string = "";
+
+        for (let j = i; j < s.length; j++) {
+            str += s.charAt(j);
+            if (isPalindrome(i, j)) {
+                arr.push(str);
+                fn([...arr], j + 1);
+                arr.pop();
+            }
+        }
+    }
+    
+    fn([], 0);
+
+    return res;
+}
+
 export {
     characterReplacement,
     regionsBySlashes,

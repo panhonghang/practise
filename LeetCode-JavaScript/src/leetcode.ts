@@ -4455,6 +4455,20 @@ function minCut(s: string): number {
 
     return dp[len-1]
 };
+
+function removeDuplicates(S: string): string {
+    const arr:string[] = [S.charAt(0)];
+    let i:number = 1;
+
+    while (i < S.length) {
+        let str:string = arr.pop()!;
+        if (str !== S.charAt(i)) arr.push(str, S.charAt(i));
+        i++;
+    }
+
+    return arr.join("");
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

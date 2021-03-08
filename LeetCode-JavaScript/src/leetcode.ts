@@ -4428,6 +4428,33 @@ function partitionII(s: string): string[][] {
     return res;
 }
 
+function minCut(s: string): number {
+    const len:number = s.length,
+          dp:number[] = new Array(len).fill(0).map((_v, i) => i),
+          isPalindromic:boolean[][] = new Array(len).fill(0).map(v => new Array(len));
+    
+    for (let i = len - 1; i >= 0; i--) {
+        for (let j = i; j < len; j++) {
+            if (s.charAt(i) == s.charAt(j) && (j - i <= 1 || isPalindromic[i+1][j-1])) {
+                isPalindromic[i][j] = true;
+            }
+        }
+    }
+
+    for (let i = 1; i < len; i++) {
+        if (isPalindromic[0][i]) {
+            dp[i] = 0;
+            continue;
+        }
+        for (let j = 0; j < i; j++) {
+            if (isPalindromic[j + 1][i]) {
+                dp[i] = Math.min(dp[i], dp[j] + 1);
+            }
+        }
+    }
+
+    return dp[len-1]
+};
 export {
     characterReplacement,
     regionsBySlashes,

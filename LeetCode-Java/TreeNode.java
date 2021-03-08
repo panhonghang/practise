@@ -867,34 +867,63 @@ import java.util.stream.Stream;
 //     }
 // }
 
-class Solution {
-		public List<List<String>> partition(String s) {
-				List<List<String>> res = new ArrayList<List<String>>();
-				List<String> list = new ArrayList<String>();
-				dfs(s, 0, list, res);
-				return res;
-		}
+// class Solution {
+// 		public List<List<String>> partition(String s) {
+// 				List<List<String>> res = new ArrayList<List<String>>();
+// 				List<String> list = new ArrayList<String>();
+// 				dfs(s, 0, list, res);
+// 				return res;
+// 		}
 		
-		public void dfs(String s, int pos, List<String> list, List<List<String>> res){
-				if (pos == s.length()) {
-						res.add(new ArrayList<String>(list));
-						return;
-				}
-				for (int i = pos; i < s.length(); i++) {
-						if (isPalindrome(s, pos, i)){
-								list.add(s.substring(pos, i+1));
-								dfs(s, i+1, list, res);
-								list.remove(list.size() - 1);
-						}
-				}
-		}
+// 		public void dfs(String s, int pos, List<String> list, List<List<String>> res){
+// 				if (pos == s.length()) {
+// 						res.add(new ArrayList<String>(list));
+// 						return;
+// 				}
+// 				for (int i = pos; i < s.length(); i++) {
+// 						if (isPalindrome(s, pos, i)){
+// 								list.add(s.substring(pos, i+1));
+// 								dfs(s, i+1, list, res);
+// 								list.remove(list.size() - 1);
+// 						}
+// 				}
+// 		}
 
-		public boolean isPalindrome (String s, int start, int end) {
-				for (int i = start, j = end; i < j; i++, j--) {
-						if (s.charAt(i) != s.charAt(j)) {
-								return false;
-						}
-				}
-				return true;
-		}
+// 		public boolean isPalindrome (String s, int start, int end) {
+// 				for (int i = start, j = end; i < j; i++, j--) {
+// 						if (s.charAt(i) != s.charAt(j)) {
+// 								return false;
+// 						}
+// 				}
+// 				return true;
+// 		}
+// }
+class Solution {
+    public int minCut(String s) {
+		int len = s.length();
+        boolean[][] isPalindromic = new boolean[len][len];
+        for (int i = len - 1; i >= 0; i--) {
+            for (int j = i; j < len; j++) {
+                if (s.charAt(i) == s.charAt(j) && (j - i <= 1 || isPalindromic[i+1][j-1])) {
+                    isPalindromic[i][j] = true;
+                }
+            }
+        }
+        // 初始化
+        int[] dp = new int[len];
+        for (int i = 0; i < len; i++) dp[i] = i;
+
+        for (int i = 1; i < len; i++) {
+            if (isPalindromic[0][i]) {
+                dp[i] = 0;
+                continue;
+            }
+            for (int j = 0; j < i; j++) {
+                if (isPalindromic[j + 1][i]) {
+                    dp[i] = Math.min(dp[i], dp[j] + 1);
+                }
+            }
+        }
+        return dp[len - 1];
+    }
 }

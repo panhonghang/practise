@@ -4475,8 +4475,6 @@ function calculate(s: string): number {
 
     for (let i = 0; i < s.length; i++) {
         let item:string = s.charAt(i);
-        if (op === "-") continue;
-        
         if (item === "+" || item === "-") {
             op = item;            
         } else if (item === "(") {
@@ -4490,6 +4488,8 @@ function calculate(s: string): number {
             let sum:number = calculate(s.substring(i + 1, j));
             res += op === "-" ? -sum : sum;
             i = j;
+        } else if (item === " ") {
+            continue;
         } else {
             while (RegExp(/[0-9]/g).test(s.charAt(i+1))) {
                 i++;
@@ -4501,8 +4501,8 @@ function calculate(s: string): number {
 
     return res;
 };
-
 export {
+    calculate,
     characterReplacement,
     regionsBySlashes,
     hitBricks,

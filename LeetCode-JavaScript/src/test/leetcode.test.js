@@ -66,7 +66,15 @@ import {
   calcEquation,
   sortItems,
   characterReplacement,
+  calculate,
 } from '../leetcode';
+
+test("基本计算器", () => {
+  expect(calculate("1 + 1")).toBe(2);
+  expect(calculate(" 2-1 + 2 ")).toBe(3);
+  expect(calculate("(1+(4+5+2)-3)+(6+8)")).toBe(23);
+  expect(calculate("2147483647")).toBe(2147483647);
+})
 
 test("替换后的最长字符串", () => {
   expect(characterReplacement("ABAB", 2)).toBe(4);

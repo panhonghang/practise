@@ -4469,6 +4469,39 @@ function removeDuplicates(S: string): string {
     return arr.join("");
 };
 
+function calculate(s: string): number {
+    let res:number = 0,
+        op:string = "+";
+
+    for (let i = 0; i < s.length; i++) {
+        let item:string = s.charAt(i);
+        if (op === "-") continue;
+        
+        if (item === "+" || item === "-") {
+            op = item;            
+        } else if (item === "(") {
+            let j:number = i,
+                num:number = 1;
+            while (num !== 0) {
+                j++;
+                if (s.charAt(j) === ")") num--;
+                if (s.charAt(j) === "(") num++;
+            }
+            let sum:number = calculate(s.substring(i + 1, j));
+            res += op === "-" ? -sum : sum;
+            i = j;
+        } else {
+            while (RegExp(/[0-9]/g).test(s.charAt(i+1))) {
+                i++;
+                item += s.charAt(i);
+            }
+            res += Number(op + item);
+        }
+    }
+
+    return res;
+};
+
 export {
     characterReplacement,
     regionsBySlashes,

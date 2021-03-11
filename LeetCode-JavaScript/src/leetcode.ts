@@ -4505,8 +4505,7 @@ function calculate(s: string): number {
 function calculateII(s: string): number {
     let res:number = 0,
         op:string = "+";
-    // 清洗掉" "
-    s = s.split("").filter(v => v !== " ").join("");
+
     // 处理 * 和 /
     for (let i = 0; i < s.length; i++) {
         let item:string = s.charAt(i);
@@ -4515,6 +4514,8 @@ function calculateII(s: string): number {
                 next:string = "",
                 j:number = i,
                 k:number = i;
+            while (s.charAt(j-1) === " ") j--;
+            while (s.charAt(k+1) === " ") k++;
             // 向前找
             while (RegExp(/[0-9]/g).test(s.charAt(j-1))) {
                 j--;
@@ -4538,16 +4539,71 @@ function calculateII(s: string): number {
             op = item;            
         } else if (item === " ") {
             continue;
+        } else if (item === "/" || item === "*") {
+            let pre:string = "",
+                next:string = "",
+                j:number = i,
+                k:number = i;
+            while (s.charAt(j-1) === " ") j--;
+            while (s.charAt(k+1) === " ") k++;
+            // 向前找
+            while (RegExp(/[0-9]/g).test(s.charAt(j-1))) {
+                j--;
+                pre = s.charAt(j) + pre;
+            }
+            // 向后找            
+            while (RegExp(/[0-9]/g).test(s.charAt(k+1))) {
+                k++;
+                next += s.charAt(k);
+            }
+            let sum:string = item === "/" ? String(Math.floor(Number(pre) / Number(next))) : String(Number(pre) * Number(next));
+            s = s.substring(0, j) + sum + s.substring(k+1);
+            i = j + sum.length - 1;
         } else {
             while (RegExp(/[0-9]/g).test(s.charAt(i+1))) {
                 i++;
                 item += s.charAt(i);
             }
             res += Number(op + item);
-        }
+        } 
     }
 
     return res;
+};
+
+function calculateIII(s: string): number {
+    let num:number = 0,
+        sign:string = '+';
+    const stack: number[] = [];
+
+    for(let i = 0; i < s.length; i ++) {
+        if(RegExp(/[0-9]/g).test(s.charAt(i))) {
+            num = num * 10 + Number(s[i])
+        } 
+        if(['+', '-', '*', '/'].indexOf(s[i]) > -1 || i === s.length - 1) {
+            switch(sign) {
+                case '+':
+                    stack.push(num);
+                    break;
+                case '-':
+                    stack.push(-num);
+                    break;
+                case '*':
+                    const v1:number = stack.pop()!;
+                    stack.push(v1 * num);
+                    break;
+                case '/':
+                    const v2:number = stack.pop()!;
+                    stack.push(v2 > 0 ? Math.floor(v2 / num): Math.ceil(v2 / num));
+                    break;
+                default:
+                    break;
+            }
+            sign = s.charAt(i);
+            num = 0
+        }
+    } 
+    return stack.reduce((a, b) => a + b)
 };
 
 export {

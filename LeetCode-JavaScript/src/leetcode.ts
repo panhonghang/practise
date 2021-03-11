@@ -4606,6 +4606,24 @@ function calculateIII(s: string): number {
     return stack.reduce((a, b) => a + b)
 };
 
+function isValidSerialization(preorder: string): boolean {
+    let i:number = 0,
+        slots:number = 1;
+    while (i < preorder.length) {
+        if (slots === 0) return false;
+        if (preorder[i] === ',') {
+            i++;
+        } else if (preorder[i] === '#') {
+            slots--;
+            i++;
+        } else {
+            while (i < preorder.length && preorder[i] !== ',') i++;
+            slots++;
+        }
+    }
+    return slots === 0;
+};
+
 export {
     calculate,
     characterReplacement,

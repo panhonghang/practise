@@ -4501,6 +4501,55 @@ function calculate(s: string): number {
 
     return res;
 };
+
+function calculateII(s: string): number {
+    let res:number = 0,
+        op:string = "+";
+    // 清洗掉" "
+    s = s.split("").filter(v => v !== " ").join("");
+    // 处理 * 和 /
+    for (let i = 0; i < s.length; i++) {
+        let item:string = s.charAt(i);
+        if (item === "/" || item === "*") {
+            let pre:string = "",
+                next:string = "",
+                j:number = i,
+                k:number = i;
+            // 向前找
+            while (RegExp(/[0-9]/g).test(s.charAt(j-1))) {
+                j--;
+                pre = s.charAt(j) + pre;
+            }
+            // 向后找            
+            while (RegExp(/[0-9]/g).test(s.charAt(k+1))) {
+                k++;
+                next += s.charAt(k);
+            }
+            let sum:string = item === "/" ? String(Math.floor(Number(pre) / Number(next))) : String(Number(pre) * Number(next));
+            s = s.substring(0, j) + sum + s.substring(k+1);
+            i = j + sum.length - 1;
+        }
+    }
+
+    // 处理 + 和 -
+    for (let i = 0; i < s.length; i++) {
+        let item:string = s.charAt(i);
+        if (item === "+" || item === "-") {
+            op = item;            
+        } else if (item === " ") {
+            continue;
+        } else {
+            while (RegExp(/[0-9]/g).test(s.charAt(i+1))) {
+                i++;
+                item += s.charAt(i);
+            }
+            res += Number(op + item);
+        }
+    }
+
+    return res;
+};
+
 export {
     calculate,
     characterReplacement,

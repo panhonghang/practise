@@ -4623,7 +4623,38 @@ function isValidSerialization(preorder: string): boolean {
     }
     return slots === 0;
 };
+class MyHashSet {
+    private arr:number[];
+    constructor() {
+        this.arr = [];
+    }
 
+    public add(key: number): void {
+        if (!this.contains(key)) {
+            this.arr.push(key);
+        }
+    }
+
+    public remove(key: number): void {
+        let i:number = this.arr.indexOf(key);
+        if (i !== -1) {
+            this.arr.splice(i, 1);
+        }
+    }
+
+    public contains(key: number): boolean {
+        let i:number = this.arr.indexOf(key);
+        return i !== -1;
+    }
+}
+
+/**
+ * Your MyHashSet object will be instantiated and called as such:
+ * var obj = new MyHashSet()
+ * obj.add(key)
+ * obj.remove(key)
+ * var param_3 = obj.contains(key)
+ */
 export {
     calculate,
     characterReplacement,

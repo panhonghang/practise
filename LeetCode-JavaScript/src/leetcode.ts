@@ -4655,6 +4655,34 @@ class MyHashSet {
  * obj.remove(key)
  * var param_3 = obj.contains(key)
  */
+
+ class MyHashMap {
+    private obj:Record<string, number>;
+    constructor() {
+        this.obj = {};
+    }
+
+    public put(key: number, value: number): void {
+        this.obj[`${key}`] = value;
+    }
+
+    public get(key: number): number {
+        let value:number | null = this.obj[`${key}`];
+        return value !== undefined ? value : -1;
+    }
+
+    public remove(key: number): void {
+        delete this.obj[`${key}`];
+    }
+}
+
+/**
+ * Your MyHashMap object will be instantiated and called as such:
+ * var obj = new MyHashMap()
+ * obj.put(key,value)
+ * var param_2 = obj.get(key)
+ * obj.remove(key)
+ */
 export {
     calculate,
     characterReplacement,

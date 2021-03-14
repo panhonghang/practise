@@ -4683,6 +4683,46 @@ class MyHashSet {
  * var param_2 = obj.get(key)
  * obj.remove(key)
  */
+
+ function spiralOrder(matrix: number[][]): number[] {
+    if (!matrix.length || !matrix[0].length) {
+        return [];
+    }
+    const rows = matrix.length;
+    const columns = matrix[0].length;
+    const total = rows * columns;
+    const visited = new Array(rows).fill(0).map(() => new Array(columns).fill(true));
+    const result: number[] = new Array(total).fill(0);
+    let directionIndex = 0;
+    let row = 0;
+    let column = 0;
+    const direction = [
+        [0, 1],
+        [1, 0],
+        [0, -1],
+        [-1, 0],
+    ];
+    for (let i = 0; i < total; i += 1) {
+        result[i] = matrix[row][column];
+        visited[row][column] = false;
+        const nextRow = row + direction[directionIndex][0];
+        const nextColumn = column + direction[directionIndex][1];
+        if (
+        !(
+            nextRow >= 0 &&
+            nextRow < rows &&
+            nextColumn >= 0 &&
+            nextColumn < columns &&
+            visited[nextRow][nextColumn]
+        )
+        ) {
+        directionIndex = (directionIndex + 1) % 4;
+        }
+        row += direction[directionIndex][0];
+        column += direction[directionIndex][1];
+    }
+    return result;
+};
 export {
     calculate,
     characterReplacement,

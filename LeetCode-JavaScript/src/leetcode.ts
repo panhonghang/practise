@@ -4723,6 +4723,24 @@ class MyHashSet {
     }
     return result;
 };
+
+function generateMatrix(n: number): number[][] {
+    const r:number[][] = new Array(n).fill(0).map(_v => new Array(n));
+    let i:number = 0, 
+        j:number = 0, 
+        k:number = 1;
+
+    while(!r[i][j] && k < n * n) {
+        while(j < n-1 && !r[i][j+1]) r[i][j++] = k++;
+        while(i < n-1 && !r[i+1][j]) r[i++][j] = k++;
+        while (j > 0 && !r[i][j-1]) r[i][j--] = k++;
+        while (i > 0 && !r[i-1][j]) r[i--][j] = k++;
+    }
+
+    r[i][j] = k;
+    return r;
+};
+
 export {
     calculate,
     characterReplacement,

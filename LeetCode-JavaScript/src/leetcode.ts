@@ -4759,6 +4759,23 @@ function numDistinct(s: string, t: string): number {
     }
     return dp[0][0];
 };
+
+function reverseBetween(head: ListNode | null, left: number, right: number): ListNode | null {
+    let dummy:ListNode | null = new ListNode(0),
+        pre:ListNode | null = dummy;          
+    dummy.next = head;
+    for (let i = 1; i < left; i++) pre = pre.next!;
+    
+    head = pre.next!;
+    for (let i = left; i < right; i++) {
+        let temp:ListNode | null = head.next!;
+        head.next = temp.next;
+        temp.next = pre.next;
+        pre.next = temp;
+    }
+    return dummy.next;
+};
+
 export {
     calculate,
     characterReplacement,

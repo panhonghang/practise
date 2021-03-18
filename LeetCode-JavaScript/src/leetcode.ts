@@ -4776,6 +4776,26 @@ function reverseBetween(head: ListNode | null, left: number, right: number): Lis
     return dummy.next;
 };
 
+class ParkingSystem {
+    private map:Map<number, number>;
+    constructor(big: number, medium: number, small: number) {
+        this.map = new Map<number, number>([[1, big], [2, medium], [3, small]])
+    }
+
+    public addCar(carType: number): boolean {
+        let count:number = this.map.get(carType)!;
+        if (count === 0) return false;
+        this.map.set(carType, count - 1);
+        return true;
+    }
+}
+
+/**
+ * Your ParkingSystem object will be instantiated and called as such:
+ * var obj = new ParkingSystem(big, medium, small)
+ * var param_1 = obj.addCar(carType)
+ */
+ 
 export {
     calculate,
     characterReplacement,

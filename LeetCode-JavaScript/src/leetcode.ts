@@ -4796,6 +4796,42 @@ class ParkingSystem {
  * var param_1 = obj.addCar(carType)
  */
  
+ function evalRPN(tokens: string[]): number {
+    const stack: number[] = new Array<number>();
+    const evalFn = (preNum:number, nextNum:number, operator:string): number => {
+        let res:number = 0;
+        switch(operator) {
+            case "+":
+                res = preNum + nextNum;
+                break;
+            case "-":
+                res = preNum - nextNum;                
+                break;
+            case "*":
+                res = preNum * nextNum;
+                break;
+            case "/":
+                res = ~~(preNum / nextNum);
+                break;
+            default:
+                break;
+        }
+        return res;
+    }
+    tokens.forEach((v) =>{
+        if (new RegExp(/[0-9]/).test(v)) {
+            stack.push(Number(v));
+        } else {
+            let nextNum:number = stack.pop()!,
+                preNum:number = stack.pop()!,
+                res:number = evalFn(preNum, nextNum, v);
+            stack.push(res);
+        }
+    })
+
+    return stack[0];
+};
+
 export {
     calculate,
     characterReplacement,

@@ -4832,6 +4832,29 @@ class ParkingSystem {
     return stack[0];
 };
 
+/**
+ Do not return anything, modify matrix in-place instead.
+ */
+function setZeroes(matrix: number[][]): void {
+    let flag: boolean = false;
+    const n: number = matrix.length,
+          m: number = matrix[0].length;
+    
+    for (let i = 0; i < n; i++) {
+        if (matrix[i][0] == 0) flag = true;
+        for (let j = 1; j < m; j++) {
+            if (matrix[i][j] == 0) matrix[i][0] = matrix[0][j] = 0;
+        }
+    }
+
+    for (let i = n - 1; i >= 0; i--) {
+        for (let j = m - 1; j >= 1; j--) {
+            if (matrix[i][0] == 0 || matrix[0][j] == 0) matrix[i][j] = 0;
+        }
+        if (flag) matrix[i][0] = 0;
+    }
+};
+
 export {
     calculate,
     characterReplacement,

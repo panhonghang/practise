@@ -4855,6 +4855,14 @@ function setZeroes(matrix: number[][]): void {
     }
 };
 
+function hammingWeight(n: number): number {
+    let ret:number = 0;
+    for (let i = 0; i < 32; i++) {
+        if ((n & (1 << i)) !== 0) ret++;
+    }
+    return ret;
+};
+
 export {
     calculate,
     characterReplacement,

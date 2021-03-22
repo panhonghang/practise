@@ -4863,6 +4863,26 @@ function hammingWeight(n: number): number {
     return ret;
 };
 
+// class NestedIterator {
+//     stack = []
+
+//     constructor(nestedList: NestedInteger[]) {
+//         this.stack = nestedList
+//     }
+
+//     hasNext(): boolean {
+//         while (this.stack.length > 0 && !this.stack[0].isInteger()) {
+//             const _list = this.stack.shift().getList()
+//             this.stack = _list.concat(this.stack)
+//         }
+//         return this.stack.length > 0
+//     }
+
+//     next(): number {
+//         return this.stack.shift().getInteger()
+//     }
+// }
+
 export {
     calculate,
     characterReplacement,

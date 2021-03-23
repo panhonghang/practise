@@ -4883,6 +4883,23 @@ function hammingWeight(n: number): number {
 //     }
 // }
 
+function find132pattern(nums: number[]): boolean {
+    const stack: number[] = [];
+    let mid:number = Number.MIN_SAFE_INTEGER;
+
+    for (let i = nums.length - 1; i >= 0; i--) {
+        if (mid > nums[i]) return true;
+        
+        while (stack.length > 0 && nums[i] > stack[stack.length - 1]) {
+            mid = stack.pop()!;
+        }
+        
+        stack.push(nums[i]);
+    }
+
+    return false;
+};
+
 export {
     calculate,
     characterReplacement,

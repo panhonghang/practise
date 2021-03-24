@@ -4900,6 +4900,36 @@ function find132pattern(nums: number[]): boolean {
     return false;
 };
 
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function deleteDuplicates(head: ListNode | null): ListNode | null {
+    if (!head) return head;
+    const dummy: ListNode | null = new ListNode(0, head);
+    let cur: ListNode | null = dummy;
+
+    while (cur.next && cur.next.next) {
+        if (cur.next.val === cur.next.next.val) {
+            const val: number = cur.next.val;
+            while (cur.next && cur.next.val === val) {
+                cur.next = cur.next.next;
+            } 
+        } else {
+            cur = cur.next;
+        }
+    }
+    return dummy.next;
+};
+
 export {
     calculate,
     characterReplacement,

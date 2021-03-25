@@ -4912,7 +4912,7 @@ function find132pattern(nums: number[]): boolean {
  * }
  */
 
-function deleteDuplicates(head: ListNode | null): ListNode | null {
+function deleteDuplicatesII(head: ListNode | null): ListNode | null {
     if (!head) return head;
     const dummy: ListNode | null = new ListNode(0, head);
     let cur: ListNode | null = dummy;

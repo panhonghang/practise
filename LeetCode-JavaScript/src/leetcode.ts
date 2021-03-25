@@ -4930,6 +4930,20 @@ function deleteDuplicates(head: ListNode | null): ListNode | null {
     return dummy.next;
 };
 
+function deleteDuplicatesI(head: ListNode | null): ListNode | null {
+    let pre: ListNode | null = new ListNode(0, head),
+        node: ListNode | null = pre;
+
+    while (node !== null) {
+        let temp: ListNode | null = node.next;
+        while (temp && temp.next && temp.val === temp.next.val) temp = temp.next;
+        node.next = temp;
+        node = node.next;
+    }
+
+    return pre.next;
+};
+
 export {
     calculate,
     characterReplacement,

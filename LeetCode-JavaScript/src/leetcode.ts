@@ -4944,6 +4944,34 @@ function deleteDuplicatesI(head: ListNode | null): ListNode | null {
     return pre.next;
 };
 
+function rotateRight(head: ListNode | null, k: number): ListNode | null {
+    if (head === null) return head;
+    let newHead: ListNode | null = head,
+        preNode: ListNode | null = new ListNode(0, head),
+        len: number = 0;
+    while (1) {
+        len++;
+        if (newHead.next === null) {
+            newHead.next = head;
+            break;
+        }
+        newHead = newHead.next;
+    }
+    
+    k %= len;
+    k = len - k;
+    newHead = head;
+
+    while (k > 0) {
+        k--;
+        preNode = preNode.next!;
+        newHead = newHead.next!;
+    }
+    preNode.next = null;
+
+    return newHead;
+};
+
 export {
     calculate,
     characterReplacement,

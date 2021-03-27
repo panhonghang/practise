@@ -4972,6 +4972,51 @@ function rotateRight(head: ListNode | null, k: number): ListNode | null {
     return newHead;
 };
 
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+class BSTIterator {
+    private cur: TreeNode | null;
+    private stack: TreeNode[];;
+    constructor(root: TreeNode | null) {
+        this.cur = root;
+        this.stack = [];
+    }
+
+    public next(): number {
+        while (this.cur !== null) {
+            this.stack.push(this.cur);
+            this.cur = this.cur.left!;
+        }
+        this.cur = this.stack.pop()!;
+        const ret: number = this.cur.val;
+        this.cur = this.cur.right;
+        return ret;
+    }
+
+    public hasNext(): boolean {
+        return this.cur !== null || this.stack.length > 0;
+    }
+}
+
+/**
+ * Your BSTIterator object will be instantiated and called as such:
+ * var obj = new BSTIterator(root)
+ * var param_1 = obj.next()
+ * var param_2 = obj.hasNext()
+ */
+ 
 export {
     calculate,
     characterReplacement,

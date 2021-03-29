@@ -5025,6 +5025,20 @@ class BSTIterator {
     return rev >>> 0;
 };
 
+function searchMatrix(matrix: number[][], target: number): boolean {
+    const row: number = matrix[0].length,
+          col: number = matrix.length;
+
+    for (let i = 0; i < col; i++) {
+        // 每一行的最后一个元素和第一个元素之间
+        if (matrix[i][row - 1] >= target && matrix[i][0] <= target) {
+            return matrix[i].indexOf(target) > -1;
+        }
+    }
+
+    return false;
+};
+
 export {
     calculate,
     characterReplacement,

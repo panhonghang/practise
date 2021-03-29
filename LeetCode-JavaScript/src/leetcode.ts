@@ -5016,7 +5016,15 @@ class BSTIterator {
  * var param_1 = obj.next()
  * var param_2 = obj.hasNext()
  */
- 
+ function reverseBits(n: number): number {
+	let rev: number = 0;
+    for (let i = 0; i < 32 && n > 0; ++i) {
+        rev |= (n & 1) << (31 - i);
+        n >>>= 1;
+    }
+    return rev >>> 0;
+};
+
 export {
     calculate,
     characterReplacement,

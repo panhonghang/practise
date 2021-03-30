@@ -5039,6 +5039,24 @@ function searchMatrix(matrix: number[][], target: number): boolean {
     return false;
 };
 
+function subsetsWithDup(nums: number[]): number[][] {
+    const ret: number[][] = [];
+    // 先排序
+    nums.sort((a, b) => a - b);
+
+    const bfs = (resArr: number[], restArr: number[]): void => {
+        ret.push([...resArr]);
+        for (let i = 0; i < restArr.length; i++) {
+            if (restArr[i-1] === restArr[i]) continue;
+            resArr.push(restArr[i]);
+            bfs([...resArr], restArr.slice(i+1));
+            resArr.pop();
+        }
+    }
+    bfs([], nums)
+    return ret;
+};
+
 export {
     calculate,
     characterReplacement,

@@ -5057,6 +5057,17 @@ function subsetsWithDup(nums: number[]): number[][] {
     return ret;
 };
 
+function clumsy(N: number): number {
+    const a: number[] = [1, 2, 2, -1];
+    if(N > 4) {
+        return N + a[N % 4];
+    } else if(N > 2) {
+        return N + 3;
+    } else {
+        return N;
+    }
+};
+
 export {
     calculate,
     characterReplacement,

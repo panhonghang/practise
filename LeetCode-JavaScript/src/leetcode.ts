@@ -5068,6 +5068,28 @@ function clumsy(N: number): number {
     }
 };
 
+function trap(height: number[]): number {
+    if(height.length < 3) return 0;
+
+    let left: number = 0, 
+        right: number = height.length - 1,
+        leftmax: number = height[left], 
+        rightmax: number = height[right],
+        res: number = 0;
+
+    while(left < right){
+        if(leftmax < rightmax){
+            res += leftmax - height[left++];
+            leftmax = Math.max(height[left], leftmax);
+        }else{
+            res += rightmax - height[right--];
+            rightmax = Math.max(height[right], rightmax);
+        }
+    }
+
+    return res;
+};
+
 export {
     calculate,
     characterReplacement,

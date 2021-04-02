@@ -5090,6 +5090,24 @@ function trap(height: number[]): number {
     return res;
 };
 
+function longestCommonSubsequence(text1: string, text2: string): number {
+    const m: number = text1.length, 
+          n: number = text2.length,
+          dp: number[][] = new Array(m + 1).fill(0).map(_ => new Array(n + 1).fill(0));
+    for (let i = 1; i <= m; i++) {
+        const c1: string = text1.charAt(i - 1);
+        for (let j = 1; j <= n; j++) {
+            const c2: string = text2.charAt(j - 1);
+            if (c1 == c2) {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            } else {
+                dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+    }
+    return dp[m][n];
+};
+
 export {
     calculate,
     characterReplacement,

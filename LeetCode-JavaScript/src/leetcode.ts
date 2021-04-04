@@ -5107,7 +5107,17 @@ function longestCommonSubsequence(text1: string, text2: string): number {
     }
     return dp[m][n];
 };
-
+function numRabbits(answers: number[]): number {
+    const count: Map<number, number> = new Map<number, number>();
+    for (const y of answers) {
+        count.set(y, (count.get(y) || 0) + 1);
+    }
+    let ans: number = 0;
+    for (const [y, x] of count.entries()) {
+        ans += Math.floor((x + y) / (y + 1)) * (y + 1);
+    }
+    return ans;
+};
 export {
     calculate,
     characterReplacement,

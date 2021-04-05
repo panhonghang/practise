@@ -5132,6 +5132,21 @@ function numRabbits(answers: number[]): number {
         nums1[p--] = nums2[n--];
     }
 };
+function removeDuplicates1(nums: number[]): number {
+    let len: number = nums.length,
+        slow: number = 2,
+        fast: number = 2;
+    if (len <= 2) return len;
+    
+    while (fast < len) {
+        if (nums[slow-2] !== nums[fast]) {
+            nums[slow] = nums[fast];
+            slow++;
+        }
+        fast++;
+    }
+    return slow;
+};
 
 export {
     calculate,

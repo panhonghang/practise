@@ -5118,6 +5118,21 @@ function numRabbits(answers: number[]): number {
     }
     return ans;
 };
+/**
+ Do not return anything, modify nums1 in-place instead.
+ */
+ function merge(nums1: number[], m: number, nums2: number[], n: number): void {
+    let p: number = m + n - 1;
+    m--;
+    n--;
+    while (m >= 0 && n >= 0) {
+        nums1[p--] = nums1[m] > nums2[n] ? nums1[m--] : nums2[n--];
+    }
+    while (n >= 0) {
+        nums1[p--] = nums2[n--];
+    }
+};
+
 export {
     calculate,
     characterReplacement,

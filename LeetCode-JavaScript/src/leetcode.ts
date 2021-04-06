@@ -5148,6 +5148,35 @@ function removeDuplicates1(nums: number[]): number {
     return slow;
 };
 
+function search(nums: number[], target: number): boolean {
+    const len: number = nums.length;
+    if (len === 1) return nums[0] === target
+    let l: number = 0,
+        r: number = len - 1;
+    while (l <= r)  {
+        let m = Math.floor((l + r) / 2);
+        if (nums[m] === target) return true;
+        // l, r, m 相同
+        if (nums[l] == nums[m] && nums[m] == nums[r]) {
+            ++l;
+            --r;
+        } else if (nums[l] <= nums[m]) {
+            if (nums[l] <= target && target < nums[m]) {
+                r = m - 1;
+            } else {
+                l = m + 1;
+            }
+        } else {
+            if (nums[m] < target && target <= nums[len - 1]) {
+                l = m + 1;
+            } else {
+                r = m - 1;
+            }
+        }
+    }
+    return false;
+};
+
 export {
     calculate,
     characterReplacement,

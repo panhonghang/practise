@@ -5176,6 +5176,25 @@ function search(nums: number[], target: number): boolean {
     }
     return false;
 };
+function findMin(nums: number[]): number {
+    const len: number = nums.length;
+    if (len === 1) return nums[0];
+    let l: number = 0,
+        r: number = len - 1;
+    if (nums[l] <= nums[r]) return nums[l];
+    while (l < r) {
+        // 只剩下两个值的时候直接返回
+        if (r - l == 1) return Math.min(nums[l], nums[r]);
+        let m: number = Math.floor((l + r) / 2);
+        // 最小值在后部分
+        if (nums[l] < nums[m]) {
+            l = m;
+        } else {
+        // 最小值在前部分
+            r = m;
+        }
+    }
+};
 
 export {
     calculate,

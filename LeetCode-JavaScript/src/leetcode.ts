@@ -5148,7 +5148,7 @@ function removeDuplicates1(nums: number[]): number {
     return slow;
 };
 
-function search(nums: number[], target: number): boolean {
+function searchII(nums: number[], target: number): boolean {
     const len: number = nums.length;
     if (len === 1) return nums[0] === target
     let l: number = 0,
@@ -5178,7 +5178,6 @@ function search(nums: number[], target: number): boolean {
 };
 function findMin(nums: number[]): number {
     const len: number = nums.length;
-    if (len === 1) return nums[0];
     let l: number = 0,
         r: number = len - 1;
     if (nums[l] <= nums[r]) return nums[l];
@@ -5194,6 +5193,7 @@ function findMin(nums: number[]): number {
             r = m;
         }
     }
+    return nums[0]
 };
 
 export {

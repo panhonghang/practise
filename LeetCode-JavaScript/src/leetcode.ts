@@ -5176,6 +5176,7 @@ function searchII(nums: number[], target: number): boolean {
     }
     return false;
 };
+
 function findMin(nums: number[]): number {
     const len: number = nums.length;
     let l: number = 0,
@@ -5194,6 +5195,31 @@ function findMin(nums: number[]): number {
         }
     }
     return nums[0]
+};
+
+function findMinII(nums: number[]): number {
+    const len: number = nums.length;
+    let l: number = 0,
+        r: number = len - 1;
+    while (l < r) {
+        // 只剩下两个值的时候直接返回
+        if (r - l == 1) return Math.min(nums[l], nums[r]);
+        let m: number = Math.floor((l + r) / 2);
+        // l, r, m 相同
+        while (nums[l] == nums[m] && nums[m] == nums[r]) {
+            ++l;
+            --r;
+        }
+        if (nums[l] < nums[r]) return nums[l];
+        // 最小值在后部分
+        if (nums[l] <= nums[m]) {
+            l = m;
+        } else {
+        // 最小值在前部分
+            r = m;
+        }
+    }
+    return nums[0];
 };
 
 export {

@@ -898,32 +898,42 @@ import java.util.stream.Stream;
 // 				return true;
 // 		}
 // }
-class Solution {
-    public int minCut(String s) {
-		int len = s.length();
-        boolean[][] isPalindromic = new boolean[len][len];
-        for (int i = len - 1; i >= 0; i--) {
-            for (int j = i; j < len; j++) {
-                if (s.charAt(i) == s.charAt(j) && (j - i <= 1 || isPalindromic[i+1][j-1])) {
-                    isPalindromic[i][j] = true;
-                }
-            }
-        }
-        // 初始化
-        int[] dp = new int[len];
-        for (int i = 0; i < len; i++) dp[i] = i;
+// class Solution {
+//     public int minCut(String s) {
+// 		int len = s.length();
+//         boolean[][] isPalindromic = new boolean[len][len];
+//         for (int i = len - 1; i >= 0; i--) {
+//             for (int j = i; j < len; j++) {
+//                 if (s.charAt(i) == s.charAt(j) && (j - i <= 1 || isPalindromic[i+1][j-1])) {
+//                     isPalindromic[i][j] = true;
+//                 }
+//             }
+//         }
+//         // 初始化
+//         int[] dp = new int[len];
+//         for (int i = 0; i < len; i++) dp[i] = i;
 
-        for (int i = 1; i < len; i++) {
-            if (isPalindromic[0][i]) {
-                dp[i] = 0;
-                continue;
-            }
-            for (int j = 0; j < i; j++) {
-                if (isPalindromic[j + 1][i]) {
-                    dp[i] = Math.min(dp[i], dp[j] + 1);
-                }
-            }
+//         for (int i = 1; i < len; i++) {
+//             if (isPalindromic[0][i]) {
+//                 dp[i] = 0;
+//                 continue;
+//             }
+//             for (int j = 0; j < i; j++) {
+//                 if (isPalindromic[j + 1][i]) {
+//                     dp[i] = Math.min(dp[i], dp[j] + 1);
+//                 }
+//             }
+//         }
+//         return dp[len - 1];
+//     }
+// }
+class Solution {
+    public boolean isUgly(int n) {
+        if (n <= 0) return false;
+        int[] factors = {2, 3, 5};
+        for (int factor:factors) {
+            while (n % factor == 0) n /= factor;
         }
-        return dp[len - 1];
+        return n == 1;
     }
 }

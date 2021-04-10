@@ -5230,6 +5230,25 @@ function isUgly(n: number): boolean {
     }
     return n == 1;
 };
+function nthUglyNumber(n: number): number {
+    const dp: Array<number> = new Array(n + 1).fill(0);
+    dp[1] = 1;
+    let p2: number = 1, p3: number = 1, p5: number = 1;
+    for (let i = 2; i <= n; i++) {
+        const num2: number = dp[p2] * 2, num3: number = dp[p3] * 3, num5: number = dp[p5] * 5;
+        dp[i] = Math.min(num2, num3, num5);
+        if (dp[i] === num2) {
+            p2++;
+        }
+        if (dp[i] === num3) {
+            p3++;
+        }
+        if (dp[i] === num5) {
+            p5++;
+        }
+    }
+    return dp[n];
+};
 
 export {
     calculate,

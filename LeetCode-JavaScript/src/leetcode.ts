@@ -5250,6 +5250,34 @@ function nthUglyNumber(n: number): number {
     return dp[n];
 };
 
+function largestNumber(nums: number[]): string {
+    const firstNumArr: string[][] = new Array(10).fill(0).map(_ => new Array());
+    let res: string = "";
+    nums.forEach((v) => {
+        let str: string = String(v),
+            idx: number = Number(str.charAt(0)),
+            len: number = firstNumArr[idx].length;
+        for (let i = 0; i < firstNumArr[idx].length; i++) {
+            if (isBig(str, firstNumArr[idx][i])) {
+                firstNumArr[idx].splice(i, 0, str);
+                break;
+            }
+        }
+        // 假如长度不变就代表未曾添加
+        if (firstNumArr[idx].length === len) firstNumArr[idx].push(str);
+    })
+    firstNumArr.reverse().forEach((arr) => {
+        arr.forEach((v) => {
+        if (!(res === "" && v === "0")) res += v
+        })
+    })
+    return res || '0';
+};
+
+function isBig(str1: string, str2: string): boolean {
+    return (str1+str2) > (str2+str1)
+}
+
 export {
     calculate,
     characterReplacement,

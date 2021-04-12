@@ -5278,6 +5278,26 @@ function isBig(str1: string, str2: string): boolean {
     return (str1+str2) > (str2+str1)
 }
 
+function minDiffInBST(root: TreeNode | null): number {
+    let ans: number = Number.MAX_SAFE_INTEGER, 
+        pre: number = -1;
+    const dfs = (root: TreeNode | null): void => {
+        if (root === null) {
+            return;
+        }
+        dfs(root.left);
+        if (pre == -1) {
+            pre = root.val;
+        } else {
+            ans = Math.min(ans, root.val - pre);
+            pre = root.val;
+        }
+        dfs(root.right);
+    }
+    dfs(root);
+    return ans;
+};
+
 export {
     calculate,
     characterReplacement,

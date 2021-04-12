@@ -5298,6 +5298,27 @@ function minDiffInBST(root: TreeNode | null): number {
     return ans;
 };
 
+function minDiffInBST(root: TreeNode | null): number {
+    if (root === null) return 0;
+    const stack: TreeNode[] = [];
+    let min: number = Number.MAX_VALUE,
+        node: TreeNode | null = root,
+        pre: number = -min;
+
+    while (stack.length > 0 || node != null) {
+        while (node != null) {
+            stack.push(node);
+            node = node.left;
+        }
+        let item: TreeNode = stack.pop()!;
+        min = Math.min(item.val - pre, min);
+        if (min === 1) return 1;
+        pre = item.val;
+        node = item.right;
+    }
+    return min;
+};
+
 export {
     calculate,
     characterReplacement,

@@ -5298,7 +5298,7 @@ function minDiffInBST(root: TreeNode | null): number {
     return ans;
 };
 
-function minDiffInBST(root: TreeNode | null): number {
+function minDiffInBSTII(root: TreeNode | null): number {
     if (root === null) return 0;
     const stack: TreeNode[] = [];
     let min: number = Number.MAX_VALUE,

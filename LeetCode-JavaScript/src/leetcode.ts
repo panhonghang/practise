@@ -5319,6 +5319,36 @@ function minDiffInBSTII(root: TreeNode | null): number {
     return min;
 };
 
+class Trie {
+    private root: any;
+    constructor() {
+        this.root = Object.create(null);
+    }
+    public insert(word: string): void {
+        let node = this.root;
+        for (const c of word) {
+            if (!node[c]) node[c] = Object.create(null);
+            node = node[c];
+        }
+        node.isWord = true;
+    }
+    public traverse(word: string): any {
+        let node = this.root;
+        for (const c of word) {
+            node = node[c];
+            if (!node) return null;
+        }
+        return node;
+    }
+    public search(word: string): boolean {
+        const node = this.traverse(word);
+        return !!node && !!node.isWord;
+    }
+    public startsWith(prefix: string): boolean {
+        return !!this.traverse(prefix)
+    }
+}
+
 export {
     calculate,
     characterReplacement,

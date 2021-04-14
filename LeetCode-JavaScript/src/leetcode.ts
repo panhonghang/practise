@@ -5349,6 +5349,25 @@ class Trie {
     }
 }
 
+function rob(nums: number[]): number {
+    const len: number = nums.length;
+    if (len === 1) return nums[0];
+    if (len === 2) return Math.max(nums[0], nums[1]);
+    return Math.max(robRange(nums.slice(1)), robRange(nums.slice(0, len - 1)))
+};
+
+function robRange(nums: number[]): number {
+    const len: number = nums.length;
+    if (len === 2) return Math.max(nums[0], nums[1]);
+    const dp: number[] = new Array(nums.length);
+    dp[0] = nums[0];
+    dp[1] = Math.max(nums[0], nums[1]);
+    for (let i = 2; i < len; i++) {
+        dp[i] = Math.max(dp[i-2] + nums[i], dp[i-1])
+    }
+    return dp[len - 1];
+}
+
 export {
     calculate,
     characterReplacement,

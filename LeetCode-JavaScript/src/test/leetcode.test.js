@@ -67,7 +67,12 @@ import {
   sortItems,
   characterReplacement,
   calculate,
+  isScramble,
 } from '../leetcode';
+
+test("扰乱字符串", () => {
+  expect(isScramble("great", "rgeat")).toBe(true);
+})
 
 test("基本计算器", () => {
   expect(calculate("1 + 1")).toBe(2);

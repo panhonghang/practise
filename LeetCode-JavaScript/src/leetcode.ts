@@ -5376,12 +5376,12 @@ function isScramble(s1: string, s2: string): boolean {
     for (let i = 0; i < n; i++) {
         dp[i] = new Array(n);
         for (let j = 0; j < n; j++) {
-        dp[i][j] = new Array(n + 1).fill(false);
+            dp[i][j] = new Array(n + 1).fill(false);
         }
     }
     for (let i = 0; i < n; i++) {
         for (let j = 0; j < n; j++) {
-        dp[i][j][1] = s1[i] === s2[j];
+            dp[i][j][1] = s1[i] === s2[j];
         }
     }
     for (let len = 2; len <= n; len++) {
@@ -5396,6 +5396,26 @@ function isScramble(s1: string, s2: string): boolean {
         }
     }
     return dp[0][0][n];
+};
+
+function containsNearbyAlmostDuplicate(nums: number[], k: number, t: number): boolean {
+    const getKey = (value: number): number => {
+        return Math.floor(value / (t + 1));
+    }
+    const map = new Map<number, number>();
+    for (let i = 0; i < nums.length; i++) {
+        const key: number = getKey(nums[i]);
+
+        if (map.has(key)) return true;  
+        if (map.has(key - 1) && nums[i] - map.get(key - 1)! <= t) return true;
+        if (map.has(key + 1) && map.get(key + 1)! - nums[i] <= t) return true;
+
+        map.set(key, nums[i]);
+        if(i >= k) {
+            map.delete(getKey(nums[i-k]))
+        }
+    }
+    return false
 };
 
 export {

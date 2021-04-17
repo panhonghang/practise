@@ -5418,7 +5418,22 @@ function containsNearbyAlmostDuplicate(nums: number[], k: number, t: number): bo
     return false
 };
 
+function removeDuplicatesII(nums: number[]): number {
+    let idx: number = 0;
+    const len: number = nums.length;
+    if (len === 0) return 0;
+    for (let i = 0; i < len; i++) {
+        while (i < len && nums[i] === nums[i+1]) i++;
+        if (i < len) {
+            nums[idx] = nums[i];
+            idx++;
+        }
+    }
+    return idx;
+};
+
 export {
+    removeDuplicatesII,
     isScramble,
     calculate,
     characterReplacement,

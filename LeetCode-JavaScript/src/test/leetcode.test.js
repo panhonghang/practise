@@ -68,7 +68,14 @@ import {
   characterReplacement,
   calculate,
   isScramble,
+  removeDuplicatesII,
 } from '../leetcode';
+
+test("除有序数组中的重复项", () => {
+  expect(removeDuplicatesII([])).toBe(0);
+  expect(removeDuplicatesII([1,1,2])).toBe(2);
+  expect(removeDuplicatesII([0,0,1,1,1,2,2,3,3,4])).toBe(5);
+})
 
 test("扰乱字符串", () => {
   expect(isScramble("great", "rgeat")).toBe(true);

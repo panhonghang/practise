@@ -5432,6 +5432,18 @@ function removeDuplicatesII(nums: number[]): number {
     return idx;
 };
 
+function removeElement(nums: number[], val: number): number {
+    const len: number = nums.length;
+    let i: number = 0;
+    for (let num of nums) {
+        if (num !== val) {
+            nums[i] = num;
+            i++;
+        }
+    }
+    return i;
+};
+
 export {
     removeDuplicatesII,
     isScramble,

@@ -5444,6 +5444,17 @@ function removeElement(nums: number[], val: number): number {
     return i;
 };
 
+function strStr(haystack: string, needle: string): number {
+    let n: number = haystack.length, 
+        L: number = needle.length;
+    for (let start = 0; start < n - L + 1; start++) {
+        if (haystack.substring(start, start + L) === needle) {
+            return start;
+        }
+    }
+    return -1;
+};
+
 export {
     removeDuplicatesII,
     isScramble,

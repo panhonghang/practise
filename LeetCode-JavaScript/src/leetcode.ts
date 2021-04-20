@@ -5474,6 +5474,38 @@ function strStrII(haystack: string, needle: string): number {
     }
     return -1;
 };
+// 暴力法， 不能通过全部测试用例
+// function numDecodings(s: string): number {
+//     let res: number = 0;
+//     const fn = function(str: string): void {
+//         if (str.length === 0) {
+//             res++;
+//             return;
+//         }
+//         if (str.substr(0, 1) !== "0") {
+//             fn(str.substring(1));
+//             if (str.length > 1 && Number(str.substr(0, 2)) < 27) {
+//                 fn(str.substring(2));
+//             }
+//         }
+//     }
+//     fn(s);
+//     return res;
+// };
+function numDecodings(s: string): number {
+    const  len: number = s.length,
+           dp: number[] = new Array(len+1).fill(0);
+    dp[0] = 1;
+    for (let i = 1; i <= len; i++) {
+        if (s.charAt(i-1) !== "0") {
+            dp[i] += dp[i-1];
+        }
+        if (i > 1 && s.charAt(i-2) !== "0" && Number(s.substr(i-2, 2)) < 27) {
+            dp[i] += dp[i-2]
+        }
+    }
+    return dp[len];
+};
 
 export {
     removeDuplicatesII,

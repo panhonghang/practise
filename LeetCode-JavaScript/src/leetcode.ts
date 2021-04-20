@@ -5492,19 +5492,39 @@ function strStrII(haystack: string, needle: string): number {
 //     fn(s);
 //     return res;
 // };
+
+// function numDecodings(s: string): number {
+//     const  len: number = s.length,
+//            dp: number[] = new Array(len+1).fill(0);
+//     dp[0] = 1;
+//     for (let i = 1; i <= len; i++) {
+//         if (s.charAt(i-1) !== "0") {
+//             dp[i] += dp[i-1];
+//         }
+//         if (i > 1 && s.charAt(i-2) !== "0" && Number(s.substr(i-2, 2)) < 27) {
+//             dp[i] += dp[i-2]
+//         }
+//     }
+//     return dp[len];
+// };
+
 function numDecodings(s: string): number {
-    const  len: number = s.length,
-           dp: number[] = new Array(len+1).fill(0);
-    dp[0] = 1;
+    const  len: number = s.length;
+    let num1: number = 1,
+        num2: number = 0,
+        res: number = 0;
     for (let i = 1; i <= len; i++) {
+        res = 0;
         if (s.charAt(i-1) !== "0") {
-            dp[i] += dp[i-1];
+            res += num1;
         }
         if (i > 1 && s.charAt(i-2) !== "0" && Number(s.substr(i-2, 2)) < 27) {
-            dp[i] += dp[i-2]
+            res += num2;
         }
+        num2 = num1;
+        num1 = res;
     }
-    return dp[len];
+    return res;
 };
 
 export {

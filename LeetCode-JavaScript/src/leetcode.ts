@@ -5526,7 +5526,28 @@ function numDecodings(s: string): number {
     }
     return res;
 };
-
+function maxSumSubmatrix(matrix: number[][], k: number): number {
+    const row: number = matrix.length,
+          col: number = matrix[0].length;
+    let res: number = Number.MIN_SAFE_INTEGER;
+    for (let h = 0; h < row; h++) {
+        let rowSum: number[] = new Array(col).fill(0);
+        for (let l = h; l < row; l++) {
+            for (let i = 0; i < col; i++) {
+                rowSum[i] += matrix[l][i];
+            }
+            for (let pre = 0; pre < col; pre++) {
+                let sum: number = 0;
+                for (let next = pre; next < col; next++) {
+                    sum += rowSum[next];
+                    if (sum === k) return k;
+                    if (sum > res && sum < k) res = sum;
+                }
+            }
+        }
+    }
+    return res;
+};
 export {
     removeDuplicatesII,
     isScramble,

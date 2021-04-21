@@ -927,13 +927,41 @@ import java.util.stream.Stream;
 //         return dp[len - 1];
 //     }
 // }
+// class Solution {
+//     public boolean isUgly(int n) {
+//         if (n <= 0) return false;
+//         int[] factors = {2, 3, 5};
+//         for (int factor:factors) {
+//             while (n % factor == 0) n /= factor;
+//         }
+//         return n == 1;
+//     }
+// }
+
 class Solution {
-    public boolean isUgly(int n) {
-        if (n <= 0) return false;
-        int[] factors = {2, 3, 5};
-        for (int factor:factors) {
-            while (n % factor == 0) n /= factor;
+    public int maxSumSubmatrix(int[][] matrix, int k) {
+        int rows = matrix.length, 
+            cols = matrix[0].length, 
+            max = Integer.MIN_VALUE;
+        for (int l = 0; l < cols; l++) { 
+            int[] rowSum = new int[rows];
+            for (int r = l; r < cols; r++) {
+                for (int i = 0; i < rows; i++) {
+                    rowSum[i] += matrix[i][r];
+                }
+                TreeSet<Integer> sumSet = new TreeSet<Integer>();
+                sumSet.add(0);
+                int s = 0;
+                for (int v : rowSum) {
+                    s += v;
+                    Integer ceil = sumSet.ceiling(s - k);
+                    if (ceil != null) {
+                        max = Math.max(max, s - ceil);
+                    }
+                    sumSet.add(s);
+                }
+            }
         }
-        return n == 1;
+        return max;
     }
 }

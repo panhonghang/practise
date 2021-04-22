@@ -5526,6 +5526,7 @@ function numDecodings(s: string): number {
     }
     return res;
 };
+
 function maxSumSubmatrix(matrix: number[][], k: number): number {
     const row: number = matrix.length,
           col: number = matrix[0].length;
@@ -5544,6 +5545,42 @@ function maxSumSubmatrix(matrix: number[][], k: number): number {
                     if (sum > res && sum < k) res = sum;
                 }
             }
+        }
+    }
+    return res;
+};
+
+function largestDivisibleSubset(nums: number[]): number[] {
+    const len: number = nums.length;
+    nums.sort((a, b) => a - b);
+
+    const dp: number[] = new Array(len).fill(1);
+    let maxSize: number = 1,
+        maxVal: number = dp[0];
+    for (let i = 1; i < len; i++) {
+        for (let j = 0; j < i; j++) {
+            if (nums[i] % nums[j] === 0) {
+                dp[i] = Math.max(dp[i], dp[j] + 1);
+            }
+        }
+        if (dp[i] > maxSize) {
+            maxSize = dp[i];
+            maxVal = nums[i];
+        }
+    }
+
+    const res: number[] = [];
+    // 提前返回
+    if (maxSize === 1) {
+        res.push(nums[0]);
+        return res;
+    }
+    
+    for (let i = len - 1; i >= 0 && maxSize > 0; i--) {
+        if (dp[i] === maxSize && maxVal % nums[i] === 0) {
+            res.push(nums[i]);
+            maxVal = nums[i];
+            maxSize--;
         }
     }
     return res;

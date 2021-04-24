@@ -5597,6 +5597,22 @@ function combinationSum4(nums: number[], target: number): number {
     }
     return dp[target];
 };
+// function increasingBST(root: TreeNode | null): TreeNode | null {
+//     const fakeNode = new TreeNode();
+//     let pre = fakeNode;
+
+//     const dfsHelper = (root: TreeNode | null) => {
+//         if (!root) return;
+//         dfsHelper(root.left);
+//         root.left = null;
+//         pre.right = root;
+//         pre = root;
+//         dfsHelper(root.right);
+//         return;
+//     }
+//     dfsHelper(root);
+//     return fakeNode.right;
+// };
 export {
     removeDuplicatesII,
     isScramble,

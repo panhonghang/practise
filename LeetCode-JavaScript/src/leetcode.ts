@@ -5613,6 +5613,31 @@ function combinationSum4(nums: number[], target: number): number {
 //     dfsHelper(root);
 //     return fakeNode.right;
 // };
+function shipWithinDays(weights: number[], D: number): number {
+    let l: number = Math.max(...weights),
+        r: number = weights.reduce((pre, cur) => pre + cur);
+
+    while (r > l) {
+        const mid: number = Math.floor((l + r) / 2);
+        let need: number = 1, 
+            cur: number = 0;
+
+        for (const weight of weights) {
+            if (cur + weight > mid) {
+                need++;
+                cur = 0;
+            } 
+            cur += weight;
+        }
+        if (need <= D) {
+            r = mid;
+        } else {
+            l = mid + 1;
+        }
+    }
+
+    return l;
+};
 export {
     removeDuplicatesII,
     isScramble,

@@ -5613,6 +5613,7 @@ function combinationSum4(nums: number[], target: number): number {
 //     dfsHelper(root);
 //     return fakeNode.right;
 // };
+
 function shipWithinDays(weights: number[], D: number): number {
     let l: number = Math.max(...weights),
         r: number = weights.reduce((pre, cur) => pre + cur);
@@ -5638,6 +5639,20 @@ function shipWithinDays(weights: number[], D: number): number {
 
     return l;
 };
+
+function rangeSumBST(root: TreeNode | null, low: number, high: number): number {
+    if (root === null) return 0;
+    const queue: TreeNode[] = [root];
+    let sum: number = 0;
+    while (queue.length > 0) {
+        let node: TreeNode = queue.shift()!;
+        if (node.left !== null) queue.push(node.left);
+        if (node.right !== null) queue.push(node.right);
+        if (node.val >= low && node.val <= high) sum += node.val;
+    }
+    return sum;
+};
+
 export {
     removeDuplicatesII,
     isScramble,

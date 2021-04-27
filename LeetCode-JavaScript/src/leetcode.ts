@@ -5653,6 +5653,16 @@ function rangeSumBST(root: TreeNode | null, low: number, high: number): number {
     return sum;
 };
 
+function judgeSquareSum(c: number): boolean {
+    for (let a = 0; a * a <= c; a++) {
+        const b: Number = Math.sqrt(c - a * a);
+        if (b === parseInt(String(b))) {
+            return true;
+        }
+    }
+    return false;
+};
+
 export {
     removeDuplicatesII,
     isScramble,

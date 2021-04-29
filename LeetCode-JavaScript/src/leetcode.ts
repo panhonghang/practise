@@ -5687,6 +5687,16 @@ function canCross(stones: number[]): boolean {
     return false;
 };
 
+function singleNumber(nums: number[]): number {
+    let a: number = 0, 
+        b: number = 0;
+    for (const num of nums) {
+        b = ~a & (b ^ num);
+        a = ~b & (a ^ num);
+    }
+    return b;
+};
+
 export {
     removeDuplicatesII,
     isScramble,

@@ -5709,7 +5709,7 @@ function GetImportance(employees: Employee[], id: number): number {
         map.set(employee.id, employee);
     }
     const dfs = (id: number) => {
-        const employee: Employee = map.get(id);
+        const employee: Employee = map.get(id)!;
         let total: number = employee.importance;
         const subordinates: number[] = employee.subordinates;
         for (const subId of subordinates) {

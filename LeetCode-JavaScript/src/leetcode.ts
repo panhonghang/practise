@@ -5697,6 +5697,31 @@ function singleNumber(nums: number[]): number {
     return b;
 };
 
+interface Employee {
+    id: number,
+    importance: number,
+    subordinates: number[],
+}
+
+function GetImportance(employees: Employee[], id: number): number {
+	const map: Map<number, Employee> = new Map();
+    for (const employee of employees) {
+        map.set(employee.id, employee);
+    }
+    const dfs = (id: number) => {
+        const employee: Employee = map.get(id);
+        let total: number = employee.importance;
+        const subordinates: number[] = employee.subordinates;
+        for (const subId of subordinates) {
+            total += dfs(subId);
+        }
+        return total;
+        
+    }
+
+    return dfs(id);
+};
+
 export {
     removeDuplicatesII,
     isScramble,

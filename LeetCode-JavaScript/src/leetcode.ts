@@ -5739,6 +5739,19 @@ function leastBricks(wall: number[][]): number {
     return wall.length - maxCnt;
 };
 
+function reverse(x: number): number {
+    if(x === 0) return 0;
+    
+    let res: number = 0;
+    if (x > 0) {
+        res = Number(`${x}`.split('').reverse().join(''));
+        return res > 2147483647 ? 0 : res;
+    } else {
+        res = Number(`${-x}`.split('').reverse().join(''));
+        return -res < -2147483648 ? 0 : -res;
+    }
+};
+
 export {
     removeDuplicatesII,
     isScramble,

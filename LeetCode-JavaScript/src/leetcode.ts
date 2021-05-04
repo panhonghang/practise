@@ -5795,6 +5795,21 @@ function minCost(houses: number[], cost: number[][], m: number, n: number, targe
     return ans === Number.MAX_VALUE ? -1 : ans;
 };
 
+function deleteAndEarn(nums: number[]): number {
+    const sum: number[] = new Array(Math.max(...nums) + 1).fill(0);
+    nums.forEach((v) => {
+        sum[v] += v;
+    });
+    let first: number = sum[0],
+        second: number = Math.max(first, sum[1]);
+    for (let i = 2; i < sum.length; i++) {
+        let temp: number = second;
+        second = Math.max(second, first + sum[i]);
+        first = temp;
+    }
+    return second;
+};
+
 export {
     removeDuplicatesII,
     isScramble,

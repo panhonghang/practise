@@ -5810,6 +5810,16 @@ function deleteAndEarn(nums: number[]): number {
     return second;
 };
 
+function decode(encoded: number[], first: number): number[] {
+    const n: number = encoded.length + 1;
+    const arr: number[] = new Array(n).fill(0);
+    arr[0] = first;
+    for (let i = 1; i < n; i++) {
+        arr[i] = arr[i - 1] ^ encoded[i - 1];
+    }
+    return arr; 
+};
+
 export {
     removeDuplicatesII,
     isScramble,

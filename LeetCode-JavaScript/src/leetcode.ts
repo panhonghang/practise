@@ -5820,6 +5820,14 @@ function decode(encoded: number[], first: number): number[] {
     return arr; 
 };
 
+function xorOperation(n: number, start: number): number {
+    let res: number = 0;
+    for (let i = 0; i < n; i++) {
+        res ^= start + 2 * i;
+    }
+    return res;
+};
+
 export {
     removeDuplicatesII,
     isScramble,

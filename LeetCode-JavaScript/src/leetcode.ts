@@ -5828,6 +5828,35 @@ function xorOperation(n: number, start: number): number {
     return res;
 };
 
+function minimumTimeRequired(jobs: number[], k: number): number {
+    const n: number = jobs.length;
+    const workers: number[] = new Array(k).fill(0);
+    let ans: number = Infinity;
+    
+    const dfs = (i: number, max: number): void => {
+       if(i === n) {
+        ans = Math.min(max,ans);
+        return;
+       }
+       const set = new Set();
+       for (let j = 0; j < k; j++) {
+         if(workers[j]+jobs[i] > ans) {
+           continue;
+         }
+         if(set.has(workers[j])) {
+           continue;
+         }
+         set.add(workers[j]);
+         workers[j] += jobs[i];
+         dfs(i+1,Math.max(workers[j],max));
+         workers[j] -= jobs[i];
+       }
+    };
+    
+    dfs(0,0);
+    return ans;
+};
+
 export {
     removeDuplicatesII,
     isScramble,

@@ -5857,6 +5857,43 @@ function minimumTimeRequired(jobs: number[], k: number): number {
     return ans;
 };
 
+function minDays(bloomDay: number[], m: number, k: number): number {
+    if (m * k > bloomDay.length) return - 1;
+
+    let num = m * k;
+
+    if (num === bloomDay.length) return Math.max(...bloomDay);
+
+    let l = Math.min(...bloomDay),
+        r = Math.max(...bloomDay),
+        mid = 0,
+        f = 0,
+        c = 0;
+
+    while(l < r) {
+        mid = (l + r) >> 1;
+        f = 0;
+        c = 0;
+        for (let i = 0; i < bloomDay.length; i++) {
+            if (bloomDay[i] <= mid) {
+                f++;
+                if (f === k) {
+                    c++;
+                    f = 0;
+                }
+            } else {
+                f = 0;
+            }
+        }
+        if (c >= m) {
+            r = mid;
+        } else {
+            l  = mid + 1;
+        }
+    }
+    return l;
+};
+
 export {
     removeDuplicatesII,
     isScramble,

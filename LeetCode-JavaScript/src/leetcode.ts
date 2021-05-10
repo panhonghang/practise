@@ -5894,6 +5894,21 @@ function minDays(bloomDay: number[], m: number, k: number): number {
     return l;
 };
 
+function leafSimilar(root1: TreeNode | null, root2: TreeNode | null): boolean {
+    const fn = function(root: TreeNode | null): string {
+        if (root === null) return "";
+        const arr: number[] = [];
+        const dfs = function(node: TreeNode): void {
+            if (node.left === null && node.right === null) arr.push(node.val);
+            if (node.left !== null) dfs(node.left);
+            if (node.right !== null) dfs(node.right);
+        }
+        dfs(root);
+        return arr.join(",");
+    }
+    return fn(root1) === fn(root2);
+};
+
 export {
     removeDuplicatesII,
     isScramble,

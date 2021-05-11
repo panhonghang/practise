@@ -5894,6 +5894,24 @@ function minDays(bloomDay: number[], m: number, k: number): number {
     return l;
 };
 
+function decode(encoded: number[]): number[] {
+    const n: number = encoded.length + 1;
+    let total: number = 0;
+    for (let i = 1; i <= n; i++) {
+        total ^= i;
+    }
+    let odd: number = 0;
+    for (let i = 1; i < n - 1; i += 2) {
+        odd ^= encoded[i];
+    }
+    const perm: number[] = new Array(n).fill(0);
+    perm[0] = total ^ odd;
+    for (let i = 0; i < n - 1; i++) {
+        perm[i + 1] = perm[i] ^ encoded[i];
+    }
+    return perm;
+};
+
 function leafSimilar(root1: TreeNode | null, root2: TreeNode | null): boolean {
     const fn = function(root: TreeNode | null): string {
         if (root === null) return "";

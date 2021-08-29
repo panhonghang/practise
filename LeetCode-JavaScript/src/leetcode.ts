@@ -5937,6 +5937,25 @@ function leafSimilar(root1: TreeNode | null, root2: TreeNode | null): boolean {
     return fn(root1) === fn(root2);
 };
 
+function sumOddLengthSubarrays(arr: number[]): number {
+    const len: number = arr.length;
+    let sumArr: number[] = new Array(len).fill(0);
+    let sum = 0;
+    for (let i = 0; i < len; i++) {
+      if (i === 0) {
+        sumArr[i] = arr[i];
+        continue;
+      }
+      sumArr[i] = sumArr[i-1] + arr[i];
+    }
+    for (let i = 1; i <= len; i += 2) {
+      sum += sumArr[i - 1];
+      for (let j = i; j < len; j++) {
+        sum += sumArr[j] - sumArr[j - i];
+      }
+    }
+    return sum;
+  };
 export {
     removeDuplicatesII,
     isScramble,

@@ -5956,6 +5956,25 @@ function sumOddLengthSubarrays(arr: number[]): number {
     }
     return sum;
   };
+  class Solution {
+    data: number[] = [];
+    sum: number;
+    constructor(w: number[]) {
+      this.data = w
+      this.sum = w.reduce((a, b) => a + b);
+    }
+  
+    pickIndex(): number {
+      let r: number = Math.floor(Math.random() * this.sum);
+      for (let i = 0; i < this.data.length; i ++) {
+        r -= this.data[i];
+        if (r < 0) {
+          return i;
+        }
+      }
+      return 0;
+    }
+  }
 export {
     removeDuplicatesII,
     isScramble,

@@ -5977,15 +5977,17 @@ function sumOddLengthSubarrays(arr: number[]): number {
   }
 
 function corpFlightBookings(bookings: number[][], n: number): number[] {
-	const res: number[] = new Array(n).fill(0);
+	const diff: number[] = new Array(n).fill(0);
 	bookings.forEach((item) => {
-		const first = item[0];
-		const last = item[1];
-		const seats = item[2];
-		for (let i = first - 1; i < last; i++) {
-			res[i] += seats;
-		}
+		const [first, last, seats] = item;
+		diff[first-1] += seats;
+		if (last < n) diff[last] -= seats;
 	});
+	const res: number[] = new Array(n).fill(0);
+	res[0] = diff[0];
+	for (let i = 1; i < n; i++) {
+		res[i] = res[i-1] + diff[i];
+	}
 	return res;
 };
 export {

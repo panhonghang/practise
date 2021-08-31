@@ -5975,6 +5975,19 @@ function sumOddLengthSubarrays(arr: number[]): number {
       return 0;
     }
   }
+
+function corpFlightBookings(bookings: number[][], n: number): number[] {
+	const res: number[] = new Array(n).fill(0);
+	bookings.forEach((item) => {
+		const first = item[0];
+		const last = item[1];
+		const seats = item[2];
+		for (let i = first - 1; i < last; i++) {
+			res[i] += seats;
+		}
+	});
+	return res;
+};
 export {
     removeDuplicatesII,
     isScramble,

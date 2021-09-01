@@ -5990,6 +5990,39 @@ function corpFlightBookings(bookings: number[][], n: number): number[] {
 	}
 	return res;
 };
+
+function compareVersion(version1: string, version2: string): number {
+    const len1: number = version1.length;
+    const len2: number = version2.length;
+    let i: number = 0;
+    let j: number = 0;
+    while (i < len1 && j < len2) {
+        let num1: string = '';
+        let num2: string = '';
+        while(version1[i] === '.' && i < len1) {
+            num1 += version1[i];
+            i++;
+        }
+        while(version2[j] === '.' && j < len2) {
+            num2 += version2[j];
+            j++;
+        }
+        if (Number(num1) > Number(num2)) return 1;
+        if (Number(num1) < Number(num2)) return -1;
+        i++;
+        j++;
+    }
+    if (i < len1) {
+        while((version1[i] === '0' || version1[i] === '.') && i < len1) i++;
+        if (i < len1) return 1;
+    }
+    if (j < len2) {
+        while((version2[j] === '0' || version2[j] === '.') && j < len2) j++;
+        if (j < len2) return -1;
+    }
+    return 0;
+};
+
 export {
     removeDuplicatesII,
     isScramble,

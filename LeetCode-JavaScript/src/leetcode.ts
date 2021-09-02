@@ -6023,6 +6023,34 @@ function compareVersion(version1: string, version2: string): number {
     return 0;
 };
 
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+ function getKthFromEnd(head: ListNode | null, k: number): ListNode | null {
+    let pre: ListNode | null = head;
+    let next: ListNode | null = head;
+    if (k == 0 || head === null) return null;
+    while (next !== null && k > 0) {
+        next = next.next;
+        k--;
+    }
+    if (next === null && k > 0) return null;
+    while (next !== null) {
+        pre = pre.next;
+        next = next.next;
+    }
+    return pre;
+};
+
 export {
     removeDuplicatesII,
     isScramble,

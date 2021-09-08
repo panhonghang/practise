@@ -6100,6 +6100,121 @@ function balancedStringSplit(s: string): number {
   }
   return res;
 };
+type Pair = {
+    profit: number;
+    capital: number;
+}
+
+class Heap {
+    // heap sorted by the decreasing profit
+    private heap: Pair[];
+    constructor() {
+        this.heap = [];
+    }
+    insert(pair: Pair) {
+        this.heap.push(pair);
+        // up adjust
+        let idx = this.heap.length - 1;
+        while (idx > 0) {
+            const idx_parent = Math.floor((idx - 1) / 2);
+            if (this.heap[idx_parent].profit < this.heap[idx].profit) {
+                [this.heap[idx_parent], this.heap[idx]] = [this.heap[idx], this.heap[idx_parent]];
+                idx = idx_parent;
+            } else break;
+        }
+        // down adjust
+        while (idx < this.heap.length) {
+            const idx_left = idx * 2 + 1, idx_right = idx * 2 + 2;
+            if (idx_right < this.heap.length) {
+                if (this.heap[idx_left].profit > this.heap[idx_right].profit) {
+                    if (this.heap[idx_left].profit > this.heap[idx].profit) {
+                        [this.heap[idx_left], this.heap[idx]] = [this.heap[idx], this.heap[idx_left]];
+                        idx = idx_left;
+                    } else break;
+                } else {
+                    if (this.heap[idx_right].profit > this.heap[idx].profit) {
+                        [this.heap[idx_right], this.heap[idx]] = [this.heap[idx], this.heap[idx_right]];
+                        idx = idx_right;
+                    } else break;
+                }
+            } else if (idx_left < this.heap.length) {
+                if (this.heap[idx_left].profit > this.heap[idx].profit) {
+                    [this.heap[idx_left], this.heap[idx]] = [this.heap[idx], this.heap[idx_left]];
+                    idx = idx_left;
+                } else break;
+            } else break;
+        }
+    }
+    pop(): Pair {
+        const res = this.heap[0];
+        if (this.heap.length === 1) {
+            this.heap = [];
+            return res;
+        }
+        this.heap[0] = this.heap.pop();
+        // down adjust
+        let idx = 0;
+        while (idx < this.heap.length) {
+            const idx_left = idx * 2 + 1, idx_right = idx * 2 + 2;
+            if (idx_right < this.heap.length) {
+                if (this.heap[idx_left].profit > this.heap[idx_right].profit) {
+                    if (this.heap[idx_left].profit > this.heap[idx].profit) {
+                        [this.heap[idx_left], this.heap[idx]] = [this.heap[idx], this.heap[idx_left]];
+                        idx = idx_left;
+                    } else break;
+                } else {
+                    if (this.heap[idx_right].profit > this.heap[idx].profit) {
+                        [this.heap[idx_right], this.heap[idx]] = [this.heap[idx], this.heap[idx_right]];
+                        idx = idx_right;
+                    } else break;
+                }
+            } else if (idx_left < this.heap.length) {
+                if (this.heap[idx_left].profit > this.heap[idx].profit) {
+                    [this.heap[idx_left], this.heap[idx]] = [this.heap[idx], this.heap[idx_left]];
+                    idx = idx_left;
+                } else break;
+            } else break;
+        }
+        return res;
+    }
+    isEmpty(): boolean {
+        return this.heap.length === 0;
+    }
+}
+
+function findMaximizedCapital(k: number, w: number, profits: number[], capital: number[]): number {
+    // greedy: for each round, we get the most profitable item which capital is not greater than capital we have
+    // cuz profits are always greater than 0, we maintain a heap whose items' capital are all not greater than the capital we have,
+    // after each round, as the capital we have increases, we insert the heap the items whose capitals are not greater than the capital
+    // we have
+    const pairs: Pair[] = [];
+    for (let i = 0; i < profits.length; i++) {
+        pairs.push({
+            profit: profits[i],
+            capital: capital[i]
+        });
+    }
+    pairs.sort((a, b) => a.capital - b.capital);
+    let idx = 0;
+    const heap = new Heap();
+    insert();
+    while (k-- && !heap.isEmpty()) {
+        const top = heap.pop();
+        w += top.profit;
+        insert();
+    }
+    return w;
+
+    function insert() {
+        while (idx < profits.length) {
+            if (pairs[idx].capital <= w) {
+                heap.insert(pairs[idx++]);
+            } else break;
+        }
+    }
+
+};
+
 export {
     removeDuplicatesII,
     isScramble,

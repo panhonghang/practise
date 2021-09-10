@@ -6254,6 +6254,17 @@ function fullJustify(words: string[], maxWidth: number): string[] {
 const blank = (n) => {
     return new Array(n).fill(' ').join('');
 }
+function chalkReplacer(chalk: number[], k: number): number {
+    const sum: number[] = [...chalk];
+    for (let i = 1; i < sum.length; i++) {
+        sum[i] = sum[i-1] + chalk[i]
+    }
+    k = k % sum[sum.length - 1];
+    for (let i = 0; i < sum.length; i++) {
+        if (sum[i] > k) return i; 
+    }
+    return 0;
+};
 export {
     removeDuplicatesII,
     isScramble,

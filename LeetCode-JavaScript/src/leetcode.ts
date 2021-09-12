@@ -6293,33 +6293,26 @@ var findIntegers = function(n) {
     return res;
 };
 function checkValidString(s: string): boolean {
-    const leftStack: number[] = [];
-    const asteriskStack: number[] = [];
-    const n: number = s.length;
-    for (let i = 0; i < n; i++) {
-        const c: string = s[i];
-        if (c === '(') {
-            leftStack.push(i);
-        } else if (c === '*') {
-            asteriskStack.push(i);
-        } else {
-            if (leftStack.length) {
-                leftStack.pop();
-            } else if (asteriskStack.length) {
-                asteriskStack.pop();
+    const leftParenthesis: number[] = [];
+    const asterisks: number[] = [];
+    for (let i = 0; i < s.length; i++) {
+        const item: string = s.charAt(i);
+        if (item === '(') leftParenthesis.push(i);
+        if (item === '*') asterisks.push(i);
+        if (item === ')') {
+            if (leftParenthesis.length > 0) {
+                leftParenthesis.pop();
+            } else if (asterisks.length > 0) {
+                asterisks.pop();
             } else {
                 return false;
             }
         }
     }
-    while (leftStack.length && asteriskStack.length) {
-        const leftIndex = leftStack.pop();
-        const asteriskIndex = asteriskStack.pop();
-        if (leftIndex > asteriskIndex) {
-            return false;
-        }
+    while (leftParenthesis.length > 0 && asterisks.length > 0) {
+        if (leftParenthesis.pop() > asterisks.pop()) return false;
     }
-    return leftStack.length === 0;
+    return leftParenthesis.length === 0;
 };
 export {
     removeDuplicatesII,

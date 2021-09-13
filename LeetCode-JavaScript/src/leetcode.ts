@@ -6314,6 +6314,29 @@ function checkValidString(s: string): boolean {
     }
     return leftParenthesis.length === 0;
 };
+function numberOfBoomerangs(points: number[][]): number {
+    let count = 0
+    // 一次遍历：每项都做为顶点
+    for(let i = 0; i < points.length; i++) {
+        let obj = {}
+        let x = points[i][0]
+        let y = points[i][1]
+        // 二次遍历：计算其他点距离顶点的距离
+        for(let j = 0; j < points.length; j++) {
+            if (i === j) continue
+            let x1 = points[j][0]
+            let y1 = points[j][1]
+            // 距离：通过勾股定理计算
+            let attr = (x1 - x) ** 2 + (y1 - y) ** 2
+            if (obj[attr] == undefined) {
+                obj[attr] = 1
+            } else {
+                count += (obj[attr]++) * 2
+            }
+        }
+    }
+    return count
+};
 export {
     removeDuplicatesII,
     isScramble,

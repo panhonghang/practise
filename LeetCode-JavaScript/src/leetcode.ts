@@ -6337,6 +6337,24 @@ function numberOfBoomerangs(points: number[][]): number {
     }
     return count
 };
+function findLongestWord(s: string, dictionary: string[]): string {
+    dictionary.sort((a,b)=>b.length-a.length||a.localeCompare(b))
+    const n = s.length;
+    for(const str of dictionary){
+        const sLen=str.length
+        let i=0,j=0
+        while(i<n&&j<sLen){
+            if(str[j]===s[i]){
+                i++
+                j++
+            }else{
+                i++
+            }
+        }
+        if(j===sLen)return str
+    }
+    return '';
+};
 export {
     removeDuplicatesII,
     isScramble,

@@ -6368,6 +6368,25 @@ function findPeakElement(nums: number[]): number {
     }
     return left;
 };
+
+// function fib(n: number): number {
+//     if (n === 1 || n === 2) return 1;
+//     return fib(n-1) + fib(n-2);
+// }
+function fib(n: number): number {
+    let pre = 0;
+    let next = 1;
+    
+    if (n === 0) return 0;
+    if (n === 1) return 1;
+
+    for (let i = 2; i <= n; i++) {
+        const newNext = next + pre;
+        pre = next;
+        next = newNext;
+    }
+    return next;
+}
 export {
     removeDuplicatesII,
     isScramble,

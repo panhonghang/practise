@@ -6387,6 +6387,20 @@ function fib(n: number): number {
     }
     return next;
 }
+function toLowerCase(s: string): string {
+    let res = '';
+
+    for (let i = 0; i < s.length; i++) {
+        const charCode = s.charCodeAt(i);
+        if (charCode > 64 && charCode < 91) {
+            res += String.fromCharCode(charCode + 32);
+        } else {
+            res += s.charAt(i);
+        }
+    }
+
+    return res;
+};
 export {
     removeDuplicatesII,
     isScramble,

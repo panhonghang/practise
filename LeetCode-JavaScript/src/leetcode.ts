@@ -6401,6 +6401,29 @@ function toLowerCase(s: string): string {
 
     return res;
 };
+function maxIncreaseKeepingSkyline(grid: number[][]): number {
+    let sum: number = 0;
+    // 求出每一行每一列最高
+    const row: number[] = new Array(grid.length).fill(0);
+    const col: number[] = new Array(grid[0].length).fill(0);
+    for (let i = 0; i < grid.length; i++) {
+        row[i] = Math.max(...grid[i]);
+    }
+
+    for (let j = 0; j < grid[0].length; j++) {
+        const arr: number[] = []
+        for (let i = 0; i < grid.length; i++) {
+            arr.push(grid[i][j])
+        }
+        col[j] = Math.max(...arr);
+    }
+    for (let j = 0; j < grid[0].length; j++) {
+        for (let i = 0; i < grid.length; i++) {
+            sum += Math.min(row[i], col[j]) - grid[i][j];
+        }
+    }
+    return sum;
+};
 export {
     removeDuplicatesII,
     isScramble,

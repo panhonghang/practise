@@ -6424,6 +6424,32 @@ function maxIncreaseKeepingSkyline(grid: number[][]): number {
     }
     return sum;
 };
+function scheduleCourse(courses: number[][]): number {
+  courses.sort((a, b) => a[1] - b[1]);
+
+  const queue = [];
+  let count = 0;
+
+  for (let i = 0; i < courses.length; i++) {
+
+    const duration = courses[i][0];
+    if (count + duration <= courses[i][1]) {
+      queue.push(duration);  
+      queue.sort((a,b)=> a -b);  // 始终保持耗时队列为从小到大
+      count += duration;
+    } else {
+        if (queue[queue.length - 1] >= duration) {
+            count -= queue.pop()!
+            count += duration;
+            queue.push(duration)
+            queue.sort((a,b)=> a-b);
+        }
+    }
+  }
+
+  return queue.length
+
+}
 export {
     removeDuplicatesII,
     isScramble,

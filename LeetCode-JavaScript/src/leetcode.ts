@@ -6443,10 +6443,38 @@ function scheduleCourse(courses: number[][]): number {
           }
       }
     }
-  
-    return queue.length
-  
-  }
+    return queue.length;
+}
+
+function loudAndRich(richer: number[][], quiet: number[]): number[] {
+    const n = quiet.length
+    const g = new Array(n).fill(0).map(v => new Array())
+    const d = new Array(n).fill(0)
+    const ans = new Array(n).fill(0).map((v, i) => v = i)
+
+    for (let e of richer) {
+        let [a, b] = e
+        g[a].push(b)
+        d[b] += 1
+    }
+
+    const queue = []
+    for (let i = 0; i < n; i++)
+        if (d[i] === 0) queue.push(i)
+
+    while (queue.length > 0) {
+        let t = queue.shift()
+        let q_t = quiet[ans[t]]
+        for(let i of g[t]){
+            if(q_t < quiet[ans[i]]){
+                ans[i] = ans[t]
+            }
+            if(--d[i] === 0) queue.push(i)
+        }
+    }
+    return ans
+};
+
 export {
     removeDuplicatesII,
     isScramble,

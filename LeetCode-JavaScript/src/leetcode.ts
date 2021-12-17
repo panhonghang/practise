@@ -6507,6 +6507,17 @@ function visiblePoints(points: number[][], angle: number, location: number[]): n
 
     return ret + self;
 };
+function numWaterBottles(numBottles: number, numExchange: number): number {
+    let res: number = numBottles;
+    
+    while (numBottles >= numExchange) {
+        const num = Math.floor(numBottles / numExchange);
+        res += num;
+        numBottles = numBottles % numExchange + num;
+    }
+
+    return res;
+};
 export {
     removeDuplicatesII,
     isScramble,

@@ -6518,6 +6518,23 @@ function numWaterBottles(numBottles: number, numExchange: number): number {
 
     return res;
 };
+function countBattleships(board: string[][]): number {
+    const row: number = board.length;
+    const col: number = board[0].length;
+    let ans: number = 0;
+
+    for (let i = 0; i < row; i++) {
+        for (let j = 0; j < col; j++) {
+            // 当前位置是战舰
+            if (board[i][j] == 'X') {
+                // 假如当前的左边和上边也是战舰，就看作同一个战舰
+                if ((i > 0 && board[i - 1][j] == 'X') || (j > 0 && board[i][j - 1] == 'X')) continue;
+                ans++;
+            }
+        }
+    }
+    return ans;
+};
 export {
     removeDuplicatesII,
     isScramble,

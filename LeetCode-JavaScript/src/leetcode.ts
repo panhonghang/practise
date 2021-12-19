@@ -6535,6 +6535,17 @@ function countBattleships(board: string[][]): number {
     }
     return ans;
 };
+function findJudge(n: number, trust: number[][]): number {
+	const inToValues: number[] = new Array(n+1).fill(0);
+	for ( const v of trust) {
+		inToValues[v[0]]--;
+		inToValues[v[1]]++;
+	}
+	for (let i = 1; i <= n; i++) {
+		if (inToValues[i] === n - 1) return i;
+	}
+	return -1;
+};
 export {
     removeDuplicatesII,
     isScramble,

@@ -6562,6 +6562,17 @@ function findRadius(houses: number[], heaters: number[]): number {
     }
     return ans
 };
+function dayOfYear(date: string): number {
+     const dateArr = date.split('-');
+    const month = Number(dateArr[1]);
+    const d = new Date(date);
+    let result = Number(dateArr[2]);
+    for (let i = 1; i < month; i++) {
+        d.setMonth(i, 0); //月份是0-11
+        result += d.getDate();
+    }
+    return result;
+};
 export {
     removeDuplicatesII,
     isScramble,

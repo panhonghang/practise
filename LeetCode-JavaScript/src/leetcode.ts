@@ -6573,6 +6573,21 @@ function dayOfYear(date: string): number {
     }
     return result;
 };
+function repeatedStringMatch(a: string, b: string): number {
+    if (a.length >= b.length && a.indexOf(b) !== -1) {
+        return 1;
+    }
+    let str = a;
+    while (str.length < b.length) {
+        str += str;
+    }
+    str += a;
+    const index = str.indexOf(b);
+    if (index === -1) {
+        return -1;
+    }
+    return Math.ceil((b.length + index) / a.length);
+};
 export {
     removeDuplicatesII,
     isScramble,

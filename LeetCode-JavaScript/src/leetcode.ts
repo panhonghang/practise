@@ -6588,6 +6588,26 @@ function repeatedStringMatch(a: string, b: string): number {
     }
     return Math.ceil((b.length + index) / a.length);
 };
+function longestDupSubstring(s: string): string {
+    let pre: number = 0;
+    let str: string = '';
+    let next: number = pre + 1;
+    let temp: string = s[pre];
+
+    while (pre < s.length - 1) {
+        while (s.lastIndexOf(temp) > pre && next < s.length) {
+            if (str.length < temp.length) {
+                str = temp;
+            }
+            temp += s[next];
+            next++;
+        }
+        temp = temp.slice(1, temp.length)
+        pre++;
+    }
+
+    return str;
+};
 export {
     removeDuplicatesII,
     isScramble,

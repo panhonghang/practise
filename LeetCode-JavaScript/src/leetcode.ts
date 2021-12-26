@@ -6622,6 +6622,18 @@ function eatenApples(apples: number[], days: number[]): number {
     }
     return res;
 };
+function findOcurrences(text: string, first: string, second: string): string[] {
+    const  arr: string[] = text.split(' ');
+    const res: string[] = [];
+
+    for (let i = 0; i < arr.length - 2; i++) {
+        if (arr[i] === first && arr[i+1] === second) {
+            res.push(arr[i+2]);
+        }
+    }
+
+    return res;
+};
 export {
     removeDuplicatesII,
     isScramble,

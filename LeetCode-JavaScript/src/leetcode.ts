@@ -6634,6 +6634,26 @@ function findOcurrences(text: string, first: string, second: string): string[] {
 
     return res;
 };
+
+function numFriendRequests(ages: number[]): number {
+    let ans: number = 0;
+    ages.sort((a, b) => a - b);
+    let left: number = 0;
+    let right: number = 0;
+    for (let i = 0; i < ages.length; i++) {
+        if (ages[i] < 15) {
+            continue;
+        }
+        while (ages[left] <= 0.5 * ages[i] + 7) {
+            ++left;
+        }
+        while (right + 1 < ages.length && ages[right + 1] <= ages[i]) {
+            ++right;
+        }
+        ans += right - left;
+    }
+    return ans;
+};
 export {
     removeDuplicatesII,
     isScramble,

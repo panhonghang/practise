@@ -6654,6 +6654,24 @@ function numFriendRequests(ages: number[]): number {
     }
     return ans;
 };
+
+function countQuadruplets(nums: number[]): number {
+    let ans: number = 0;
+    const len: number = nums.length;
+    const count: Map<number, number> = new Map<number, number>();
+
+    for (let b = len - 3; b >= 1; b--) {
+        for (let d = b + 2; d < len; d++) {
+            count.set(nums[d] - nums[b + 1], (count.get(nums[d] - nums[b + 1]) || 0) + 1);
+        }
+        for (let a = b - 1; a >= 0; a--) {
+            ans += count.get(nums[a] + nums[b]) || 0;
+        }
+    }
+    
+    return ans;
+};
+
 export {
     removeDuplicatesII,
     isScramble,

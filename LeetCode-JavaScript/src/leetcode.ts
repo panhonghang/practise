@@ -6671,7 +6671,20 @@ function countQuadruplets(nums: number[]): number {
     
     return ans;
 };
+function construct2DArray(original: number[], m: number, n: number): number[][] {
+    const len: number = original.length;
+    if (len !== m * n) return [];
+    const res: number[][] = [];
 
+    for (let i = 0; i < m; i++) {
+        const temp: number[] = [];
+        for (let j = 0; j < n; j++) {
+            temp.push(original[n * i + j]);
+        }
+        res.push(temp);
+    }
+    return res;
+};
 export {
     removeDuplicatesII,
     isScramble,

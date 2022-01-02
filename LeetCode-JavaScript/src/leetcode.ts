@@ -6685,6 +6685,23 @@ function construct2DArray(original: number[], m: number, n: number): number[][] 
     }
     return res;
 };
+function lastRemaining(n: number): number {
+    let a1: number = 1;
+    let k: number = 0;
+    let cnt: number = n;
+    let step: number = 1;
+    while (cnt > 1) {
+        if (k % 2 === 0) {
+            a1 += step;
+        } else {
+            a1 += cnt % 2 === 0 ?  0 : step;
+        }
+        k++;
+        cnt = cnt >> 1;
+        step = step << 1;
+    }
+    return a1;
+};
 export {
     removeDuplicatesII,
     isScramble,

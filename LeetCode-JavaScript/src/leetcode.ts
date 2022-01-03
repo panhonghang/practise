@@ -6702,6 +6702,15 @@ function lastRemaining(n: number): number {
     }
     return a1;
 };
+function dayOfTheWeek(day: number, month: number, year: number): string {
+    let days: string[] = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    let date: Date = new Date();
+    let time: number = date.setFullYear(year);
+    time = date.setMonth(month-1);
+    time = date.setDate(day);
+    let weekday: number = new Date(time).getDay();
+    return days[weekday];
+};
 export {
     removeDuplicatesII,
     isScramble,

@@ -6758,6 +6758,24 @@ const getNextResult = (mouse, cat, turns) => {
     }
     dp[mouse][cat][turns] = result;
 }
+function modifyString(s: string): string {
+    const arr: string[] = ['a', 'b', 'c'];
+    const strs: string[] = s.split('');
+
+    for (let i = 0; i < strs.length; i++) {
+        if (strs[i] === '?') {
+            const pre: string = strs[i - 1] || '';
+            let next: string = strs[i + 1] || '';
+            for (let j = 0; j < 3; j++) {
+                if (next === '?') next = 'c';
+                if ([pre, next].includes(arr[j])) continue;
+                strs[i] = arr[j]
+            }
+        }
+    }
+
+    return strs.join('');
+};
 export {
     removeDuplicatesII,
     isScramble,

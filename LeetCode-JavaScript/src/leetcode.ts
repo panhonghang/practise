@@ -6776,6 +6776,18 @@ function modifyString(s: string): string {
 
     return strs.join('');
 };
+function simplifyPath(path: string): string {
+    const stack: string[] = [];
+    const strs: string[] = path.split('/');
+    for (let i = 0; i < strs.length; i++) {
+        if (strs[i] === '..') {
+            stack.pop();
+        } else if (strs[i] && strs[i] !== '.') {
+            stack.push(strs[i]);
+        }
+    }
+    return `/${stack.join('/')}`;
+};
 export {
     removeDuplicatesII,
     isScramble,

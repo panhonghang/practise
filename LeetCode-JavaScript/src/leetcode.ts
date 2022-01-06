@@ -6805,6 +6805,27 @@ function maxDepth(s: string): number {
     }
     return res;
 };
+function maxDepth(s: string): number {
+    const strs: string[] = s.split('');
+    let res: number = 0;
+
+    for (let i = 0; i < strs.length; i++) {
+        if (strs[i] === '(') {
+            let l: number = 1;
+            let r: number = 0;
+            for (let j = i - 1; j >= 0; j--) {
+                if (strs[j] === '(') l++;
+                if (strs[j] === ')') l--;
+            }
+            for (let j = i + 1; j < strs.length; j++) {
+                if (strs[j] === ')') r++;
+                if (strs[j] === '(') r--;
+            }
+            res = Math.max(res, Math.min(l, r));
+        }
+    }
+    return res;
+};
 export {
     removeDuplicatesII,
     isScramble,

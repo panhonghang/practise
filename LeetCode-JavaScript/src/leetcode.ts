@@ -6788,6 +6788,23 @@ function simplifyPath(path: string): string {
     }
     return `/${stack.join('/')}`;
 };
+function maxDepth(s: string): number {
+    const strs: string[] = s.split('');
+    let res: number = 0;
+    let count: number = 0;
+
+    for (let i = 0; i < strs.length; i++) {
+        if (strs[i] === ')') {
+            // 出栈
+            count--;
+        } else if (strs[i] === '(') {
+            // 入栈
+            count++;
+            res = Math.max(res, count);
+        }
+    }
+    return res;
+};
 export {
     removeDuplicatesII,
     isScramble,

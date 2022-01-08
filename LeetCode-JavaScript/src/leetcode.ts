@@ -6834,6 +6834,26 @@ function grayCode(n: number): number[] {
     }
     return res;
 };
+function slowestKey(releaseTimes: number[], keysPressed: string): string {
+    let max: number = releaseTimes[0];
+    let ans: string = keysPressed[0];
+    const len: number = releaseTimes.length;
+
+    for (let i = 1; i < len; i++) {
+        const timer: number = releaseTimes[i] - releaseTimes[i-1];
+        const key: string = keysPressed[i];
+        if (max > timer) continue;
+        if (max < timer) {
+            max = timer;
+            ans = key;
+        }
+        if (max === timer && ans.charCodeAt(0) < key.charCodeAt(0)) {
+            ans = key;
+        }
+    }
+
+    return ans;
+};
 export {
     removeDuplicatesII,
     isScramble,

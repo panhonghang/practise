@@ -6826,6 +6826,14 @@ function maxDepth(s: string): number {
     }
     return res;
 };
+function grayCode(n: number): number[] {
+    //【笔记】自己与自己左移一位进行异或，得到的就是它的格雷码。
+    const res: number[] = [];
+    for (let i = 0; i < (1 << n); ++i) {
+        res[i] = i ^ (i >> 1);
+    }
+    return res;
+};
 export {
     removeDuplicatesII,
     isScramble,

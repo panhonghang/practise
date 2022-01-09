@@ -6854,6 +6854,41 @@ function slowestKey(releaseTimes: number[], keysPressed: string): string {
 
     return ans;
 };
+function isAdditiveNumber(num: string): boolean {
+    // 暴力。。。
+    const len: number = num.length;
+    // 验证函数
+    const validate = (len1: number, len2: number): boolean => {
+        let first: string = num.substr(0, len1);
+        let second: string = num.substr(len1, len2);
+        let str: string = num.substr(len1 + len2);
+        // 开头为 0 || 小于两个数
+        if (
+            (first.length > 1 && first[0] === '0') ||
+            (second.length > 1 && second[0] === '0') || 
+            str === '') 
+            return false;
+        while (str.length > 0) {
+            const sum: string = (Number(first) + Number(second)).toString();
+            const step: number = sum.toString().length;
+            if (str.substr(0, step) === sum) {
+                [first, second, str] = [second, sum, str.substr(step)]
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    for (let i = 1; i < len; i++) {
+        for (let j = 1; j < len; j++) {
+            if (validate(i, j)) return true;
+        }
+    }
+
+    return false;
+};
+
 export {
     removeDuplicatesII,
     isScramble,

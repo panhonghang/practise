@@ -6888,7 +6888,60 @@ function isAdditiveNumber(num: string): boolean {
 
     return false;
 };
+function isEscapePossible(blocked: number[][], source: number[], target: number[]): boolean {
+    // 判断有没有被包裹着 高斯公式 超过 n * (n-1) / 2 就不被包
+    const count: number = blocked.length * (blocked.length - 1) / 2;
+    // 访问过的
+    const visited: Set<string> = new Set();
+    // 判断是否符合规范 没越界 不是blocked 没有被访问过
+    const check = (rect: number[]): boolean => {
+        if (blocked.some(node => node[1] === rect[1] && node[0] === rect[0])) return false;
+        if (rect[0] < 0 || rect[1] < 0 || rect[0] > 999999 || rect[1] > 999999) return false;
+        if (visited.has(rect.toString())) return false;
+        return true;
+    }
+    // 判断能否超过 count 或者 在同一个圈里面
+    const bfs = (rect: number[], targetRect: number[]): boolean => {
+        let n: number = 0;
+        const temp: number[][] = [rect];
 
+        while (temp.length > 0) {
+            const arr: number[] = temp.shift();
+            const x: number = arr[0];
+            const y: number =  arr[1];
+            // 找到目标了 或者 超过了 直接返回
+            if ((x === targetRect[0] && y === targetRect[1]) || n > count) {
+                visited.clear();
+                return true;
+            }
+            // 上下左右
+            if (check([x, y-1])) {
+                n++;
+                temp.push([x, y-1]);
+                visited.add([x, y-1].toString())
+            }
+            if (check([x, y+1])) {
+                n++;
+                temp.push([x, y+1]);
+                visited.add([x, y+1].toString())
+            }
+            if (check([x-1, y])) {
+                n++;
+                temp.push([x-1, y]);
+                visited.add([x-1, y].toString())
+            }
+            if (check([x+1, y])) {
+                n++;
+                temp.push([x+1, y]);
+                visited.add([x+1, y].toString())
+            }
+        }
+        visited.clear();
+        return false;
+    }
+    
+    return bfs(source, target) && bfs(target, source);
+};
 export {
     removeDuplicatesII,
     isScramble,

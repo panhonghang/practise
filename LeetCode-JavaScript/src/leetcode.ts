@@ -6942,6 +6942,37 @@ function isEscapePossible(blocked: number[][], source: number[], target: number[
     
     return bfs(source, target) && bfs(target, source);
 };
+function increasingTriplet(nums: number[]): boolean {
+    // 单调栈
+    const stack: number[] = [nums[0]];
+    let second: number = Number.MAX_VALUE;
+    for (let i = 1; i < nums.length; i++) {
+        const item: number = stack.pop()!;
+        if (second < nums[i]) return true;
+
+        if (item < nums[i]) {
+            stack.push(item, nums[i]);
+        } else if(nums[i] < item) {
+            if (stack.length > 0) {
+                const pre: number = stack.pop();
+                if (nums[i] > pre) {
+                    stack.push(pre, nums[i]);
+                } else if (nums[i] < pre) {
+                    stack.push(nums[i]);
+                    second = Math.min(item, second);
+                } else {
+                    stack.push(pre, item);
+                }
+            } else {
+                stack.push(nums[i]);
+            }
+        } else {
+            stack.push(item);
+        }
+        if (stack.length > 2) return true;
+    }
+    return false;
+};
 export {
     removeDuplicatesII,
     isScramble,

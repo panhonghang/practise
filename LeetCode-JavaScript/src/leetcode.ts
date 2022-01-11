@@ -6991,6 +6991,18 @@ function increasingTriplet(nums: number[]): boolean {
     }
     return false;
 };
+// 最短版本
+function increasingTriplet(nums: number[]): boolean {
+    // 单调栈
+    let first: number = nums[0];
+    let second: number = Number.MAX_VALUE;
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i] > second) return true;
+        if (nums[i] > first) second = Math.min(second, nums[i]);
+        if (nums[i] < first) first = nums[i];
+    }
+    return false;
+};
 export {
     removeDuplicatesII,
     isScramble,

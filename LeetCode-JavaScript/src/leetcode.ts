@@ -6973,6 +6973,24 @@ function increasingTriplet(nums: number[]): boolean {
     }
     return false;
 };
+// 简单一点的写法
+function increasingTriplet(nums: number[]): boolean {
+    if(nums.length < 3) return false;
+
+    let first: number = Number.MAX_SAFE_INTEGER;
+    let second: number = Number.MAX_SAFE_INTEGER;
+
+    for(let num of nums) {
+        if (num <= first){
+            first = num;
+        } else if (num <= second) {
+            second = num;
+        } else if (num > second) {
+            return true;
+        }
+    }
+    return false;
+};
 export {
     removeDuplicatesII,
     isScramble,

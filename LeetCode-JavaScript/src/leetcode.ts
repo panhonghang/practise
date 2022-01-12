@@ -7003,6 +7003,18 @@ function increasingTriplet(nums: number[]): boolean {
     }
     return false;
 };
+function dominantIndex(nums: number[]): number {
+    let max: number = 0;
+    let res: number = -1;
+    nums.forEach(num => {
+        max = Math.max(num, max);
+    })
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] !== max && nums[i] * 2 > max) return -1;
+        if (nums[i] === max) res = i;
+    }
+    return res;
+};
 export {
     removeDuplicatesII,
     isScramble,

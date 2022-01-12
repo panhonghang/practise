@@ -7015,6 +7015,22 @@ function dominantIndex(nums: number[]): number {
     }
     return res;
 };
+function dominantIndex(nums: number[]): number {
+    if (nums.length === 1) return 0;
+    let first: number = -1;
+    let second: number = -1;
+    let res: number = 0;
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] > first) {
+            second = first;
+            first = nums[i];
+            res = i;
+        } else if (nums[i] > second) { 
+            second = nums[i];
+        }
+    }
+    return first >= second * 2 ? res : -1;
+};
 export {
     removeDuplicatesII,
     isScramble,

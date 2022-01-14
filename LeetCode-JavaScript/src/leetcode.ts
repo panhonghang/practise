@@ -7264,6 +7264,11 @@ function swap<T = number>(arr: T[], a: number, b: number) {
       }
       return res;
   };
+  function totalMoney(n: number): number {
+    const w: number = n / 7 >> 0;
+    const d: number = n % 7;
+    return 28 * w + 7 * w * (w - 1) / 2 + d * w + d * (d + 1) / 2;
+};
 export {
     removeDuplicatesII,
     isScramble,

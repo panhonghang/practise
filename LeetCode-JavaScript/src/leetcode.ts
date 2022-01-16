@@ -7269,6 +7269,44 @@ function totalMoney(n: number): number {
     const d: number = n % 7;
     return 28 * w + 7 * w * (w - 1) / 2 + d * w + d * (d + 1) / 2;
 };
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+class Solution {
+    private head: ListNode;
+    constructor(head: ListNode | null) {
+        this.head = head;
+    }
+
+    getRandom(): number {
+        let ans: number = 0;
+        let i: number = 1;
+        let node: ListNode = this.head;
+        while ( node != null) {
+            if (Math.floor(Math.random() * i) === 0) { // 1/i 的概率选中（替换为答案）
+                ans = node.val;
+            }
+            i++;
+            node = node.next
+        }
+        return ans;
+    }
+}
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * var obj = new Solution(head)
+ * var param_1 = obj.getRandom()
+ */
 export {
     removeDuplicatesII,
     isScramble,

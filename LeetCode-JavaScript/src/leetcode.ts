@@ -7343,7 +7343,35 @@ function tribonacci(n: number): number {
 
     return ans;
 };
+function countVowelPermutation(n: number): number {
+    if (n === 1) return 5;
+    // 统计每一个字母个数
+    const map: Map<string, number> = new Map([
+        ['a', 1],
+        ['e', 1],
+        ['i', 1],
+        ['o', 1],
+        ['u', 1],
+    ])
+    const mod: number =  1000000007;
+    while (n > 1) {
+        const numA: number = map.get('a');
+        const numE: number = map.get('e');
+        const numI: number = map.get('i');
+        const numO: number = map.get('o');
+        const numU: number = map.get('u');
+        map.set('a', (numE + numI + numU) % mod);
+        map.set('e', (numA + numI) % mod);
+        map.set('i', (numE + numO) % mod);
+        map.set('o', (numI) % mod);
+        map.set('u', (numI + numO) % mod);
+        n--;
+    }
 
+    let ans: number = 0;
+    map.forEach(val => ans += (val) % mod);
+    return ans  % mod;
+};
 export {
     removeDuplicatesII,
     isScramble,

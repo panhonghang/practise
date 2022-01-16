@@ -7372,6 +7372,23 @@ function countVowelPermutation(n: number): number {
     map.forEach(val => ans += (val) % mod);
     return ans  % mod;
 };
+function countVowelPermutation(n: number): number {
+    if (n === 1) return 5;
+    // 统计每一个字母个数
+    let a: number = 1, e: number = 1, i: number = 1, o: number = 1, u: number = 1;
+    const mod: number =  1000000007;
+    while (n > 1) {
+        const aa: number = a, ee: number = e, ii: number = i, oo: number = o, uu: number = u;
+        a = (ee + ii + uu) % mod;
+        e = (aa + ii) % mod;
+        i = (ee + oo) % mod;
+        o = ii % mod;
+        u = (ii + oo) % mod;
+        n--;
+    }
+
+    return (a + e + i + o + u)  % mod;
+};
 export {
     removeDuplicatesII,
     isScramble,

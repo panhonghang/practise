@@ -7325,6 +7325,25 @@ class Solution {
     return ans;
 }
 
+function tribonacci(n: number): number {
+    if (n === 0) return 0;
+    if (n === 1 || n === 2) return 1;
+    let first: number = 0;
+    let second: number = 1;
+    let third: number = 1;
+    let ans: number = 0;
+
+    while (n > 2) {
+        ans = first + second + third;
+        first = second;
+        second = third;
+        third = ans;
+        n--;
+    }
+
+    return ans;
+};
+
 export {
     removeDuplicatesII,
     isScramble,

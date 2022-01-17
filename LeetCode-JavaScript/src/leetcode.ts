@@ -7408,6 +7408,28 @@ function findMinDifference(timePoints: string[]): number {
 
     return min;
 };
+function findMinDifference(timePoints: string[]): number {
+    // 一天的时间
+    const day: number = 24 * 60;
+    // 雀巢原理，超过这么多个就一定有重复的
+    if (timePoints.length > day) return 0;
+    // 统计分钟数
+    const minsArr: number[] = timePoints.map(time => {
+       const arr: string[] = time.split(':');
+       return Number(arr[0]) * 60 + Number(arr[1]);
+    }).sort((a, b) => a - b);
+    // 取第一个加到最后
+    minsArr.push(day + minsArr[0]);
+    let min: number = day;
+    for (let i = 1; i < minsArr.length; i++) {
+        const timer: number = minsArr[i] - minsArr[i-1];
+        if (timer >= 0) {
+            min = Math.min(timer, min);
+        }
+    }
+
+    return min;
+};
 export {
     removeDuplicatesII,
     isScramble,

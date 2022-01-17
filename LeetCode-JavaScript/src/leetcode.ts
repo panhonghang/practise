@@ -7389,6 +7389,25 @@ function countVowelPermutation(n: number): number {
 
     return (a + e + i + o + u)  % mod;
 };
+function findMinDifference(timePoints: string[]): number {
+    // 统计分钟数
+    const minsArr: number[] = timePoints.map(time => {
+       const arr: string[] = time.split(':');
+       return Number(arr[0]) * 60 + Number(arr[1]);
+    }).sort((a, b) => a - b);
+    // 取第一个加到最后
+    minsArr.push(24 * 60 + minsArr[0]);
+    let min: number = Number.MAX_VALUE;
+
+    for (let i = 1; i < minsArr.length; i++) {
+        const timer: number = minsArr[i] - minsArr[i-1];
+        if (timer >= 0) {
+            min = Math.min(timer, min);
+        }
+    }
+
+    return min;
+};
 export {
     removeDuplicatesII,
     isScramble,

@@ -7512,7 +7512,34 @@ function longestPalindrome(s: string): number {
     }
     return rest > 0 ? ans + 1 : ans;
 };
-
+function longestPalindrome(s: string): string {
+    const strs: string[] = s.split('');
+    let ans: string = strs[0];
+    let max: number = 0;
+    for (let i = 0; i < strs.length - 1; i++) {
+        let l: number = i - 1;
+        let r: number = i + 1;
+        while (l >= 0 && r < strs.length && strs[l] === strs[r]) {
+            l--;
+            r++;
+        }
+        if (max < r - l - 1) {
+            max = r - l - 1;
+            ans = s.slice(l + 1, r);
+        }
+        l = i;
+        r = i + 1;
+        while (l >= 0 && r < strs.length && strs[l] === strs[r]) {
+            l--;
+            r++;
+        }
+        if (max < r - l - 1) {
+            max = r - l - 1;
+            ans = s.slice(l + 1, r);
+        }
+    }
+    return ans;
+};
 export {
     removeDuplicatesII,
     isScramble,

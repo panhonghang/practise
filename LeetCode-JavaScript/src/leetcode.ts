@@ -7474,6 +7474,29 @@ function threeSum(nums: number[]): number[][] {
     }
     return  ans;
 };
+function trap(height: number[]): number {
+    let ans: number = 0;
+    let maxL: number = height[0];
+     // 长度至少大于2能形成低洼积水
+    if (height.length <= 2) return 0;
+    for (let i = 1; i < height.length - 1; i++) {
+        let r: number = i + 1;
+        let maxR: number = height[i];
+        if (maxL <= height[i]) {
+            maxL = height[i];
+            continue;
+        }
+        while (r < height.length) {
+            maxR = Math.max(maxR, height[r]);
+            if (height[r] >= maxL) break;
+            r++;
+        }
+        if (maxR <= height[i]) continue;
+        const min: number = Math.min(maxL, maxR);
+        if (min > height[i]) ans += min - height[i];
+    }
+    return ans;
+};
 export {
     removeDuplicatesII,
     isScramble,

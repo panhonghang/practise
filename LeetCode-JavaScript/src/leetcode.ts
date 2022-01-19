@@ -7497,6 +7497,22 @@ function trap(height: number[]): number {
     }
     return ans;
 };
+function longestPalindrome(s: string): number {
+    const strs: string[] = s.split('').sort((a, b) => a.charCodeAt(0) - b.charCodeAt(0));
+    if (strs.length <= 1) return strs.length;
+    let ans: number = 0;
+    let rest: number = 0;
+    for (let i = 0; i < strs.length; i++) {
+        if (strs[i] === strs[i+1]) {
+            ans += 2;
+            i++;
+        } else {
+            rest++;
+        }
+    }
+    return rest > 0 ? ans + 1 : ans;
+};
+
 export {
     removeDuplicatesII,
     isScramble,

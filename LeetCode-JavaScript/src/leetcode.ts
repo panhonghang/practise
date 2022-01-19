@@ -7540,6 +7540,20 @@ function longestPalindrome(s: string): string {
     }
     return ans;
 };
+function stoneGameIX(stones: number[]): boolean {
+    const arr: number[] = [0, 0, 0];
+	for (const v of stones) {
+		arr[v % 3]++;
+	}
+    // 如果类型 0 的石子的个数为偶数，那么 Alice 获胜当且仅当类型 1 和类型 2 的石子至少都有 1 个；
+    // 如果类型 0 的石子的个数为奇数，那么 Alice 获胜当且仅当「在没有类型 0 石子的情况下，
+    // Bob 获胜且原因不是因为所有石子都被移除」。对应到上面的分析即为「类型 1 的石子比类型 2 多超过 2 个」
+    // 或者「类型 2 的石子比类型 1 多超过 2 个」。
+	if (arr[0] % 2 == 0) {
+		return arr[1] > 0 && arr[2] > 0;
+	}
+	return arr[1] - 2 > arr[2] || arr[2] - 2 > arr[1];
+};
 export {
     removeDuplicatesII,
     isScramble,

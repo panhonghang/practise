@@ -7448,6 +7448,32 @@ function containsNearbyDuplicate(nums: number[], k: number): boolean {
     }
     return false;
 };
+function threeSum(nums: number[]): number[][] {
+    if (nums.length < 3) return [];
+    const ans: number[][] = [];
+    nums.sort((a, b) => a - b);
+    for (let i = 0; i < nums.length; i ++) {
+        if (nums[i] > 0) break;
+        if (i > 0 && nums[i] === nums[i-1]) continue;
+        let L = i + 1;
+        let R = nums.length - 1;
+        while (L < R) {
+            let sum = nums[L] + nums[R] + nums[i];
+            if (sum === 0) {
+                ans.push([nums[L], nums[i], nums[R]]);
+                while (L < R && nums[L] === nums[L+1]) L++;
+                while (L < R && nums[R] === nums[R-1]) R--;
+                L++;
+                R--;
+            } else if (sum < 0) {
+                L++;
+            } else {
+                R--;
+            }
+        }
+    }
+    return  ans;
+};
 export {
     removeDuplicatesII,
     isScramble,

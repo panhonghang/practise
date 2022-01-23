@@ -7911,6 +7911,38 @@ function secondMinimum(n: number, edges: number[][], time: number, change: numbe
     }
     return ret;
 };
+function secondMinimum(n: number, edges: number[][], time: number, change: number): number {
+    const graph: number[][] = new Array(n + 1).fill(0).map(() => new Array());
+    for (const edge of edges) {
+        graph[edge[0]].push(edge[1]);
+        graph[edge[1]].push(edge[0]);
+    }
+    const path: number[][] = new Array(n+1).fill(0).map(() => new Array(2).fill(Number.MAX_VALUE));
+    path[1][0] = 0;
+    const queue: number[][] = [];
+    queue.push([1, 0]);
+    while (path[n][1] === Number.MAX_VALUE) {
+        const [cur, len] = queue.shift();
+        for (let next of graph[cur]) {
+            if (len + 1 < path[next][0]) {
+                queue.push([next, len + 1]);
+                path[next][0] = len + 1;
+            } else if (len + 1 > path[next][0] && len + 1 < path[next][1]) {
+                queue.push([next, len + 1]);
+                path[next][1] = len + 1;
+            }
+        }
+    }
+    let ans: number = 0;
+    for (let i = 0; i < path[n][1]; i++) {
+        // light is red, we need wait
+        if (ans % (change * 2) >= change) {
+            ans += change * 2 - ans % (change * 2);
+        }
+        ans += time;
+    }
+    return ans;
+};
 export {
     removeDuplicatesII,
     isScramble,

@@ -7701,6 +7701,172 @@ function minJumps(arr: number[]): number {
 function removePalindromeSub(s: string): number {
     return s === s.split('').reverse().join('') ? 1 : 2;
 };
+type Price = number
+type Timestamp = number
+
+interface Stock {
+    price: Price
+    timestamp: Timestamp
+}
+
+class StockPrice {
+    private minQueue: MinHeap<Stock>
+    private maxQueue: MinHeap<Stock>
+    private record: Map<Timestamp, Price>
+    private curTime: number
+
+    constructor() {
+        this.minQueue = new MinHeap((a, b) => a.price - b.price)
+        this.maxQueue = new MinHeap((a, b) => b.price - a.price)
+        this.record = new Map()
+        this.curTime = 0
+    }
+
+    update(timestamp: number, price: number): void {
+        if (timestamp >= this.curTime) this.curTime = timestamp
+        this.record.set(timestamp, price)
+        this.minQueue.push({ price, timestamp })
+        this.maxQueue.push({ price, timestamp })
+    }
+
+    current(): number {
+        return this.record.get(this.curTime) || -1
+    }
+
+    maximum(): number {
+        let res = this.maxQueue.peek()
+        while (res.price !== this.record.get(res.timestamp)) {
+            this.maxQueue.shift()
+            res = this.maxQueue.peek()
+        }
+        return res.price
+    }
+
+    minimum(): number {
+        let res = this.minQueue.peek()
+        while (res.price !== this.record.get(res.timestamp)) {
+            this.minQueue.shift()
+            res = this.minQueue.peek()
+        }
+        return res.price
+    }
+}
+
+
+
+class MinHeap<Item = number> {
+    private heap: Item[]
+    private volumn: number
+    private compareFunction: (a: Item, b: Item) => number
+    static defaultCompareFunction = (a: any, b: any) => a - b
+
+    constructor(
+        compareFunction: (a: Item, b: Item) => number = MinHeap.defaultCompareFunction,
+        volumn: number = Infinity,
+        heap: Item[] = []
+    ) {
+        this.heap = heap
+        this.compareFunction = compareFunction
+        this.volumn = volumn
+    }
+
+    push(val: Item) {
+        this.heap.push(val)
+        this.shiftUp(this.heap.length - 1)
+        while (this.heap.length > this.volumn) {
+            this.shift()
+        }
+        return this.size
+    }
+
+    shift() {
+        if (this.size === 0) {
+            return undefined
+        } else if (this.size === 1) {
+            return this.heap.pop()!
+        } else {
+            const top = this.peek()
+            const last = this.heap.pop()!
+            this.heap[0] = last
+            this.shiftDown(0)
+            return top
+        }
+    }
+
+    peek() {
+        return this.heap[0]
+    }
+
+    get size() {
+        return this.heap.length
+    }
+
+    heappushpop(val: Item) {
+        this.heap[0] = val
+        this.shiftDown(0)
+        return this
+    }
+
+    heapify() {
+        const start = this.getParentIndex(this.size - 1)
+        for (let i = start; i >= 0; i--) {
+            this.shiftDown(i)
+        }
+    }
+
+    private shiftUp(index: number) {
+        if (index <= 0) return
+        const parentIndex = this.getParentIndex(index)
+
+        while (
+            this.heap[parentIndex] !== undefined &&
+            this.heap[index] !== undefined &&
+            this.compareFunction(this.heap[parentIndex], this.heap[index]) > 0
+        ) {
+            this.swap(parentIndex, index)
+            this.shiftUp(parentIndex)
+        }
+    }
+
+    private shiftDown(index: number) {
+        const leftChildIndex = this.getLeftChildIndex(index)
+        const rightChildIndex = this.getRightChildIndex(index)
+
+        if (
+            this.heap[leftChildIndex] !== undefined &&
+            this.heap[index] !== undefined &&
+            this.compareFunction(this.heap[leftChildIndex], this.heap[index]) < 0
+        ) {
+            this.swap(leftChildIndex, index)
+            this.shiftDown(leftChildIndex)
+        }
+
+        if (
+            this.heap[rightChildIndex] !== undefined &&
+            this.heap[index] !== undefined &&
+            this.compareFunction(this.heap[rightChildIndex], this.heap[index]) < 0
+        ) {
+            this.swap(rightChildIndex, index)
+            this.shiftDown(rightChildIndex)
+        }
+    }
+
+    private getParentIndex(index: number) {
+        return (index - 1) >> 1
+    }
+
+    private getLeftChildIndex(index: number) {
+        return index * 2 + 1
+    }
+
+    private getRightChildIndex(index: number) {
+        return index * 2 + 2
+    }
+
+    private swap(parentIndex: number, index: number) {
+        [this.heap[parentIndex], this.heap[index]] = [this.heap[index], this.heap[parentIndex]];
+    }
+}
 export {
     removeDuplicatesII,
     isScramble,

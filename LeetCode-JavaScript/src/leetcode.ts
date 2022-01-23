@@ -7867,6 +7867,50 @@ class MinHeap<Item = number> {
         [this.heap[parentIndex], this.heap[index]] = [this.heap[index], this.heap[parentIndex]];
     }
 }
+function secondMinimum(n: number, edges: number[][], time: number, change: number): number {
+    // 构成图
+    const graph: number[][] = new Array(n + 1).fill(0).map(() => new Array());
+    for (const edge of edges) {
+        graph[edge[0]].push(edge[1]);
+        graph[edge[1]].push(edge[0]);
+    }
+
+    // path[i] 保存到达i节点的最短和第二短路径长度
+    const path = new Array(n + 1).fill(0).map(() => new Array(2).fill(Number.MAX_VALUE));
+    // 到达 1 节点需要的路径长度为 0
+    path[1][0] = 0;
+    // 保存当前节点和到达当前节点需要的长度
+    const queue: number[][] = [];
+    queue.push([1, 0]);
+    // 到达n节点就结束
+    while (path[n][1] === Number.MAX_VALUE) {
+        const [cur, len] = queue.shift();
+        // 遍历当前节点可以联通的所有子节点
+        for (const next of graph[cur]) {
+            // 小于最短
+            if (len + 1 < path[next][0]) {
+                // 更新通往子节点的路径长度
+                path[next][0] = len + 1;
+                queue.push([next, len + 1]);
+                // 大于最短 && 小于第二短
+            } else if (len + 1 > path[next][0] && len + 1 < path[next][1]) {
+                path[next][1] = len + 1;
+                queue.push([next, len + 1]);
+            }
+        }
+    }
+
+    let ret: number = 0;
+    for (let i = 0; i < path[n][1]; i++) {
+        // 判断是否需要等绿灯
+        if (ret % (2 * change) >= change) {
+            // 多加上需要等待的时间
+            ret = ret + (2 * change - ret % (2 * change));
+        }
+        ret = ret + time;
+    }
+    return ret;
+};
 export {
     removeDuplicatesII,
     isScramble,

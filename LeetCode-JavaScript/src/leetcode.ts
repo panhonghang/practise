@@ -7991,6 +7991,18 @@ function rob(nums: number[]): number {
     }
     return Math.max(dp0[len-1] , dpN[len]);
 };
+function deleteAndEarn(nums: number[]): number {
+    const map: Map<number, number> = new Map();
+    nums.forEach(num => {
+        map.set(num, (map.get(num) || 0) + 1);
+    });
+    const dp: number[] = new Array(Math.max(...nums) + 1).fill(0);
+    dp[1] = map.get(1) || 0;
+    for (let i = 2; i < dp.length; i++) {
+        dp[i] = Math.max(dp[i-1], dp[i-2] + i * (map.get(i) || 0));
+    }
+    return dp.pop();
+};
 export {
     removeDuplicatesII,
     isScramble,

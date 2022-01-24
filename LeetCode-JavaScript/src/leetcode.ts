@@ -7972,6 +7972,25 @@ function rob(nums: number[]): number {
     }
     return dp[len];
 };
+function rob(nums: number[]): number {
+    const len: number = nums.length;
+    if (len === 1) return nums[0];
+    if (len === 2) return Math.max(...nums);
+    if (len === 3) return Math.max(...nums);
+    const dp0: number[] = new Array(len + 1).fill(0);
+    const dpN: number[] = new Array(len + 1).fill(0);
+    dp0[1] = nums[0];
+    dpN[2] = nums[1];
+    // rob index 0
+    for (let i = 2; i < len; i++) {
+        dp0[i] = Math.max(dp0[i-2] + nums[i-1], dp0[i-1]);
+    }
+    // rob index len - 1
+    for (let i = 3; i <= len; i++) {
+        dpN[i] = Math.max(dpN[i-2] + nums[i-1], dpN[i-1]);
+    }
+    return Math.max(dp0[len-1] , dpN[len]);
+};
 export {
     removeDuplicatesII,
     isScramble,

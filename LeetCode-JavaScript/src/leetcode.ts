@@ -8015,6 +8015,9 @@ function canJump(nums: number[]): boolean {
     }
     return false;
 };
+function numberOfMatches(n: number): number {
+    return n - 1;
+};
 export {
     removeDuplicatesII,
     isScramble,

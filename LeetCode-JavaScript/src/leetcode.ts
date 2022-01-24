@@ -8018,6 +8018,22 @@ function canJump(nums: number[]): boolean {
 function numberOfMatches(n: number): number {
     return n - 1;
 };
+function jump(nums: number[]): number {
+    const len: number = nums.length;
+    const dp: number[] = new Array(len + 1).fill(Number.MAX_VALUE);
+    dp[0] = 0;
+    dp[1] = 0;
+    if (len === 1) return 0;
+    for (let i = 1; i <= len; i++) {
+        for (let j = 0; j <= nums[i-1]; j++) {
+            const k = i + j;
+            if (k <= len) {
+                dp[k] = Math.min(dp[k], dp[i] + 1);
+            }
+        }
+    }
+    return dp[len];
+};
 export {
     removeDuplicatesII,
     isScramble,

@@ -8003,6 +8003,18 @@ function deleteAndEarn(nums: number[]): number {
     }
     return dp.pop();
 };
+function canJump(nums: number[]): boolean {
+    const len: number = nums.length;
+    let max: number = nums[0];
+    if (len === 1) return true;
+    for (let i = 0; i < len; i++) {
+        if (i <= max) {
+            max = Math.max(nums[i] + i, max);
+            if (max >= len -1) return true;
+        }
+    }
+    return false;
+};
 export {
     removeDuplicatesII,
     isScramble,

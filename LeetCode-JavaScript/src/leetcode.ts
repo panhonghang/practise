@@ -8034,6 +8034,20 @@ function jump(nums: number[]): number {
     }
     return dp[len];
 };
+function maxSubArray(nums: number[]): number {
+    const len: number = nums.length;
+    let sum: number = 0;
+    let ans: number = nums[0];
+    for (let i = 0; i < len; i++) {
+        if (sum + nums[i] > nums[i]) {
+            sum += nums[i];
+        } else {
+            sum = nums[i];
+        }
+        ans = Math.max(ans, sum);
+    }
+    return ans;
+};
 export {
     removeDuplicatesII,
     isScramble,

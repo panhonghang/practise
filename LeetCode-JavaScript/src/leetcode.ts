@@ -7943,6 +7943,19 @@ function secondMinimum(n: number, edges: number[][], time: number, change: numbe
     }
     return ans;
 };
+function climbStairs(n: number): number {
+    let pre: number = 1;
+    let next: number = 2;
+    if (n === 1) return 1;
+    if (n === 2) return 2;
+    let ans: number = 0;
+    for (let i = 2; i < n; i++) {
+        ans = pre + next;
+        pre = next;
+        next = ans;
+    }
+    return ans;
+};
 export {
     removeDuplicatesII,
     isScramble,

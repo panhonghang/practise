@@ -8095,6 +8095,32 @@ function maxProduct(nums: number[]): number {
     }
     return ans;
 };
+function getMaxLen(nums: number[]): number {
+    const len: number = nums.length;
+    const negative: number[] = new Array(len).fill(0);
+    const positive: number[] = new Array(len).fill(0);
+    let ans: number = 0;
+    if (nums[0] < 0) {
+        negative[0] = 1;
+    } else if (nums[0] > 0) {
+        positive[0] = 1;
+    }
+    ans = positive[0];
+    for (let i = 1; i < len; i++) {
+        if (nums[i] > 0) {
+            positive[i] = positive[i - 1] + 1;
+            negative[i] = negative[i - 1] > 0 ? negative[i - 1] + 1 : 0;
+        } else if (nums[i] < 0) {
+            positive[i] = negative[i - 1] > 0 ? negative[i - 1] + 1 : 0;
+            negative[i] = positive[i - 1] + 1;
+        } else {
+            positive[i] = 0;
+            negative[i] = 0;
+        }
+        ans = Math.max(positive[i], ans);
+    }
+    return ans;
+};
 export {
     removeDuplicatesII,
     isScramble,

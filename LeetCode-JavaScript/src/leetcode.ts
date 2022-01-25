@@ -8121,6 +8121,55 @@ function getMaxLen(nums: number[]): number {
     }
     return ans;
 };
+class DetectSquares {
+    // points Map
+    private mapP: Map<string, number>;
+    // x equel map
+    private mapX: Map<number, number[]>;
+    // y equel map
+    private mapY: Map<number, number[]>;
+    constructor() {
+        this.mapP = new Map();
+        this.mapX = new Map();
+        this.mapY = new Map();
+    }
+
+    add(point: number[]): void {
+        const [x, y] = point;
+        const k: string = point.join('');
+        this.mapP.set(k, (this.mapP.get(k) || 0) + 1);
+        this.mapX.set(x, [...(this.mapX.get(x) || []), y]);
+        this.mapY.set(y, [...(this.mapY.get(y) || []), x]);
+    }
+
+    count(point: number[]): number {
+        const [x, y] = point;
+        const arrX: number[] = this.mapY.get(y) || [];
+        const arrY: number[] = this.mapX.get(x) || [];
+        if (arrX.length > 0 && arrY.length > 0) {
+            let ans: number = 0;
+            arrX.forEach((x1) => {
+                arrY.forEach((y2) => {
+                    const offsetX: number = Math.abs(x - x1);
+                    const offsetY: number = Math.abs(y2 - y);
+                    if (offsetX === offsetY && offsetX !== 0) {
+                        const count: number = this.mapP.get([x1, y2].join('')) || 0;
+                        ans += count;
+                    }
+                })
+            })
+            return ans;
+        }
+        return 0;
+    }
+}
+
+/**
+ * Your DetectSquares object will be instantiated and called as such:
+ * var obj = new DetectSquares()
+ * obj.add(point)
+ * var param_2 = obj.count(point)
+ */
 export {
     removeDuplicatesII,
     isScramble,

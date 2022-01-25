@@ -8060,6 +8060,27 @@ function maxSubArray(nums: number[]): number {
     }
     return ans;
 };
+function maxSubarraySumCircular(nums: number[]): number {
+    const len: number = nums.length;
+    if (len === 1) return nums[0];
+    let max: number = nums[0];
+    let min: number = nums[0];
+    let sum: number = nums[0];
+    const dpMax: number[] = new Array(len).fill(-Infinity);
+    const dpMin: number[] = new Array(len).fill(Infinity);
+    dpMax[0] = nums[0];
+    dpMin[0] = nums[0];
+    for (let i = 1; i < len; i++) {
+        dpMax[i] = Math.max(dpMax[i-1] + nums[i], nums[i]);
+        dpMin[i] = Math.min(dpMin[i-1] + nums[i], nums[i]);
+        max = Math.max(dpMax[i], max);
+        min = Math.min(dpMin[i], min);
+        sum += nums[i];
+    }
+    // all negative number
+    if (max < 0) return max;
+    return Math.max(max, sum - min);
+};
 export {
     removeDuplicatesII,
     isScramble,

@@ -8170,6 +8170,54 @@ class DetectSquares {
  * obj.add(point)
  * var param_2 = obj.count(point)
  */
+ class DetectSquares {
+    // x equel map
+    private mapX: Map<number, number[]>;
+    // y equel map
+    private mapY: Map<number, number[]>;
+    constructor() {
+        this.mapX = new Map();
+        this.mapY = new Map();
+    }
+
+    add(point: number[]): void {
+        const [x, y] = point;
+        const k: string = point.join('');
+        this.mapX.set(x, [...(this.mapX.get(x) || []), y]);
+        this.mapY.set(y, [...(this.mapY.get(y) || []), x]);
+    }
+
+    count(point: number[]): number {
+        const [x, y] = point;
+        const arrX: number[] = this.mapY.get(y) || [];
+        const arrY: number[] = this.mapX.get(x) || [];
+        if (arrX.length > 0 && arrY.length > 0) {
+            let ans: number = 0;
+            arrX.forEach((x1) => {
+                arrY.forEach((y2) => {
+                    const offsetX: number = Math.abs(x - x1);
+                    const offsetY: number = Math.abs(y2 - y);
+                    if (offsetX === offsetY && offsetX !== 0) {
+                        // y arr
+                        const counts: number[] = this.mapX.get(x1);
+                        counts.forEach((count) => {
+                            if (count === y2) ans++
+                        })
+                    }
+                })
+            })
+            return ans;
+        }
+        return 0;
+    }
+}
+
+/**
+ * Your DetectSquares object will be instantiated and called as such:
+ * var obj = new DetectSquares()
+ * obj.add(point)
+ * var param_2 = obj.count(point)
+ */
 export {
     removeDuplicatesII,
     isScramble,

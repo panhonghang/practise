@@ -8081,6 +8081,20 @@ function maxSubarraySumCircular(nums: number[]): number {
     if (max < 0) return max;
     return Math.max(max, sum - min);
 };
+function maxProduct(nums: number[]): number {
+    const len: number = nums.length;
+    const dpMax: number[] = new Array(len).fill(-Infinity);
+    const dpMin: number[] = new Array(len).fill(Infinity);
+    dpMax[0] = nums[0];
+    dpMin[0] = nums[0];
+    let ans: number = nums[0];
+    for (let i = 1; i < len; i++) {
+        dpMax[i] = Math.max(dpMax[i-1] * nums[i], nums[i], dpMin[i-1] * nums[i]);
+        dpMin[i] = Math.min(dpMin[i-1] * nums[i], nums[i], dpMax[i-1] * nums[i]);
+        ans = Math.max(dpMax[i], ans);
+    }
+    return ans;
+};
 export {
     removeDuplicatesII,
     isScramble,

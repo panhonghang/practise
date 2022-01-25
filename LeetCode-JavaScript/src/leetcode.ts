@@ -8048,6 +8048,18 @@ function maxSubArray(nums: number[]): number {
     }
     return ans;
 };
+function maxSubArray(nums: number[]): number {
+    const len: number = nums.length;
+    if (len === 1) return nums[0];
+    const dp: number[] = new Array(len).fill(Number.MIN_VALUE);
+    dp[0] = nums[0];
+    let ans: number = dp[0];
+    for (let i = 1; i < len; i++) {
+        dp[i] = Math.max(nums[i], dp[i-1] + nums[i]);
+        ans = Math.max(ans, dp[i]);
+    }
+    return ans;
+};
 export {
     removeDuplicatesII,
     isScramble,

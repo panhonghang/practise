@@ -8230,6 +8230,18 @@ function maxScoreSightseeingPair(A: number[]): number {
     }
     return ans;
 };
+function maxScoreSightseeingPair(A: number[]): number {
+    const len: number = A.length;
+    let ans: number = A[1] + A[0] - 1;
+    // use variable max instead of array dp
+    let max: number = ans;
+    for(let i = 2; i < len; i++) {
+        const num: number = A[i] - 1;
+        max = Math.max(max - A[i-1] + num ,num + A[i-1]);
+        ans = Math.max(ans, max);
+    }
+    return ans;
+};
 export {
     removeDuplicatesII,
     isScramble,

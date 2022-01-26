@@ -8242,6 +8242,11 @@ function maxScoreSightseeingPair(A: number[]): number {
     }
     return ans;
 };
+function countValidWords(sentence: string): number {
+    return sentence.trim().split(/\s+/g).filter(str => {
+        return str.match(/^([a-z]+(-[a-z]+)?)?[!\.,]?$/);
+    }).length;
+};
 export {
     removeDuplicatesII,
     isScramble,

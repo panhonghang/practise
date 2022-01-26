@@ -7917,7 +7917,7 @@ function secondMinimum(n: number, edges: number[][], time: number, change: numbe
         graph[edge[0]].push(edge[1]);
         graph[edge[1]].push(edge[0]);
     }
-    const path: number[][] = new Array(n+1).fill(0).map(() => new Array(2).fill(Number.MAX_VALUE));
+    const path: number[][] = new Array(n + 1).fill(0).map(() => new Array(2).fill(Number.MAX_VALUE));
     path[1][0] = 0;
     const queue: number[][] = [];
     queue.push([1, 0]);
@@ -7957,9 +7957,9 @@ function climbStairs(n: number): number {
     return ans;
 };
 function minCostClimbingStairs(cost: number[]): number {
-    const dp:number[] = new Array(cost.length + 1).fill(0);
+    const dp: number[] = new Array(cost.length + 1).fill(0);
     for (let i = 2; i <= cost.length; i++) {
-       dp[i] = Math.min(dp[i-1] + cost[i-1], dp[i-2] + cost[i-2]);
+        dp[i] = Math.min(dp[i - 1] + cost[i - 1], dp[i - 2] + cost[i - 2]);
     }
     return dp[cost.length];
 };
@@ -7968,7 +7968,7 @@ function rob(nums: number[]): number {
     const dp: number[] = new Array(len + 1).fill(0);
     dp[1] = nums[0];
     for (let i = 2; i <= len; i++) {
-        dp[i] = Math.max(dp[i-1], dp[i-2] + nums[i-1]);
+        dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i - 1]);
     }
     return dp[len];
 };
@@ -7983,13 +7983,13 @@ function rob(nums: number[]): number {
     dpN[2] = nums[1];
     // rob index 0
     for (let i = 2; i < len; i++) {
-        dp0[i] = Math.max(dp0[i-2] + nums[i-1], dp0[i-1]);
+        dp0[i] = Math.max(dp0[i - 2] + nums[i - 1], dp0[i - 1]);
     }
     // rob index len - 1
     for (let i = 3; i <= len; i++) {
-        dpN[i] = Math.max(dpN[i-2] + nums[i-1], dpN[i-1]);
+        dpN[i] = Math.max(dpN[i - 2] + nums[i - 1], dpN[i - 1]);
     }
-    return Math.max(dp0[len-1] , dpN[len]);
+    return Math.max(dp0[len - 1], dpN[len]);
 };
 function deleteAndEarn(nums: number[]): number {
     const map: Map<number, number> = new Map();
@@ -7999,7 +7999,7 @@ function deleteAndEarn(nums: number[]): number {
     const dp: number[] = new Array(Math.max(...nums) + 1).fill(0);
     dp[1] = map.get(1) || 0;
     for (let i = 2; i < dp.length; i++) {
-        dp[i] = Math.max(dp[i-1], dp[i-2] + i * (map.get(i) || 0));
+        dp[i] = Math.max(dp[i - 1], dp[i - 2] + i * (map.get(i) || 0));
     }
     return dp.pop();
 };
@@ -8010,7 +8010,7 @@ function canJump(nums: number[]): boolean {
     for (let i = 0; i < len; i++) {
         if (i <= max) {
             max = Math.max(nums[i] + i, max);
-            if (max >= len -1) return true;
+            if (max >= len - 1) return true;
         }
     }
     return false;
@@ -8025,7 +8025,7 @@ function jump(nums: number[]): number {
     dp[1] = 0;
     if (len === 1) return 0;
     for (let i = 1; i <= len; i++) {
-        for (let j = 0; j <= nums[i-1]; j++) {
+        for (let j = 0; j <= nums[i - 1]; j++) {
             const k = i + j;
             if (k <= len) {
                 dp[k] = Math.min(dp[k], dp[i] + 1);
@@ -8055,7 +8055,7 @@ function maxSubArray(nums: number[]): number {
     dp[0] = nums[0];
     let ans: number = dp[0];
     for (let i = 1; i < len; i++) {
-        dp[i] = Math.max(nums[i], dp[i-1] + nums[i]);
+        dp[i] = Math.max(nums[i], dp[i - 1] + nums[i]);
         ans = Math.max(ans, dp[i]);
     }
     return ans;
@@ -8071,8 +8071,8 @@ function maxSubarraySumCircular(nums: number[]): number {
     dpMax[0] = nums[0];
     dpMin[0] = nums[0];
     for (let i = 1; i < len; i++) {
-        dpMax[i] = Math.max(dpMax[i-1] + nums[i], nums[i]);
-        dpMin[i] = Math.min(dpMin[i-1] + nums[i], nums[i]);
+        dpMax[i] = Math.max(dpMax[i - 1] + nums[i], nums[i]);
+        dpMin[i] = Math.min(dpMin[i - 1] + nums[i], nums[i]);
         max = Math.max(dpMax[i], max);
         min = Math.min(dpMin[i], min);
         sum += nums[i];
@@ -8089,8 +8089,8 @@ function maxProduct(nums: number[]): number {
     dpMin[0] = nums[0];
     let ans: number = nums[0];
     for (let i = 1; i < len; i++) {
-        dpMax[i] = Math.max(dpMax[i-1] * nums[i], nums[i], dpMin[i-1] * nums[i]);
-        dpMin[i] = Math.min(dpMin[i-1] * nums[i], nums[i], dpMax[i-1] * nums[i]);
+        dpMax[i] = Math.max(dpMax[i - 1] * nums[i], nums[i], dpMin[i - 1] * nums[i]);
+        dpMin[i] = Math.min(dpMin[i - 1] * nums[i], nums[i], dpMax[i - 1] * nums[i]);
         ans = Math.max(dpMax[i], ans);
     }
     return ans;
@@ -8170,7 +8170,7 @@ class DetectSquares {
  * obj.add(point)
  * var param_2 = obj.count(point)
  */
- class DetectSquares {
+class DetectSquares {
     // x equel map
     private mapX: Map<number, number[]>;
     // y equel map
@@ -8218,6 +8218,18 @@ class DetectSquares {
  * obj.add(point)
  * var param_2 = obj.count(point)
  */
+function maxScoreSightseeingPair(A: number[]): number {
+    const len: number = A.length;
+    // end with index
+    const dp: number[] = new Array(len).fill(0);
+    let ans: number = A[1] + A[0] - 1;
+    dp[1] = A[1] + A[0] - 1;
+    for (let i = 2; i < len; i++) {
+        dp[i] = Math.max(dp[i - 1] + A[i] - A[i - 1] - 1, A[i] + A[i - 1] - 1);
+        ans = Math.max(ans, dp[i]);
+    }
+    return ans;
+};
 export {
     removeDuplicatesII,
     isScramble,

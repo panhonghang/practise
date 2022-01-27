@@ -8247,6 +8247,21 @@ function countValidWords(sentence: string): number {
         return str.match(/^([a-z]+(-[a-z]+)?)?[!\.,]?$/);
     }).length;
 };
+function numberOfWeakCharacters(properties: number[][]): number {
+    properties.sort((o1, o2) => {
+        return o1[0] === o2[0] ? (o1[1] - o2[1]) : (o2[0] - o1[0]);
+    });
+    let maxDef: number = 0;
+    let ans: number = 0;
+    for (const p of properties) {
+        if (p[1] < maxDef) {
+            ans++;
+        } else {
+            maxDef = p[1];
+        }
+    }
+    return ans;
+};
 export {
     removeDuplicatesII,
     isScramble,

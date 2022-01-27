@@ -8262,6 +8262,17 @@ function numberOfWeakCharacters(properties: number[][]): number {
     }
     return ans;
 };
+function maxProfit(prices: number[]): number {
+    const len: number = prices.length;
+    if (len === 1) return 0;
+    let ans: number = 0;
+    let min: number = prices[0];
+    for (let i = 1; i < len; i++) {
+        ans = Math.max(prices[i] - min, ans);
+        min = Math.min(min, prices[i]);
+    }
+    return ans;
+};
 export {
     removeDuplicatesII,
     isScramble,

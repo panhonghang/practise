@@ -8235,9 +8235,9 @@ function maxScoreSightseeingPair(A: number[]): number {
     let ans: number = A[1] + A[0] - 1;
     // use variable max instead of array dp
     let max: number = ans;
-    for(let i = 2; i < len; i++) {
+    for (let i = 2; i < len; i++) {
         const num: number = A[i] - 1;
-        max = Math.max(max - A[i-1] + num ,num + A[i-1]);
+        max = Math.max(max - A[i - 1] + num, num + A[i - 1]);
         ans = Math.max(ans, max);
     }
     return ans;
@@ -8279,7 +8279,7 @@ function maxProfit(prices: number[]): number {
     let ans: number = 0;
     let min: number = prices[0];
 
-    for(let i = 1; i < len; i++) {
+    for (let i = 1; i < len; i++) {
         // sell
         if (min < prices[i]) {
             ans += prices[i] - min;
@@ -8291,6 +8291,46 @@ function maxProfit(prices: number[]): number {
 
     return ans;
 };
+function highestPeak(isWater: number[][]): number[][] {
+    const row: number = isWater.length;
+    const col: number = isWater[0].length;
+    const dp: number[][] = new Array(row).fill(0).map(() => new Array(col).fill(Infinity));
+    for (let i = 0; i < row; i++) {
+        for (let j = 0; j < col; j++) {
+            if (isWater[i][j]) {
+                dp[i][j] = 0;//水域是0
+            }
+        }
+    }
+    for (let i = 0; i < row; i++) {
+        for (let j = 0; j < col; j++) {
+            if (dp[i][j] == 0) {
+                continue;//水域不看
+            }
+            if (i > 0) {
+                dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j]);//上方
+            }
+            if (j > 0) {
+                dp[i][j] = Math.min(dp[i][j - 1] + 1, dp[i][j]);//左方
+            }
+        }
+    }
+    for (let i = row - 1; i >= 0; i--) {
+        for (let j = col - 1; j >= 0; j--) {
+            if (dp[i][j] == 0) {
+                continue;
+            }
+            if (i < row - 1) {
+                dp[i][j] = Math.min(dp[i + 1][j] + 1, dp[i][j]);//下方
+            }
+            if (j < col - 1) {
+                dp[i][j] = Math.min(dp[i][j + 1] + 1, dp[i][j]);//右方
+            }
+        }
+    }
+    return dp;
+};
+
 export {
     removeDuplicatesII,
     isScramble,

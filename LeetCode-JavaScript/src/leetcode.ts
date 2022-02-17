@@ -8411,6 +8411,34 @@ function checkWays(pairs: number[][]): number {
     }
     return res;
 };
+function knightProbability(n: number, k: number, row: number, column: number): number {
+    const map = new Map<string, number>()
+    function fn(n: number, k: number, row: number, column: number): number {
+        let ans: number = 0;
+        const key = `${n}=${k}=${row}=${column}`;
+        if (map.has(key)) {
+            return map.get(key);
+        }
+        if (row > n - 1 || row < 0 || column > n - 1 || column < 0) {
+            ans = 0;
+        }
+        else if (k === 0) {
+            ans = 1;
+        } else {
+            ans = ((1/8) * fn(n, k-1, row + 1, column + 2) + 
+                (1/8) * fn(n, k-1, row + 2, column + 1) + 
+                (1/8) * fn(n, k-1, row + 2, column - 1) + 
+                (1/8) * fn(n, k-1, row + 1, column - 2) + 
+                (1/8) * fn(n, k-1, row - 1, column + 2) + 
+                (1/8) * fn(n, k-1, row - 1, column - 2) + 
+                (1/8) * fn(n, k-1, row - 2, column - 1) + 
+                (1/8) * fn(n, k-1, row - 2, column + 1));
+        }
+        map.set(key, ans);
+        return ans;
+    };
+    return fn(n, k, row, column);
+};
 export {
     removeDuplicatesII,
     isScramble,

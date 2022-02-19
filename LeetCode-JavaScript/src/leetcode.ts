@@ -8439,6 +8439,21 @@ function knightProbability(n: number, k: number, row: number, column: number): n
     };
     return fn(n, k, row, column);
 };
+function pancakeSort(arr: number[]): number[] {
+    const pancake = (arr: number[], k: number) =>
+    arr.slice(0, k).reverse().concat(arr.slice(k));
+
+    // ans 保存执行的步骤，n 保存当前处理的数字
+    const iter = (arr: number[], ans: number[], n: number) => {
+        const act = (x: number) =>
+        x > 1 && ans.push(x) && (arr = pancake(arr, x)); // 转一个数字没必要
+        if (n <= 1) return ans;
+        const i = arr.indexOf(n) + 1;
+        i !== n && [i, n].map(act);   // 已经在位置上了就不转
+        return iter(arr, ans, n - 1);
+    }
+    return iter(arr, [], arr.length);
+};
 export {
     removeDuplicatesII,
     isScramble,

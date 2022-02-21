@@ -8466,6 +8466,65 @@ function isOneBitCharacter(bits: number[]): boolean {
     }
     return false
 };
+function pushDominoes(dominoes: string): string {
+    let pre: number = 0;
+    let next: number = 0;
+    const len: number = dominoes.length;
+    const res: string[] = new Array(len).fill('.');
+    if (len === 1) return dominoes;
+
+    while (next < len) {
+        const first: string = dominoes[pre];
+        const second: string = dominoes[next];
+        // NOT "."
+        if (second !== '.') {
+            // IS "L"
+            if (second === 'L') {
+                // IS "L" OR "."
+                if (first === 'L' || first === '.') {
+                    while (pre <= next) {
+                        res[pre] = 'L';
+                        pre++;
+                    }
+                // IS "R"
+                } else {
+                    let i: number = next;
+                    while (pre < i) {
+                        res[pre] = 'R';
+                        res[i] = 'L';
+                        pre++;
+                        i--;
+                    }
+                }
+            } else {
+                // IS "R"
+                if (first === 'R') {
+                    while (pre <= next) {
+                        res[pre] = 'R';
+                        pre++;
+                    }
+                // IS "L"
+                } else if (first === 'L') {
+                    res[pre] = 'L';
+                }
+            }
+            pre = next;
+        }
+        next++;
+    }
+    if (pre < len) {
+        const first: string = dominoes[pre];
+        if (first === "R") {
+            while (pre < len) {
+                res[pre] = 'R';
+                pre++;
+            }
+        } else if (first === 'L') {
+            res[pre] = 'L';
+        }
+    }
+    return res.join('');
+};
 export {
     removeDuplicatesII,
     isScramble,

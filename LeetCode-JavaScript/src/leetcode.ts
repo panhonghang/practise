@@ -8525,6 +8525,45 @@ function pushDominoes(dominoes: string): string {
     }
     return res.join('');
 };
+function numberOfGoodSubsets(nums: number[]): number {
+    // 可以组合的数
+  const sets = [2, 3, 5, 6, 7, 10, 11, 13, 14, 15, 17, 19, 21, 22, 23, 26, 29, 30];
+  // 代表质数乘积的状态位
+  const bits = [1, 2, 4, 3, 8, 5, 16, 32, 9, 6, 64, 128, 10, 17, 256, 33, 512, 7];
+  const mod = 1000000007;
+  const freq = new Array(31).fill(0);
+  for (const n of nums) freq[n]++;
+
+  // 对每个可以组合的数进行遍历
+  let [acc, state, count] = [-1, 0, 1];
+  (function backtrack(i) {
+    // 得到一种组合方式，统计数量
+    if (i >= sets.length) return acc = (acc + count) % mod;
+
+    // 不取这个数
+    backtrack(i + 1);
+
+    const [n, b] = [freq[sets[i]], bits[i]];
+    // 计数为 0, 跳过
+    if (!n) return;
+    // 无法选取, 跳过
+    if (state & b) return;
+
+    // 选取时提供 n 种可能性，记录状态
+    let temp = count;
+    [count, state] = [count * n % mod, state | b];
+
+    // 递归
+    backtrack(i + 1);
+
+    // 回溯,还原状态
+    [count, state] = [temp, state ^ b];
+  })(0);
+
+  // 每个 1 提供取与不取两种可能
+  while (freq[1]--) acc = (acc * 2) % mod;
+  return acc;
+};
 export {
     removeDuplicatesII,
     isScramble,

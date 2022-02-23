@@ -8564,6 +8564,22 @@ function numberOfGoodSubsets(nums: number[]): number {
   while (freq[1]--) acc = (acc * 2) % mod;
   return acc;
 };
+function reverseOnlyLetters(s: string): string {
+    const len: number = s.length;
+    if (len === 1) return s;
+    const res: string[] = s.split('');
+    let pre: number = 0;
+    let next: number = len-1;
+    while (pre < next) {
+        while (!(/[a-z|A-Z]/.test(s[pre]))) pre++;
+        while (!(/[a-z|A-Z]/.test(s[next]))) next--;
+        if (pre >= next) break;
+        [res[pre], res[next]] = [res[next], res[pre]];
+        pre++;
+        next--;
+    }
+    return res.join('');
+};
 export {
     removeDuplicatesII,
     isScramble,

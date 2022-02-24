@@ -8580,6 +8580,23 @@ function reverseOnlyLetters(s: string): string {
     }
     return res.join('');
 };
+function findBall(grid: number[][]): number[] {
+    const col: number = grid.length;
+    const row: number = grid[0].length;
+    const res: number[] = new Array(row).fill(-1);
+
+    for (let i = 0; i < row; i++) {
+        let r: number = i;
+        for (let j = 0; j < col; j++) {
+            const cur: number = grid[j][r];
+            r += cur;
+            if (r === row || r === -1 || grid[j][r] === -cur) break;
+            if (j === col - 1) res[i] = r;
+        }
+    }
+
+    return res;
+};
 export {
     removeDuplicatesII,
     isScramble,

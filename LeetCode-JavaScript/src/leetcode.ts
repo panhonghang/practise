@@ -8331,7 +8331,7 @@ function highestPeak(isWater: number[][]): number[][] {
     return dp;
 };
 
-function luckyNumbers (matrix: number[][]): number[] {
+function luckyNumbers(matrix: number[][]): number[] {
     const m = matrix.length, n = matrix[0].length;
     const minRow = new Array(m).fill(Number.MAX_SAFE_INTEGER);
     const maxCol = new Array(n).fill(0);
@@ -8425,14 +8425,14 @@ function knightProbability(n: number, k: number, row: number, column: number): n
         else if (k === 0) {
             ans = 1;
         } else {
-            ans = ((1/8) * fn(n, k-1, row + 1, column + 2) + 
-                (1/8) * fn(n, k-1, row + 2, column + 1) + 
-                (1/8) * fn(n, k-1, row + 2, column - 1) + 
-                (1/8) * fn(n, k-1, row + 1, column - 2) + 
-                (1/8) * fn(n, k-1, row - 1, column + 2) + 
-                (1/8) * fn(n, k-1, row - 1, column - 2) + 
-                (1/8) * fn(n, k-1, row - 2, column - 1) + 
-                (1/8) * fn(n, k-1, row - 2, column + 1));
+            ans = ((1 / 8) * fn(n, k - 1, row + 1, column + 2) +
+                (1 / 8) * fn(n, k - 1, row + 2, column + 1) +
+                (1 / 8) * fn(n, k - 1, row + 2, column - 1) +
+                (1 / 8) * fn(n, k - 1, row + 1, column - 2) +
+                (1 / 8) * fn(n, k - 1, row - 1, column + 2) +
+                (1 / 8) * fn(n, k - 1, row - 1, column - 2) +
+                (1 / 8) * fn(n, k - 1, row - 2, column - 1) +
+                (1 / 8) * fn(n, k - 1, row - 2, column + 1));
         }
         map.set(key, ans);
         return ans;
@@ -8441,12 +8441,12 @@ function knightProbability(n: number, k: number, row: number, column: number): n
 };
 function pancakeSort(arr: number[]): number[] {
     const pancake = (arr: number[], k: number) =>
-    arr.slice(0, k).reverse().concat(arr.slice(k));
+        arr.slice(0, k).reverse().concat(arr.slice(k));
 
     // ans 保存执行的步骤，n 保存当前处理的数字
     const iter = (arr: number[], ans: number[], n: number) => {
         const act = (x: number) =>
-        x > 1 && ans.push(x) && (arr = pancake(arr, x)); // 转一个数字没必要
+            x > 1 && ans.push(x) && (arr = pancake(arr, x)); // 转一个数字没必要
         if (n <= 1) return ans;
         const i = arr.indexOf(n) + 1;
         i !== n && [i, n].map(act);   // 已经在位置上了就不转
@@ -8486,7 +8486,7 @@ function pushDominoes(dominoes: string): string {
                         res[pre] = 'L';
                         pre++;
                     }
-                // IS "R"
+                    // IS "R"
                 } else {
                     let i: number = next;
                     while (pre < i) {
@@ -8503,7 +8503,7 @@ function pushDominoes(dominoes: string): string {
                         res[pre] = 'R';
                         pre++;
                     }
-                // IS "L"
+                    // IS "L"
                 } else if (first === 'L') {
                     res[pre] = 'L';
                 }
@@ -8527,49 +8527,49 @@ function pushDominoes(dominoes: string): string {
 };
 function numberOfGoodSubsets(nums: number[]): number {
     // 可以组合的数
-  const sets = [2, 3, 5, 6, 7, 10, 11, 13, 14, 15, 17, 19, 21, 22, 23, 26, 29, 30];
-  // 代表质数乘积的状态位
-  const bits = [1, 2, 4, 3, 8, 5, 16, 32, 9, 6, 64, 128, 10, 17, 256, 33, 512, 7];
-  const mod = 1000000007;
-  const freq = new Array(31).fill(0);
-  for (const n of nums) freq[n]++;
+    const sets = [2, 3, 5, 6, 7, 10, 11, 13, 14, 15, 17, 19, 21, 22, 23, 26, 29, 30];
+    // 代表质数乘积的状态位
+    const bits = [1, 2, 4, 3, 8, 5, 16, 32, 9, 6, 64, 128, 10, 17, 256, 33, 512, 7];
+    const mod = 1000000007;
+    const freq = new Array(31).fill(0);
+    for (const n of nums) freq[n]++;
 
-  // 对每个可以组合的数进行遍历
-  let [acc, state, count] = [-1, 0, 1];
-  (function backtrack(i) {
-    // 得到一种组合方式，统计数量
-    if (i >= sets.length) return acc = (acc + count) % mod;
+    // 对每个可以组合的数进行遍历
+    let [acc, state, count] = [-1, 0, 1];
+    (function backtrack(i) {
+        // 得到一种组合方式，统计数量
+        if (i >= sets.length) return acc = (acc + count) % mod;
 
-    // 不取这个数
-    backtrack(i + 1);
+        // 不取这个数
+        backtrack(i + 1);
 
-    const [n, b] = [freq[sets[i]], bits[i]];
-    // 计数为 0, 跳过
-    if (!n) return;
-    // 无法选取, 跳过
-    if (state & b) return;
+        const [n, b] = [freq[sets[i]], bits[i]];
+        // 计数为 0, 跳过
+        if (!n) return;
+        // 无法选取, 跳过
+        if (state & b) return;
 
-    // 选取时提供 n 种可能性，记录状态
-    let temp = count;
-    [count, state] = [count * n % mod, state | b];
+        // 选取时提供 n 种可能性，记录状态
+        let temp = count;
+        [count, state] = [count * n % mod, state | b];
 
-    // 递归
-    backtrack(i + 1);
+        // 递归
+        backtrack(i + 1);
 
-    // 回溯,还原状态
-    [count, state] = [temp, state ^ b];
-  })(0);
+        // 回溯,还原状态
+        [count, state] = [temp, state ^ b];
+    })(0);
 
-  // 每个 1 提供取与不取两种可能
-  while (freq[1]--) acc = (acc * 2) % mod;
-  return acc;
+    // 每个 1 提供取与不取两种可能
+    while (freq[1]--) acc = (acc * 2) % mod;
+    return acc;
 };
 function reverseOnlyLetters(s: string): string {
     const len: number = s.length;
     if (len === 1) return s;
     const res: string[] = s.split('');
     let pre: number = 0;
-    let next: number = len-1;
+    let next: number = len - 1;
     while (pre < next) {
         while (!(/[a-z|A-Z]/.test(s[pre]))) pre++;
         while (!(/[a-z|A-Z]/.test(s[next]))) next--;
@@ -8597,6 +8597,16 @@ function findBall(grid: number[][]): number[] {
 
     return res;
 };
+function complexNumberMultiply(num1: string, num2: string): string {
+    const arr1: number[] = num1.split("+").map(item => parseFloat(item));
+    const arr2: number[] = num2.split("+").map(item => parseFloat(item));
+    const a: number = arr1[0] * arr2[0];
+    const b: number = arr1[0] * arr2[1];
+    const c: number = arr1[1] * arr2[0];
+    const d: number = arr1[1] * arr2[1];
+    return `${a - d}+${b + c}i`;
+};
+
 export {
     removeDuplicatesII,
     isScramble,

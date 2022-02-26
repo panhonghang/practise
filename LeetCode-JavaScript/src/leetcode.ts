@@ -8606,7 +8606,23 @@ function complexNumberMultiply(num1: string, num2: string): string {
     const d: number = arr1[1] * arr2[1];
     return `${a - d}+${b + c}i`;
 };
+function maximumDifference(nums: number[]): number {
+    const len: number = nums.length;
+    let min: number = 0;
+    let max: number = 0;
+    let res: number = -1;
 
+    while (max < len) {
+        if (nums[min] >= nums[max]) {
+            min = max;
+        } else {
+            res = Math.max(res, nums[max] - nums[min]);
+        }
+        max++;
+    }
+
+    return res;
+};
 export {
     removeDuplicatesII,
     isScramble,

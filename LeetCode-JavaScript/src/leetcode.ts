@@ -8623,6 +8623,17 @@ function maximumDifference(nums: number[]): number {
 
     return res;
 };
+function optimalDivision(nums: number[]): string {
+    const len: number = nums.length;
+    if (len === 1) return nums[0] + '';
+    if (len === 2) return nums.join('/');
+    let ans: string = nums[0] + '/(';
+    for (let i = 1; i < len - 1; i++) {
+        ans += nums[i] + '/';
+    }
+    ans += nums[len -1] + ')';
+    return ans;
+};
 export {
     removeDuplicatesII,
     isScramble,

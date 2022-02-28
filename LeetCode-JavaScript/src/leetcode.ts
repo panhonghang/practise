@@ -8634,6 +8634,49 @@ function optimalDivision(nums: number[]): string {
     ans += nums[len -1] + ')';
     return ans;
 };
+function maximumRequests(n: number, requests: number[][]): number {
+    let ans = 0;
+    let m = requests.length;
+
+    for (let i = 0; i < (1 << m); i++) {
+        // 1 的数量表示选了多少个请求
+        let bitCount = i.toString(2).split('0').join('').length;;
+        // 如果比答案还小，没有检查的必要了，直接跳过
+        if (bitCount < ans) {
+            continue;
+        }
+        
+        // 检查这种方案是否可行，并更新答案
+        if (check(i, n, requests)) {
+            ans = bitCount;
+        }
+    }
+
+    return ans;
+}
+
+const check = (mask: number, n: number, requests: number[][]): boolean => {
+    const m: number = requests.length;
+    const delta: number[] = new Array(n).fill(0);
+    for (let i = 0; i < m; i++) {
+        // 表示某个请求是否选择了
+        if (((mask >> i) & 1) == 1) {
+            // 搬出
+            delta[requests[i][0]]--;
+            // 搬入
+            delta[requests[i][1]]++;
+        }
+    }
+
+    // 判断所有楼的净变化量是否全部为0
+    for (let i = 0; i < n; i++) {
+        if (delta[i] != 0) {
+            return false;
+        }
+    }
+    return true;
+};
+
 export {
     removeDuplicatesII,
     isScramble,

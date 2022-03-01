@@ -8677,6 +8677,34 @@ const check = (mask: number, n: number, requests: number[][]): boolean => {
     return true;
 };
 
+function convert(s: string, numRows: number): string {
+    const n: number = s.length; 
+    const r: number = numRows;
+    const t: number = r * 2 - 2;
+    const c: number = Math.floor((n + t - 1) / t) * (r - 1);
+    if (r === 1 || r >= n) return s;
+    const mat: string[][] = new Array(r).fill(0).map(() => new Array(c).fill(''));
+
+    for (let i = 0, x = 0, y = 0; i < n; ++i) {
+        mat[x][y] = s[i];
+        if (i % t < r - 1) {
+            ++x; // 向下移动
+        } else {
+            --x;
+            ++y; // 向右上移动
+        }
+    }
+    const ans: string[] = [];
+    for (const row of mat) {
+        for (const ch of row) {
+            if (ch !== '') {
+                ans.push(ch);
+            }
+        }
+    }
+    return ans.join('');
+};
+
 export {
     removeDuplicatesII,
     isScramble,

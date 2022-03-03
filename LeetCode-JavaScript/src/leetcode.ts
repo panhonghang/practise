@@ -8733,6 +8733,9 @@ function nearestPalindromic(n: string): string {
     }
     return arr.reduce((acc, cur) => getAbs(cur) < getAbs(acc) ? cur : acc)
 };
+function addDigits(num: number): number {
+    return (num - 1) % 9 + 1;
+};
 export {
     removeDuplicatesII,
     isScramble,

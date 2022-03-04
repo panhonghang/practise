@@ -8736,6 +8736,20 @@ function nearestPalindromic(n: string): string {
 function addDigits(num: number): number {
     return (num - 1) % 9 + 1;
 };
+function subArrayRanges(nums: number[]): number {
+    const n: number = nums.length;
+    let ret: number = 0;
+    for (let i = 0; i < n; i++) {
+        let minVal: number = Number.MAX_VALUE; 
+        let maxVal: number = -Number.MAX_VALUE;
+        for (let j = i; j < n; j++) {
+            minVal = Math.min(minVal, nums[j]);
+            maxVal = Math.max(maxVal, nums[j]);
+            ret += maxVal - minVal;
+        }
+    }
+    return ret;
+};
 export {
     removeDuplicatesII,
     isScramble,

@@ -8750,6 +8750,10 @@ function subArrayRanges(nums: number[]): number {
     }
     return ret;
 };
+function findLUSlength(a: string, b: string): number {
+    if (a == b) return -1
+    return Math.max(a.length, b.length);
+};
 export {
     removeDuplicatesII,
     isScramble,

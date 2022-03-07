@@ -8775,6 +8775,9 @@ function goodDaysToRobBank(security: number[], time: number): number[] {
     }
     return ans;
 };
+function convertToBase7(num: number): string {
+    return num.toString(7);
+};
 export {
     removeDuplicatesII,
     isScramble,

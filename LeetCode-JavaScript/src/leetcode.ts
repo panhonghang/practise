@@ -8778,6 +8778,34 @@ function goodDaysToRobBank(security: number[], time: number): number[] {
 function convertToBase7(num: number): string {
     return num.toString(7);
 };
+const platesBetweenCandles = (str: string, arrs: number[][]): number[] => {
+    const sumArr: number[] = new Array(str.length);
+    const left: number[] = new Array(str.length);
+    const right: number[] = new Array(str.length);
+    const res: number[] = [];
+    for (let i = 0, sum = 0; i < str.length; i++) {
+        if (str[i] == '*') sum++;
+        sumArr[i] = sum;
+    }
+    for(let i = 0, l = -1; i < str.length; i++){
+        if(str[i] == '|'){
+            l = i;
+        }
+        left[i] = l;
+    }
+    for(let i = str.length - 1, r = -1; i > -1; i--){
+        if(str[i] == '|'){
+            r = i;
+        }
+        right[i] = r;
+    }
+
+    for(const [m,n] of arrs){
+        const val = left[n] < m || right[m] > n || n - m < 2 ? 0 : sumArr[left[n]] - sumArr[right[m]];
+        res.push(val)
+    }
+    return res;
+}
 export {
     removeDuplicatesII,
     isScramble,

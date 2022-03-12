@@ -8867,6 +8867,30 @@ function countHighestScoreNodes(parents: number[]): number {
     dfs(0);
     return cnt;
 };
+/**
+ * Definition for node.
+ * class Node {
+ *     val: number
+ *     children: Node[]
+ *     constructor(val?: number) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.children = []
+ *     }
+ * }
+ */
+
+function postorder(root: Node | null): number[] {
+    if (!root) return []
+    const vals: number[][] = root.children.map((child) => {
+        const val: number[] = postorder(child)
+        return val
+    })
+    let result = []
+    for (let i = 0; i < vals.length; i++) {
+        result = [...result, ...vals[i]]
+    }
+    return [...result, root.val];
+};
 export {
     removeDuplicatesII,
     isScramble,

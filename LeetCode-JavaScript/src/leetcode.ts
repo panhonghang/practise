@@ -8891,6 +8891,32 @@ function postorder(root: Node | null): number[] {
     }
     return [...result, root.val];
 };
+function validUtf8(data: number[]): boolean {
+    for (let i = 0; i < data.length; i++) {
+        // 该字符后续还有几个字节
+        let charLen = 0
+        if ((data[i] & 0b11111111) > 0b11110111) {
+            // 4 字节的 UTF-8 字符的首字节可能出现的最大值为 0b11110111
+            return false
+        } else if ((data[i] & 0b11110000) === 0b11110000) {
+            charLen = 3
+        } else if ((data[i] & 0b11100000) === 0b11100000) {
+            charLen = 2
+        } else if ((data[i] & 0b11000000) === 0b11000000) {
+            charLen = 1
+        } else if ((data[i] & 0b10000000) === 0b10000000) {
+            // UTF-8 字符的首字节不能以 10 开头
+            return false
+        }
+        // 校验后续字节是否存在且以 10 开头
+        for (let j = 0; j < charLen; j++) {
+            if((++i >= data.length || data[i] & 0b10000000) !== 0b10000000) {
+                return false
+            }
+        }
+    }
+    return true;
+};
 export {
     removeDuplicatesII,
     isScramble,

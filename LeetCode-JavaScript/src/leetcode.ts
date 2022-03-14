@@ -8917,6 +8917,27 @@ function validUtf8(data: number[]): boolean {
     }
     return true;
 };
+function findRestaurant(list1: string[], list2: string[]): string[] {
+    let arrStr: string[] = [];
+    let min:number = Infinity;
+    const len: number = list1.length;
+
+    for (let i = 0; i<len; i++) {
+        let index: number = list2.indexOf(list1[i]);
+        if (index >= 0) {
+            if (index + i < min) {
+                min = index + i;
+                // empty arrStr;
+                arrStr = [];
+                arrStr.push(list1[i]);
+            } else if(index+i === min) {
+                arrStr.push(list1[i]);
+            }
+        }
+    }
+    return arrStr;
+};
+
 export {
     removeDuplicatesII,
     isScramble,

@@ -8937,7 +8937,26 @@ function findRestaurant(list1: string[], list2: string[]): string[] {
     }
     return arrStr;
 };
-
+function countMaxOrSubsets(nums: number[]): number {
+    if(nums.length == 1) return 1
+    const len = nums.length
+    let res = 0, max = Number.MIN_VALUE
+    const dfs = function(i, sum) {
+        if(i == len) return
+        let sum1 = nums[i] | sum
+        if(sum1 > max) {
+            res = 1
+            max = sum1
+        } else if(sum1 == max){
+            res++
+        }
+        dfs(i+1, sum1)
+        dfs(i+1, sum)
+    }
+    
+    dfs(0, 0);
+    return res;
+};
 export {
     removeDuplicatesII,
     isScramble,

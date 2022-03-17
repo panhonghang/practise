@@ -9073,7 +9073,25 @@ class AllOne {
         return minKey;
     }
 }
-
+function longestWord(words: string[]): string {
+    words.sort((a, b) => {
+        if(a.length > b.length) return -1;
+        else if(a.length < b.length) return 1;
+        else return a > b ? 1 : -1;
+    })
+    for(let i = 0; i < words.length; i++){
+        // 保存前缀
+        let str = '';
+        for(let j = 0; j < words[i].length; j++){
+            str += words[i][j];
+            if(j == words[i].length - 1) return str;
+            if(words.indexOf(str) == -1){
+                break;
+            }
+        }
+    }
+    return '';
+};
 export {
     removeDuplicatesII,
     isScramble,

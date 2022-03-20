@@ -8631,7 +8631,7 @@ function optimalDivision(nums: number[]): string {
     for (let i = 1; i < len - 1; i++) {
         ans += nums[i] + '/';
     }
-    ans += nums[len -1] + ')';
+    ans += nums[len - 1] + ')';
     return ans;
 };
 function maximumRequests(n: number, requests: number[][]): number {
@@ -8645,7 +8645,7 @@ function maximumRequests(n: number, requests: number[][]): number {
         if (bitCount < ans) {
             continue;
         }
-        
+
         // 检查这种方案是否可行，并更新答案
         if (check(i, n, requests)) {
             ans = bitCount;
@@ -8678,7 +8678,7 @@ const check = (mask: number, n: number, requests: number[][]): boolean => {
 };
 
 function convert(s: string, numRows: number): string {
-    const n: number = s.length; 
+    const n: number = s.length;
     const r: number = numRows;
     const t: number = r * 2 - 2;
     const c: number = Math.floor((n + t - 1) / t) * (r - 1);
@@ -8712,7 +8712,7 @@ function nearestPalindromic(n: string): string {
     const left = Number.parseInt(n.slice(0, (len + 1) / 2))
     // 回文性质，只要看 left + 1，left，left - 1
     const arr = new Array<string>(5)
-    const reverse = (s: string, f: number) : string => {
+    const reverse = (s: string, f: number): string => {
         // 如果是 n 长度为奇数，需要扔到中间的一个
         return s.split('').reverse().join('').slice(f)
     }
@@ -8740,7 +8740,7 @@ function subArrayRanges(nums: number[]): number {
     const n: number = nums.length;
     let ret: number = 0;
     for (let i = 0; i < n; i++) {
-        let minVal: number = Number.MAX_VALUE; 
+        let minVal: number = Number.MAX_VALUE;
         let maxVal: number = -Number.MAX_VALUE;
         for (let j = i; j < n; j++) {
             minVal = Math.min(minVal, nums[j]);
@@ -8770,7 +8770,7 @@ function goodDaysToRobBank(security: number[], time: number): number[] {
     const ans: number[] = [];
     for (let i = time; i < n - time; i++) {
         if (left[i] >= time && right[i] >= time) {
-            ans.push(i);    
+            ans.push(i);
         }
     }
     return ans;
@@ -8787,20 +8787,20 @@ const platesBetweenCandles = (str: string, arrs: number[][]): number[] => {
         if (str[i] == '*') sum++;
         sumArr[i] = sum;
     }
-    for(let i = 0, l = -1; i < str.length; i++){
-        if(str[i] == '|'){
+    for (let i = 0, l = -1; i < str.length; i++) {
+        if (str[i] == '|') {
             l = i;
         }
         left[i] = l;
     }
-    for(let i = str.length - 1, r = -1; i > -1; i--){
-        if(str[i] == '|'){
+    for (let i = str.length - 1, r = -1; i > -1; i--) {
+        if (str[i] == '|') {
             r = i;
         }
         right[i] = r;
     }
 
-    for(const [m,n] of arrs){
+    for (const [m, n] of arrs) {
         const val = left[n] < m || right[m] > n || n - m < 2 ? 0 : sumArr[left[n]] - sumArr[right[m]];
         res.push(val)
     }
@@ -8808,11 +8808,11 @@ const platesBetweenCandles = (str: string, arrs: number[][]): number[] => {
 }
 function bestRotation(nums: number[]): number {
     let len = nums.length;
-    let max=-Infinity;
+    let max = -Infinity;
     //求出对应K值得分数减少的数值
     let change = new Array(len).fill(0);
-    for(let i=0;i<len;i++){
-        change[(i-nums[i]+1+len)%len]-=1
+    for (let i = 0; i < len; i++) {
+        change[(i - nums[i] + 1 + len) % len] -= 1
     }
     //找到最大的分值对应的索引
     let maxIndex = 0;
@@ -8820,10 +8820,10 @@ function bestRotation(nums: number[]): number {
     let score = 0;
     let maxScore = score;
     for (let i = 1; i < len; i++) {
-        let nextScore = score+change[i]+1;
-        if(nextScore>maxScore){
+        let nextScore = score + change[i] + 1;
+        if (nextScore > maxScore) {
             maxScore = nextScore
-            maxIndex=i;
+            maxIndex = i;
         }
         score = nextScore;
     }
@@ -8910,7 +8910,7 @@ function validUtf8(data: number[]): boolean {
         }
         // 校验后续字节是否存在且以 10 开头
         for (let j = 0; j < charLen; j++) {
-            if((++i >= data.length || data[i] & 0b10000000) !== 0b10000000) {
+            if ((++i >= data.length || data[i] & 0b10000000) !== 0b10000000) {
                 return false
             }
         }
@@ -8919,10 +8919,10 @@ function validUtf8(data: number[]): boolean {
 };
 function findRestaurant(list1: string[], list2: string[]): string[] {
     let arrStr: string[] = [];
-    let min:number = Infinity;
+    let min: number = Infinity;
     const len: number = list1.length;
 
-    for (let i = 0; i<len; i++) {
+    for (let i = 0; i < len; i++) {
         let index: number = list2.indexOf(list1[i]);
         if (index >= 0) {
             if (index + i < min) {
@@ -8930,7 +8930,7 @@ function findRestaurant(list1: string[], list2: string[]): string[] {
                 // empty arrStr;
                 arrStr = [];
                 arrStr.push(list1[i]);
-            } else if(index+i === min) {
+            } else if (index + i === min) {
                 arrStr.push(list1[i]);
             }
         }
@@ -8938,22 +8938,22 @@ function findRestaurant(list1: string[], list2: string[]): string[] {
     return arrStr;
 };
 function countMaxOrSubsets(nums: number[]): number {
-    if(nums.length == 1) return 1
+    if (nums.length == 1) return 1
     const len = nums.length
     let res = 0, max = Number.MIN_VALUE
-    const dfs = function(i, sum) {
-        if(i == len) return
+    const dfs = function (i, sum) {
+        if (i == len) return
         let sum1 = nums[i] | sum
-        if(sum1 > max) {
+        if (sum1 > max) {
             res = 1
             max = sum1
-        } else if(sum1 == max){
+        } else if (sum1 == max) {
             res++
         }
-        dfs(i+1, sum1)
-        dfs(i+1, sum)
+        dfs(i + 1, sum1)
+        dfs(i + 1, sum)
     }
-    
+
     dfs(0, 0);
     return res;
 };
@@ -9075,23 +9075,58 @@ class AllOne {
 }
 function longestWord(words: string[]): string {
     words.sort((a, b) => {
-        if(a.length > b.length) return -1;
-        else if(a.length < b.length) return 1;
+        if (a.length > b.length) return -1;
+        else if (a.length < b.length) return 1;
         else return a > b ? 1 : -1;
     })
-    for(let i = 0; i < words.length; i++){
+    for (let i = 0; i < words.length; i++) {
         // 保存前缀
         let str = '';
-        for(let j = 0; j < words[i].length; j++){
+        for (let j = 0; j < words[i].length; j++) {
             str += words[i][j];
-            if(j == words[i].length - 1) return str;
-            if(words.indexOf(str) == -1){
+            if (j == words[i].length - 1) return str;
+            if (words.indexOf(str) == -1) {
                 break;
             }
         }
     }
     return '';
 };
+
+function networkBecomesIdle(edges: number[][], patience: number[]): number {
+    let res = -1;
+    let q = [0];
+    let e = new Map();
+    let t = 0;
+    const visited: boolean[] = new Array(patience.length).fill(false);
+    visited[0] = true;
+    for (let [f, t] of edges) {
+        if (!e.has(f)) e.set(f, new Set());
+        if (!e.has(t)) e.set(t, new Set());
+        e.get(f).add(t);
+        e.get(t).add(f);
+    }
+    while (q.length) {
+        let n = [];
+        while (q.length) {
+            let cur = q.pop();
+            if (cur !== 0) {
+                let time = Math.floor((2 * t - 1) / patience[cur]);
+                res = Math.max(res, time * patience[cur] + 2 * t);
+            }
+            for (let i of e.get(cur)) {
+                if (!visited[i]) {
+                    visited[i] = true;
+                    n.push(i);
+                }
+            }
+        }
+        q = n;
+        t += 1;
+    }
+    return res + 1;
+};
+
 export {
     removeDuplicatesII,
     isScramble,
